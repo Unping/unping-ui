@@ -1,3 +1,7 @@
+---
+applyTo: "*"
+---
+
 This is a widget library for Flutter, similar to shadcn/ui for React. Unping-UI provides copy & paste ready widgets that can be used in Flutter projects. It is designed to be customizable, extendable, and tested.
 We use pub.dev for managing our Dart dependencies.
 We use fpx (Flutter Paste X) for managing our Flutter components, allowing easy addition of components to projects.
