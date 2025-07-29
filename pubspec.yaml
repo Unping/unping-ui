@@ -1,0 +1,18 @@
+name: unping_ui
+description: Desktop & Web first flutter component library
+version: 0.1.0+1
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+  flutter: ^3.24.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^1.0.4
+  very_good_analysis: ^7.0.0
