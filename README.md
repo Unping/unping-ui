@@ -44,6 +44,19 @@ fpx add card
 fpx add input_field
 ```
 
+## Develop new widgets
+
+For adding new widgets, place them in lib/ folder. And dont forget to add them to th widgetbook app. Addd a warpper in widgetbook/lib for your new widget.
+After adding a widget, dont forget to trigger the code generation for widgetbook:
+```
+cd widgetbook && dart run build_runner build -d
+```
+
+To see Widgetbook in action:
+```
+cd widgetbook && flutter run
+```
+
 The components will be copied directly into your project, ready to use and customize!
 
 [flutter_install_link]: https://docs.flutter.dev/get-started/install

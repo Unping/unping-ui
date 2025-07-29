@@ -1,4 +1,5 @@
 /// Desktop & Web first flutter component library
 library;
 
+export 'src/cool_button.dart';
 export 'src/unping_ui.dart';
