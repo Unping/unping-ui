@@ -18,6 +18,8 @@ migrate_working_dir/
 
 # VSCode related
 .vscode/*
+!.vscode/mcp.json
+!.vscode/settings.json
 
 # Flutter/Dart/Pub related
 **/doc/api/
