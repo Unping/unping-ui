@@ -46,8 +46,8 @@ fpx add input_field
 
 ## Develop new widgets
 
-For adding new widgets, place them in lib/ folder. And dont forget to add them to th widgetbook app. Addd a warpper in widgetbook/lib for your new widget.
-After adding a widget, dont forget to trigger the code generation for widgetbook:
+For adding new widgets, place them in lib/ folder. And don't forget to add them to th widgetbook app. Add a wrapper in widgetbook/lib for your new widget.
+After adding a widget, don't forget to trigger the code generation for widgetbook:
 ```
 cd widgetbook && dart run build_runner build -d
 ```
