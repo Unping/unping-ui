@@ -1,0 +1,6 @@
+{
+    "settings": {
+        "chat.promptFiles": true,
+        "chat.mcp.discovery.enabled": true,
+    }
+}
