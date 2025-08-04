@@ -8,6 +8,18 @@ enum IconPosition {
   trailing,
 }
 
+/// Button visual states
+enum ButtonState {
+  /// Normal state - default appearance
+  normal,
+  /// Hovered state - when mouse is over the button
+  hovered,
+  /// Focused state - when button has keyboard focus
+  focused,
+  /// Disabled state - when button is not interactive
+  disabled,
+}
+
 /// A base button widget that matches the Figma design pattern.
 /// Supports customizable text, icon, and styling with flexible positioning.
 class BaseButton extends StatefulWidget {
@@ -26,11 +38,38 @@ class BaseButton extends StatefulWidget {
   /// Background color of the button
   final Color? backgroundColor;
 
+  /// Background color when hovered
+  final Color? hoverBackgroundColor;
+
+  /// Background color when focused
+  final Color? focusBackgroundColor;
+
+  /// Background color when disabled
+  final Color? disabledBackgroundColor;
+
   /// Text color
   final Color textColor;
 
+  /// Text color when hovered
+  final Color? hoverTextColor;
+
+  /// Text color when focused
+  final Color? focusTextColor;
+
+  /// Text color when disabled
+  final Color? disabledTextColor;
+
   /// Border color (for outlined style)
   final Color? borderColor;
+
+  /// Border color when hovered
+  final Color? hoverBorderColor;
+
+  /// Border color when focused
+  final Color? focusBorderColor;
+
+  /// Border color when disabled
+  final Color? disabledBorderColor;
 
   /// Border width (for outlined style)
   final double borderWidth;
@@ -68,6 +107,10 @@ class BaseButton extends StatefulWidget {
   /// Custom loading widget (if null, uses default CircularProgressIndicator)
   final Widget? loadingWidget;
 
+  /// Force a specific button state (overrides automatic state detection)
+  /// Useful for showcasing different states in Widgetbook or design systems
+  final ButtonState? forceState;
+
   const BaseButton({
     super.key,
     this.text,
@@ -75,8 +118,17 @@ class BaseButton extends StatefulWidget {
     this.iconPosition = IconPosition.trailing,
     this.onPressed,
     this.backgroundColor,
+    this.hoverBackgroundColor,
+    this.focusBackgroundColor,
+    this.disabledBackgroundColor,
     required this.textColor, // No default - must be specified by caller
+    this.hoverTextColor,
+    this.focusTextColor,
+    this.disabledTextColor,
     this.borderColor, // Nullable to allow no border for ghost buttons
+    this.hoverBorderColor,
+    this.focusBorderColor,
+    this.disabledBorderColor,
     this.borderWidth = 1.0,
     this.fontSize = 14.0,
     this.fontWeight = FontWeight.w400,
@@ -89,6 +141,7 @@ class BaseButton extends StatefulWidget {
     this.underlineText = false,
     this.isLoading = false,
     this.loadingWidget,
+    this.forceState,
   }) : padding = padding ?? (text != null 
       ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
       : const EdgeInsets.all(8.0)), // Use 8px all around when no text
@@ -101,6 +154,8 @@ class BaseButton extends StatefulWidget {
 class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
+  bool _isHovered = false;
+  bool _isFocused = false;
 
   @override
   void initState() {
@@ -125,6 +180,23 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
     super.dispose();
   }
 
+  /// Get the current button state based on conditions
+  /// Priority: forceState > disabled > focused > hovered > normal
+  ButtonState get _currentState {
+    // If forceState is provided, use it (except when disabled)
+    if (widget.forceState != null) {
+      // Still respect disabled state when onPressed is null
+      if (widget.onPressed == null) return ButtonState.disabled;
+      return widget.forceState!;
+    }
+    
+    // Normal state detection logic
+    if (widget.onPressed == null) return ButtonState.disabled;
+    if (_isFocused) return ButtonState.focused;
+    if (_isHovered) return ButtonState.hovered;
+    return ButtonState.normal;
+  }
+
   void _onTapDown(TapDownDetails details) {
     if (widget.onPressed != null && !widget.isLoading) {
       _animationController.forward();
@@ -143,12 +215,36 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
   }
 
   BoxDecoration _getDecoration() {
+    final currentState = _currentState;
+    
+    Color? backgroundColor;
+    Color? borderColor;
+    
+    switch (currentState) {
+      case ButtonState.disabled:
+        backgroundColor = widget.disabledBackgroundColor ?? widget.backgroundColor;
+        borderColor = widget.disabledBorderColor ?? widget.borderColor;
+        break;
+      case ButtonState.focused:
+        backgroundColor = widget.focusBackgroundColor ?? widget.backgroundColor;
+        borderColor = widget.focusBorderColor ?? widget.borderColor;
+        break;
+      case ButtonState.hovered:
+        backgroundColor = widget.hoverBackgroundColor ?? widget.backgroundColor;
+        borderColor = widget.hoverBorderColor ?? widget.borderColor;
+        break;
+      case ButtonState.normal:
+        backgroundColor = widget.backgroundColor;
+        borderColor = widget.borderColor;
+        break;
+    }
+
     return BoxDecoration(
-      color: widget.backgroundColor,
+      color: backgroundColor,
       borderRadius: BorderRadius.circular(widget.borderRadius),
-      border: widget.borderColor != null
+      border: borderColor != null
           ? Border.all(
-              color: widget.borderColor!,
+              color: borderColor,
               width: widget.borderWidth,
             )
           : null,
@@ -176,15 +272,33 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
     // Build text widget if provided
     Widget? textWidget;
     if (widget.text != null) {
+      final currentState = _currentState;
+      Color textColor;
+      
+      switch (currentState) {
+        case ButtonState.disabled:
+          textColor = widget.disabledTextColor ?? widget.textColor;
+          break;
+        case ButtonState.focused:
+          textColor = widget.focusTextColor ?? widget.textColor;
+          break;
+        case ButtonState.hovered:
+          textColor = widget.hoverTextColor ?? widget.textColor;
+          break;
+        case ButtonState.normal:
+          textColor = widget.textColor;
+          break;
+      }
+      
       textWidget = Text(
         widget.text!,
         style: TextStyle(
-          color: widget.textColor,
+          color: textColor,
           fontSize: widget.fontSize,
           fontWeight: widget.fontWeight,
           fontFamily: widget.fontFamily,
           decoration: widget.underlineText ? TextDecoration.underline : null,
-          decorationColor: widget.textColor,
+          decorationColor: textColor,
           height: 20 / widget.fontSize, // Line height as per Figma design
         ),
       );
@@ -210,26 +324,47 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
 
   @override
   Widget build(BuildContext context) {
+    final isDisabled = widget.onPressed == null;
+    
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
         return Transform.scale(
           scale: _scaleAnimation.value,
-          child: GestureDetector(
-            onTapDown: _onTapDown,
-            onTapUp: _onTapUp,
-            onTapCancel: _onTapCancel,
-            child: Container(
-              constraints: BoxConstraints(
-                minHeight: widget.minHeight ?? 0,
-                minWidth: widget.minWidth ?? 0,
-              ),
-              decoration: _getDecoration(),
-              padding: widget.padding,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: _buildChildren(),
+          child: Focus(
+            onFocusChange: (hasFocus) {
+              if (!isDisabled) {
+                setState(() => _isFocused = hasFocus);
+              }
+            },
+            child: MouseRegion(
+              onEnter: (_) {
+                if (!isDisabled) {
+                  setState(() => _isHovered = true);
+                }
+              },
+              onExit: (_) {
+                if (!isDisabled) {
+                  setState(() => _isHovered = false);
+                }
+              },
+              child: GestureDetector(
+                onTapDown: isDisabled ? null : _onTapDown,
+                onTapUp: isDisabled ? null : _onTapUp,
+                onTapCancel: isDisabled ? null : _onTapCancel,
+                child: Container(
+                  constraints: BoxConstraints(
+                    minHeight: widget.minHeight ?? 0,
+                    minWidth: widget.minWidth ?? 0,
+                  ),
+                  decoration: _getDecoration(),
+                  padding: widget.padding,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: _buildChildren(),
+                  ),
+                ),
               ),
             ),
           ),
@@ -337,17 +472,35 @@ class Buttons {
     required String text,
     VoidCallback? onPressed,
     Color textColor = const Color(0xFFFFFFFF), // White text for ghost buttons
-    bool underlineText = false,
+    Color? hoverTextColor, // Can be customized per use case
+    Color? focusTextColor, // Can be customized per use case
+    Color? disabledTextColor, // Can be customized per use case
     Color? backgroundColor,
+    Color? hoverBackgroundColor,
+    Color? focusBackgroundColor,
+    Color? disabledBackgroundColor,
     Color? borderColor, // Nullable to allow no border
+    Color? hoverBorderColor,
+    Color? focusBorderColor,
+    Color? disabledBorderColor,
+    bool underlineText = false,
   }) {
     return BaseButton(
       text: text,
       onPressed: onPressed,
       textColor: textColor,
-      underlineText: underlineText,
+      hoverTextColor: hoverTextColor,
+      focusTextColor: focusTextColor,
+      disabledTextColor: disabledTextColor,
       backgroundColor: backgroundColor,
+      hoverBackgroundColor: hoverBackgroundColor,
+      focusBackgroundColor: focusBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor,
       borderColor: borderColor,
+      hoverBorderColor: hoverBorderColor,
+      focusBorderColor: focusBorderColor,
+      disabledBorderColor: disabledBorderColor,
+      underlineText: underlineText,
     );
   }
 
@@ -358,8 +511,19 @@ class Buttons {
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
     Color backgroundColor = const Color(0xFFFFFFFF), // White background for filled buttons
+    Color? hoverBackgroundColor = const Color(0xFFABB5C4), // Gray hover color from Figma
+    Color? focusBackgroundColor, // Can be customized per use case
+    Color? disabledBackgroundColor, // Can be customized per use case
     Color textColor = const Color(0xFF2A313C), // Grey text for filled buttons
+    Color? hoverTextColor, // Keep same text color on hover by default
+    Color? focusTextColor, // Can be customized per use case
+    Color? disabledTextColor, // Can be customized per use case
+    Color? borderColor, // No border by default for filled buttons
+    Color? hoverBorderColor,
+    Color? focusBorderColor,
+    Color? disabledBorderColor,
     bool underlineText = false,
+    ButtonState? forceState,
   }) {
     return BaseButton(
       text: text,
@@ -367,8 +531,19 @@ class Buttons {
       iconPosition: iconPosition,
       onPressed: onPressed,
       backgroundColor: backgroundColor,
+      hoverBackgroundColor: hoverBackgroundColor,
+      focusBackgroundColor: focusBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor,
       textColor: textColor,
+      hoverTextColor: hoverTextColor,
+      focusTextColor: focusTextColor,
+      disabledTextColor: disabledTextColor,
+      borderColor: borderColor,
+      hoverBorderColor: hoverBorderColor,
+      focusBorderColor: focusBorderColor,
+      disabledBorderColor: disabledBorderColor,
       underlineText: underlineText,
+      forceState: forceState,
     );
   }
 
@@ -379,7 +554,17 @@ class Buttons {
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
     Color borderColor = const Color(0xFFFFFFFF),
+    Color? hoverBorderColor,
+    Color? focusBorderColor,
+    Color? disabledBorderColor,
     Color textColor = const Color(0xFFFFFFFF), // White text for outline buttons when not specified
+    Color? hoverTextColor,
+    Color? focusTextColor,
+    Color? disabledTextColor,
+    Color? backgroundColor, // Transparent by default for outline buttons
+    Color? hoverBackgroundColor,
+    Color? focusBackgroundColor,
+    Color? disabledBackgroundColor,
     bool underlineText = false,
   }) {
     return BaseButton(
@@ -388,7 +573,17 @@ class Buttons {
       iconPosition: iconPosition,
       onPressed: onPressed,
       borderColor: borderColor,
+      hoverBorderColor: hoverBorderColor,
+      focusBorderColor: focusBorderColor,
+      disabledBorderColor: disabledBorderColor,
       textColor: textColor,
+      hoverTextColor: hoverTextColor,
+      focusTextColor: focusTextColor,
+      disabledTextColor: disabledTextColor,
+      backgroundColor: backgroundColor,
+      hoverBackgroundColor: hoverBackgroundColor,
+      focusBackgroundColor: focusBackgroundColor,
+      disabledBackgroundColor: disabledBackgroundColor,
       underlineText: underlineText,
     );
   }
