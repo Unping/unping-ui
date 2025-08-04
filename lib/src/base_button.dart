@@ -484,6 +484,7 @@ class Buttons {
     Color? focusBorderColor,
     Color? disabledBorderColor,
     bool underlineText = false,
+    ButtonState? forceState,
   }) {
     return BaseButton(
       text: text,
@@ -501,6 +502,7 @@ class Buttons {
       focusBorderColor: focusBorderColor,
       disabledBorderColor: disabledBorderColor,
       underlineText: underlineText,
+      forceState: forceState,
     );
   }
 
@@ -566,6 +568,7 @@ class Buttons {
     Color? focusBackgroundColor,
     Color? disabledBackgroundColor,
     bool underlineText = false,
+    ButtonState? forceState,
   }) {
     return BaseButton(
       text: text,
@@ -585,6 +588,7 @@ class Buttons {
       focusBackgroundColor: focusBackgroundColor,
       disabledBackgroundColor: disabledBackgroundColor,
       underlineText: underlineText,
+      forceState: forceState,
     );
   }
 }
