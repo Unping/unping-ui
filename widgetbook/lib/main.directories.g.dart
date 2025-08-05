@@ -11,6 +11,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
+<<<<<<< HEAD
 import 'package:widgetbook_workspace/base_button.dart' as _i2;
 import 'package:widgetbook_workspace/cool_button.dart' as _i3;
 
@@ -40,3 +41,7 @@ final directories = <_i1.WidgetbookNode>[
     ),
   ),
 ];
+=======
+
+final directories = <_i1.WidgetbookNode>[];
+>>>>>>> main
