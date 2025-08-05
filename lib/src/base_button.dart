@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 enum IconPosition {
   /// Icon appears before the text (leading)
   leading,
+
   /// Icon appears after the text (trailing)
   trailing,
 }
@@ -12,10 +13,13 @@ enum IconPosition {
 enum ButtonState {
   /// Normal state - default appearance
   normal,
+
   /// Hovered state - when mouse is over the button
   hovered,
+
   /// Focused state - when button has keyboard focus
   focused,
+
   /// Disabled state - when button is not interactive
   disabled,
 }
@@ -144,22 +148,25 @@ class BaseButton extends StatefulWidget {
     this.borderRadius = 4.0,
     EdgeInsetsGeometry? padding,
     this.gap = 8.0,
-    this.minHeight = 36.0,//icon only
-    this.minWidth = 36.0,//icon only,
+    this.minHeight = 36.0, //icon only
+    this.minWidth = 36.0, //icon only,
     this.underlineText = false,
     this.isLoading = false,
     this.loadingWidget,
     this.forceState,
-  }) : padding = padding ?? (text != null 
-      ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
-      : const EdgeInsets.all(8.0)), // Use 8px all around when no text
-    assert(text != null || icon != null, 'Either text or icon must be provided');
+  })  : padding = padding ??
+            (text != null
+                ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
+                : const EdgeInsets.all(8.0)), // Use 8px all around when no text
+        assert(text != null || icon != null,
+            'Either text or icon must be provided');
 
   @override
   State<BaseButton> createState() => _BaseButtonState();
 }
 
-class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateMixin {
+class _BaseButtonState extends State<BaseButton>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
   bool _isHovered = false;
@@ -197,7 +204,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
       if (widget.onPressed == null) return ButtonState.disabled;
       return widget.forceState!;
     }
-    
+
     // Normal state detection logic
     if (widget.onPressed == null) return ButtonState.disabled;
     if (_isFocused) return ButtonState.focused;
@@ -224,14 +231,15 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
 
   BoxDecoration _getDecoration() {
     final currentState = _currentState;
-    
+
     Color? backgroundColor;
     Color? borderColor;
     List<BoxShadow>? boxShadow;
-    
+
     switch (currentState) {
       case ButtonState.disabled:
-        backgroundColor = widget.disabledBackgroundColor ?? widget.backgroundColor;
+        backgroundColor =
+            widget.disabledBackgroundColor ?? widget.backgroundColor;
         borderColor = widget.disabledBorderColor ?? widget.borderColor;
         break;
       case ButtonState.focused:
@@ -295,7 +303,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
     if (widget.text != null) {
       final currentState = _currentState;
       Color textColor;
-      
+
       switch (currentState) {
         case ButtonState.disabled:
           textColor = widget.disabledTextColor ?? widget.textColor;
@@ -310,7 +318,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
           textColor = widget.textColor;
           break;
       }
-      
+
       textWidget = Text(
         widget.text!,
         style: TextStyle(
@@ -346,7 +354,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
   @override
   Widget build(BuildContext context) {
     final isDisabled = widget.onPressed == null;
-    
+
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
@@ -395,7 +403,6 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
   }
 }
 
-
 /// Custom circular progress indicator that doesn't depend on Material
 class _CustomCircularProgressIndicator extends StatefulWidget {
   final double strokeWidth;
@@ -407,10 +414,12 @@ class _CustomCircularProgressIndicator extends StatefulWidget {
   });
 
   @override
-  State<_CustomCircularProgressIndicator> createState() => _CustomCircularProgressIndicatorState();
+  State<_CustomCircularProgressIndicator> createState() =>
+      _CustomCircularProgressIndicatorState();
 }
 
-class _CustomCircularProgressIndicatorState extends State<_CustomCircularProgressIndicator>
+class _CustomCircularProgressIndicatorState
+    extends State<_CustomCircularProgressIndicator>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
 
@@ -500,13 +509,15 @@ class Buttons {
     Color? disabledTextColor, // Can be customized per use case
     Color? backgroundColor, // Transparent by default for ghost buttons
     Color? hoverBackgroundColor,
-    Color? focusBackgroundColor = const Color(0xFF2A313C), // Dark gray background when focused
+    Color? focusBackgroundColor =
+        const Color(0xFF2A313C), // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? borderColor, // Nullable to allow no border
     Color? hoverBorderColor,
     Color? focusBorderColor, // No focus border for ghost buttons
     Color? disabledBorderColor,
-    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    Color? focusRingColor =
+        const Color(0xFF989DB3), // Focus ring color from Figma
     double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
@@ -541,8 +552,10 @@ class Buttons {
     Widget? icon,
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
-    Color backgroundColor = const Color(0xFFFFFFFF), // White background for filled buttons
-    Color? hoverBackgroundColor = const Color(0xFFABB5C4), // Gray hover color from Figma
+    Color backgroundColor =
+        const Color(0xFFFFFFFF), // White background for filled buttons
+    Color? hoverBackgroundColor =
+        const Color(0xFFABB5C4), // Gray hover color from Figma
     Color? focusBackgroundColor, // Can be customized per use case
     Color? disabledBackgroundColor, // Can be customized per use case
     Color textColor = const Color(0xFF2A313C), // Grey text for filled buttons
@@ -551,9 +564,11 @@ class Buttons {
     Color? disabledTextColor, // Can be customized per use case
     Color? borderColor, // No border by default for filled buttons
     Color? hoverBorderColor,
-    Color? focusBorderColor = const Color(0xFFFFFFFF), // White border when focused
+    Color? focusBorderColor =
+        const Color(0xFFFFFFFF), // White border when focused
     Color? disabledBorderColor,
-    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    Color? focusRingColor =
+        const Color(0xFF989DB3), // Focus ring color from Figma
     double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
@@ -592,15 +607,19 @@ class Buttons {
     Color? hoverBorderColor,
     Color? focusBorderColor,
     Color? disabledBorderColor,
-    Color textColor = const Color(0xFFFFFFFF), // White text for outline buttons when not specified
+    Color textColor = const Color(
+        0xFFFFFFFF), // White text for outline buttons when not specified
     Color? hoverTextColor,
     Color? focusTextColor,
     Color? disabledTextColor,
     Color? backgroundColor, // Transparent by default for outline buttons
-    Color? hoverBackgroundColor = const Color(0xFFABB5C4), // Gray hover color from Figma
-    Color? focusBackgroundColor = const Color(0xFF2A313C), // Dark gray background when focused
+    Color? hoverBackgroundColor =
+        const Color(0xFFABB5C4), // Gray hover color from Figma
+    Color? focusBackgroundColor =
+        const Color(0xFF2A313C), // Dark gray background when focused
     Color? disabledBackgroundColor,
-    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    Color? focusRingColor =
+        const Color(0xFF989DB3), // Focus ring color from Figma
     double focusRingWidth = 3.0, // Focus ring width from Figma
     bool underlineText = false,
     ButtonState? forceState,
