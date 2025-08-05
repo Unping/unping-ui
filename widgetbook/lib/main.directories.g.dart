@@ -24,7 +24,7 @@ final directories = <_i1.WidgetbookNode>[
       ),
       _i1.WidgetbookUseCase(
         name: 'Ghost',
-        builder: _i2.buildBaseButtonTextOnly,
+        builder: _i2.buildBaseButtonGhost,
       ),
       _i1.WidgetbookUseCase(
         name: 'Outline',

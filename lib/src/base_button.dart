@@ -490,7 +490,9 @@ class _CircularProgressPainter extends CustomPainter {
 class Buttons {
   /// Creates a ghost button
   static BaseButton ghost({
-    required String text,
+    String? text,
+    Widget? icon,
+    IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
     Color textColor = const Color(0xFFFFFFFF), // White text for ghost buttons
     Color? hoverTextColor, // Can be customized per use case
@@ -511,6 +513,8 @@ class Buttons {
   }) {
     return BaseButton(
       text: text,
+      icon: icon,
+      iconPosition: iconPosition,
       onPressed: onPressed,
       textColor: textColor,
       hoverTextColor: hoverTextColor,

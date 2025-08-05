@@ -421,15 +421,211 @@ Widget buildBaseButtonOutlined(BuildContext context) {
   );
 }
 
-//TODO: see figma file, provide all variants
 @widgetbook.UseCase(name: 'Ghost', type: BaseButton)
-Widget buildBaseButtonTextOnly(BuildContext context) {
-  return Container(
-    padding: const EdgeInsets.all(16),
-    child: Buttons.ghost(
-      text: 'Button',
-      onPressed: () {},
-    ),
+Widget buildBaseButtonGhost(BuildContext context) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.leading,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+          ),
+        ),
+      ]),
+      //Hovered state
+      Row(children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            forceState: ButtonState.hovered
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.leading,
+            forceState: ButtonState.hovered
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+            forceState: ButtonState.hovered
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+            forceState: ButtonState.hovered
+          ),
+        ),
+      ]),
+      //Focused state
+      Row(children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            forceState: ButtonState.focused
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.leading,
+            forceState: ButtonState.focused
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+            forceState: ButtonState.focused
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            onPressed: () {},
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+            forceState: ButtonState.focused
+          ),
+        ),
+      ]),
+      //Disabled state
+      Row(children: [
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: null,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: null,
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.leading,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            text: 'Button',
+            onPressed: null,
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+          ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(16),
+          child: Buttons.ghost(
+            onPressed: null,
+            icon: Icon(
+              Icons.radio_button_unchecked,
+              size: 16,
+              color: Color(0xFFFFFFFF), // Match the text color
+            ),
+            iconPosition: IconPosition.trailing,
+          ),
+        ),
+      ]),
+    ],
   );
 }
 
