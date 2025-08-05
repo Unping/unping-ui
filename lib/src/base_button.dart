@@ -74,6 +74,12 @@ class BaseButton extends StatefulWidget {
   /// Border width (for outlined style)
   final double borderWidth;
 
+  /// Focus ring color (for focus state shadow)
+  final Color? focusRingColor;
+
+  /// Focus ring width (for focus state shadow)
+  final double focusRingWidth;
+
   /// Font size of the button text
   final double fontSize;
 
@@ -130,6 +136,8 @@ class BaseButton extends StatefulWidget {
     this.focusBorderColor,
     this.disabledBorderColor,
     this.borderWidth = 1.0,
+    this.focusRingColor,
+    this.focusRingWidth = 3.0,
     this.fontSize = 14.0,
     this.fontWeight = FontWeight.w400,
     this.fontFamily = 'Outfit',
@@ -219,6 +227,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
     
     Color? backgroundColor;
     Color? borderColor;
+    List<BoxShadow>? boxShadow;
     
     switch (currentState) {
       case ButtonState.disabled:
@@ -228,6 +237,17 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
       case ButtonState.focused:
         backgroundColor = widget.focusBackgroundColor ?? widget.backgroundColor;
         borderColor = widget.focusBorderColor ?? widget.borderColor;
+        // Add focus ring shadow
+        if (widget.focusRingColor != null) {
+          boxShadow = [
+            BoxShadow(
+              color: widget.focusRingColor!,
+              offset: Offset.zero,
+              blurRadius: 0,
+              spreadRadius: widget.focusRingWidth,
+            ),
+          ];
+        }
         break;
       case ButtonState.hovered:
         backgroundColor = widget.hoverBackgroundColor ?? widget.backgroundColor;
@@ -248,6 +268,7 @@ class _BaseButtonState extends State<BaseButton> with SingleTickerProviderStateM
               width: widget.borderWidth,
             )
           : null,
+      boxShadow: boxShadow,
     );
   }
 
@@ -475,14 +496,16 @@ class Buttons {
     Color? hoverTextColor, // Can be customized per use case
     Color? focusTextColor, // Can be customized per use case
     Color? disabledTextColor, // Can be customized per use case
-    Color? backgroundColor,
+    Color? backgroundColor, // Transparent by default for ghost buttons
     Color? hoverBackgroundColor,
-    Color? focusBackgroundColor,
+    Color? focusBackgroundColor = const Color(0xFF2A313C), // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? borderColor, // Nullable to allow no border
     Color? hoverBorderColor,
-    Color? focusBorderColor,
+    Color? focusBorderColor, // No focus border for ghost buttons
     Color? disabledBorderColor,
+    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
   }) {
@@ -501,6 +524,8 @@ class Buttons {
       hoverBorderColor: hoverBorderColor,
       focusBorderColor: focusBorderColor,
       disabledBorderColor: disabledBorderColor,
+      focusRingColor: focusRingColor,
+      focusRingWidth: focusRingWidth,
       underlineText: underlineText,
       forceState: forceState,
     );
@@ -522,8 +547,10 @@ class Buttons {
     Color? disabledTextColor, // Can be customized per use case
     Color? borderColor, // No border by default for filled buttons
     Color? hoverBorderColor,
-    Color? focusBorderColor,
+    Color? focusBorderColor = const Color(0xFFFFFFFF), // White border when focused
     Color? disabledBorderColor,
+    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
   }) {
@@ -544,6 +571,8 @@ class Buttons {
       hoverBorderColor: hoverBorderColor,
       focusBorderColor: focusBorderColor,
       disabledBorderColor: disabledBorderColor,
+      focusRingColor: focusRingColor,
+      focusRingWidth: focusRingWidth,
       underlineText: underlineText,
       forceState: forceState,
     );
@@ -564,9 +593,11 @@ class Buttons {
     Color? focusTextColor,
     Color? disabledTextColor,
     Color? backgroundColor, // Transparent by default for outline buttons
-    Color? hoverBackgroundColor,
-    Color? focusBackgroundColor,
+    Color? hoverBackgroundColor = const Color(0xFFABB5C4), // Gray hover color from Figma
+    Color? focusBackgroundColor = const Color(0xFF2A313C), // Dark gray background when focused
     Color? disabledBackgroundColor,
+    Color? focusRingColor = const Color(0xFF989DB3), // Focus ring color from Figma
+    double focusRingWidth = 3.0, // Focus ring width from Figma
     bool underlineText = false,
     ButtonState? forceState,
   }) {
@@ -587,6 +618,8 @@ class Buttons {
       hoverBackgroundColor: hoverBackgroundColor,
       focusBackgroundColor: focusBackgroundColor,
       disabledBackgroundColor: disabledBackgroundColor,
+      focusRingColor: focusRingColor,
+      focusRingWidth: focusRingWidth,
       underlineText: underlineText,
       forceState: forceState,
     );
