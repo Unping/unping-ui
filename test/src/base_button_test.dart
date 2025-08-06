@@ -336,7 +336,7 @@ void main() {
           of: find.byType(BaseButton),
           matching: find.byType(Focus),
         ));
-        
+
         // Initially should have normal text color
         var textWidget = tester.widget<Text>(find.text('Test'));
         expect(textWidget.style!.color, equals(Color(0xFFFFFFFF)));
@@ -363,7 +363,8 @@ void main() {
         }
       });
 
-      testWidgets('does not respond to focus changes when disabled', (tester) async {
+      testWidgets('does not respond to focus changes when disabled',
+          (tester) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
