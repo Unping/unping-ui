@@ -1,0 +1,19 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+
+echo "Running pre-commit checks..."
+
+# Format Dart code and check if any files were changed
+echo "Checking Dart formatting..."
+if ! dart format --line-length 80 --set-exit-if-changed lib test; then
+  echo "❌ Dart formatting check failed!"
+  echo "Run 'dart format --line-length 80 lib test' to fix formatting issues."
+  exit 1
+fi
+
+echo "✅ All pre-commit checks passed!"
+exit 0
