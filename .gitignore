@@ -20,6 +20,7 @@ migrate_working_dir/
 .vscode/*
 !.vscode/mcp.json
 !.vscode/settings.json
+!.vscode/launch.json
 
 # Flutter/Dart/Pub related
 **/doc/api/
