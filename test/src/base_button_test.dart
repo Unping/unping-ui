@@ -55,7 +55,7 @@ void main() {
       expect(find.byType(Icon), findsOneWidget);
     });
 
-    testWidgets('throws assertion error when both text and icon are null', 
+    testWidgets('throws assertion error when both text and icon are null',
         (tester) async {
       expect(
         () => BaseButton(textColor: Color(0xFFFFFFFF)),
@@ -65,7 +65,7 @@ void main() {
 
     testWidgets('calls onPressed when tapped', (tester) async {
       bool wasPressed = false;
-      
+
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -83,7 +83,7 @@ void main() {
 
     testWidgets('does not call onPressed when disabled', (tester) async {
       bool wasPressed = false;
-      
+
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -136,7 +136,7 @@ void main() {
 
     testWidgets('does not call onPressed when loading', (tester) async {
       bool wasPressed = false;
-      
+
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -170,7 +170,7 @@ void main() {
 
         final row = tester.widget<Row>(find.byType(Row));
         final children = row.children;
-        
+
         expect(children.length, equals(3)); // icon, gap, text
         expect(children[0], isA<Icon>());
         expect(children[1], isA<SizedBox>());
@@ -193,7 +193,7 @@ void main() {
 
         final row = tester.widget<Row>(find.byType(Row));
         final children = row.children;
-        
+
         expect(children.length, equals(3)); // text, gap, icon
         expect(children[0], isA<Text>());
         expect(children[1], isA<SizedBox>());
@@ -220,7 +220,7 @@ void main() {
         expect(textWidget.style!.color, equals(Color(0xFF00FF00)));
       });
 
-      testWidgets('respects disabled state even with forced state', 
+      testWidgets('respects disabled state even with forced state',
           (tester) async {
         await tester.pumpWidget(
           Directionality(
@@ -259,7 +259,8 @@ void main() {
         expect(textWidget.style!.color, equals(Color(0xFFFFFFFF)));
 
         // Hover over the button
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         await gesture.moveTo(tester.getCenter(find.byType(BaseButton)));
         await tester.pump();
@@ -267,7 +268,7 @@ void main() {
         // Should now have hover text color
         textWidget = tester.widget<Text>(find.text('Test'));
         expect(textWidget.style!.color, equals(Color(0xFF00FF00)));
-        
+
         await gesture.removePointer();
       });
 
@@ -304,7 +305,8 @@ void main() {
         );
 
         // Hover over the disabled button
-        final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture =
+            await tester.createGesture(kind: PointerDeviceKind.mouse);
         await gesture.addPointer(location: Offset.zero);
         await gesture.moveTo(tester.getCenter(find.byType(BaseButton)));
         await tester.pump();
@@ -312,7 +314,7 @@ void main() {
         // Should still have disabled text color
         final textWidget = tester.widget<Text>(find.text('Test'));
         expect(textWidget.style!.color, equals(Color(0xFF888888)));
-        
+
         await gesture.removePointer();
       });
     });
@@ -348,11 +350,11 @@ void main() {
         );
 
         final container = tester.widget<Container>(find.byType(Container));
-        expect(container.padding, 
+        expect(container.padding,
             equals(EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)));
       });
 
-      testWidgets('applies default padding for icon-only button', 
+      testWidgets('applies default padding for icon-only button',
           (tester) async {
         await tester.pumpWidget(
           Directionality(
@@ -423,8 +425,7 @@ void main() {
 
         final container = tester.widget<Container>(find.byType(Container));
         final decoration = container.decoration as BoxDecoration;
-        expect(decoration.borderRadius, 
-            equals(BorderRadius.circular(10.0)));
+        expect(decoration.borderRadius, equals(BorderRadius.circular(10.0)));
       });
 
       testWidgets('applies underlined text', (tester) async {
@@ -465,7 +466,7 @@ void main() {
         expect(textWidget.style!.fontFamily, equals('Arial'));
       });
 
-      testWidgets('applies minimum height and width constraints', 
+      testWidgets('applies minimum height and width constraints',
           (tester) async {
         await tester.pumpWidget(
           Directionality(
@@ -551,7 +552,7 @@ void main() {
         // Try to tap - should not animate
         await tester.tap(find.byType(BaseButton), warnIfMissed: false);
         await tester.pump();
-        
+
         // No exception should be thrown
         expect(find.byType(AnimatedBuilder), findsOneWidget);
       });
@@ -593,7 +594,7 @@ void main() {
         );
 
         expect(find.text('Ghost Button'), findsOneWidget);
-        
+
         final textWidget = tester.widget<Text>(find.text('Ghost Button'));
         expect(textWidget.style!.color, equals(Color(0xFFFFFFFF)));
       });
@@ -617,7 +618,8 @@ void main() {
     });
 
     group('filled', () {
-      testWidgets('creates filled button with correct defaults', (tester) async {
+      testWidgets('creates filled button with correct defaults',
+          (tester) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -629,7 +631,7 @@ void main() {
         );
 
         expect(find.text('Filled Button'), findsOneWidget);
-        
+
         final textWidget = tester.widget<Text>(find.text('Filled Button'));
         expect(textWidget.style!.color, equals(Color(0xFF2A313C)));
 
@@ -658,7 +660,8 @@ void main() {
     });
 
     group('outline', () {
-      testWidgets('creates outline button with correct defaults', (tester) async {
+      testWidgets('creates outline button with correct defaults',
+          (tester) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -670,7 +673,7 @@ void main() {
         );
 
         expect(find.text('Outline Button'), findsOneWidget);
-        
+
         final textWidget = tester.widget<Text>(find.text('Outline Button'));
         expect(textWidget.style!.color, equals(Color(0xFFFFFFFF)));
 
@@ -716,11 +719,11 @@ void main() {
       );
 
       expect(find.byType(CustomPaint), findsOneWidget);
-      
+
       // Let animation run for a bit
       await tester.pump(Duration(milliseconds: 100));
       await tester.pump(Duration(milliseconds: 100));
-      
+
       expect(find.byType(CustomPaint), findsOneWidget);
     });
   });
