@@ -164,8 +164,8 @@ class _BaseBadgeState extends State<BaseBadge> {
     return GestureDetector(
       onTap: _handleRemove,
       child: Container(
-        width: 16.0,
-        height: 16.0,
+        width: 14.0,
+        height: 14.0,
         decoration: const BoxDecoration(
           shape: BoxShape.circle,
         ),
@@ -254,6 +254,9 @@ class BadgeCheckbox extends StatelessWidget {
   /// Whether the checkbox is checked
   final bool isChecked;
 
+  /// Callback when the checkbox is tapped
+  final ValueChanged<bool>? onChanged;
+
   /// Size of the checkbox
   final double size;
 
@@ -272,6 +275,7 @@ class BadgeCheckbox extends StatelessWidget {
   const BadgeCheckbox({
     super.key,
     this.isChecked = false,
+    this.onChanged,
     this.size = 16.0,
     this.backgroundColor = const Color(0xFF3B4554),
     this.borderColor = const Color(0xFFD0D5DD),
@@ -281,7 +285,7 @@ class BadgeCheckbox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget checkbox = Container(
       width: size,
       height: size,
       decoration: BoxDecoration(
@@ -299,6 +303,15 @@ class BadgeCheckbox extends StatelessWidget {
             )
           : null,
     );
+
+    if (onChanged != null) {
+      return GestureDetector(
+        onTap: () => onChanged!(!isChecked),
+        child: checkbox,
+      );
+    }
+
+    return checkbox;
   }
 }
 

@@ -146,6 +146,70 @@ void main() {
     });
   });
 
+  group('BadgeCheckbox', () {
+    testWidgets('should render checked checkbox', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeCheckbox(isChecked: true),
+        ),
+      );
+
+      final checkboxFinder = find.byType(BadgeCheckbox);
+      expect(checkboxFinder, findsOneWidget);
+    });
+
+    testWidgets('should render unchecked checkbox',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeCheckbox(isChecked: false),
+        ),
+      );
+
+      final checkboxFinder = find.byType(BadgeCheckbox);
+      expect(checkboxFinder, findsOneWidget);
+    });
+
+    testWidgets('should handle tap when onChanged is provided',
+        (WidgetTester tester) async {
+      bool tappedValue = false;
+      bool? receivedValue;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeCheckbox(
+            isChecked: tappedValue,
+            onChanged: (value) {
+              receivedValue = value;
+            },
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(BadgeCheckbox));
+      await tester.pumpAndSettle();
+
+      expect(receivedValue, true);
+    });
+
+    testWidgets('should not respond to tap when onChanged is null',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeCheckbox(isChecked: false),
+        ),
+      );
+
+      // This should not throw any errors
+      await tester.tap(find.byType(BadgeCheckbox));
+      await tester.pumpAndSettle();
+    });
+  });
+
   group('BadgeCount', () {
     testWidgets('should render count number', (WidgetTester tester) async {
       await tester.pumpWidget(

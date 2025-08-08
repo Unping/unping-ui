@@ -679,7 +679,42 @@ Widget badgeWithWidget(BuildContext context) {
   type: BadgeCheckbox,
 )
 Widget badgeCheckboxComponent(BuildContext context) {
-  return const BadgeCheckbox(isChecked: true);
+  return StatefulBuilder(
+    builder: (context, setState) {
+      bool isChecked = false;
+      
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Interactive checkbox
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: BadgeCheckbox(
+              isChecked: isChecked,
+              onChanged: (value) {
+                setState(() {
+                  isChecked = value;
+                });
+              },
+            ),
+          ),
+          // Static checkboxes for visual reference
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: const BadgeCheckbox(isChecked: false),
+              ),
+              Container(
+                padding: const EdgeInsets.all(16),
+                child: const BadgeCheckbox(isChecked: true),
+              ),
+            ],
+          ),
+        ],
+      );
+    },
+  );
 }
 
 @UseCase(
@@ -763,5 +798,121 @@ Widget badgeDotComponent(BuildContext context) {
         ),
       ]),
     ],
+  );
+}
+
+@UseCase(
+  name: 'Interactive Badge with Checkbox',
+  type: BaseBadge,
+)
+Widget interactiveBadgeWithCheckbox(BuildContext context) {
+  return StatefulBuilder(
+    builder: (context, setState) {
+      bool isChecked1 = false;
+      bool isChecked2 = true;
+      bool isChecked3 = false;
+      
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Click checkboxes to toggle state:',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Color(0xFF101828),
+            ),
+          ),
+          SizedBox(height: 16),
+          Row(children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.badge(
+                text: 'Interactive',
+                leftWidget1: BadgeCheckbox(
+                  isChecked: isChecked1,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked1 = value;
+                    });
+                  },
+                ),
+                size: BadgeSize.sm,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.badge(
+                text: 'Clickable',
+                leftWidget1: BadgeCheckbox(
+                  isChecked: isChecked2,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked2 = value;
+                    });
+                  },
+                ),
+                size: BadgeSize.md,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.badge(
+                text: 'Checkbox',
+                leftWidget1: BadgeCheckbox(
+                  isChecked: isChecked3,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked3 = value;
+                    });
+                  },
+                ),
+                size: BadgeSize.lg,
+              ),
+            ),
+          ]),
+          SizedBox(height: 16),
+          // With removable and counter
+          Row(children: [
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.badge(
+                text: 'Advanced',
+                leftWidget1: BadgeCheckbox(
+                  isChecked: isChecked1,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked1 = value;
+                    });
+                  },
+                ),
+                leftWidget2: const BadgeDot(),
+                rightWidget: const BadgeCount(count: 42),
+                size: BadgeSize.md,
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.badge(
+                text: 'Removable',
+                leftWidget1: BadgeCheckbox(
+                  isChecked: isChecked2,
+                  onChanged: (value) {
+                    setState(() {
+                      isChecked2 = value;
+                    });
+                  },
+                ),
+                size: BadgeSize.md,
+                removable: true,
+                onRemove: () {
+                  // Handle remove action
+                },
+              ),
+            ),
+          ]),
+        ],
+      );
+    },
   );
 }

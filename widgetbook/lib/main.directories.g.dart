@@ -58,6 +58,10 @@ final directories = <_i1.WidgetbookNode>[
         name: 'Badge with Widget',
         builder: _i2.badgeWithWidget,
       ),
+      _i1.WidgetbookUseCase(
+        name: 'Interactive Badge with Checkbox',
+        builder: _i2.interactiveBadgeWithCheckbox,
+      ),
     ],
   ),
   _i1.WidgetbookComponent(
