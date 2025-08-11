@@ -273,7 +273,7 @@ Widget radioGroup(BuildContext context) {
         Container(
           padding: const EdgeInsets.all(16),
           child: Checkboxes.radio(
-            size: CheckboxSize.md,
+            size: CheckboxSize.sm,
             state: RadioState.unchecked,
             onChanged: (state) => {},
             forceVisualState: CheckboxVisualState.hovered,
@@ -282,7 +282,7 @@ Widget radioGroup(BuildContext context) {
         Container(
           padding: const EdgeInsets.all(16),
           child: Checkboxes.radio(
-            size: CheckboxSize.md,
+            size: CheckboxSize.sm,
             state: RadioState.checked,
             onChanged: (state) => {},
             forceVisualState: CheckboxVisualState.hovered,
@@ -293,7 +293,7 @@ Widget radioGroup(BuildContext context) {
         Container(
           padding: const EdgeInsets.all(16),
           child: Checkboxes.radio(
-            size: CheckboxSize.lg,
+            size: CheckboxSize.sm,
             state: RadioState.unchecked,
             onChanged: (state) => {},
             forceVisualState: CheckboxVisualState.focused,
@@ -302,7 +302,7 @@ Widget radioGroup(BuildContext context) {
         Container(
           padding: const EdgeInsets.all(16),
           child: Checkboxes.radio(
-            size: CheckboxSize.lg,
+            size: CheckboxSize.sm,
             state: RadioState.checked,
             onChanged: (state) => {},
             forceVisualState: CheckboxVisualState.focused,
