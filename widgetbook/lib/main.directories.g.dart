@@ -13,6 +13,7 @@
 import 'package:widgetbook/widgetbook.dart' as _i1;
 import 'package:widgetbook_workspace/base_badge.dart' as _i2;
 import 'package:widgetbook_workspace/base_button.dart' as _i3;
+import 'package:widgetbook_workspace/base_checkbox.dart' as _i4;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookLeafComponent(
@@ -78,6 +79,19 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookUseCase(
         name: 'Outline',
         builder: _i3.buildBaseButtonOutlined,
+      ),
+    ],
+  ),
+  _i1.WidgetbookComponent(
+    name: 'BaseCheckbox',
+    useCases: [
+      _i1.WidgetbookUseCase(
+        name: 'Checkbox',
+        builder: _i4.checkbox,
+      ),
+      _i1.WidgetbookUseCase(
+        name: 'Radio Group',
+        builder: _i4.radioGroup,
       ),
     ],
   ),
