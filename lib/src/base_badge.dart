@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'base_checkbox.dart';
 
 /// Badge size variants
 enum BadgeSize {
@@ -249,72 +250,6 @@ class _BaseBadgeState extends State<BaseBadge> {
   }
 }
 
-/// Checkbox widget for badges
-class BadgeCheckbox extends StatelessWidget {
-  /// Whether the checkbox is checked
-  final bool isChecked;
-
-  /// Callback when the checkbox is tapped
-  final ValueChanged<bool>? onChanged;
-
-  /// Size of the checkbox
-  final double size;
-
-  /// Background color of the checkbox
-  final Color backgroundColor;
-
-  /// Border color of the checkbox
-  final Color borderColor;
-
-  /// Check mark color
-  final Color checkColor;
-
-  /// Border radius of the checkbox
-  final double borderRadius;
-
-  const BadgeCheckbox({
-    super.key,
-    this.isChecked = false,
-    this.onChanged,
-    this.size = 16.0,
-    this.backgroundColor = const Color(0xFF3B4554),
-    this.borderColor = const Color(0xFFD0D5DD),
-    this.checkColor = const Color(0xFFFFFFFF),
-    this.borderRadius = 3.0,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    Widget checkbox = Container(
-      width: size,
-      height: size,
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(borderRadius),
-        border: Border.all(
-          color: borderColor,
-          width: 1.0,
-        ),
-      ),
-      child: isChecked
-          ? CustomPaint(
-              size: Size(size * 0.6, size * 0.6),
-              painter: _CheckMarkPainter(color: checkColor),
-            )
-          : null,
-    );
-
-    if (onChanged != null) {
-      return GestureDetector(
-        onTap: () => onChanged!(!isChecked),
-        child: checkbox,
-      );
-    }
-
-    return checkbox;
-  }
-}
-
 /// Avatar widget for badges
 class BadgeImage extends StatelessWidget {
   /// URL or path to the avatar image
@@ -545,6 +480,54 @@ class Badges {
       borderColor: borderColor,
     );
   }
+
+  /// Creates a checkbox for use in badges
+  /// Uses the BaseCheckbox component with appropriate sizing for badges
+  static BaseCheckbox checkbox({
+    bool isChecked = false,
+    ValueChanged<bool>? onChanged,
+    double? size,
+    Color? backgroundColor,
+    Color? borderColor,
+    Color? checkColor,
+  }) {
+    // Convert bool to CheckboxState
+    final state = isChecked ? CheckboxState.checked : CheckboxState.unchecked;
+
+    // Convert bool callback to CheckboxState callback
+    ValueChanged<CheckboxState>? checkboxCallback;
+    if (onChanged != null) {
+      checkboxCallback = (CheckboxState newState) {
+        onChanged(newState == CheckboxState.checked);
+      };
+    }
+
+    // Determine appropriate size for badges
+    CheckboxSize checkboxSize;
+    if (size != null) {
+      if (size <= 16.0) {
+        checkboxSize = CheckboxSize.sm;
+      } else if (size <= 20.0) {
+        checkboxSize = CheckboxSize.md;
+      } else {
+        checkboxSize = CheckboxSize.lg;
+      }
+    } else {
+      checkboxSize = CheckboxSize.sm; // Default to small for badges
+    }
+
+    return BaseCheckbox(
+      state: state,
+      onChanged: checkboxCallback,
+      size: checkboxSize,
+      shape: CheckboxShape.rectangle,
+      checkedBackgroundColor: backgroundColor ?? const Color(0xFF3B4554),
+      uncheckedBackgroundColor: const Color(0xFFFFFFFF),
+      checkedBorderColor: borderColor ?? const Color(0xFF3B4554),
+      uncheckedBorderColor: borderColor ?? const Color(0xFFD0D5DD),
+      checkColor: checkColor ?? const Color(0xFFFFFFFF),
+    );
+  }
 }
 
 /// Custom painter for X (close) icon
@@ -572,32 +555,6 @@ class _XIconPainter extends CustomPainter {
       Offset(size.width * 0.25, size.height * 0.75),
       paint,
     );
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-/// Custom painter for check mark icon
-class _CheckMarkPainter extends CustomPainter {
-  final Color color;
-
-  _CheckMarkPainter({required this.color});
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = color
-      ..strokeWidth = 2.0
-      ..strokeCap = StrokeCap.round
-      ..style = PaintingStyle.stroke;
-
-    final path = Path();
-    path.moveTo(size.width * 0.2, size.height * 0.5);
-    path.lineTo(size.width * 0.45, size.height * 0.7);
-    path.lineTo(size.width * 0.8, size.height * 0.3);
-
-    canvas.drawPath(path, paint);
   }
 
   @override

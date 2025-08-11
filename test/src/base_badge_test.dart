@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unping_ui/src/base_badge.dart';
+import 'package:unping_ui/src/base_checkbox.dart';
 
 void main() {
   group('BaseBadge', () {
@@ -91,12 +92,12 @@ void main() {
     });
   });
 
-  group('BadgeCheckbox', () {
+  group('Badge Checkbox (BaseCheckbox)', () {
     testWidgets('should render unchecked state', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(isChecked: false),
+          child: Badges.checkbox(isChecked: false),
         ),
       );
 
@@ -106,9 +107,9 @@ void main() {
 
     testWidgets('should render checked state', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(isChecked: true),
+          child: Badges.checkbox(isChecked: true),
         ),
       );
 
@@ -146,29 +147,29 @@ void main() {
     });
   });
 
-  group('BadgeCheckbox', () {
+  group('Badge Checkbox Interactions', () {
     testWidgets('should render checked checkbox', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(isChecked: true),
+          child: Badges.checkbox(isChecked: true),
         ),
       );
 
-      final checkboxFinder = find.byType(BadgeCheckbox);
+      final checkboxFinder = find.byType(BaseCheckbox);
       expect(checkboxFinder, findsOneWidget);
     });
 
     testWidgets('should render unchecked checkbox',
         (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(isChecked: false),
+          child: Badges.checkbox(isChecked: false),
         ),
       );
 
-      final checkboxFinder = find.byType(BadgeCheckbox);
+      final checkboxFinder = find.byType(BaseCheckbox);
       expect(checkboxFinder, findsOneWidget);
     });
 
@@ -180,7 +181,7 @@ void main() {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(
+          child: Badges.checkbox(
             isChecked: tappedValue,
             onChanged: (value) {
               receivedValue = value;
@@ -189,7 +190,7 @@ void main() {
         ),
       );
 
-      await tester.tap(find.byType(BadgeCheckbox));
+      await tester.tap(find.byType(BaseCheckbox));
       await tester.pumpAndSettle();
 
       expect(receivedValue, true);
@@ -198,14 +199,14 @@ void main() {
     testWidgets('should not respond to tap when onChanged is null',
         (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeCheckbox(isChecked: false),
+          child: Badges.checkbox(isChecked: false),
         ),
       );
 
       // This should not throw any errors
-      await tester.tap(find.byType(BadgeCheckbox));
+      await tester.tap(find.byType(BaseCheckbox));
       await tester.pumpAndSettle();
     });
   });

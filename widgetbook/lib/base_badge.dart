@@ -131,7 +131,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -142,7 +142,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -153,7 +153,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -168,7 +168,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -183,7 +183,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -198,7 +198,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -217,7 +217,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -229,7 +229,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -241,7 +241,7 @@ Widget badgeWithImage(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeImage(
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
@@ -357,7 +357,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.sm,
           ),
         ),
@@ -365,7 +365,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             size: BadgeSize.md,
           ),
         ),
@@ -373,7 +373,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.lg,
           ),
         ),
@@ -385,7 +385,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.sm,
             removable: true,
             onRemove: () {
@@ -397,7 +397,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             size: BadgeSize.md,
             removable: true,
             onRemove: () {
@@ -409,7 +409,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.lg,
             removable: true,
             onRemove: () {
@@ -425,7 +425,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.sm,
             rightWidget: const BadgeCount(count: 15),
           ),
@@ -434,7 +434,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.md,
             rightWidget: const BadgeCount(count: 3),
           ),
@@ -443,7 +443,7 @@ Widget badge(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             size: BadgeSize.lg,
             rightWidget: const BadgeCount(count: 8754),
           ),
@@ -567,7 +567,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.sm,
           ),
@@ -576,7 +576,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.md,
           ),
@@ -585,7 +585,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.lg,
           ),
@@ -598,7 +598,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.sm,
             removable: true,
@@ -611,7 +611,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.md,
             removable: true,
@@ -624,7 +624,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.lg,
             removable: true,
@@ -641,7 +641,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.sm,
             rightWidget: const BadgeCount(count: 15),
@@ -651,7 +651,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: true),
+            leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.md,
             rightWidget: const BadgeCount(count: 3),
@@ -661,7 +661,7 @@ Widget badgeWithWidget(BuildContext context) {
           padding: const EdgeInsets.all(16),
           child: Badges.badge(
             text: 'Label',
-            leftWidget1: const BadgeCheckbox(isChecked: false),
+            leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.lg,
             rightWidget: const BadgeCount(count: 8754),
@@ -676,7 +676,7 @@ Widget badgeWithWidget(BuildContext context) {
 
 @UseCase(
   name: 'Badge Checkbox Component',
-  type: BadgeCheckbox,
+  type: BaseCheckbox,
 )
 Widget badgeCheckboxComponent(BuildContext context) {
   return StatefulBuilder(
@@ -689,7 +689,7 @@ Widget badgeCheckboxComponent(BuildContext context) {
           // Interactive checkbox
           Container(
             padding: const EdgeInsets.all(16),
-            child: BadgeCheckbox(
+            child: Badges.checkbox(
               isChecked: isChecked,
               onChanged: (value) {
                 setState(() {
@@ -703,11 +703,11 @@ Widget badgeCheckboxComponent(BuildContext context) {
             children: [
               Container(
                 padding: const EdgeInsets.all(16),
-                child: const BadgeCheckbox(isChecked: false),
+                child: Badges.checkbox(isChecked: false),
               ),
               Container(
                 padding: const EdgeInsets.all(16),
-                child: const BadgeCheckbox(isChecked: true),
+                child: Badges.checkbox(isChecked: true),
               ),
             ],
           ),
@@ -829,7 +829,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               padding: const EdgeInsets.all(16),
               child: Badges.badge(
                 text: 'Interactive',
-                leftWidget1: BadgeCheckbox(
+                leftWidget1: Badges.checkbox(
                   isChecked: isChecked1,
                   onChanged: (value) {
                     setState(() {
@@ -844,7 +844,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               padding: const EdgeInsets.all(16),
               child: Badges.badge(
                 text: 'Clickable',
-                leftWidget1: BadgeCheckbox(
+                leftWidget1: Badges.checkbox(
                   isChecked: isChecked2,
                   onChanged: (value) {
                     setState(() {
@@ -859,7 +859,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               padding: const EdgeInsets.all(16),
               child: Badges.badge(
                 text: 'Checkbox',
-                leftWidget1: BadgeCheckbox(
+                leftWidget1: Badges.checkbox(
                   isChecked: isChecked3,
                   onChanged: (value) {
                     setState(() {
@@ -878,7 +878,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               padding: const EdgeInsets.all(16),
               child: Badges.badge(
                 text: 'Advanced',
-                leftWidget1: BadgeCheckbox(
+                leftWidget1: Badges.checkbox(
                   isChecked: isChecked1,
                   onChanged: (value) {
                     setState(() {
@@ -895,7 +895,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               padding: const EdgeInsets.all(16),
               child: Badges.badge(
                 text: 'Removable',
-                leftWidget1: BadgeCheckbox(
+                leftWidget1: Badges.checkbox(
                   isChecked: isChecked2,
                   onChanged: (value) {
                     setState(() {
