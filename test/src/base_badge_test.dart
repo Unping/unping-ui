@@ -287,13 +287,15 @@ void main() {
 
       // Find the GestureDetector that handles the remove tap
       final gestureDetectors = find.byType(GestureDetector);
-      await tester.tap(gestureDetectors.last); // Last one should be the remove button
+      await tester
+          .tap(gestureDetectors.last); // Last one should be the remove button
       await tester.pumpAndSettle();
 
       expect(removeCalled, true);
     });
 
-    testWidgets('should hide badge when remove button is tapped without callback',
+    testWidgets(
+        'should hide badge when remove button is tapped without callback',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -374,7 +376,8 @@ void main() {
       expect(find.text('Fallback'), findsOneWidget);
     });
 
-    testWidgets('should show default avatar when network image fails without fallback',
+    testWidgets(
+        'should show default avatar when network image fails without fallback',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         const Directionality(
@@ -484,7 +487,7 @@ void main() {
   });
 
   group('Badge checkbox with size conversion', () {
-    testWidgets('should create small checkbox when size <= 16', 
+    testWidgets('should create small checkbox when size <= 16',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -499,7 +502,7 @@ void main() {
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create medium checkbox when size <= 20', 
+    testWidgets('should create medium checkbox when size <= 20',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -514,7 +517,7 @@ void main() {
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create large checkbox when size > 20', 
+    testWidgets('should create large checkbox when size > 20',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -529,7 +532,7 @@ void main() {
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create checkbox with custom colors', 
+    testWidgets('should create checkbox with custom colors',
         (WidgetTester tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -580,7 +583,8 @@ void main() {
       );
 
       expect(find.text('Min Height Badge'), findsOneWidget);
-      expect(find.byType(BoxConstraints), findsNothing); // BoxConstraints is not a widget
+      expect(find.byType(BoxConstraints),
+          findsNothing); // BoxConstraints is not a widget
     });
   });
 }
