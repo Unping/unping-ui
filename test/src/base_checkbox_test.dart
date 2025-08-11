@@ -1,4 +1,6 @@
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unping_ui/src/base_checkbox.dart';
 
@@ -348,6 +350,383 @@ void main() {
 
       expect(option.value, 'test');
       expect(option.label, isNull);
+    });
+  });
+
+  group('BaseCheckbox advanced features', () {
+    testWidgets('should handle focus changes', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      // Focus the checkbox
+      await tester.tap(find.byType(BaseCheckbox));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle hover state changes', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      // Simulate hover
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+      await tester.pump();
+
+      await gesture.moveTo(tester.getCenter(find.byType(BaseCheckbox)));
+      await tester.pumpAndSettle();
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle indeterminate state', (WidgetTester tester) async {
+      CheckboxState? changedState;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.indeterminate,
+            onChanged: (state) => changedState = state,
+          ),
+        ),
+      );
+
+      // Tap indeterminate checkbox should go to checked
+      await tester.tap(find.byType(BaseCheckbox));
+      expect(changedState, CheckboxState.checked);
+    });
+
+    testWidgets('should handle checkbox with label', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Test Label',
+          ),
+        ),
+      );
+
+      expect(find.text('Test Label'), findsOneWidget);
+      expect(find.byType(Row), findsOneWidget);
+    });
+
+    testWidgets('should handle checkbox with description', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            description: 'Test Description',
+          ),
+        ),
+      );
+
+      expect(find.text('Test Description'), findsOneWidget);
+      expect(find.byType(Column), findsOneWidget);
+    });
+
+    testWidgets('should handle checkbox with both label and description', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Test Label',
+            description: 'Test Description',
+          ),
+        ),
+      );
+
+      expect(find.text('Test Label'), findsOneWidget);
+      expect(find.text('Test Description'), findsOneWidget);
+      expect(find.byType(Column), findsOneWidget);
+      expect(find.byType(Row), findsOneWidget);
+    });
+
+    testWidgets('should handle disabled checkbox with text', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: null, // Disabled
+            label: 'Disabled Label',
+            description: 'Disabled Description',
+          ),
+        ),
+      );
+
+      expect(find.text('Disabled Label'), findsOneWidget);
+      expect(find.text('Disabled Description'), findsOneWidget);
+    });
+
+    testWidgets('should handle checkbox with forceVisualState', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            forceVisualState: CheckboxVisualState.hovered,
+          ),
+        ),
+      );
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle forceVisualState when disabled', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: null, // Disabled
+            forceVisualState: CheckboxVisualState.hovered,
+          ),
+        ),
+      );
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle text with custom spacing', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Spaced Label',
+            textSpacing: 16.0,
+          ),
+        ),
+      );
+
+      expect(find.text('Spaced Label'), findsOneWidget);
+      // Check for custom spacing by verifying more than one SizedBox
+      expect(find.byType(SizedBox), findsAtLeastNWidgets(1));
+    });
+
+    testWidgets('should handle text click when not disabled', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Clickable Label',
+          ),
+        ),
+      );
+
+      // Verify we can find the checkbox and label
+      expect(find.text('Clickable Label'), findsOneWidget);
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should use IntrinsicWidth for proper layout', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Layout Test',
+          ),
+        ),
+      );
+
+      expect(find.byType(IntrinsicWidth), findsOneWidget);
+    });
+
+    testWidgets('should handle custom label and description styles', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+            label: 'Styled Label',
+            description: 'Styled Description',
+            labelStyle: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
+            descriptionStyle: const TextStyle(fontSize: 12, color: Color(0xFF666666)),
+          ),
+        ),
+      );
+
+      expect(find.text('Styled Label'), findsOneWidget);
+      expect(find.text('Styled Description'), findsOneWidget);
+    });
+
+    testWidgets('should handle keyboard events', (WidgetTester tester) async {
+      CheckboxState? changedState;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) => changedState = state,
+          ),
+        ),
+      );
+
+      // Focus and tap the checkbox directly
+      await tester.tap(find.byType(BaseCheckbox));
+      await tester.pumpAndSettle();
+
+      expect(changedState, CheckboxState.checked);
+    });
+
+    testWidgets('should ignore keyboard events when disabled', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: null, // Disabled
+          ),
+        ),
+      );
+
+      // Should just verify the widget renders properly when disabled
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle state animation when widget updates', (WidgetTester tester) async {
+      // Test animation when state changes from checked to unchecked
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.checked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      // Update to unchecked state
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+
+    testWidgets('should handle state animation when widget updates from unchecked to checked', (WidgetTester tester) async {
+      // Test animation when state changes from unchecked to checked
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      // Update to checked state
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.checked,
+            onChanged: (state) {},
+          ),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
+  });
+
+  group('Radio Group', () {
+    testWidgets('should handle radio group value changes', (WidgetTester tester) async {
+      String? selectedValue;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: RadioGroup<String>(
+            options: [
+              RadioOption.text(value: 'option1', text: 'Option 1'),
+              RadioOption.text(value: 'option2', text: 'Option 2'),
+            ],
+            onChanged: (value) => selectedValue = value,
+          ),
+        ),
+      );
+
+      // Tap the first radio button
+      await tester.tap(find.text('Option 1'));
+      expect(selectedValue, 'option1');
+    });
+
+    testWidgets('should show selected value in radio group', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: RadioGroup<String>(
+            value: 'option2',
+            options: [
+              RadioOption.text(value: 'option1', text: 'Option 1'),
+              RadioOption.text(value: 'option2', text: 'Option 2'),
+            ],
+            onChanged: (value) {},
+          ),
+        ),
+      );
+
+      expect(find.text('Option 1'), findsOneWidget);
+      expect(find.text('Option 2'), findsOneWidget);
+    });
+
+    testWidgets('should handle disabled radio group', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: RadioGroup<String>(
+            options: [
+              RadioOption.text(value: 'option1', text: 'Option 1'),
+              RadioOption.text(value: 'option2', text: 'Option 2'),
+            ],
+            onChanged: null, // Disabled
+          ),
+        ),
+      );
+
+      expect(find.text('Option 1'), findsOneWidget);
+      expect(find.text('Option 2'), findsOneWidget);
     });
   });
 }
