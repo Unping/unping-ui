@@ -13,7 +13,7 @@ We use Widgetbook for developing and testing new widgets in isolation. And espec
 - when adding new functionality, make sure to update the README.md
 - Ensure all tests pass by running "flutter test"
 - Run "dart analyze" to ensure code quality
-- Run "dart format ." to format code consistently
+- Run "dart format --line-length 80 lib test" to format code consistently
 
 # Software development patterns
 - Follow Flutter/Dart best practices
@@ -34,7 +34,7 @@ We use Widgetbook for developing and testing new widgets in isolation. And espec
 # Development flow
 - Install dependencies: dart pub get
 - Development/testing: flutter test
-- Format code: dart format .
+- Format code: dart format --line-length 80 lib test
 - Analyze code: dart analyze
 - Build widgetbook web: cd widgetbook && flutter build web
 - Run widgetbook: cd widgetbook && flutter run
