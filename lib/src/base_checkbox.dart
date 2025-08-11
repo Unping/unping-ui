@@ -416,7 +416,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
             fontSize: 14,
             fontWeight: FontWeight.w500,
             color:
-                isDisabled ? const Color(0xFF647690) : const Color(0xFF2A313C),
+                isDisabled ? const Color(0xFF647690) : const Color(0xFFFFFFFF),
             height: 20 / 14,
           );
 
@@ -425,7 +425,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
             fontSize: 14,
             fontWeight: FontWeight.w400,
             color:
-                isDisabled ? const Color(0xFF647690) : const Color(0xFF667085),
+                isDisabled ? const Color(0xFF647690) : const Color(0xFFFFFFFF),
             height: 20 / 14,
           );
 
