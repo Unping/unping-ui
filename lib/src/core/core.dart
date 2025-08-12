@@ -94,6 +94,13 @@
 /// });
 /// ```
 ///
+/// ## Migration
+///
+/// For migrating existing components to the interface system:
+/// - See [example_interface_migration.dart] for a complete migration example
+/// - See [COMPONENT_INTERFACE.md] for detailed migration guide
+/// - Migration can be done incrementally without breaking changes
+///
 /// ## Design Principles
 ///
 /// 1. **Consistency** - All components follow the same patterns
@@ -118,3 +125,4 @@ export 'base_components.dart';
 export 'component_utils.dart';
 export 'default_theme.dart';
 export 'component_template.dart';
+export 'example_interface_migration.dart';
