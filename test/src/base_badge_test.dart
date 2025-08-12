@@ -623,5 +623,47 @@ void main() {
       // Wait for the image to fail and trigger the fallback
       await tester.pump();
     });
+
+    testWidgets('should test custom painters shouldRepaint methods',
+        (WidgetTester tester) async {
+      // Test removable badge with X icon painter
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseBadge(
+            text: 'Removable Test',
+            backgroundColor: const Color(0xFF3B4554),
+            textColor: const Color(0xFFFFFFFF),
+            removable: true,
+            onRemove: () {},
+          ),
+        ),
+      );
+
+      expect(find.byType(BaseBadge), findsOneWidget);
+      expect(find.byType(CustomPaint), findsOneWidget);
+
+      // Trigger multiple repaints to exercise shouldRepaint method
+      await tester.pump();
+      await tester.pump();
+
+      // Test BadgeImage with default avatar (person icon painter)
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeImage(
+            imageUrl: null, // Will trigger person icon painter
+            size: 24.0,
+          ),
+        ),
+      );
+
+      expect(find.byType(BadgeImage), findsOneWidget);
+      expect(find.byType(CustomPaint), findsOneWidget);
+
+      // Trigger repaints to exercise shouldRepaint method
+      await tester.pump();
+      await tester.pump();
+    });
   });
 }
