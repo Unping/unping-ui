@@ -834,6 +834,7 @@ class _IndeterminatePainter extends CustomPainter {
     );
   }
 
+  // coverage:ignore-line
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }

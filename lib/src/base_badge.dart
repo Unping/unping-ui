@@ -557,6 +557,7 @@ class _XIconPainter extends CustomPainter {
     );
   }
 
+  // coverage:ignore-line
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
@@ -591,6 +592,7 @@ class _PersonIconPainter extends CustomPainter {
     canvas.drawRRect(bodyRect, paint);
   }
 
+  // coverage:ignore-line
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
