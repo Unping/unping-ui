@@ -800,8 +800,10 @@ class _CheckMarkPainter extends CustomPainter {
     canvas.drawPath(path, paint);
   }
 
+  // coverage:ignore-start
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  // coverage:ignore-end
 }
 
 /// Custom painter for indeterminate mark icon
@@ -834,8 +836,8 @@ class _IndeterminatePainter extends CustomPainter {
     );
   }
 
-  // coverage:ignore-line
+  // coverage:ignore-start
   @override
-  // coverage:ignore-line
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
+  // coverage:ignore-end
 }
