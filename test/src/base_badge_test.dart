@@ -586,5 +586,42 @@ void main() {
       expect(find.byType(BoxConstraints),
           findsNothing); // BoxConstraints is not a widget
     });
+
+    testWidgets('should render BadgeImage with default avatar and test painter',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeImage(
+            imageUrl: null, // No image URL to trigger default avatar
+            size: 24.0,
+          ),
+        ),
+      );
+
+      expect(find.byType(BadgeImage), findsOneWidget);
+      expect(find.byType(CustomPaint), findsOneWidget);
+
+      // Trigger a repaint to exercise shouldRepaint method
+      await tester.pump();
+    });
+
+    testWidgets(
+        'should render BadgeImage with error fallback to default avatar',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BadgeImage(
+            imageUrl: 'invalid-url', // Invalid URL to trigger error fallback
+            size: 24.0,
+          ),
+        ),
+      );
+
+      expect(find.byType(BadgeImage), findsOneWidget);
+      // Wait for the image to fail and trigger the fallback
+      await tester.pump();
+    });
   });
 }

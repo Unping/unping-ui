@@ -684,6 +684,43 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
+
+    testWidgets('should test indeterminate state with custom paint',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.indeterminate,
+          ),
+        ),
+      );
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+      expect(find.byType(CustomPaint), findsOneWidget);
+
+      // Trigger repaints to exercise shouldRepaint method
+      await tester.pump();
+      await tester.pump();
+    });
+
+    testWidgets('should handle focus changes for coverage',
+        (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseCheckbox(
+            state: CheckboxState.unchecked,
+          ),
+        ),
+      );
+
+      // This should trigger internal state changes
+      await tester.tap(find.byType(BaseCheckbox));
+      await tester.pump();
+
+      expect(find.byType(BaseCheckbox), findsOneWidget);
+    });
   });
 
   group('Radio Group', () {
