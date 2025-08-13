@@ -4,7 +4,7 @@ import 'package:unping_ui/src/foundation/unping_text_styles.dart';
 
 /// A header that matches the Figma design: left-aligned logo + breadcrumbs,
 /// right-aligned URL. Typography and spacing follow the design tokens.
-class BaseHeader extends StatelessWidget {
+class UnpingUiWidgetbookHeader extends StatelessWidget {
   /// The navigation breadcrumbs to display (e.g., ["Foundation", "Colors"]).
   /// All items except the last use Medium; the last uses SemiBold.
   final List<String> breadcrumbs;
@@ -18,7 +18,7 @@ class BaseHeader extends StatelessWidget {
   /// Optional background decoration for the container.
   final BoxDecoration? backgroundDecoration;
 
-  const BaseHeader({
+  const UnpingUiWidgetbookHeader({
     super.key,
     required this.breadcrumbs,
     this.logo,
@@ -96,13 +96,13 @@ class BaseHeader extends StatelessWidget {
   }
 }
 
-/// A default logo widget that can be used with BaseHeader.
-class DefaultLogo extends StatelessWidget {
+/// A default logo widget that can be used with UnpingUiWidgetbookHeader.
+class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
   final double size;
   final Color backgroundColor;
   final Widget? child;
 
-  const DefaultLogo({
+  const UnpingUiWidgetbookHeaderLogo({
     super.key,
     this.size = 36,
     this.backgroundColor = Colors.white,
@@ -142,56 +142,30 @@ class DefaultLogo extends StatelessWidget {
   }
 }
 
-// Widgetbook use cases
-@widgetbook.UseCase(name: 'Default', type: BaseHeader)
-Widget buildBaseHeaderDefault(BuildContext context) {
+Widget buildUnpingUiWidgetbookHeaderDefault(BuildContext context) {
   return Container(
     color: Colors.grey[900],
     padding: const EdgeInsets.all(20),
-    child: const BaseHeader(
+    child: const UnpingUiWidgetbookHeader(
       breadcrumbs: ['Foundation', 'Colors'],
       url: 'https://www.unping-ui.com',
     ),
   );
 }
 
-@widgetbook.UseCase(name: 'With Logo', type: BaseHeader)
-Widget buildBaseHeaderWithLogo(BuildContext context) {
+Widget buildUnpingUiWidgetbookHeaderWithLogo(BuildContext context) {
   return Container(
     color: Colors.grey[900],
     padding: const EdgeInsets.all(20),
-    child: BaseHeader(
+    child: UnpingUiWidgetbookHeader(
       breadcrumbs: const ['Components', 'Buttons'],
       url: 'https://www.unping-ui.com',
-      logo: const DefaultLogo(
+      logo: const UnpingUiWidgetbookHeaderLogo(
         child: Icon(
           Icons.widgets,
           color: Colors.blue,
           size: 20,
         ),
-      ),
-    ),
-  );
-}
-
-@widgetbook.UseCase(name: 'Custom Background', type: BaseHeader)
-Widget buildBaseHeaderCustomBackground(BuildContext context) {
-  return Container(
-    color: Colors.grey[900],
-    padding: const EdgeInsets.all(20),
-    child: BaseHeader(
-      breadcrumbs: const ['Design System', 'Typography'],
-      url: 'https://www.unping-ui.com',
-      backgroundDecoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.blue[800]!,
-            Colors.purple[800]!,
-          ],
-        ),
-        borderRadius: BorderRadius.circular(20),
       ),
     ),
   );
