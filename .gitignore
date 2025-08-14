@@ -22,6 +22,10 @@ migrate_working_dir/
 !.vscode/settings.json
 !.vscode/launch.json
 
+# Cursor related
+.cursor/*
+!.cursor/mcp.json
+
 # Flutter/Dart/Pub related
 **/doc/api/
 **/ios/Flutter/.last_build_id
