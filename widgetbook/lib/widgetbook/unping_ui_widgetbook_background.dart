@@ -23,7 +23,7 @@ class RectanglePatternPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     // Background color (slightly brighter than the original)
     final backgroundPaint = Paint()
-      ..color = const Color(0xFF3A424F); // Brighter than 0xFF2A313C
+      ..color = const Color(0xFF2B313B); // Brighter than 0xFF2A313C
 
     // Fill the entire canvas with background
     final layerRect = Rect.fromLTWH(0, 0, size.width, size.height);
@@ -31,7 +31,7 @@ class RectanglePatternPainter extends CustomPainter {
 
     // Pattern color (slightly brighter than background)
     final patternPaint = Paint()
-      ..color = const Color(0xFF4A5568); // Brighter than background
+      ..color = const Color(0xFF303440); // Brighter than background
 
     // Pattern specifications
     const dotSize = 2.0;

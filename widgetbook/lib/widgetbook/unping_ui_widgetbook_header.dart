@@ -66,7 +66,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
                 ),
             ],
           ),
-          SizedBox(height: UnpingSpacing.spacing12), // 48px spacing below breadcrumbs
+          SizedBox(height: UnpingSpacing.spacing8),
           Image.asset(
             'web/icons/header_presentation.png',
             width: double.infinity,
