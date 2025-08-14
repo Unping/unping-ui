@@ -20,12 +20,17 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
   /// Optional background decoration for the container.
   final BoxDecoration? backgroundDecoration;
 
+  /// Optional title to display below the header image with spacing6.
+  /// Uses Figma design specifications: Outfit Bold, 72px, white with text shadow.
+  final String? title;
+
   const UnpingUiWidgetbookHeader({
     super.key,
     required this.breadcrumbs,
     this.logo,
     this.url,
     this.backgroundDecoration,
+    this.title,
   });
 
   @override
@@ -72,6 +77,10 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
             width: double.infinity,
             fit: BoxFit.cover,
           ),
+          if (title != null) ...[
+            SizedBox(height: UnpingSpacing.spacing6),
+            _buildTitle(),
+          ],
         ],
       ),
     );
@@ -103,6 +112,24 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
           ],
         ],
       ],
+    );
+  }
+
+  Widget _buildTitle() {
+    return Text(
+      title!,
+      style: UnpingTextStyles.displayLgBold.copyWith(
+        color: Colors.white,
+        letterSpacing: -1.44,
+        shadows: [
+          Shadow(
+            color: Color(0x66FFFFFF), // rgba(255,255,255,0.4)
+            blurRadius: 12.111,
+            offset: Offset.zero,
+          ),
+        ],
+      ),
+      textAlign: TextAlign.left,
     );
   }
 }
@@ -171,6 +198,7 @@ Widget buildUnpingUiWidgetbookHeaderDefault(BuildContext context) {
     child: const UnpingUiWidgetbookHeader(
       breadcrumbs: ['Foundation', 'Colors'],
       url: 'https://www.unping-ui.com',
+      title: 'Colors',
     ),
   );
 }
@@ -183,6 +211,7 @@ Widget buildUnpingUiWidgetbookHeaderWithLogo(BuildContext context) {
       breadcrumbs: const ['Components', 'Buttons'],
       url: 'https://www.unping-ui.com',
       logo: const UnpingUiWidgetbookHeaderLogo(),
+      title: 'Buttons',
     ),
   );
 }
