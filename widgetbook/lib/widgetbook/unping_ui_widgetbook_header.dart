@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:unping_ui/src/foundation/unping_text_styles.dart';
+import 'package:unping_ui/src/foundation/unping_spacing.dart';
+import 'package:flutter/services.dart';
 
 /// A header that matches the Figma design: left-aligned logo + breadcrumbs,
 /// right-aligned URL. Typography and spacing follow the design tokens.
@@ -31,34 +33,45 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
     return Container(
       decoration: backgroundDecoration,
       color: Colors.transparent, // Ensure background is transparent
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(
-            child: Row(
-              children: [
-                if (logo != null) ...[
-                  logo!,
-                  const SizedBox(width: 16), // gap-4
-                ],
-                Flexible(
-                  child: _buildBreadcrumbs(context),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Row(
+                  children: [
+                    if (logo != null) ...[
+                      logo!,
+                      const SizedBox(width: 16), // gap-4
+                    ],
+                    Flexible(
+                      child: _buildBreadcrumbs(context),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          if (url != null)
-            Flexible(
-              child: Text(
-                url!,
-                style: UnpingTextStyles.textXlMedium.copyWith(
-                  color: Colors.white, // White #FFFFFF
-                ),
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.right,
               ),
-            ),
+              if (url != null)
+                Flexible(
+                  child: Text(
+                    url!,
+                    style: UnpingTextStyles.textXs.copyWith(
+                      color: Colors.white, // White #FFFFFF
+                    ),
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+            ],
+          ),
+          SizedBox(height: UnpingSpacing.spacing12), // 48px spacing below breadcrumbs
+          Image.asset(
+            'web/icons/header_presentation.png',
+            width: double.infinity,
+            fit: BoxFit.cover,
+          ),
         ],
       ),
     );
@@ -72,9 +85,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
           Flexible(
             child: Text(
               breadcrumbs[i],
-              style: (i == breadcrumbs.length - 1
-                      ? UnpingTextStyles.displayXsSemibold
-                      : UnpingTextStyles.displayXsMedium)
+              style: UnpingTextStyles.textSm
                   .copyWith(
                 color: Colors.white, // White #FFFFFF
               ),
@@ -84,9 +95,9 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
           if (i < breadcrumbs.length - 1) ...[
             const SizedBox(width: 8), // gap-2
             const Icon(
-              Icons.arrow_forward_ios,
+              Icons.arrow_forward,
               color: Colors.white,
-              size: 24,
+              size: 14,
             ),
             const SizedBox(width: 8), // gap-2
           ],
@@ -101,12 +112,14 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
   final double size;
   final Color backgroundColor;
   final Widget? child;
+  final bool useDefaultLogo;
 
   const UnpingUiWidgetbookHeaderLogo({
     super.key,
-    this.size = 36,
+    this.size = 24,
     this.backgroundColor = Colors.white,
     this.child,
+    this.useDefaultLogo = true,
   });
 
   @override
@@ -120,7 +133,7 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color: Colors.white.withOpacity(0.4),
-            blurRadius: 12.111,
+            blurRadius: 8.111,
             spreadRadius: 0,
             offset: Offset.zero,
           ),
@@ -137,7 +150,16 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
         ],
       ),
       alignment: Alignment.center,
-      child: child,
+      child: child ?? (useDefaultLogo ? _buildDefaultLogo() : null),
+    );
+  }
+
+  Widget _buildDefaultLogo() {
+    return Image(
+      image: const AssetImage('web/icons/icon_presentation.png'),
+      width: size, // 24px for 36px container, scales proportionally
+      height: size,
+      fit: BoxFit.contain,
     );
   }
 }
@@ -160,13 +182,7 @@ Widget buildUnpingUiWidgetbookHeaderWithLogo(BuildContext context) {
     child: UnpingUiWidgetbookHeader(
       breadcrumbs: const ['Components', 'Buttons'],
       url: 'https://www.unping-ui.com',
-      logo: const UnpingUiWidgetbookHeaderLogo(
-        child: Icon(
-          Icons.widgets,
-          color: Colors.blue,
-          size: 20,
-        ),
-      ),
+      logo: const UnpingUiWidgetbookHeaderLogo(),
     ),
   );
 }
