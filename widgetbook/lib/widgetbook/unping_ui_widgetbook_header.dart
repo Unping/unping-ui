@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:unping_ui/src/foundation/unping_text_styles.dart';
 import 'package:unping_ui/src/foundation/unping_spacing.dart';
 import 'package:flutter/services.dart';
