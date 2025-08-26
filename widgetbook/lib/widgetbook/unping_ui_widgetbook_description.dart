@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/src/foundation/unping_text_styles.dart';
 
-/// A description component that displays main content text with categories and usage tips.
-/// Follows the same structure pattern as UnpingUiWidgetbookHeader.
+/// A description component that displays main content text with multiple lists of items.
+/// Each list can have its own heading and bullet point format.
 class UnpingUiWidgetbookDescription extends StatelessWidget {
   /// The main description text to display.
   final String description;
 
-  /// List of category items to display under "Categories:" heading.
-  final List<String> categories;
-
-  /// List of usage tip items to display under "Usage Tips:" heading.
-  final List<String> usageTips;
+  /// Map of list items with their headings. Key is the heading text, value is the list of items.
+  /// Example: {'Categories:': ['Item 1', 'Item 2'], 'Usage Tips:': ['Tip 1', 'Tip 2']}
+  final Map<String, List<String>> lists;
 
   /// Width factor for the description container (default: 0.6 of screen width).
   final double widthFactor;
@@ -28,8 +26,7 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
   const UnpingUiWidgetbookDescription({
     super.key,
     required this.description,
-    this.categories = const [],
-    this.usageTips = const [],
+    this.lists = const {},
     this.widthFactor = 0.6,
     this.descriptionStyle,
     this.headingStyle,
@@ -49,30 +46,34 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
             style: descriptionStyle ?? _defaultDescriptionStyle,
           ),
           
-          // Categories section
-          if (categories.isNotEmpty) ...[
-            Text(
-              'Categories:',
-              style: headingStyle ?? _defaultHeadingStyle,
-            ),
-            const SizedBox(height: 8),
-            ...categories.asMap().entries.map((entry) {
-              final index = entry.key;
-              final category = entry.value;
-              return _buildBulletPoint('${index + 1}. $category');
-            }),
-            const SizedBox(height: 20),
-          ],
-          
-          // Usage Tips section
-          if (usageTips.isNotEmpty) ...[
-            Text(
-              'Usage Tips:',
-              style: headingStyle ?? _defaultHeadingStyle,
-            ),
-            const SizedBox(height: 8),
-            ...usageTips.map((tip) => _buildBulletPoint('• $tip')),
-          ],
+          // Dynamic lists sections
+          ...lists.entries.map((entry) {
+            final heading = entry.key;
+            final items = entry.value;
+            
+            if (items.isEmpty) return const SizedBox.shrink();
+            
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 20),
+                Text(
+                  heading,
+                  style: headingStyle ?? _defaultHeadingStyle,
+                ),
+                const SizedBox(height: 8),
+                ...items.asMap().entries.map((itemEntry) {
+                  final index = itemEntry.key;
+                  final item = itemEntry.value;
+                  // Use numbered bullets for most lists, but use bullet points for items starting with bullet
+                  final bulletText = item.startsWith('•') 
+                      ? item 
+                      : '${index + 1}. $item';
+                  return _buildBulletPoint(bulletText);
+                }),
+              ],
+            );
+          }),
         ],
       ),
     );
