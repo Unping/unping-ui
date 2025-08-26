@@ -32,16 +32,16 @@ Widget buildUnpingColorsUseCase(BuildContext context) {
                 UnpingUiWidgetbookDescription(
                   description: 'Our color palette is meticulously designed to be both vibrant and functional, offering a cohesive aesthetic across all projects. Each hue has been thoughtfully selected and tested to ensure it complements our typographic styles and enhances overall readability. By prioritizing accessibility, we ensure that our color choices are inclusive, enabling all users to engage with our interface comfortably and effectively.\n\n',
                   categories: [
-                    'Error: Used to indicate errors or problematic actions.',
-                    'Warning: Used to highlight warnings or non-critical issues.',
-                    'Success: Used to denote successful actions or positive feedback.',
                     'Gray: Neutral colors used for backgrounds, text, and secondary elements.',
+                    'Success: Used to denote successful actions or positive feedback.',
+                    'Warning: Used to highlight warnings or non-critical issues.',
+                    'Error: Used to indicate errors or problematic actions.',
                   ],
                   usageTips: [
-                    'Error: Use sparingly to draw attention to critical issues.',
-                    'Warning: Apply to non-critical alerts that require user attention.',
-                    'Success: Utilize for positive feedback and completed actions.',
                     'Gray: Employ for backgrounds, borders, and secondary text to maintain a clean and uncluttered interface.',
+                    'Success: Utilize for positive feedback and completed actions.',
+                    'Warning: Apply to non-critical alerts that require user attention.',
+                    'Error: Use sparingly to draw attention to critical issues.',
                   ],
                 ),
               ],
