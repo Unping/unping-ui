@@ -27,8 +27,8 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
   const UnpingUiWidgetbookHeader({
     super.key,
     required this.breadcrumbs,
-    this.logo,
-    this.url,
+    this.logo = const UnpingUiWidgetbookHeaderLogo(),
+    this.url = 'https://www.unping-ui.com',
     this.backgroundDecoration,
     this.title,
   });
@@ -78,7 +78,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           if (title != null) ...[
-            SizedBox(height: UnpingSpacing.spacing6),
+            SizedBox(height: UnpingSpacing.spacing10),
             _buildTitle(),
           ],
         ],
@@ -191,27 +191,3 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
   }
 }
 
-Widget buildUnpingUiWidgetbookHeaderDefault(BuildContext context) {
-  return Container(
-    color: Colors.grey[900],
-    padding: const EdgeInsets.all(20),
-    child: const UnpingUiWidgetbookHeader(
-      breadcrumbs: ['Foundation', 'Colors'],
-      url: 'https://www.unping-ui.com',
-      title: 'Colors',
-    ),
-  );
-}
-
-Widget buildUnpingUiWidgetbookHeaderWithLogo(BuildContext context) {
-  return Container(
-    color: Colors.grey[900],
-    padding: const EdgeInsets.all(20),
-    child: UnpingUiWidgetbookHeader(
-      breadcrumbs: const ['Components', 'Buttons'],
-      url: 'https://www.unping-ui.com',
-      logo: const UnpingUiWidgetbookHeaderLogo(),
-      title: 'Buttons',
-    ),
-  );
-}
