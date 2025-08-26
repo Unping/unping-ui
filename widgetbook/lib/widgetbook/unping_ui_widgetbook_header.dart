@@ -86,31 +86,33 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
   }
 
   Widget _buildBreadcrumbs(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        for (int i = 0; i < breadcrumbs.length; i++) ...[
-          Flexible(
-            child: Text(
-              breadcrumbs[i],
-              style: UnpingTextStyles.textSm
-                  .copyWith(
-                color: Colors.white, // White #FFFFFF
-              ),
-              overflow: TextOverflow.ellipsis,
-            ),
+    List<Widget> widgets = [];
+    for (int i = 0; i < breadcrumbs.length; i++) {
+      widgets.add(
+        Text(
+          breadcrumbs[i],
+          style: UnpingTextStyles.textSm.copyWith(
+            color: Colors.white, // White #FFFFFF
           ),
-          if (i < breadcrumbs.length - 1) ...[
-            const SizedBox(width: 8), // gap-2
-            const Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-              size: 14,
-            ),
-            const SizedBox(width: 8), // gap-2
-          ],
-        ],
-      ],
+          overflow: TextOverflow.ellipsis,
+        ),
+      );
+      if (i < breadcrumbs.length - 1) {
+        widgets.add(const SizedBox(width: 8));
+        widgets.add(const Icon(
+          Icons.arrow_forward,
+          color: Colors.white,
+          size: 14,
+        ));
+        widgets.add(const SizedBox(width: 8));
+      }
+    }
+    
+    return IntrinsicWidth(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: widgets,
+      ),
     );
   }
 
