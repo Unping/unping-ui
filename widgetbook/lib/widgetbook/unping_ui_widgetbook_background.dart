@@ -117,7 +117,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: UnpingSpacing.allXxl,
+      padding: UiSpacing.allXxl,
       child: Container(
         padding: const EdgeInsets.fromLTRB(48, 48, 48, 64),
         decoration: BoxDecoration(
@@ -175,7 +175,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
                 ],
               ),
             ),
-            UnpingSpacing.horizontalGapM,
+            UiSpacing.horizontalGapM,
             Text(
               'Foundation',
               style: TextStyle(
@@ -185,13 +185,13 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
                 height: 32 / 24,
               ),
             ),
-            UnpingSpacing.horizontalGapSm,
+            UiSpacing.horizontalGapSm,
             Icon(
               Icons.arrow_forward_ios,
               color: Colors.white,
               size: 16,
             ),
-            UnpingSpacing.horizontalGapSm,
+            UiSpacing.horizontalGapSm,
             Text(
               subtitle,
               style: TextStyle(

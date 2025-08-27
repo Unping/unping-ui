@@ -18,7 +18,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
       children: [
         // Header section
         Container(
-          padding: UnpingSpacing.allXxl,
+          padding: UiSpacing.allXxl,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -27,7 +27,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                   breadcrumbs: const ['Foundation', 'Colors'],
                   title: "Colors",
                 ),
-                const SizedBox(height: UnpingSpacing.spacing4),
+                const SizedBox(height: UiSpacing.spacing4),
                 
                 // Description section using the reusable component
                 UnpingUiWidgetbookDescription(
@@ -53,7 +53,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
         
         // Color palette section
         Container(
-          padding: UnpingSpacing.allXxl,
+          padding: UiSpacing.allXxl,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -77,7 +77,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                   ],
                 ),
               ),
-              UnpingSpacing.horizontalGapXl,
+              UiSpacing.horizontalGapXl,
               
               // Success column
               Expanded(
@@ -99,7 +99,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                   ],
                 ),
               ),
-              UnpingSpacing.horizontalGapXl,
+              UiSpacing.horizontalGapXl,
               
               // Warning column
               Expanded(
@@ -121,7 +121,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                   ],
                 ),
               ),
-              UnpingSpacing.horizontalGapXl,
+              UiSpacing.horizontalGapXl,
               
               // Error column
               Expanded(

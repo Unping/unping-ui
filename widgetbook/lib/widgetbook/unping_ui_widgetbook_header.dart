@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/src/foundation/unping_text_styles.dart';
-import 'package:unping_ui/src/foundation/unping_spacing.dart';
+import 'package:unping_ui/src/foundation/ui_spacing.dart';
 import 'package:flutter/services.dart';
 
 /// A header that matches the Figma design: left-aligned logo + breadcrumbs,
@@ -70,14 +70,14 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
                 ),
             ],
           ),
-          SizedBox(height: UnpingSpacing.spacing8),
+          SizedBox(height: UiSpacing.spacing8),
           Image.asset(
             'web/icons/header_presentation.png',
             width: double.infinity,
             fit: BoxFit.cover,
           ),
           if (title != null) ...[
-            SizedBox(height: UnpingSpacing.spacing10),
+            SizedBox(height: UiSpacing.spacing10),
             _buildTitle(),
           ],
         ],

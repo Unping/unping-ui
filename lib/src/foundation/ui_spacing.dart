@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Unping-UI spacing system
 /// Provides consistent spacing values throughout the design system
-class UnpingSpacing {
+class UiSpacing {
   /// Spacing values from Figma design system
   /// Following the scale: 0, 0.5, 1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64, 80, 96, 120, 140, 160, 180, 192, 256, 320, 360, 400, 480
 
@@ -239,29 +239,29 @@ class UnpingSpacing {
 
 /// Theme extension for spacing system
 /// Provides access to spacing values through the theme system
-class UnpingSpacingExtension extends ThemeExtension<UnpingSpacingExtension> {
-  const UnpingSpacingExtension();
+class UiSpacingExtension extends ThemeExtension<UiSpacingExtension> {
+  const UiSpacingExtension();
 
-  static const light = UnpingSpacingExtension();
-  static const dark = UnpingSpacingExtension();
+  static const light = UiSpacingExtension();
+  static const dark = UiSpacingExtension();
 
   @override
-  ThemeExtension<UnpingSpacingExtension> copyWith() {
-    return const UnpingSpacingExtension();
+  ThemeExtension<UiSpacingExtension> copyWith() {
+    return const UiSpacingExtension();
   }
 
   @override
-  ThemeExtension<UnpingSpacingExtension> lerp(
-    ThemeExtension<UnpingSpacingExtension>? other,
+  ThemeExtension<UiSpacingExtension> lerp(
+    ThemeExtension<UiSpacingExtension>? other,
     double t,
   ) {
-    return const UnpingSpacingExtension();
+    return const UiSpacingExtension();
   }
 }
 
 /// Extension on BuildContext to easily access spacing values
-extension UnpingSpacingContext on BuildContext {
-  UnpingSpacingExtension get unpingSpacing =>
-      Theme.of(this).extension<UnpingSpacingExtension>() ??
-      UnpingSpacingExtension.light;
+extension UiSpacingContext on BuildContext {
+  UiSpacingExtension get UiSpacing =>
+      Theme.of(this).extension<UiSpacingExtension>() ??
+      UiSpacingExtension.light;
 }

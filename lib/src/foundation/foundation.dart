@@ -5,7 +5,7 @@
 library foundation;
 
 export 'ui_colors.dart';
-export 'unping_spacing.dart';
+export 'ui_spacing.dart';
 export 'ui_radius.dart';
 export 'unping_text_styles.dart';
 export 'unping_theme.dart';

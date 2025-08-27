@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'ui_colors.dart';
-import 'unping_spacing.dart';
+import 'ui_spacing.dart';
 import 'ui_radius.dart';
 import 'unping_text_styles.dart';
 
@@ -51,7 +51,7 @@ class UnpingTheme {
       // Custom theme extensions
       extensions: [
         UnpingColorExtension.light,
-        UnpingSpacingExtension.light,
+        UiSpacingExtension.light,
         UiRadiusExtension.light,
         UnpingTextStyleExtension.standard,
       ],
@@ -96,7 +96,7 @@ class UnpingTheme {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: UiRadius.allMd,
         ),
-        contentPadding: UnpingSpacing.allM,
+        contentPadding: UiSpacing.allM,
       ),
     );
   }
@@ -142,7 +142,7 @@ class UnpingTheme {
       // Custom theme extensions
       extensions: [
         UnpingColorExtension.dark,
-        UnpingSpacingExtension.dark,
+        UiSpacingExtension.dark,
         UiRadiusExtension.dark,
         UnpingTextStyleExtension.standard,
       ],
@@ -187,7 +187,7 @@ class UnpingTheme {
         focusedErrorBorder: OutlineInputBorder(
           borderRadius: UiRadius.allMd,
         ),
-        contentPadding: UnpingSpacing.allM,
+        contentPadding: UiSpacing.allM,
       ),
     );
   }
@@ -201,9 +201,9 @@ extension UnpingThemeContext on BuildContext {
       UnpingColorExtension.light;
 
   /// Get the current spacing extension from the theme
-  UnpingSpacingExtension get unpingSpacing =>
-      Theme.of(this).extension<UnpingSpacingExtension>() ??
-      UnpingSpacingExtension.light;
+  UiSpacingExtension get UiSpacing =>
+      Theme.of(this).extension<UiSpacingExtension>() ??
+      UiSpacingExtension.light;
 
   /// Get the current radius extension from the theme
   UiRadiusExtension get UiRadius =>

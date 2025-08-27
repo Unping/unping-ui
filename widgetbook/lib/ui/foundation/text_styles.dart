@@ -17,7 +17,7 @@ Widget buildUnpingTextStylesUseCase(BuildContext context) {
       children: [
         // Header section
         Container(
-          padding: UnpingSpacing.allXxl,
+          padding: UiSpacing.allXxl,
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -26,7 +26,7 @@ Widget buildUnpingTextStylesUseCase(BuildContext context) {
                   breadcrumbs: const ['Foundation', 'Typography'],
                   title: "Typography",
                 ),
-                const SizedBox(height: UnpingSpacing.spacing4),
+                const SizedBox(height: UiSpacing.spacing4),
                 
                 // Description section using the reusable component
                 UnpingUiWidgetbookDescription(
