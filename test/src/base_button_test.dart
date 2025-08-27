@@ -725,7 +725,7 @@ void main() {
         expect(find.text('Filled Button'), findsOneWidget);
 
         final textWidget = tester.widget<Text>(find.text('Filled Button'));
-        expect(textWidget.style!.color, equals(Color(0xFF2A313C)));
+        expect(textWidget.style!.color, equals(UiColors.neutral800));
 
         final container = tester.widget<Container>(find.byType(Container));
         final decoration = container.decoration as BoxDecoration;
