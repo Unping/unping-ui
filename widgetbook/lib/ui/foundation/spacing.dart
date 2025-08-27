@@ -84,7 +84,7 @@ Widget buildUiSpacingUseCase(BuildContext context) {
                       ),
                     ),
                     SizedBox(
-                      width: 128, // Min width from Figma
+                      width: 160, // Increased width to prevent line break
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 16, right: 64),
                         child: Text(
@@ -238,7 +238,7 @@ class _SpacingRow extends StatelessWidget {
           ),
           // Rem size column
           SizedBox(
-            width: 128,
+            width: 160,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0).copyWith(right: 64),
               child: Text(
