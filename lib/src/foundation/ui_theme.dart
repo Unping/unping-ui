@@ -7,8 +7,10 @@ import 'ui_text_styles.dart';
 /// Main theme configuration for Unping-UI
 /// This class provides the complete theme system that integrates with Flutter's ThemeData
 class UiTheme {
+  // coverage:ignore-start
   // Private constructor to prevent instantiation
   const UiTheme._();
+  // coverage:ignore-end
 
   /// Light theme configuration
   static ThemeData lightTheme({
