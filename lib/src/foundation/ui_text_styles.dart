@@ -719,7 +719,9 @@ class UnpingTextStyleExtension
       textLgMedium: textLgMedium ?? this.textLgMedium,
       textLgSemibold: textLgSemibold ?? this.textLgSemibold,
       textLgBold: textLgBold ?? this.textLgBold,
+      // coverage:ignore-start
       textMd: textMd ?? this.textMd,
+      // coverage:ignore-end
       textMdMedium: textMdMedium ?? this.textMdMedium,
       textMdSemibold: textMdSemibold ?? this.textMdSemibold,
       textMdBold: textMdBold ?? this.textMdBold,

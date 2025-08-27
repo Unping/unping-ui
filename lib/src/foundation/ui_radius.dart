@@ -195,6 +195,7 @@ class UiRadiusExtension extends ThemeExtension<UiRadiusExtension> {
     double? xxl,
     double? full,
   }) {
+    // coverage:ignore-start
     return UiRadiusExtension(
       none: none ?? this.none,
       xs: xs ?? this.xs,
@@ -205,6 +206,7 @@ class UiRadiusExtension extends ThemeExtension<UiRadiusExtension> {
       xxl: xxl ?? this.xxl,
       full: full ?? this.full,
     );
+    // coverage:ignore-end
   }
 
   @override

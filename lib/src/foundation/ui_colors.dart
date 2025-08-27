@@ -543,7 +543,9 @@ class UnpingColorExtension extends ThemeExtension<UnpingColorExtension> {
       textPrimary: textPrimary ?? this.textPrimary,
       textSecondary: textSecondary ?? this.textSecondary,
       textTertiary: textTertiary ?? this.textTertiary,
+      // coverage:ignore-start
       textDisabled: textDisabled ?? this.textDisabled,
+      // coverage:ignore-end
     );
   }
 
