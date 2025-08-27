@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:unping_ui/unping_ui.dart';
-import 'base_checkbox.dart';
 
 /// Badge size variants
 enum BadgeSize {
