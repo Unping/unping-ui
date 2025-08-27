@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:unping_ui/unping_ui.dart';
 
 /// Position of the icon relative to the text
 enum IconPosition {
@@ -503,7 +504,7 @@ class Buttons {
     Widget? icon,
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
-    Color textColor = const Color(0xFFFFFFFF), // White text for ghost buttons
+    Color textColor = UiColors.onPrimary, // White text for ghost buttons
     Color? hoverTextColor, // Can be customized per use case
     Color? focusTextColor, // Can be customized per use case
     Color? disabledTextColor, // Can be customized per use case
@@ -553,7 +554,7 @@ class Buttons {
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
     Color backgroundColor =
-        const Color(0xFFFFFFFF), // White background for filled buttons
+        UiColors.background, // White background for filled buttons
     Color? hoverBackgroundColor =
         const Color(0xFFABB5C4), // Gray hover color from Figma
     Color? focusBackgroundColor, // Can be customized per use case
@@ -564,8 +565,7 @@ class Buttons {
     Color? disabledTextColor, // Can be customized per use case
     Color? borderColor, // No border by default for filled buttons
     Color? hoverBorderColor,
-    Color? focusBorderColor =
-        const Color(0xFFFFFFFF), // White border when focused
+    Color? focusBorderColor = UiColors.background, // White border when focused
     Color? disabledBorderColor,
     Color? focusRingColor =
         const Color(0xFF989DB3), // Focus ring color from Figma
@@ -603,12 +603,12 @@ class Buttons {
     Widget? icon,
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
-    Color borderColor = const Color(0xFFFFFFFF),
+    Color borderColor = UiColors.background,
     Color? hoverBorderColor,
     Color? focusBorderColor,
     Color? disabledBorderColor,
-    Color textColor = const Color(
-        0xFFFFFFFF), // White text for outline buttons when not specified
+    Color textColor =
+        UiColors.onPrimary, // White text for outline buttons when not specified
     Color? hoverTextColor,
     Color? focusTextColor,
     Color? disabledTextColor,
