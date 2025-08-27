@@ -429,7 +429,7 @@ class BadgeDot extends StatelessWidget {
     this.size = 6.0,
     this.color = const Color(0xFF17B26A), // Success/500 green from Figma
     this.showOutline = false,
-    this.outlineColor = const Color(0xFFFFFFFF),
+    this.outlineColor = UiColors.background,
     this.outlineWidth = 1.0,
   });
 
@@ -464,8 +464,8 @@ class Badges {
     VoidCallback? onRemove,
     BadgeSize size = BadgeSize.md,
     Color backgroundColor = const Color(0xFF3B4554),
-    Color textColor = const Color(0xFFFFFFFF),
-    Color? borderColor = const Color(0xFFD0D5DD),
+    Color textColor = UiColors.onPrimary,
+    Color? borderColor = UiColors.neutral300,
   }) {
     return BaseBadge(
       text: text,
@@ -522,10 +522,10 @@ class Badges {
       size: checkboxSize,
       shape: CheckboxShape.rectangle,
       checkedBackgroundColor: backgroundColor ?? const Color(0xFF3B4554),
-      uncheckedBackgroundColor: const Color(0xFFFFFFFF),
+      uncheckedBackgroundColor: UiColors.background,
       checkedBorderColor: borderColor ?? const Color(0xFF3B4554),
-      uncheckedBorderColor: borderColor ?? const Color(0xFFD0D5DD),
-      checkColor: checkColor ?? const Color(0xFFFFFFFF),
+      uncheckedBorderColor: borderColor ?? UiColors.neutral300,
+      checkColor: checkColor ?? UiColors.onPrimary,
     );
   }
 }
