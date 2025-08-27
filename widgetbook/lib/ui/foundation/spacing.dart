@@ -255,18 +255,34 @@ class _SpacingVisualization extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Create a visual representation of the spacing
-    // For very small values, ensure minimum visibility
-    final displayWidth = value == 0 ? 0.0 : (value < 4 ? 4.0 : value);
+    // Create a visual representation of the spacing using proportional scaling
+    // Maximum spacing value is 1920px, we'll scale to max 600px for better visibility
+    const double maxDisplayWidth = 600.0;
+    const double maxSpacingValue = 1920.0;
+    
+    double displayWidth;
+    if (value == 0) {
+      displayWidth = 0.0;
+    } else if (value <= 24) {
+      // For small values (0-24px), use actual size for precision
+      displayWidth = value;
+    } else {
+      // For larger values, use proportional scaling
+      // Scale from 24px to maxDisplayWidth based on the remaining range
+      final remainingValue = value - 24;
+      final remainingMax = maxSpacingValue - 24;
+      final scaledRemainingWidth = (remainingValue / remainingMax) * (maxDisplayWidth - 24);
+      displayWidth = 24 + scaledRemainingWidth;
+    }
     
     return SizedBox(
       height: 16,
       child: Stack(
         children: [
-          // Bar (actual spacing width) with gradient
+          // Bar (scaled spacing width) with gradient
           if (value > 0)
             Container(
-              width: displayWidth.clamp(0, 400), // Clamp to reasonable max width for display
+              width: displayWidth,
               height: 16,
               decoration: BoxDecoration(
                 gradient: const LinearGradient(
