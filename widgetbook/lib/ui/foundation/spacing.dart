@@ -65,20 +65,16 @@ Widget buildUiSpacingUseCase(BuildContext context) {
                     bottom: BorderSide(color: UiColors.neutral200, width: 1),
                   ),
                 ),
-                child: const Row(
+                child: Row(
                   children: [
                     SizedBox(
-                      width: 112, // Min width from Figma
+                      width: 120, // Min width from Figma
                       child: Padding(
                         padding: EdgeInsets.only(bottom: 16, right: 64),
                         child: Text(
                           'Name',
-                          style: TextStyle(
+                          style: UiTextStyles.textXsMedium.copyWith(
                             color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            height: 1.5, // 18/12
                           ),
                         ),
                       ),
@@ -89,12 +85,8 @@ Widget buildUiSpacingUseCase(BuildContext context) {
                         padding: EdgeInsets.only(bottom: 16, right: 64),
                         child: Text(
                           'Size (16px base)',
-                          style: TextStyle(
+                          style: UiTextStyles.textXsMedium.copyWith(
                             color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            height: 1.5, // 18/12
                           ),
                         ),
                       ),
@@ -105,12 +97,8 @@ Widget buildUiSpacingUseCase(BuildContext context) {
                         padding: EdgeInsets.only(bottom: 16, right: 64),
                         child: Text(
                           'Pixel',
-                          style: TextStyle(
+                          style: UiTextStyles.textXsMedium.copyWith(
                             color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            height: 1.5, // 18/12
                           ),
                         ),
                       ),
@@ -120,12 +108,8 @@ Widget buildUiSpacingUseCase(BuildContext context) {
                         padding: EdgeInsets.only(bottom: 16, right: 64),
                         child: Text(
                           'Spacing',
-                          style: TextStyle(
+                          style: UiTextStyles.textXsMedium.copyWith(
                             color: Colors.white,
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            fontFamily: 'Inter',
-                            height: 1.5, // 18/12
                           ),
                         ),
                       ),
@@ -213,7 +197,7 @@ class _SpacingRow extends StatelessWidget {
         children: [
           // Name column with badge
           SizedBox(
-            width: 112,
+            width: 120,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0).copyWith(right: 64),
               child: Container(
@@ -225,12 +209,8 @@ class _SpacingRow extends StatelessWidget {
                 ),
                 child: Text(
                   name,
-                  style: const TextStyle(
+                  style: UiTextStyles.textSm.copyWith(
                     color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    fontFamily: 'Inter',
-                    height: 1.5, // 24/16
                   ),
                 ),
               ),
@@ -243,12 +223,8 @@ class _SpacingRow extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0).copyWith(right: 64),
               child: Text(
                 rem,
-                style: const TextStyle(
+                style: UiTextStyles.textSm.copyWith(
                   color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Inter',
-                  height: 1.5, // 24/16
                 ),
               ),
             ),
@@ -260,12 +236,8 @@ class _SpacingRow extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0).copyWith(right: 64),
               child: Text(
                 px,
-                style: const TextStyle(
+                style: UiTextStyles.textSm.copyWith(
                   color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  fontFamily: 'Inter',
-                  height: 1.5, // 24/16
                 ),
               ),
             ),
