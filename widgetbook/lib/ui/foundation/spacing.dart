@@ -263,15 +263,7 @@ class _SpacingVisualization extends StatelessWidget {
       height: 16,
       child: Stack(
         children: [
-          // Background track (full width, light)
-          Container(
-            height: 16,
-            decoration: BoxDecoration(
-              color: const Color(0xFFE040FA).withOpacity(0.1), // Gradient start color background
-              borderRadius: BorderRadius.circular(4),
-            ),
-          ),
-          // Foreground bar (actual spacing width) with gradient
+          // Bar (actual spacing width) with gradient
           if (value > 0)
             Container(
               width: displayWidth.clamp(0, 400), // Clamp to reasonable max width for display
@@ -285,7 +277,6 @@ class _SpacingVisualization extends StatelessWidget {
                     Color(0xFF40C4FE), // Right: 100% opacity
                   ],
                 ),
-                borderRadius: BorderRadius.circular(4),
               ),
             ),
         ],
