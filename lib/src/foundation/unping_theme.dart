@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'unping_colors.dart';
+import 'ui_colors.dart';
 import 'unping_spacing.dart';
 import 'unping_radius.dart';
 import 'unping_text_styles.dart';
@@ -20,13 +20,13 @@ class UnpingTheme {
 
       // Color scheme integration
       colorScheme: ColorScheme.light(
-        primary: primaryColor ?? UnpingColors.primary500,
-        secondary: UnpingColors.primary600,
-        surface: backgroundColor ?? UnpingColors.neutral50,
-        onSurface: UnpingColors.neutral900,
-        error: UnpingColors.error500,
-        onError: UnpingColors.neutral50,
-        outline: UnpingColors.border,
+        primary: primaryColor ?? UiColors.primary500,
+        secondary: UiColors.primary600,
+        surface: backgroundColor ?? UiColors.neutral50,
+        onSurface: UiColors.neutral900,
+        error: UiColors.error500,
+        onError: UiColors.neutral50,
+        outline: UiColors.border,
       ),
 
       // Typography
@@ -80,7 +80,7 @@ class UnpingTheme {
       // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: UnpingColors.neutral50,
+        fillColor: UiColors.neutral50,
         border: OutlineInputBorder(
           borderRadius: UnpingRadius.allMd,
         ),
@@ -111,13 +111,13 @@ class UnpingTheme {
 
       // Color scheme integration
       colorScheme: ColorScheme.dark(
-        primary: primaryColor ?? UnpingColors.primary400,
-        secondary: UnpingColors.primary500,
-        surface: backgroundColor ?? UnpingColors.neutral900,
-        onSurface: UnpingColors.neutral50,
-        error: UnpingColors.error500,
-        onError: UnpingColors.neutral900,
-        outline: UnpingColors.border,
+        primary: primaryColor ?? UiColors.primary400,
+        secondary: UiColors.primary500,
+        surface: backgroundColor ?? UiColors.neutral900,
+        onSurface: UiColors.neutral50,
+        error: UiColors.error500,
+        onError: UiColors.neutral900,
+        outline: UiColors.border,
       ),
 
       // Typography
@@ -171,7 +171,7 @@ class UnpingTheme {
       // Input decoration theme
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: UnpingColors.neutral800,
+        fillColor: UiColors.neutral800,
         border: OutlineInputBorder(
           borderRadius: UnpingRadius.allMd,
         ),
@@ -196,7 +196,7 @@ class UnpingTheme {
 /// Extension on BuildContext to easily access theme colors, spacing, and other design tokens
 extension UnpingThemeContext on BuildContext {
   /// Get the current color extension from the theme
-  UnpingColorExtension get unpingColors =>
+  UnpingColorExtension get UiColors =>
       Theme.of(this).extension<UnpingColorExtension>() ??
       UnpingColorExtension.light;
 
