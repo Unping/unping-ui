@@ -9,6 +9,7 @@ import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_header.dart
   name: 'Typography System',
   type: UiTextStyles,
   designLink: 'https://www.figma.com/design/unping-ui-typography',
+  path: '[UI]/Foundation',
 )
 Widget buildUiTextStylesUseCase(BuildContext context) {
   return UnpingUIWidgetbookBackground(
