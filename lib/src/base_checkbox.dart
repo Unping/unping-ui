@@ -147,18 +147,18 @@ class BaseCheckbox extends StatefulWidget {
     this.descriptionStyle,
     this.textSpacing = 8.0,
     this.uncheckedBackgroundColor = UiColors.background,
-    this.checkedBackgroundColor = const Color(0xFF3B4554),
-    this.indeterminateBackgroundColor = const Color(0xFF3B4554),
+    this.checkedBackgroundColor = UiColors.neutral700,
+    this.indeterminateBackgroundColor = UiColors.neutral700,
     this.uncheckedBorderColor = UiColors.neutral300,
-    this.checkedBorderColor = const Color(0xFF3B4554),
-    this.indeterminateBorderColor = const Color(0xFF3B4554),
+    this.checkedBorderColor = UiColors.neutral700,
+    this.indeterminateBorderColor = UiColors.neutral700,
     this.checkColor = UiColors.onPrimary,
     this.indeterminateColor = UiColors.onPrimary,
     this.borderWidth = 1.0,
     this.borderRadius,
     this.disabledOpacity = 0.4,
     this.animationDuration = const Duration(milliseconds: 200),
-    this.focusRingColor,
+    this.focusRingColor = UiColors.neutral400,
     this.focusRingWidth = 3.0,
     this.forceVisualState,
   });
@@ -416,7 +416,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
           TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w500,
-            color: isDisabled ? const Color(0xFF647690) : UiColors.onPrimary,
+            color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
             height: 20 / 14,
           );
 
@@ -424,7 +424,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
           TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.w400,
-            color: isDisabled ? const Color(0xFF647690) : UiColors.onPrimary,
+            color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
             height: 20 / 14,
           );
 
@@ -563,11 +563,11 @@ class _RadioGroupState<T> extends State<RadioGroup<T>> {
               onChanged:
                   widget.disabled ? null : (_) => _handleChanged(option.value),
               checkedBackgroundColor:
-                  widget.checkedBackgroundColor ?? const Color(0xFF3B4554),
+                  widget.checkedBackgroundColor ?? UiColors.neutral700,
               uncheckedBackgroundColor:
                   widget.uncheckedBackgroundColor ?? UiColors.background,
               checkedBorderColor:
-                  widget.checkedBorderColor ?? const Color(0xFF3B4554),
+                  widget.checkedBorderColor ?? UiColors.neutral700,
               uncheckedBorderColor:
                   widget.uncheckedBorderColor ?? UiColors.neutral300,
               checkColor: widget.checkColor ?? UiColors.onPrimary,
@@ -651,7 +651,7 @@ class Checkboxes {
     Color? checkedBorderColor,
     Color? uncheckedBorderColor,
     Color? checkColor,
-    Color? focusRingColor = const Color(0xFF989DB3),
+    Color? focusRingColor = UiColors.neutral400,
     CheckboxVisualState? forceVisualState,
   }) {
     return BaseCheckbox(
@@ -664,9 +664,9 @@ class Checkboxes {
       labelStyle: labelStyle,
       descriptionStyle: descriptionStyle,
       textSpacing: textSpacing,
-      checkedBackgroundColor: checkedBackgroundColor ?? const Color(0xFF3B4554),
+      checkedBackgroundColor: checkedBackgroundColor ?? UiColors.neutral700,
       uncheckedBackgroundColor: uncheckedBackgroundColor ?? UiColors.background,
-      checkedBorderColor: checkedBorderColor ?? const Color(0xFF3B4554),
+      checkedBorderColor: checkedBorderColor ?? UiColors.neutral700,
       uncheckedBorderColor: uncheckedBorderColor ?? UiColors.neutral300,
       checkColor: checkColor ?? UiColors.onPrimary,
       focusRingColor: focusRingColor,
@@ -690,7 +690,7 @@ class Checkboxes {
     Color? checkedBorderColor,
     Color? uncheckedBorderColor,
     Color? checkColor,
-    Color? focusRingColor = const Color(0xFF989DB3),
+    Color? focusRingColor = UiColors.neutral400,
     CheckboxVisualState? forceVisualState,
   }) {
     return BaseCheckbox(
@@ -714,9 +714,9 @@ class Checkboxes {
       labelStyle: labelStyle,
       descriptionStyle: descriptionStyle,
       textSpacing: textSpacing,
-      checkedBackgroundColor: checkedBackgroundColor ?? const Color(0xFF3B4554),
+      checkedBackgroundColor: checkedBackgroundColor ?? UiColors.neutral700,
       uncheckedBackgroundColor: uncheckedBackgroundColor ?? UiColors.background,
-      checkedBorderColor: checkedBorderColor ?? const Color(0xFF3B4554),
+      checkedBorderColor: checkedBorderColor ?? UiColors.neutral700,
       uncheckedBorderColor: uncheckedBorderColor ?? UiColors.neutral300,
       checkColor: checkColor ?? UiColors.onPrimary,
       focusRingColor: focusRingColor,

@@ -375,7 +375,7 @@ class BadgeCount extends StatelessWidget {
     required this.count,
     this.maxCount = 99,
     this.backgroundColor = UiColors.neutral100,
-    this.textColor = const Color(0xFF2A313C),
+    this.textColor = UiColors.neutral800,
     this.fontSize = 12.0,
     this.fontWeight = FontWeight.w500,
     this.fontFamily = 'Inter',
@@ -427,7 +427,7 @@ class BadgeDot extends StatelessWidget {
   const BadgeDot({
     super.key,
     this.size = 6.0,
-    this.color = const Color(0xFF17B26A), // Success/500 green from Figma
+    this.color = UiColors.success500, // Success green from palette
     this.showOutline = false,
     this.outlineColor = UiColors.background,
     this.outlineWidth = 1.0,
@@ -463,7 +463,7 @@ class Badges {
     bool removable = false,
     VoidCallback? onRemove,
     BadgeSize size = BadgeSize.md,
-    Color backgroundColor = const Color(0xFF3B4554),
+    Color backgroundColor = UiColors.neutral700,
     Color textColor = UiColors.onPrimary,
     Color? borderColor = UiColors.neutral300,
   }) {

@@ -511,14 +511,14 @@ class Buttons {
     Color? backgroundColor, // Transparent by default for ghost buttons
     Color? hoverBackgroundColor,
     Color? focusBackgroundColor =
-        const Color(0xFF2A313C), // Dark gray background when focused
+        UiColors.neutral800, // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? borderColor, // Nullable to allow no border
     Color? hoverBorderColor,
     Color? focusBorderColor, // No focus border for ghost buttons
     Color? disabledBorderColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
@@ -556,10 +556,10 @@ class Buttons {
     Color backgroundColor =
         UiColors.background, // White background for filled buttons
     Color? hoverBackgroundColor =
-        const Color(0xFFABB5C4), // Gray hover color from Figma
+        UiColors.neutral300, // Hover color from palette
     Color? focusBackgroundColor, // Can be customized per use case
     Color? disabledBackgroundColor, // Can be customized per use case
-    Color textColor = const Color(0xFF2A313C), // Grey text for filled buttons
+    Color textColor = UiColors.neutral800, // Grey text for filled buttons
     Color? hoverTextColor, // Keep same text color on hover by default
     Color? focusTextColor, // Can be customized per use case
     Color? disabledTextColor, // Can be customized per use case
@@ -568,7 +568,7 @@ class Buttons {
     Color? focusBorderColor = UiColors.background, // White border when focused
     Color? disabledBorderColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
     ButtonState? forceState,
@@ -614,12 +614,12 @@ class Buttons {
     Color? disabledTextColor,
     Color? backgroundColor, // Transparent by default for outline buttons
     Color? hoverBackgroundColor =
-        const Color(0xFFABB5C4), // Gray hover color from Figma
+        UiColors.neutral300, // Hover color from palette
     Color? focusBackgroundColor =
-        const Color(0xFF2A313C), // Dark gray background when focused
+        UiColors.neutral800, // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0, // Focus ring width from Figma
     bool underlineText = false,
     ButtonState? forceState,
