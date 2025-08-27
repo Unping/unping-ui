@@ -207,8 +207,7 @@ extension UnpingThemeContext on BuildContext {
 
   /// Get the current radius extension from the theme
   UiRadiusExtension get UiRadius =>
-      Theme.of(this).extension<UiRadiusExtension>() ??
-      UiRadiusExtension.light;
+      Theme.of(this).extension<UiRadiusExtension>() ?? UiRadiusExtension.light;
 
   /// Get the current text style extension from the theme
   UnpingTextStyleExtension get unpingTextStyles =>
