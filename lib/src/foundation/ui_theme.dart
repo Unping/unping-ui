@@ -6,9 +6,9 @@ import 'ui_text_styles.dart';
 
 /// Main theme configuration for Unping-UI
 /// This class provides the complete theme system that integrates with Flutter's ThemeData
-class UnpingTheme {
+class UiTheme {
   // Private constructor to prevent instantiation
-  const UnpingTheme._();
+  const UiTheme._();
 
   /// Light theme configuration
   static ThemeData lightTheme({
@@ -194,7 +194,7 @@ class UnpingTheme {
 }
 
 /// Extension on BuildContext to easily access theme colors, spacing, and other design tokens
-extension UnpingThemeContext on BuildContext {
+extension UiThemeContext on BuildContext {
   /// Get the current color extension from the theme
   UnpingColorExtension get UiColors =>
       Theme.of(this).extension<UnpingColorExtension>() ??
