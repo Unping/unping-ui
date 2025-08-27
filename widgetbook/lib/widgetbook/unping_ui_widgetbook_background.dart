@@ -121,7 +121,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.fromLTRB(48, 48, 48, 64),
         decoration: BoxDecoration(
-          borderRadius: UnpingRadius.allXl,
+          borderRadius: UiRadius.allXl,
           gradient: const LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,

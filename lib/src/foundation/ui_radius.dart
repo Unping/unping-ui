@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// Unping-UI border radius system
 /// Provides consistent border radius values throughout the design system
-class UnpingRadius {
+class UiRadius {
   /// No radius
   static const double none = 0.0;
 
@@ -160,16 +160,16 @@ class UnpingRadius {
 
 /// Theme extension for radius system
 /// Provides access to radius values through the theme system
-class UnpingRadiusExtension extends ThemeExtension<UnpingRadiusExtension> {
-  const UnpingRadiusExtension({
-    this.none = UnpingRadius.none,
-    this.xs = UnpingRadius.xs,
-    this.sm = UnpingRadius.sm,
-    this.md = UnpingRadius.md,
-    this.lg = UnpingRadius.lg,
-    this.xl = UnpingRadius.xl,
-    this.xxl = UnpingRadius.xxl,
-    this.full = UnpingRadius.full,
+class UiRadiusExtension extends ThemeExtension<UiRadiusExtension> {
+  const UiRadiusExtension({
+    this.none = UiRadius.none,
+    this.xs = UiRadius.xs,
+    this.sm = UiRadius.sm,
+    this.md = UiRadius.md,
+    this.lg = UiRadius.lg,
+    this.xl = UiRadius.xl,
+    this.xxl = UiRadius.xxl,
+    this.full = UiRadius.full,
   });
 
   final double none;
@@ -181,11 +181,11 @@ class UnpingRadiusExtension extends ThemeExtension<UnpingRadiusExtension> {
   final double xxl;
   final double full;
 
-  static const light = UnpingRadiusExtension();
-  static const dark = UnpingRadiusExtension();
+  static const light = UiRadiusExtension();
+  static const dark = UiRadiusExtension();
 
   @override
-  ThemeExtension<UnpingRadiusExtension> copyWith({
+  ThemeExtension<UiRadiusExtension> copyWith({
     double? none,
     double? xs,
     double? sm,
@@ -195,7 +195,7 @@ class UnpingRadiusExtension extends ThemeExtension<UnpingRadiusExtension> {
     double? xxl,
     double? full,
   }) {
-    return UnpingRadiusExtension(
+    return UiRadiusExtension(
       none: none ?? this.none,
       xs: xs ?? this.xs,
       sm: sm ?? this.sm,
@@ -208,12 +208,12 @@ class UnpingRadiusExtension extends ThemeExtension<UnpingRadiusExtension> {
   }
 
   @override
-  ThemeExtension<UnpingRadiusExtension> lerp(
-    ThemeExtension<UnpingRadiusExtension>? other,
+  ThemeExtension<UiRadiusExtension> lerp(
+    ThemeExtension<UiRadiusExtension>? other,
     double t,
   ) {
-    if (other is! UnpingRadiusExtension) return this;
-    return UnpingRadiusExtension(
+    if (other is! UiRadiusExtension) return this;
+    return UiRadiusExtension(
       none: none,
       xs: xs,
       sm: sm,
@@ -227,8 +227,8 @@ class UnpingRadiusExtension extends ThemeExtension<UnpingRadiusExtension> {
 }
 
 /// Extension on BuildContext to easily access radius values
-extension UnpingRadiusContext on BuildContext {
-  UnpingRadiusExtension get unpingRadius =>
-      Theme.of(this).extension<UnpingRadiusExtension>() ??
-      UnpingRadiusExtension.light;
+extension UiRadiusContext on BuildContext {
+  UiRadiusExtension get UiRadius =>
+      Theme.of(this).extension<UiRadiusExtension>() ??
+      UiRadiusExtension.light;
 }

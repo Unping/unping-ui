@@ -6,6 +6,6 @@ library foundation;
 
 export 'ui_colors.dart';
 export 'unping_spacing.dart';
-export 'unping_radius.dart';
+export 'ui_radius.dart';
 export 'unping_text_styles.dart';
 export 'unping_theme.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'ui_colors.dart';
 import 'unping_spacing.dart';
-import 'unping_radius.dart';
+import 'ui_radius.dart';
 import 'unping_text_styles.dart';
 
 /// Main theme configuration for Unping-UI
@@ -52,7 +52,7 @@ class UnpingTheme {
       extensions: [
         UnpingColorExtension.light,
         UnpingSpacingExtension.light,
-        UnpingRadiusExtension.light,
+        UiRadiusExtension.light,
         UnpingTextStyleExtension.standard,
       ],
 
@@ -65,14 +65,14 @@ class UnpingTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: UnpingRadius.allMd,
+            borderRadius: UiRadius.allMd,
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: UnpingRadius.allMd,
+            borderRadius: UiRadius.allMd,
           ),
         ),
       ),
@@ -82,19 +82,19 @@ class UnpingTheme {
         filled: true,
         fillColor: UiColors.neutral50,
         border: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         contentPadding: UnpingSpacing.allM,
       ),
@@ -143,7 +143,7 @@ class UnpingTheme {
       extensions: [
         UnpingColorExtension.dark,
         UnpingSpacingExtension.dark,
-        UnpingRadiusExtension.dark,
+        UiRadiusExtension.dark,
         UnpingTextStyleExtension.standard,
       ],
 
@@ -156,14 +156,14 @@ class UnpingTheme {
         style: ElevatedButton.styleFrom(
           elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: UnpingRadius.allMd,
+            borderRadius: UiRadius.allMd,
           ),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           shape: RoundedRectangleBorder(
-            borderRadius: UnpingRadius.allMd,
+            borderRadius: UiRadius.allMd,
           ),
         ),
       ),
@@ -173,19 +173,19 @@ class UnpingTheme {
         filled: true,
         fillColor: UiColors.neutral800,
         border: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: UnpingRadius.allMd,
+          borderRadius: UiRadius.allMd,
         ),
         contentPadding: UnpingSpacing.allM,
       ),
@@ -206,9 +206,9 @@ extension UnpingThemeContext on BuildContext {
       UnpingSpacingExtension.light;
 
   /// Get the current radius extension from the theme
-  UnpingRadiusExtension get unpingRadius =>
-      Theme.of(this).extension<UnpingRadiusExtension>() ??
-      UnpingRadiusExtension.light;
+  UiRadiusExtension get UiRadius =>
+      Theme.of(this).extension<UiRadiusExtension>() ??
+      UiRadiusExtension.light;
 
   /// Get the current text style extension from the theme
   UnpingTextStyleExtension get unpingTextStyles =>
