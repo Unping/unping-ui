@@ -62,7 +62,7 @@ Widget buildUiSpacingUseCase(BuildContext context) {
               Container(
                 decoration: const BoxDecoration(
                   border: Border(
-                    bottom: BorderSide(color: Color(0xFFE4E7EC), width: 1),
+                    bottom: BorderSide(color: UiColors.neutral200, width: 1),
                   ),
                 ),
                 child: const Row(
@@ -206,7 +206,7 @@ class _SpacingRow extends StatelessWidget {
     return Container(
       decoration: const BoxDecoration(
         border: Border(
-          bottom: BorderSide(color: Color(0xFFE4E7EC), width: 1),
+          bottom: BorderSide(color: UiColors.neutral200, width: 1),
         ),
       ),
       child: Row(
@@ -221,7 +221,7 @@ class _SpacingRow extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: const Color(0xFF3B4554), // BG lighter from Figma
                   borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: const Color(0xFFE4E7EC)),
+                  border: Border.all(color: UiColors.neutral200),
                 ),
                 child: Text(
                   name,
