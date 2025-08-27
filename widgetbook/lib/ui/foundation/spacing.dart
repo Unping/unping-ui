@@ -302,17 +302,24 @@ class _SpacingVisualization extends StatelessWidget {
           Container(
             height: 16,
             decoration: BoxDecoration(
-              color: const Color(0xFF6366F1).withOpacity(0.1), // Primary color background
+              color: const Color(0xFFE040FA).withOpacity(0.1), // Gradient start color background
               borderRadius: BorderRadius.circular(4),
             ),
           ),
-          // Foreground bar (actual spacing width)
+          // Foreground bar (actual spacing width) with gradient
           if (value > 0)
             Container(
               width: displayWidth.clamp(0, 400), // Clamp to reasonable max width for display
               height: 16,
               decoration: BoxDecoration(
-                color: const Color(0xFF6366F1), // Primary color
+                gradient: const LinearGradient(
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight,
+                  colors: [
+                    Color(0xFFE040FA), // Left: 100% opacity
+                    Color(0xFF40C4FE), // Right: 100% opacity
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(4),
               ),
             ),
