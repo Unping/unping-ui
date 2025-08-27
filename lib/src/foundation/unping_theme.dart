@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'ui_colors.dart';
 import 'ui_spacing.dart';
 import 'ui_radius.dart';
-import 'unping_text_styles.dart';
+import 'ui_text_styles.dart';
 
 /// Main theme configuration for Unping-UI
 /// This class provides the complete theme system that integrates with Flutter's ThemeData
@@ -31,21 +31,21 @@ class UnpingTheme {
 
       // Typography
       textTheme: TextTheme(
-        displayLarge: UnpingTextStyles.displayLarge,
-        displayMedium: UnpingTextStyles.displayMedium,
-        displaySmall: UnpingTextStyles.displaySmall,
-        headlineLarge: UnpingTextStyles.headlineLarge,
-        headlineMedium: UnpingTextStyles.headlineMedium,
-        headlineSmall: UnpingTextStyles.headlineSmall,
-        titleLarge: UnpingTextStyles.titleLarge,
-        titleMedium: UnpingTextStyles.titleMedium,
-        titleSmall: UnpingTextStyles.titleSmall,
-        labelLarge: UnpingTextStyles.labelLarge,
-        labelMedium: UnpingTextStyles.labelMedium,
-        labelSmall: UnpingTextStyles.labelSmall,
-        bodyLarge: UnpingTextStyles.bodyLarge,
-        bodyMedium: UnpingTextStyles.bodyMedium,
-        bodySmall: UnpingTextStyles.bodySmall,
+        displayLarge: UiTextStyles.displayLarge,
+        displayMedium: UiTextStyles.displayMedium,
+        displaySmall: UiTextStyles.displaySmall,
+        headlineLarge: UiTextStyles.headlineLarge,
+        headlineMedium: UiTextStyles.headlineMedium,
+        headlineSmall: UiTextStyles.headlineSmall,
+        titleLarge: UiTextStyles.titleLarge,
+        titleMedium: UiTextStyles.titleMedium,
+        titleSmall: UiTextStyles.titleSmall,
+        labelLarge: UiTextStyles.labelLarge,
+        labelMedium: UiTextStyles.labelMedium,
+        labelSmall: UiTextStyles.labelSmall,
+        bodyLarge: UiTextStyles.bodyLarge,
+        bodyMedium: UiTextStyles.bodyMedium,
+        bodySmall: UiTextStyles.bodySmall,
       ),
 
       // Custom theme extensions
@@ -122,21 +122,21 @@ class UnpingTheme {
 
       // Typography
       textTheme: TextTheme(
-        displayLarge: UnpingTextStyles.displayLarge,
-        displayMedium: UnpingTextStyles.displayMedium,
-        displaySmall: UnpingTextStyles.displaySmall,
-        headlineLarge: UnpingTextStyles.headlineLarge,
-        headlineMedium: UnpingTextStyles.headlineMedium,
-        headlineSmall: UnpingTextStyles.headlineSmall,
-        titleLarge: UnpingTextStyles.titleLarge,
-        titleMedium: UnpingTextStyles.titleMedium,
-        titleSmall: UnpingTextStyles.titleSmall,
-        labelLarge: UnpingTextStyles.labelLarge,
-        labelMedium: UnpingTextStyles.labelMedium,
-        labelSmall: UnpingTextStyles.labelSmall,
-        bodyLarge: UnpingTextStyles.bodyLarge,
-        bodyMedium: UnpingTextStyles.bodyMedium,
-        bodySmall: UnpingTextStyles.bodySmall,
+        displayLarge: UiTextStyles.displayLarge,
+        displayMedium: UiTextStyles.displayMedium,
+        displaySmall: UiTextStyles.displaySmall,
+        headlineLarge: UiTextStyles.headlineLarge,
+        headlineMedium: UiTextStyles.headlineMedium,
+        headlineSmall: UiTextStyles.headlineSmall,
+        titleLarge: UiTextStyles.titleLarge,
+        titleMedium: UiTextStyles.titleMedium,
+        titleSmall: UiTextStyles.titleSmall,
+        labelLarge: UiTextStyles.labelLarge,
+        labelMedium: UiTextStyles.labelMedium,
+        labelSmall: UiTextStyles.labelSmall,
+        bodyLarge: UiTextStyles.bodyLarge,
+        bodyMedium: UiTextStyles.bodyMedium,
+        bodySmall: UiTextStyles.bodySmall,
       ),
 
       // Custom theme extensions
@@ -210,7 +210,7 @@ extension UnpingThemeContext on BuildContext {
       Theme.of(this).extension<UiRadiusExtension>() ?? UiRadiusExtension.light;
 
   /// Get the current text style extension from the theme
-  UnpingTextStyleExtension get unpingTextStyles =>
+  UnpingTextStyleExtension get UiTextStyles =>
       Theme.of(this).extension<UnpingTextStyleExtension>() ??
       UnpingTextStyleExtension.standard;
 

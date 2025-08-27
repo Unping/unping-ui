@@ -253,7 +253,7 @@ class _ColorSwatch extends StatelessWidget {
                 children: [
                   Text(
                     weight,
-                    style: UnpingTextStyles.textXsMedium.copyWith(
+                    style: UiTextStyles.textXsMedium.copyWith(
                       color: UiColors.neutral900,
                     ),
                     textAlign: TextAlign.left,
@@ -261,7 +261,7 @@ class _ColorSwatch extends StatelessWidget {
                   const SizedBox(height: 2), // Reduced spacing
                   SelectableText(
                     '#${color.value.toRadixString(16).toUpperCase().substring(2)}',
-                    style: UnpingTextStyles.textXs.copyWith(
+                    style: UiTextStyles.textXs.copyWith(
                       color: UiColors.neutral500,
                     )
                   ),

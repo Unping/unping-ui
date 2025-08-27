@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/src/foundation/unping_text_styles.dart';
+import 'package:unping_ui/src/foundation/ui_text_styles.dart';
 import 'package:unping_ui/src/foundation/ui_spacing.dart';
 import 'package:flutter/services.dart';
 
@@ -61,7 +61,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
                 Flexible(
                   child: Text(
                     url!,
-                    style: UnpingTextStyles.textXs.copyWith(
+                    style: UiTextStyles.textXs.copyWith(
                       color: Colors.white, // White #FFFFFF
                     ),
                     overflow: TextOverflow.ellipsis,
@@ -91,7 +91,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
       widgets.add(
         Text(
           breadcrumbs[i],
-          style: UnpingTextStyles.textSm.copyWith(
+          style: UiTextStyles.textSm.copyWith(
             color: Colors.white, // White #FFFFFF
           ),
           overflow: TextOverflow.ellipsis,
@@ -119,7 +119,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
   Widget _buildTitle() {
     return Text(
       title!,
-      style: UnpingTextStyles.displayLgBold.copyWith(
+      style: UiTextStyles.displayLgBold.copyWith(
         color: Colors.white,
         letterSpacing: -1.44,
         shadows: [

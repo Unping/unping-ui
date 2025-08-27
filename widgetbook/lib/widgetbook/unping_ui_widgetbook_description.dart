@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/src/foundation/unping_text_styles.dart';
+import 'package:unping_ui/src/foundation/ui_text_styles.dart';
 
 /// A description component that displays main content text with multiple lists of items.
 /// Each list can have its own heading and bullet point format.
@@ -89,15 +89,15 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
     );
   }
 
-  TextStyle get _defaultDescriptionStyle => UnpingTextStyles.textXs.copyWith(
+  TextStyle get _defaultDescriptionStyle => UiTextStyles.textXs.copyWith(
     color: Colors.white, // White #FFFFFF
   );
 
-  TextStyle get _defaultHeadingStyle => UnpingTextStyles.textXsSemibold.copyWith(
+  TextStyle get _defaultHeadingStyle => UiTextStyles.textXsSemibold.copyWith(
     color: Colors.white, // White #FFFFFF
   );
 
-  TextStyle get _defaultBulletPointStyle => UnpingTextStyles.textXs.copyWith(
+  TextStyle get _defaultBulletPointStyle => UiTextStyles.textXs.copyWith(
     color: Colors.white, // White #FFFFFF
   );
 }
