@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:unping_ui/unping_ui.dart';
 import 'base_checkbox.dart';
 
 /// Badge size variants
@@ -330,12 +331,12 @@ class BadgeImage extends StatelessWidget {
       width: size,
       height: size,
       decoration: BoxDecoration(
-        color: const Color(0xFFD0D5DD),
+        color: UiColors.neutral300,
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       child: CustomPaint(
         size: Size(size * 0.6, size * 0.6),
-        painter: _PersonIconPainter(color: const Color(0xFF667085)),
+        painter: _PersonIconPainter(color: UiColors.neutral500),
       ),
     );
   }
@@ -374,7 +375,7 @@ class BadgeCount extends StatelessWidget {
     super.key,
     required this.count,
     this.maxCount = 99,
-    this.backgroundColor = const Color(0xFFF2F4F7),
+    this.backgroundColor = UiColors.neutral100,
     this.textColor = const Color(0xFF2A313C),
     this.fontSize = 12.0,
     this.fontWeight = FontWeight.w500,
