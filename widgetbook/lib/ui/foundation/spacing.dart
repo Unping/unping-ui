@@ -1,227 +1,142 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_background.dart';
+import '../../widgetbook/unping_ui_widgetbook_header.dart';
+import '../../widgetbook/unping_ui_widgetbook_description.dart';
 
 @UseCase(
   name: 'Spacing System',
   type: UiSpacing,
   designLink: 'https://www.figma.com/design/unping-ui-spacing',
+  path: '[UI]/Foundation',
 )
 Widget buildUiSpacingUseCase(BuildContext context) {
-  return Container(
-    color: const Color(0xFF2A313C), // Background from Figma
+  return UnpingUIWidgetbookBackground(
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Header section with background and title
+        // Header section
+        Container(
+          padding: UiSpacing.allXxl,
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Navigation breadcrumb using predefined header
+                UnpingUiWidgetbookHeader(
+                  breadcrumbs: const ['Foundation', 'Spacing'],
+                  title: "Spacing",
+                ),
+                const SizedBox(height: UiSpacing.spacing4),
+                
+                // Description section using the reusable component
+                UnpingUiWidgetbookDescription(
+                  description: 'Consistent and well-defined spacing is crucial for creating a visually balanced and user-friendly interface. Our design system includes a comprehensive set of spacing guidelines to ensure consistency and clarity across all user interfaces. These guidelines help maintain a cohesive layout and improve the overall user experience.\n\n',
+                  lists: {
+                    'Spacing Scale:': [
+                      'Based on a 4px base unit for mathematical consistency.',
+                      'Ranges from 0px to 1,920px to cover all design needs.',
+                      'Follows a logical progression for predictable scaling.',
+                      'Includes fractional values (0.5, 1, 2, 3) for fine-tuned control.',
+                    ],
+                    'Usage Guidelines:': [
+                      'Use smaller values (0-24px) for component-level spacing.',
+                      'Use medium values (32-96px) for section and layout spacing.',
+                      'Use larger values (120px+) for page-level margins and major sections.',
+                      'Maintain consistency by using predefined spacing values.',
+                    ],
+                  }
+                ),
+              ],
+          ),
+        ),
+        
+        // Spacing table
         Container(
           width: double.infinity,
-          padding: const EdgeInsets.all(80), // From Figma design
+          padding: UiSpacing.allXxl,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Content with gradient background
+              // Table header
               Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(48), // From Figma design
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20), // From Figma design
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFFF6B9D), Color(0xFF4FB3D9)], // Figma gradient colors
-                    begin: Alignment.centerLeft,
-                    end: Alignment.centerRight,
+                decoration: const BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Color(0xFFE4E7EC), width: 1),
                   ),
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: const Row(
                   children: [
-                    // Header with navigation
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            // Logo placeholder
-                            Container(
-                              width: 36,
-                              height: 36,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(18),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.white.withOpacity(0.4),
-                                    blurRadius: 12,
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            // Navigation breadcrumb
-                            const Text(
-                              'Foundation',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w500,
-                                fontFamily: 'Outfit',
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            const Icon(
-                              Icons.arrow_forward_ios,
-                              color: Colors.white,
-                              size: 16,
-                            ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'Spacing',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Outfit',
-                              ),
-                            ),
-                          ],
-                        ),
-                        const Text(
-                          'https://www.unping-ui.com',
+                    SizedBox(
+                      width: 112, // Min width from Figma
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 16, right: 64),
+                        child: Text(
+                          'Name',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 12,
                             fontWeight: FontWeight.w500,
-                            fontFamily: 'Outfit',
+                            fontFamily: 'Inter',
+                            height: 1.5, // 18/12
                           ),
                         ),
-                      ],
-                    ),
-                    const SizedBox(height: 48),
-                    // Main title and description
-                    const Text(
-                      'Spacing',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 72,
-                        fontWeight: FontWeight.w700,
-                        fontFamily: 'Outfit',
-                        height: 1.25, // 90/72
-                        shadows: [
-                          Shadow(
-                            color: Colors.white24,
-                            blurRadius: 12,
-                          ),
-                        ],
                       ),
                     ),
-                    const SizedBox(height: 20),
-                    const Text(
-                      'Consistent and well-defined spacing is crucial for creating a visually balanced and user-friendly interface. Our design system includes a comprehensive set of spacing guidelines to ensure consistency and clarity across all user interfaces. These guidelines help maintain a cohesive layout and improve the overall user experience.',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Inter',
-                        height: 1.5, // 30/20
+                    SizedBox(
+                      width: 128, // Min width from Figma
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 16, right: 64),
+                        child: Text(
+                          'Size (16px base)',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Inter',
+                            height: 1.5, // 18/12
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 128, // Min width from Figma
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 16, right: 64),
+                        child: Text(
+                          'Pixel',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Inter',
+                            height: 1.5, // 18/12
+                          ),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.only(bottom: 16, right: 64),
+                        child: Text(
+                          'Spacing',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: 'Inter',
+                            height: 1.5, // 18/12
+                          ),
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
+              const SizedBox(height: 12), // Spacer between header and content
+              // Table content
+              ..._buildSpacingRows(),
             ],
-          ),
-        ),
-        // Spacing table
-        Expanded(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(80), // From Figma design
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Table header
-                Container(
-                  decoration: const BoxDecoration(
-                    border: Border(
-                      bottom: BorderSide(color: Color(0xFFE4E7EC), width: 1),
-                    ),
-                  ),
-                  child: const Row(
-                    children: [
-                      SizedBox(
-                        width: 112, // Min width from Figma
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 16, right: 64),
-                          child: Text(
-                            'Name',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter',
-                              height: 1.5, // 18/12
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 128, // Min width from Figma
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 16, right: 64),
-                          child: Text(
-                            'Size (16px base)',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter',
-                              height: 1.5, // 18/12
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 128, // Min width from Figma
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 16, right: 64),
-                          child: Text(
-                            'Pixel',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter',
-                              height: 1.5, // 18/12
-                            ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: EdgeInsets.only(bottom: 16, right: 64),
-                          child: Text(
-                            'Spacing',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: 'Inter',
-                              height: 1.5, // 18/12
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 12), // Spacer between header and content
-                // Table content
-                Expanded(
-                  child: ListView(
-                    children: _buildSpacingRows(),
-                  ),
-                ),
-              ],
-            ),
           ),
         ),
       ],
