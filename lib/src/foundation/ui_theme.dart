@@ -15,37 +15,82 @@ class UiTheme {
     Color? primaryColor,
     Color? backgroundColor,
   }) {
+    final colorScheme = ColorScheme.light(
+      primary: primaryColor ?? UiColors.primary500,
+      secondary: UiColors.primary600,
+      surface: backgroundColor ?? UiColors.neutral50,
+      onSurface: UiColors.neutral900,
+      error: UiColors.error500,
+      onError: UiColors.neutral50,
+      outline: UiColors.border,
+    );
+
     return ThemeData(
       useMaterial3: false,
+      colorScheme: colorScheme,
 
-      // Color scheme integration
-      colorScheme: ColorScheme.light(
-        primary: primaryColor ?? UiColors.primary500,
-        secondary: UiColors.primary600,
-        surface: backgroundColor ?? UiColors.neutral50,
-        onSurface: UiColors.neutral900,
-        error: UiColors.error500,
-        onError: UiColors.neutral50,
-        outline: UiColors.border,
-      ),
-
-      // Typography
+      // Typography with explicit colors and decorations
       textTheme: TextTheme(
-        displayLarge: UiTextStyles.displayLarge,
-        displayMedium: UiTextStyles.displayMedium,
-        displaySmall: UiTextStyles.displaySmall,
-        headlineLarge: UiTextStyles.headlineLarge,
-        headlineMedium: UiTextStyles.headlineMedium,
-        headlineSmall: UiTextStyles.headlineSmall,
-        titleLarge: UiTextStyles.titleLarge,
-        titleMedium: UiTextStyles.titleMedium,
-        titleSmall: UiTextStyles.titleSmall,
-        labelLarge: UiTextStyles.labelLarge,
-        labelMedium: UiTextStyles.labelMedium,
-        labelSmall: UiTextStyles.labelSmall,
-        bodyLarge: UiTextStyles.bodyLarge,
-        bodyMedium: UiTextStyles.bodyMedium,
-        bodySmall: UiTextStyles.bodySmall,
+        displayLarge: UiTextStyles.displayLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        displayMedium: UiTextStyles.displayMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        displaySmall: UiTextStyles.displaySmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineLarge: UiTextStyles.headlineLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineMedium: UiTextStyles.headlineMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineSmall: UiTextStyles.headlineSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleLarge: UiTextStyles.titleLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleMedium: UiTextStyles.titleMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleSmall: UiTextStyles.titleSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelLarge: UiTextStyles.labelLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelMedium: UiTextStyles.labelMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelSmall: UiTextStyles.labelSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodyLarge: UiTextStyles.bodyLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodyMedium: UiTextStyles.bodyMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodySmall: UiTextStyles.bodySmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
       ),
 
       // Custom theme extensions
@@ -106,37 +151,82 @@ class UiTheme {
     Color? primaryColor,
     Color? backgroundColor,
   }) {
+    final colorScheme = ColorScheme.dark(
+      primary: primaryColor ?? UiColors.primary400,
+      secondary: UiColors.primary500,
+      surface: backgroundColor ?? UiColors.neutral900,
+      onSurface: UiColors.neutral50,
+      error: UiColors.error500,
+      onError: UiColors.neutral900,
+      outline: UiColors.border,
+    );
+
     return ThemeData(
       useMaterial3: false,
+      colorScheme: colorScheme,
 
-      // Color scheme integration
-      colorScheme: ColorScheme.dark(
-        primary: primaryColor ?? UiColors.primary400,
-        secondary: UiColors.primary500,
-        surface: backgroundColor ?? UiColors.neutral900,
-        onSurface: UiColors.neutral50,
-        error: UiColors.error500,
-        onError: UiColors.neutral900,
-        outline: UiColors.border,
-      ),
-
-      // Typography
+      // Typography with explicit colors and decorations
       textTheme: TextTheme(
-        displayLarge: UiTextStyles.displayLarge,
-        displayMedium: UiTextStyles.displayMedium,
-        displaySmall: UiTextStyles.displaySmall,
-        headlineLarge: UiTextStyles.headlineLarge,
-        headlineMedium: UiTextStyles.headlineMedium,
-        headlineSmall: UiTextStyles.headlineSmall,
-        titleLarge: UiTextStyles.titleLarge,
-        titleMedium: UiTextStyles.titleMedium,
-        titleSmall: UiTextStyles.titleSmall,
-        labelLarge: UiTextStyles.labelLarge,
-        labelMedium: UiTextStyles.labelMedium,
-        labelSmall: UiTextStyles.labelSmall,
-        bodyLarge: UiTextStyles.bodyLarge,
-        bodyMedium: UiTextStyles.bodyMedium,
-        bodySmall: UiTextStyles.bodySmall,
+        displayLarge: UiTextStyles.displayLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        displayMedium: UiTextStyles.displayMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        displaySmall: UiTextStyles.displaySmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineLarge: UiTextStyles.headlineLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineMedium: UiTextStyles.headlineMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        headlineSmall: UiTextStyles.headlineSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleLarge: UiTextStyles.titleLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleMedium: UiTextStyles.titleMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        titleSmall: UiTextStyles.titleSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelLarge: UiTextStyles.labelLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelMedium: UiTextStyles.labelMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        labelSmall: UiTextStyles.labelSmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodyLarge: UiTextStyles.bodyLarge.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodyMedium: UiTextStyles.bodyMedium.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
+        bodySmall: UiTextStyles.bodySmall.copyWith(
+          color: colorScheme.onSurface,
+          decoration: TextDecoration.none,
+        ),
       ),
 
       // Custom theme extensions
