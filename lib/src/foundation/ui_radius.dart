@@ -229,6 +229,5 @@ class UiRadiusExtension extends ThemeExtension<UiRadiusExtension> {
 /// Extension on BuildContext to easily access radius values
 extension UiRadiusContext on BuildContext {
   UiRadiusExtension get UiRadius =>
-      Theme.of(this).extension<UiRadiusExtension>() ??
-      UiRadiusExtension.light;
+      Theme.of(this).extension<UiRadiusExtension>() ?? UiRadiusExtension.light;
 }
