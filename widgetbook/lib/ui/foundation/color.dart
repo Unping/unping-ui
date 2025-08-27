@@ -9,7 +9,7 @@ import '../../widgetbook/unping_ui_widgetbook_description.dart';
   name: 'Color Palette',
   type: UiColors,
   designLink: 'https://www.figma.com/design/unping-ui-colors',
-  path: '[UI]/Foundation'
+  path: '[UI]/Foundation',
 )
 Widget buildUiColorsUseCase(BuildContext context) {
   return UnpingUIWidgetbookBackground(
