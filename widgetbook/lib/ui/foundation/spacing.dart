@@ -200,19 +200,12 @@ class _SpacingRow extends StatelessWidget {
             width: 120,
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 0).copyWith(right: 64),
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF3B4554), // BG lighter from Figma
-                  borderRadius: BorderRadius.circular(6),
-                  border: Border.all(color: UiColors.neutral200),
-                ),
-                child: Text(
-                  name,
-                  style: UiTextStyles.textSm.copyWith(
-                    color: Colors.white,
-                  ),
-                ),
+              child: Badges.badge(
+                text: name,
+                size: BadgeSize.md,
+                backgroundColor: const Color(0xFF3B4554),
+                textColor: Colors.white,
+                borderColor: UiColors.neutral200,
               ),
             ),
           ),
