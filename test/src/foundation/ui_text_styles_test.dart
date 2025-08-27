@@ -117,6 +117,31 @@ void main() {
       expect(modified.textSm, original.textSm); // unchanged
     });
 
+    test('copyWith should handle all textMd parameters including textMdBold',
+        () {
+      final original = UnpingTextStyleExtension();
+      final customTextMd = UiTextStyles.textMd.copyWith(color: Colors.red);
+      final customTextMdMedium =
+          UiTextStyles.textMdMedium.copyWith(color: Colors.green);
+      final customTextMdSemibold =
+          UiTextStyles.textMdSemibold.copyWith(color: Colors.blue);
+      final customTextMdBold =
+          UiTextStyles.textMdBold.copyWith(color: Colors.yellow);
+
+      final modified = original.copyWith(
+        textMd: customTextMd,
+        textMdMedium: customTextMdMedium,
+        textMdSemibold: customTextMdSemibold,
+        textMdBold: customTextMdBold,
+      );
+
+      expect(modified.textMd, customTextMd);
+      expect(modified.textMdMedium, customTextMdMedium);
+      expect(modified.textMdSemibold, customTextMdSemibold);
+      expect(modified.textMdBold, customTextMdBold);
+      expect(modified.textSm, original.textSm); // unchanged
+    });
+
     test('lerp should work correctly', () {
       final extension1 = UnpingTextStyleExtension();
       final extension2 = UnpingTextStyleExtension();

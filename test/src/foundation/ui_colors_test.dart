@@ -91,6 +91,27 @@ void main() {
       expect(modified.textPrimary, original.textPrimary);
     });
 
+    test('copyWith should handle all parameters including textDisabled', () {
+      const original = UnpingColorExtension.light;
+      final modified = original.copyWith(
+        textPrimary: const Color(0xFF111111),
+        textSecondary: const Color(0xFF222222),
+        textTertiary: const Color(0xFF333333),
+        textDisabled: const Color(0xFF444444),
+        border: const Color(0xFF555555),
+        divider: const Color(0xFF666666),
+        outline: const Color(0xFF777777),
+      );
+
+      expect(modified.textPrimary, const Color(0xFF111111));
+      expect(modified.textSecondary, const Color(0xFF222222));
+      expect(modified.textTertiary, const Color(0xFF333333));
+      expect(modified.textDisabled, const Color(0xFF444444));
+      expect(modified.border, const Color(0xFF555555));
+      expect(modified.divider, const Color(0xFF666666));
+      expect(modified.outline, const Color(0xFF777777));
+    });
+
     test('lerp should work correctly', () {
       const colorExtension = UnpingColorExtension.light;
       final result = colorExtension.lerp(colorExtension, 0.5);
