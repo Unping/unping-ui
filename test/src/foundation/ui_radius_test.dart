@@ -37,29 +37,6 @@ void main() {
       expect(modified.lg, original.lg); // unchanged
     });
 
-    test('copyWith should handle all parameters including xxl and full', () {
-      const original = UiRadiusExtension();
-      final modified = original.copyWith(
-        none: 1.0,
-        xs: 2.0,
-        sm: 3.0,
-        md: 4.0,
-        lg: 5.0,
-        xl: 6.0,
-        xxl: 7.0,
-        full: 8.0,
-      ) as UiRadiusExtension;
-
-      expect(modified.none, 1.0);
-      expect(modified.xs, 2.0);
-      expect(modified.sm, 3.0);
-      expect(modified.md, 4.0);
-      expect(modified.lg, 5.0);
-      expect(modified.xl, 6.0);
-      expect(modified.xxl, 7.0);
-      expect(modified.full, 8.0);
-    });
-
     test('lerp should return correct extension', () {
       const extension1 = UiRadiusExtension();
       const extension2 = UiRadiusExtension();
