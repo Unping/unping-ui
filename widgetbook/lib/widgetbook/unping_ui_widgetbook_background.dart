@@ -135,16 +135,16 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildBreadcrumb(subtitle),
-            const SizedBox(height: 48),
+            SizedBox(height: UiSpacing.spacing12),
             _buildTitle(title),
-            const SizedBox(height: 20),
+            SizedBox(height: UiSpacing.spacing5),
             if (description != null) ...[
               _buildDescription(description!),
-              const SizedBox(height: 20),
+              SizedBox(height: UiSpacing.spacing5),
             ],
             if (categories != null && categories!.isNotEmpty) ...[
               _buildSection('Categories:', categories!),
-              const SizedBox(height: 20),
+              SizedBox(height: UiSpacing.spacing5),
             ],
             if (usageTips != null && usageTips!.isNotEmpty) ...[
               _buildSection('Usage Tips:', usageTips!),
@@ -263,7 +263,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 8),
+        SizedBox(height: UiSpacing.spacing2),
         ...items.map((item) => _buildBulletPoint(item)),
       ],
     );
