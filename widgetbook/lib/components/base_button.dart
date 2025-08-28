@@ -4,7 +4,11 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
 
-@widgetbook.UseCase(name: 'Filled', type: BaseButton)
+@widgetbook.UseCase(
+  name: 'Filled',
+  type: BaseButton,
+  path: 'Components/Button',
+)
 Widget buildBaseButtonFilled(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -213,7 +217,11 @@ Widget buildBaseButtonFilled(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Outline', type: BaseButton)
+@widgetbook.UseCase(
+  name: 'Outline',
+  type: BaseButton,
+  path: 'Components/Button',
+)
 Widget buildBaseButtonOutlined(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -421,7 +429,11 @@ Widget buildBaseButtonOutlined(BuildContext context) {
   );
 }
 
-@widgetbook.UseCase(name: 'Ghost', type: BaseButton)
+@widgetbook.UseCase(
+  name: 'Ghost',
+  type: BaseButton,
+  path: 'Components/Button',
+)
 Widget buildBaseButtonGhost(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

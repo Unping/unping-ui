@@ -5,6 +5,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 @UseCase(
   name: 'Checkbox',
   type: BaseCheckbox,
+  path: 'Components/Checkbox',
 )
 Widget checkbox(BuildContext context) {
   return Column(
@@ -244,6 +245,7 @@ Widget checkbox(BuildContext context) {
 @UseCase(
   name: 'Radio Group',
   type: BaseCheckbox,
+  path: 'Components/Checkbox',
 )
 Widget radioGroup(BuildContext context) {
   return Column(
