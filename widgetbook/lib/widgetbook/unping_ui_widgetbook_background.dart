@@ -178,11 +178,8 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
             UiSpacing.horizontalGapM,
             Text(
               'Foundation',
-              style: TextStyle(
+              style: UiTextStyles.displayXsMedium.copyWith(
                 color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w500,
-                height: 32 / 24,
               ),
             ),
             UiSpacing.horizontalGapSm,
@@ -194,22 +191,16 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
             UiSpacing.horizontalGapSm,
             Text(
               subtitle,
-              style: TextStyle(
+              style: UiTextStyles.displayXsSemibold.copyWith(
                 color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                height: 32 / 24,
               ),
             ),
           ],
         ),
         Text(
           'https://www.unping-ui.com',
-          style: const TextStyle(
+          style: UiTextStyles.textXlMedium.copyWith(
             color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-            height: 30 / 20,
           ),
         ),
       ],
@@ -219,11 +210,8 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
   Widget _buildTitle(String title) {
     return Text(
       title,
-      style: TextStyle(
+      style: UiTextStyles.display2xlBold.copyWith(
         color: Colors.white,
-        fontSize: 72,
-        fontWeight: FontWeight.bold,
-        height: 90 / 72,
         letterSpacing: -1.44,
         shadows: [
           Shadow(
@@ -240,11 +228,8 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
       width: double.infinity,
       child: Text(
         description,
-        style: TextStyle(
+        style: UiTextStyles.textXl.copyWith(
           color: Colors.white,
-          fontSize: 20,
-          height: 30 / 20,
-          fontWeight: FontWeight.w400,
         ),
       ),
     );
@@ -256,11 +241,8 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: TextStyle(
+          style: UiTextStyles.textXlBold.copyWith(
             color: Colors.white,
-            fontSize: 20,
-            height: 30 / 20,
-            fontWeight: FontWeight.bold,
           ),
         ),
         SizedBox(height: UiSpacing.spacing2),
@@ -274,11 +256,8 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 4),
       child: Text(
         text,
-        style: const TextStyle(
+        style: UiTextStyles.textXl.copyWith(
           color: Colors.white,
-          fontSize: 20,
-          height: 30 / 20,
-          fontWeight: FontWeight.w400,
         ),
       ),
     );
