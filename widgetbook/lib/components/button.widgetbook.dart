@@ -11,7 +11,8 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   path: 'Components/Button',
 )
 Widget buildBaseButtonFilled(BuildContext context) {
-  return UnpingUISimpleContainer(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Filled'],
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -225,7 +226,8 @@ Widget buildBaseButtonFilled(BuildContext context) {
   path: 'Components/Button',
 )
 Widget buildBaseButtonOutlined(BuildContext context) {
-  return UnpingUISimpleContainer(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Outline'],
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -438,7 +440,8 @@ Widget buildBaseButtonOutlined(BuildContext context) {
   path: 'Components/Button',
 )
 Widget buildBaseButtonGhost(BuildContext context) {
-  return UnpingUISimpleContainer(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Ghost'],
     child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
