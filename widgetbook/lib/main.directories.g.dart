@@ -29,20 +29,6 @@ final directories = <_i1.WidgetbookNode>[
         name: 'Badge',
         children: [
           _i1.WidgetbookLeafComponent(
-            name: 'BadgeCount',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Badge Count Component',
-              builder: _i2.badgeCountComponent,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'BadgeDot',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Badge Dot Component',
-              builder: _i2.badgeDotComponent,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
             name: 'BadgeImage',
             useCase: _i1.WidgetbookUseCase(
               name: 'Badge Image Component',
