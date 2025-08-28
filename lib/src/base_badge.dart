@@ -49,14 +49,8 @@ class BaseBadge extends StatefulWidget {
   /// Border width
   final double borderWidth;
 
-  /// Font size of the badge text
-  final double fontSize;
-
-  /// Font weight of the badge text
-  final FontWeight fontWeight;
-
-  /// Font family of the badge text
-  final String? fontFamily;
+  /// Text style for the badge text (defaults to UiTextStyles based on size)
+  final TextStyle textStyle;
 
   /// Border radius of the badge
   final double borderRadius;
@@ -83,15 +77,12 @@ class BaseBadge extends StatefulWidget {
     required this.textColor,
     this.borderColor,
     this.borderWidth = 1.0,
-    double? fontSize,
-    FontWeight? fontWeight,
-    this.fontFamily = 'Inter',
+    TextStyle? textStyle,
     double? borderRadius,
     EdgeInsetsGeometry? padding,
     double? gap,
     this.minHeight,
-  })  : fontSize = fontSize ?? _getDefaultFontSize(size),
-        fontWeight = fontWeight ?? FontWeight.w500,
+  })  : textStyle = textStyle ?? _getDefaultTextStyle(size),
         borderRadius = borderRadius ?? _getDefaultBorderRadius(size),
         padding = padding ?? _getDefaultPadding(size),
         gap = gap ?? _getDefaultGap(size);
@@ -99,15 +90,15 @@ class BaseBadge extends StatefulWidget {
   @override
   State<BaseBadge> createState() => _BaseBadgeState();
 
-  /// Get default font size based on badge size
-  static double _getDefaultFontSize(BadgeSize size) {
+  /// Get default text style based on badge size
+  static TextStyle _getDefaultTextStyle(BadgeSize size) {
     switch (size) {
       case BadgeSize.sm:
-        return 12.0;
+        return UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
       case BadgeSize.md:
-        return 14.0;
+        return UiTextStyles.textSm.copyWith(fontWeight: UiTextStyles.medium);
       case BadgeSize.lg:
-        return 16.0;
+        return UiTextStyles.textMd.copyWith(fontWeight: UiTextStyles.medium);
     }
   }
 
@@ -115,11 +106,11 @@ class BaseBadge extends StatefulWidget {
   static double _getDefaultBorderRadius(BadgeSize size) {
     switch (size) {
       case BadgeSize.sm:
-        return 4.0;
+        return UiRadius.xs;
       case BadgeSize.md:
-        return 6.0;
+        return UiRadius.sm;
       case BadgeSize.lg:
-        return 8.0;
+        return UiRadius.sm;
     }
   }
 
@@ -195,12 +186,8 @@ class _BaseBadgeState extends State<BaseBadge> {
     children.add(
       Text(
         widget.text,
-        style: TextStyle(
+        style: widget.textStyle.copyWith(
           color: widget.textColor,
-          fontSize: widget.fontSize,
-          fontWeight: widget.fontWeight,
-          fontFamily: widget.fontFamily,
-          height: 20 / widget.fontSize, // Line height as per Figma design
         ),
       ),
     );
@@ -275,7 +262,7 @@ class BadgeImage extends StatelessWidget {
     this.imageUrl,
     this.fallback,
     this.size = 16.0,
-    this.borderRadius = 8.0,
+    this.borderRadius = UiRadius.sm,
     this.showContrastBorder = true,
     this.contrastBorderColor = const Color(0x14000000), // 8% opacity black
   });
@@ -355,14 +342,8 @@ class BadgeCount extends StatelessWidget {
   /// Text color of the count
   final Color textColor;
 
-  /// Font size of the count text
-  final double fontSize;
-
-  /// Font weight of the count text
-  final FontWeight fontWeight;
-
-  /// Font family of the count text
-  final String? fontFamily;
+  /// Text style for the count text (defaults to UiTextStyles.textXs with medium weight)
+  final TextStyle textStyle;
 
   /// Border radius of the count badge
   final double borderRadius;
@@ -370,18 +351,17 @@ class BadgeCount extends StatelessWidget {
   /// Padding inside the count badge
   final EdgeInsetsGeometry padding;
 
-  const BadgeCount({
+  BadgeCount({
     super.key,
     required this.count,
     this.maxCount = 99,
     this.backgroundColor = UiColors.neutral100,
-    this.textColor = const Color(0xFF2A313C),
-    this.fontSize = 12.0,
-    this.fontWeight = FontWeight.w500,
-    this.fontFamily = 'Inter',
-    this.borderRadius = 3.0,
+    this.textColor = UiColors.neutral800,
+    TextStyle? textStyle,
+    this.borderRadius = UiRadius.xs,
     this.padding = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
-  });
+  }) : textStyle = textStyle ??
+            UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
 
   @override
   Widget build(BuildContext context) {
@@ -395,12 +375,8 @@ class BadgeCount extends StatelessWidget {
       padding: padding,
       child: Text(
         displayText,
-        style: TextStyle(
+        style: textStyle.copyWith(
           color: textColor,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          fontFamily: fontFamily,
-          height: 20 / fontSize, // Line height as per Figma design
         ),
       ),
     );
@@ -427,9 +403,9 @@ class BadgeDot extends StatelessWidget {
   const BadgeDot({
     super.key,
     this.size = 6.0,
-    this.color = const Color(0xFF17B26A), // Success/500 green from Figma
+    this.color = UiColors.success500, // Success green from palette
     this.showOutline = false,
-    this.outlineColor = const Color(0xFFFFFFFF),
+    this.outlineColor = UiColors.background,
     this.outlineWidth = 1.0,
   });
 
@@ -463,9 +439,9 @@ class Badges {
     bool removable = false,
     VoidCallback? onRemove,
     BadgeSize size = BadgeSize.md,
-    Color backgroundColor = const Color(0xFF3B4554),
-    Color textColor = const Color(0xFFFFFFFF),
-    Color? borderColor = const Color(0xFFD0D5DD),
+    Color backgroundColor = UiColors.neutral700,
+    Color textColor = UiColors.onPrimary,
+    Color? borderColor = UiColors.neutral300,
   }) {
     return BaseBadge(
       text: text,
@@ -522,10 +498,10 @@ class Badges {
       size: checkboxSize,
       shape: CheckboxShape.rectangle,
       checkedBackgroundColor: backgroundColor ?? const Color(0xFF3B4554),
-      uncheckedBackgroundColor: const Color(0xFFFFFFFF),
+      uncheckedBackgroundColor: UiColors.background,
       checkedBorderColor: borderColor ?? const Color(0xFF3B4554),
-      uncheckedBorderColor: borderColor ?? const Color(0xFFD0D5DD),
-      checkColor: checkColor ?? const Color(0xFFFFFFFF),
+      uncheckedBorderColor: borderColor ?? UiColors.neutral300,
+      checkColor: checkColor ?? UiColors.onPrimary,
     );
   }
 }

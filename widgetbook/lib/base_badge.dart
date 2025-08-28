@@ -98,7 +98,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 5),
+            rightWidget: BadgeCount(count: 5),
           ),
         ),
         Container(
@@ -109,7 +109,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 324),
+            rightWidget: BadgeCount(count: 324),
           ),
         ),
         Container(
@@ -120,7 +120,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 52),
+            rightWidget: BadgeCount(count: 52),
           ),
         ),
       ]
@@ -222,7 +222,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 15),
+            rightWidget: BadgeCount(count: 15),
           ),
         ),
         Container(
@@ -234,7 +234,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 3),
+            rightWidget: BadgeCount(count: 3),
           ),
         ),
         Container(
@@ -246,7 +246,7 @@ Widget badgeWithImage(BuildContext context) {
               imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
             ),
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 8754),
+            rightWidget: BadgeCount(count: 8754),
           ),
         ),
       ]
@@ -330,7 +330,7 @@ Widget badge(BuildContext context) {
           child: Badges.badge(
             text: 'Label',
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 5),
+            rightWidget: BadgeCount(count: 5),
           ),
         ),
         Container(
@@ -338,7 +338,7 @@ Widget badge(BuildContext context) {
           child: Badges.badge(
             text: 'Label',
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 324),
+            rightWidget: BadgeCount(count: 324),
           ),
         ),
         Container(
@@ -346,7 +346,7 @@ Widget badge(BuildContext context) {
           child: Badges.badge(
             text: 'Label',
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 52),
+            rightWidget: BadgeCount(count: 52),
           ),
         ),
       ]
@@ -427,7 +427,7 @@ Widget badge(BuildContext context) {
             text: 'Label',
             leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 15),
+            rightWidget: BadgeCount(count: 15),
           ),
         ),
         Container(
@@ -436,7 +436,7 @@ Widget badge(BuildContext context) {
             text: 'Label',
             leftWidget1: Badges.checkbox(isChecked: true),
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 3),
+            rightWidget: BadgeCount(count: 3),
           ),
         ),
         Container(
@@ -445,7 +445,7 @@ Widget badge(BuildContext context) {
             text: 'Label',
             leftWidget1: Badges.checkbox(isChecked: false),
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 8754),
+            rightWidget: BadgeCount(count: 8754),
           ),
         ),
       ]
@@ -538,7 +538,7 @@ Widget badgeWithWidget(BuildContext context) {
             text: 'Label',
             leftWidget1: const BadgeDot(),
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 5),
+            rightWidget: BadgeCount(count: 5),
           ),
         ),
         Container(
@@ -547,7 +547,7 @@ Widget badgeWithWidget(BuildContext context) {
             text: 'Label',
             leftWidget1: const BadgeDot(),
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 324),
+            rightWidget: BadgeCount(count: 324),
           ),
         ),
         Container(
@@ -556,7 +556,7 @@ Widget badgeWithWidget(BuildContext context) {
             text: 'Label',
             leftWidget1: const BadgeDot(),
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 52),
+            rightWidget: BadgeCount(count: 52),
           ),
         ),
       ]
@@ -644,7 +644,7 @@ Widget badgeWithWidget(BuildContext context) {
             leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.sm,
-            rightWidget: const BadgeCount(count: 15),
+            rightWidget: BadgeCount(count: 15),
           ),
         ),
         Container(
@@ -654,7 +654,7 @@ Widget badgeWithWidget(BuildContext context) {
             leftWidget1: Badges.checkbox(isChecked: true),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.md,
-            rightWidget: const BadgeCount(count: 3),
+            rightWidget: BadgeCount(count: 3),
           ),
         ),
         Container(
@@ -664,7 +664,7 @@ Widget badgeWithWidget(BuildContext context) {
             leftWidget1: Badges.checkbox(isChecked: false),
             leftWidget2: const BadgeDot(),
             size: BadgeSize.lg,
-            rightWidget: const BadgeCount(count: 8754),
+            rightWidget: BadgeCount(count: 8754),
           ),
         ),
       ]
@@ -732,7 +732,7 @@ Widget badgeImageComponent(BuildContext context) {
   type: BadgeCount,
 )
 Widget badgeCountComponent(BuildContext context) {
-  return const BadgeCount(count: 42);
+  return BadgeCount(count: 42);
 }
 
 @UseCase(
@@ -887,7 +887,7 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
                   },
                 ),
                 leftWidget2: const BadgeDot(),
-                rightWidget: const BadgeCount(count: 42),
+                rightWidget: BadgeCount(count: 42),
                 size: BadgeSize.md,
               ),
             ),
