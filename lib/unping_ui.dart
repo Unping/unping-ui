@@ -1,9 +1,9 @@
 /// Desktop & Web first flutter component library
 library;
 
-export 'src/components/base_badge.dart';
-export 'src/components/base_button.dart';
-export 'src/components/base_checkbox.dart';
+export 'src/components/badge/base_badge.dart';
+export 'src/components/button/base_button.dart';
+export 'src/components/checkbox/base_checkbox.dart';
 export 'src/unping_ui.dart';
 
 // Export foundation design system
