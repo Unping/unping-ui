@@ -49,7 +49,7 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
                   children: [
                     if (logo != null) ...[
                       logo!,
-                      const SizedBox(width: 16), // gap-4
+                      SizedBox(width: UiSpacing.spacing4), // gap-4
                     ],
                     Flexible(
                       child: _buildBreadcrumbs(context),
@@ -98,13 +98,13 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
         ),
       );
       if (i < breadcrumbs.length - 1) {
-        widgets.add(const SizedBox(width: 8));
+        widgets.add(SizedBox(width: UiSpacing.spacing2));
         widgets.add(const Icon(
           Icons.arrow_forward,
           color: Colors.white,
           size: 14,
         ));
-        widgets.add(const SizedBox(width: 8));
+        widgets.add(SizedBox(width: UiSpacing.spacing2));
       }
     }
     
