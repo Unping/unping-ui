@@ -413,19 +413,13 @@ class _BaseCheckboxState extends State<BaseCheckbox>
     Widget? textContent;
     if (widget.label != null || widget.description != null) {
       final labelStyle = widget.labelStyle ??
-          TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500,
+          UiTextStyles.textSmMedium.copyWith(
             color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
-            height: 20 / 14,
           );
 
       final descriptionStyle = widget.descriptionStyle ??
-          TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
+          UiTextStyles.textSm.copyWith(
             color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
-            height: 20 / 14,
           );
 
       final textWidgets = <Widget>[];
@@ -628,10 +622,8 @@ class RadioOption<T> {
       label: Text(
         text,
         style: style ??
-            const TextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w400,
-              color: Color(0xFF2A313C),
+            UiTextStyles.textSm.copyWith(
+              color: UiColors.onPrimary,
             ),
       ),
     );
