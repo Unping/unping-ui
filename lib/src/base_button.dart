@@ -146,7 +146,7 @@ class BaseButton extends StatefulWidget {
     this.fontSize = 14.0,
     this.fontWeight = FontWeight.w400,
     this.fontFamily = 'Outfit',
-    this.borderRadius = 4.0,
+    this.borderRadius = UiRadius.xs,
     EdgeInsetsGeometry? padding,
     this.gap = 8.0,
     this.minHeight = 36.0, //icon only
