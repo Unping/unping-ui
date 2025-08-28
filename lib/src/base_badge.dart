@@ -115,11 +115,11 @@ class BaseBadge extends StatefulWidget {
   static double _getDefaultBorderRadius(BadgeSize size) {
     switch (size) {
       case BadgeSize.sm:
-        return 4.0;
+        return UiRadius.xs;
       case BadgeSize.md:
-        return 6.0;
+        return UiRadius.sm;
       case BadgeSize.lg:
-        return 8.0;
+        return UiRadius.sm;
     }
   }
 
@@ -275,7 +275,7 @@ class BadgeImage extends StatelessWidget {
     this.imageUrl,
     this.fallback,
     this.size = 16.0,
-    this.borderRadius = 8.0,
+    this.borderRadius = UiRadius.sm,
     this.showContrastBorder = true,
     this.contrastBorderColor = const Color(0x14000000), // 8% opacity black
   });
@@ -379,7 +379,7 @@ class BadgeCount extends StatelessWidget {
     this.fontSize = 12.0,
     this.fontWeight = FontWeight.w500,
     this.fontFamily = 'Inter',
-    this.borderRadius = 3.0,
+    this.borderRadius = UiRadius.xs,
     this.padding = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
   });
 
