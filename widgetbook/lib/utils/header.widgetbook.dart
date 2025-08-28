@@ -1,6 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 
+/// A top bar component that contains logo, breadcrumbs, and URL with proper padding.
+/// Used as part of the UnpingUiWidgetbookHeader.
+class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
+  /// The navigation breadcrumbs to display (e.g., ["Foundation", "Colors"]).
+  /// All items except the last use Medium; the last uses SemiBold.
+  final List<String> breadcrumbs;
+
+  /// Optional logo widget to display before the breadcrumbs (36x36 suggested).
+  final Widget? logo;
+
+  /// Optional URL displayed on the right.
+  final String? url;
+
+  const UnpingUiWidgetbookHeaderTopBar({
+    super.key,
+    required this.breadcrumbs,
+    this.logo = const UnpingUiWidgetbookHeaderLogo(),
+    this.url = 'https://www.unping-ui.com',
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+          Flexible(
+            child: Row(
+              children: [
+                if (logo != null) ...[
+                  logo!,
+                  SizedBox(width: UiSpacing.spacing4), // gap-4
+                ],
+                Flexible(
+                  child: _buildBreadcrumbs(context),
+                ),
+              ],
+            ),
+          ),
+          if (url != null)
+            Flexible(
+              child: Text(
+                url!,
+                style: UiTextStyles.textXs.copyWith(
+                  color: Colors.white, // White #FFFFFF
+                ),
+                overflow: TextOverflow.ellipsis,
+                textAlign: TextAlign.right,
+              ),
+            ),
+        ],
+      );
+  }
+
+  Widget _buildBreadcrumbs(BuildContext context) {
+    List<Widget> widgets = [];
+    for (int i = 0; i < breadcrumbs.length; i++) {
+      widgets.add(
+        Text(
+          breadcrumbs[i],
+          style: UiTextStyles.textSm.copyWith(
+            color: Colors.white, // White #FFFFFF
+          ),
+          overflow: TextOverflow.ellipsis,
+        ),
+      );
+      if (i < breadcrumbs.length - 1) {
+        widgets.add(SizedBox(width: UiSpacing.spacing2));
+        widgets.add(const Icon(
+          Icons.arrow_forward,
+          color: Colors.white,
+          size: 14,
+        ));
+        widgets.add(SizedBox(width: UiSpacing.spacing2));
+      }
+    }
+    
+    return IntrinsicWidth(
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: widgets,
+      ),
+    );
+  }
+}
+
 /// A header that matches the Figma design: left-aligned logo + breadcrumbs,
 /// right-aligned URL. Typography and spacing follow the design tokens.
 class UnpingUiWidgetbookHeader extends StatelessWidget {
@@ -38,35 +124,10 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Flexible(
-                child: Row(
-                  children: [
-                    if (logo != null) ...[
-                      logo!,
-                      SizedBox(width: UiSpacing.spacing4), // gap-4
-                    ],
-                    Flexible(
-                      child: _buildBreadcrumbs(context),
-                    ),
-                  ],
-                ),
-              ),
-              if (url != null)
-                Flexible(
-                  child: Text(
-                    url!,
-                    style: UiTextStyles.textXs.copyWith(
-                      color: Colors.white, // White #FFFFFF
-                    ),
-                    overflow: TextOverflow.ellipsis,
-                    textAlign: TextAlign.right,
-                  ),
-                ),
-            ],
+          UnpingUiWidgetbookHeaderTopBar(
+            breadcrumbs: breadcrumbs,
+            logo: logo,
+            url: url,
           ),
           SizedBox(height: UiSpacing.spacing8),
           Image.asset(
@@ -79,37 +140,6 @@ class UnpingUiWidgetbookHeader extends StatelessWidget {
             _buildTitle(),
           ],
         ],
-      ),
-    );
-  }
-
-  Widget _buildBreadcrumbs(BuildContext context) {
-    List<Widget> widgets = [];
-    for (int i = 0; i < breadcrumbs.length; i++) {
-      widgets.add(
-        Text(
-          breadcrumbs[i],
-          style: UiTextStyles.textSm.copyWith(
-            color: Colors.white, // White #FFFFFF
-          ),
-          overflow: TextOverflow.ellipsis,
-        ),
-      );
-      if (i < breadcrumbs.length - 1) {
-        widgets.add(SizedBox(width: UiSpacing.spacing2));
-        widgets.add(const Icon(
-          Icons.arrow_forward,
-          color: Colors.white,
-          size: 14,
-        ));
-        widgets.add(SizedBox(width: UiSpacing.spacing2));
-      }
-    }
-    
-    return IntrinsicWidth(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
       ),
     );
   }
