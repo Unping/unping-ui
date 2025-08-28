@@ -214,7 +214,7 @@ void main() {
   group('BadgeCount', () {
     testWidgets('should render count number', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
           child: BadgeCount(count: 5),
         ),
@@ -226,7 +226,7 @@ void main() {
     testWidgets('should render max count with plus sign',
         (WidgetTester tester) async {
       await tester.pumpWidget(
-        const Directionality(
+        Directionality(
           textDirection: TextDirection.ltr,
           child: BadgeCount(count: 150, maxCount: 99),
         ),
