@@ -31,6 +31,11 @@ We use Widgetbook for developing and testing new widgets in isolation. And espec
 - Use consistent color schemes and typography
 - Leverage Flutter's widget system for styling rather than external Styles
 
+# Hardcoded colors, sizes, paddings, margins, spacings - foundation values
+- Do not use hardcoded values for colors, sizes, paddings, margins, spacings
+- Use values from UiColors, UiTextStyles, UiSpacing, UiBorderRadius (can be fond in lib/src/foundation/)
+- If a needed value is missing, hardcode it only once in the component
+
 # Development flow
 - Install dependencies: dart pub get
 - Development/testing: flutter test
