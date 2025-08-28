@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_background.dart';
-import '../../widgetbook/unping_ui_widgetbook_header.dart';
-import '../../widgetbook/unping_ui_widgetbook_description.dart';
+import '../widgetbook/unping_ui_widgetbook_header.dart';
+import '../widgetbook/unping_ui_widgetbook_description.dart';
 
 @UseCase(
   name: 'Color Palette',
   type: UiColors,
   designLink: 'https://www.figma.com/design/unping-ui-colors',
-  path: '[UI]/Foundation',
+  path: 'Foundation',
 )
 Widget buildUiColorsUseCase(BuildContext context) {
   return UnpingUIWidgetbookBackground(

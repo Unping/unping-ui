@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_background.dart';
-import '../../widgetbook/unping_ui_widgetbook_header.dart';
-import '../../widgetbook/unping_ui_widgetbook_description.dart';
+import '../widgetbook/unping_ui_widgetbook_header.dart';
+import '../widgetbook/unping_ui_widgetbook_description.dart';
 
 @UseCase(
   name: 'Spacing System',
   type: UiSpacing,
   designLink: 'https://www.figma.com/design/unping-ui-spacing',
-  path: '[UI]/Foundation',
+  path: 'Foundation',
 )
 Widget buildUiSpacingUseCase(BuildContext context) {
   return UnpingUIWidgetbookBackground(
