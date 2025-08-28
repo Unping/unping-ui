@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/src/foundation/ui_text_styles.dart';
+import 'package:unping_ui/src/foundation/ui_spacing.dart';
 
 /// A description component that displays main content text with multiple lists of items.
 /// Each list can have its own heading and bullet point format.
@@ -56,12 +57,12 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(height: 20),
+                const SizedBox(height: UiSpacing.spacing5),
                 Text(
                   heading,
                   style: headingStyle ?? _defaultHeadingStyle,
                 ),
-                const SizedBox(height: 8),
+                const SizedBox(height: UiSpacing.spacing2),
                 ...items.asMap().entries.map((itemEntry) {
                   final index = itemEntry.key;
                   final item = itemEntry.value;
@@ -81,7 +82,7 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
 
   Widget _buildBulletPoint(String text) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 4),
+      padding: const EdgeInsets.only(bottom: UiSpacing.spacing1),
       child: Text(
         text,
         style: bulletPointStyle ?? _defaultBulletPointStyle,
