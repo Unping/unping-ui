@@ -5,6 +5,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 @UseCase(
   name: 'Badge with Image',
   type: BaseBadge,
+  path: 'Components/Badge',
 )
 Widget badgeWithImage(BuildContext context) {
   return Column(
@@ -258,6 +259,7 @@ Widget badgeWithImage(BuildContext context) {
 @UseCase(
   name: 'Badge with Text',
   type: BaseBadge,
+  path: 'Components/Badge',
 )
 Widget badge(BuildContext context) {
   return Column(
@@ -458,6 +460,7 @@ Widget badge(BuildContext context) {
 @UseCase(
   name: 'Badge with Widget',
   type: BaseBadge,
+  path: 'Components/Badge',
 )
 Widget badgeWithWidget(BuildContext context) {
   return Column(
@@ -677,6 +680,7 @@ Widget badgeWithWidget(BuildContext context) {
 @UseCase(
   name: 'Badge Checkbox Component',
   type: BaseCheckbox,
+  path: 'Components/Badge',
 )
 Widget badgeCheckboxComponent(BuildContext context) {
   return StatefulBuilder(
@@ -720,6 +724,7 @@ Widget badgeCheckboxComponent(BuildContext context) {
 @UseCase(
   name: 'Badge Image Component',
   type: BadgeImage,
+  path: 'Components/Badge',
 )
 Widget badgeImageComponent(BuildContext context) {
   return const BadgeImage(
@@ -730,6 +735,7 @@ Widget badgeImageComponent(BuildContext context) {
 @UseCase(
   name: 'Badge Count Component',
   type: BadgeCount,
+  path: 'Components/Badge',
 )
 Widget badgeCountComponent(BuildContext context) {
   return BadgeCount(count: 42);
@@ -738,6 +744,7 @@ Widget badgeCountComponent(BuildContext context) {
 @UseCase(
   name: 'Badge Dot Component',
   type: BadgeDot,
+  path: 'Components/Badge',
 )
 Widget badgeDotComponent(BuildContext context) {
   return Column(
@@ -804,6 +811,7 @@ Widget badgeDotComponent(BuildContext context) {
 @UseCase(
   name: 'Interactive Badge with Checkbox',
   type: BaseBadge,
+  path: 'Components/Badge',
 )
 Widget interactiveBadgeWithCheckbox(BuildContext context) {
   return StatefulBuilder(

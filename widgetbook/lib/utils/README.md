@@ -1,4 +1,4 @@
-# 📖 Widgetbook Display Components
+# 📖 Widgetbook Display Helper Components
 
 > **Note**: This folder contains presentation-only files for enhanced component visualization in Widgetbook.
 
