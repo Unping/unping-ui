@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unping_ui/src/components/base_checkbox.dart' as unping;
+import 'package:unping_ui/src/components/checkbox/base_checkbox.dart' as unping;
 
 void main() {
   group('unping.BaseCheckbox', () {
