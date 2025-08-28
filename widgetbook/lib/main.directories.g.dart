@@ -11,9 +11,9 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/base_badge.dart' as _i6;
-import 'package:widgetbook_workspace/base_button.dart' as _i7;
-import 'package:widgetbook_workspace/base_checkbox.dart' as _i8;
+import 'package:widgetbook_workspace/components/base_badge.dart' as _i6;
+import 'package:widgetbook_workspace/components/base_button.dart' as _i7;
+import 'package:widgetbook_workspace/components/base_checkbox.dart' as _i8;
 import 'package:widgetbook_workspace/foundation/color.dart' as _i2;
 import 'package:widgetbook_workspace/foundation/radius.dart' as _i3;
 import 'package:widgetbook_workspace/foundation/spacing.dart' as _i4;

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
-import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_background.dart';
-import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_description.dart';
-import 'package:widgetbook_workspace/widgetbook/unping_ui_widgetbook_header.dart';
+import 'package:widgetbook_workspace/utils/unping_ui_widgetbook_background.dart';
+import 'package:widgetbook_workspace/utils/unping_ui_widgetbook_description.dart';
+import 'package:widgetbook_workspace/utils/unping_ui_widgetbook_header.dart';
 
 @UseCase(
   name: 'Typography System',
