@@ -59,12 +59,14 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
     List<Widget> widgets = [];
     for (int i = 0; i < breadcrumbs.length; i++) {
       widgets.add(
-        Text(
-          breadcrumbs[i],
-          style: UiTextStyles.textSm.copyWith(
-            color: Colors.white, // White #FFFFFF
+        Flexible(
+          child: Text(
+            breadcrumbs[i],
+            style: UiTextStyles.textSm.copyWith(
+              color: Colors.white, // White #FFFFFF
+            ),
+            overflow: TextOverflow.ellipsis,
           ),
-          overflow: TextOverflow.ellipsis,
         ),
       );
       if (i < breadcrumbs.length - 1) {
@@ -78,11 +80,9 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
       }
     }
     
-    return IntrinsicWidth(
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: widgets,
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: widgets,
     );
   }
 }
