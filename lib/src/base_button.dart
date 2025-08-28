@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:unping_ui/unping_ui.dart';
 
 /// Position of the icon relative to the text
 enum IconPosition {
@@ -84,14 +85,8 @@ class BaseButton extends StatefulWidget {
   /// Focus ring width (for focus state shadow)
   final double focusRingWidth;
 
-  /// Font size of the button text
-  final double fontSize;
-
-  /// Font weight of the button text
-  final FontWeight fontWeight;
-
-  /// Font family of the button text
-  final String? fontFamily;
+  /// Text style of the button text
+  final TextStyle textStyle;
 
   /// Border radius of the button
   final double borderRadius;
@@ -121,7 +116,7 @@ class BaseButton extends StatefulWidget {
   /// Useful for showcasing different states in Widgetbook or design systems
   final ButtonState? forceState;
 
-  const BaseButton({
+  BaseButton({
     super.key,
     this.text,
     this.icon,
@@ -142,10 +137,8 @@ class BaseButton extends StatefulWidget {
     this.borderWidth = 1.0,
     this.focusRingColor,
     this.focusRingWidth = 3.0,
-    this.fontSize = 14.0,
-    this.fontWeight = FontWeight.w400,
-    this.fontFamily = 'Outfit',
-    this.borderRadius = 4.0,
+    TextStyle? textStyle,
+    this.borderRadius = UiRadius.xs,
     EdgeInsetsGeometry? padding,
     this.gap = 8.0,
     this.minHeight = 36.0, //icon only
@@ -158,6 +151,7 @@ class BaseButton extends StatefulWidget {
             (text != null
                 ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
                 : const EdgeInsets.all(8.0)), // Use 8px all around when no text
+        textStyle = textStyle ?? UiTextStyles.textSm,
         assert(text != null || icon != null,
             'Either text or icon must be provided');
 
@@ -321,14 +315,10 @@ class _BaseButtonState extends State<BaseButton>
 
       textWidget = Text(
         widget.text!,
-        style: TextStyle(
+        style: widget.textStyle.copyWith(
           color: textColor,
-          fontSize: widget.fontSize,
-          fontWeight: widget.fontWeight,
-          fontFamily: widget.fontFamily,
           decoration: widget.underlineText ? TextDecoration.underline : null,
           decorationColor: textColor,
-          height: 20 / widget.fontSize, // Line height as per Figma design
         ),
       );
     }
@@ -503,23 +493,24 @@ class Buttons {
     Widget? icon,
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
-    Color textColor = const Color(0xFFFFFFFF), // White text for ghost buttons
+    Color textColor = UiColors.onPrimary, // White text for ghost buttons
     Color? hoverTextColor, // Can be customized per use case
     Color? focusTextColor, // Can be customized per use case
     Color? disabledTextColor, // Can be customized per use case
     Color? backgroundColor, // Transparent by default for ghost buttons
     Color? hoverBackgroundColor,
     Color? focusBackgroundColor =
-        const Color(0xFF2A313C), // Dark gray background when focused
+        UiColors.neutral800, // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? borderColor, // Nullable to allow no border
     Color? hoverBorderColor,
     Color? focusBorderColor, // No focus border for ghost buttons
     Color? disabledBorderColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -542,6 +533,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
@@ -553,24 +545,24 @@ class Buttons {
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
     Color backgroundColor =
-        const Color(0xFFFFFFFF), // White background for filled buttons
+        UiColors.background, // White background for filled buttons
     Color? hoverBackgroundColor =
-        const Color(0xFFABB5C4), // Gray hover color from Figma
+        UiColors.neutral300, // Hover color from palette
     Color? focusBackgroundColor, // Can be customized per use case
     Color? disabledBackgroundColor, // Can be customized per use case
-    Color textColor = const Color(0xFF2A313C), // Grey text for filled buttons
+    Color textColor = UiColors.neutral800, // Grey text for filled buttons
     Color? hoverTextColor, // Keep same text color on hover by default
     Color? focusTextColor, // Can be customized per use case
     Color? disabledTextColor, // Can be customized per use case
     Color? borderColor, // No border by default for filled buttons
     Color? hoverBorderColor,
-    Color? focusBorderColor =
-        const Color(0xFFFFFFFF), // White border when focused
+    Color? focusBorderColor = UiColors.background, // White border when focused
     Color? disabledBorderColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -593,6 +585,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
@@ -603,25 +596,26 @@ class Buttons {
     Widget? icon,
     IconPosition iconPosition = IconPosition.trailing,
     VoidCallback? onPressed,
-    Color borderColor = const Color(0xFFFFFFFF),
+    Color borderColor = UiColors.background,
     Color? hoverBorderColor,
     Color? focusBorderColor,
     Color? disabledBorderColor,
-    Color textColor = const Color(
-        0xFFFFFFFF), // White text for outline buttons when not specified
+    Color textColor =
+        UiColors.onPrimary, // White text for outline buttons when not specified
     Color? hoverTextColor,
     Color? focusTextColor,
     Color? disabledTextColor,
     Color? backgroundColor, // Transparent by default for outline buttons
     Color? hoverBackgroundColor =
-        const Color(0xFFABB5C4), // Gray hover color from Figma
+        UiColors.neutral300, // Hover color from palette
     Color? focusBackgroundColor =
-        const Color(0xFF2A313C), // Dark gray background when focused
+        UiColors.neutral800, // Dark gray background when focused
     Color? disabledBackgroundColor,
     Color? focusRingColor =
-        const Color(0xFF989DB3), // Focus ring color from Figma
+        UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0, // Focus ring width from Figma
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -644,6 +638,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
