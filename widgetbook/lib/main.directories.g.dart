@@ -11,91 +11,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/base_badge.dart' as _i2;
-import 'package:widgetbook_workspace/base_button.dart' as _i3;
-import 'package:widgetbook_workspace/base_checkbox.dart' as _i4;
-import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i5;
-import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i6;
-import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i7;
-import 'package:widgetbook_workspace/ui/foundation/text_styles.dart' as _i8;
+import 'package:widgetbook_workspace/base_badge.dart' as _i6;
+import 'package:widgetbook_workspace/base_button.dart' as _i7;
+import 'package:widgetbook_workspace/base_checkbox.dart' as _i8;
+import 'package:widgetbook_workspace/ui/foundation/color.dart' as _i2;
+import 'package:widgetbook_workspace/ui/foundation/radius.dart' as _i3;
+import 'package:widgetbook_workspace/ui/foundation/spacing.dart' as _i4;
+import 'package:widgetbook_workspace/ui/foundation/text_styles.dart' as _i5;
 
 final directories = <_i1.WidgetbookNode>[
-  _i1.WidgetbookLeafComponent(
-    name: 'BadgeCount',
-    useCase: _i1.WidgetbookUseCase(
-      name: 'Badge Count Component',
-      builder: _i2.badgeCountComponent,
-    ),
-  ),
-  _i1.WidgetbookLeafComponent(
-    name: 'BadgeDot',
-    useCase: _i1.WidgetbookUseCase(
-      name: 'Badge Dot Component',
-      builder: _i2.badgeDotComponent,
-    ),
-  ),
-  _i1.WidgetbookLeafComponent(
-    name: 'BadgeImage',
-    useCase: _i1.WidgetbookUseCase(
-      name: 'Badge Image Component',
-      builder: _i2.badgeImageComponent,
-    ),
-  ),
-  _i1.WidgetbookComponent(
-    name: 'BaseBadge',
-    useCases: [
-      _i1.WidgetbookUseCase(
-        name: 'Badge with Image',
-        builder: _i2.badgeWithImage,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Badge with Text',
-        builder: _i2.badge,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Badge with Widget',
-        builder: _i2.badgeWithWidget,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Interactive Badge with Checkbox',
-        builder: _i2.interactiveBadgeWithCheckbox,
-      ),
-    ],
-  ),
-  _i1.WidgetbookComponent(
-    name: 'BaseButton',
-    useCases: [
-      _i1.WidgetbookUseCase(
-        name: 'Filled',
-        builder: _i3.buildBaseButtonFilled,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Ghost',
-        builder: _i3.buildBaseButtonGhost,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Outline',
-        builder: _i3.buildBaseButtonOutlined,
-      ),
-    ],
-  ),
-  _i1.WidgetbookComponent(
-    name: 'BaseCheckbox',
-    useCases: [
-      _i1.WidgetbookUseCase(
-        name: 'Badge Checkbox Component',
-        builder: _i2.badgeCheckboxComponent,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Checkbox',
-        builder: _i4.checkbox,
-      ),
-      _i1.WidgetbookUseCase(
-        name: 'Radio Group',
-        builder: _i4.radioGroup,
-      ),
-    ],
-  ),
   _i1.WidgetbookCategory(
     name: 'UI',
     children: [
@@ -106,7 +30,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiColors',
             useCase: _i1.WidgetbookUseCase(
               name: 'Color Palette',
-              builder: _i5.buildUiColorsUseCase,
+              builder: _i2.buildUiColorsUseCase,
               designLink: 'https://www.figma.com/design/unping-ui-colors',
             ),
           ),
@@ -114,7 +38,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiRadius',
             useCase: _i1.WidgetbookUseCase(
               name: 'Border Radius System',
-              builder: _i6.buildUiRadiusUseCase,
+              builder: _i3.buildUiRadiusUseCase,
               designLink: 'https://www.figma.com/design/unping-ui-radius',
             ),
           ),
@@ -122,7 +46,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiSpacing',
             useCase: _i1.WidgetbookUseCase(
               name: 'Spacing System',
-              builder: _i7.buildUiSpacingUseCase,
+              builder: _i4.buildUiSpacingUseCase,
               designLink: 'https://www.figma.com/design/unping-ui-spacing',
             ),
           ),
@@ -130,12 +54,93 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiTextStyles',
             useCase: _i1.WidgetbookUseCase(
               name: 'Typography System',
-              builder: _i8.buildUiTextStylesUseCase,
+              builder: _i5.buildUiTextStylesUseCase,
               designLink: 'https://www.figma.com/design/unping-ui-typography',
             ),
           ),
         ],
       )
+    ],
+  ),
+  _i1.WidgetbookFolder(
+    name: 'components',
+    children: [
+      _i1.WidgetbookLeafComponent(
+        name: 'BadgeCount',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Badge Count Component',
+          builder: _i6.badgeCountComponent,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'BadgeDot',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Badge Dot Component',
+          builder: _i6.badgeDotComponent,
+        ),
+      ),
+      _i1.WidgetbookLeafComponent(
+        name: 'BadgeImage',
+        useCase: _i1.WidgetbookUseCase(
+          name: 'Badge Image Component',
+          builder: _i6.badgeImageComponent,
+        ),
+      ),
+      _i1.WidgetbookComponent(
+        name: 'BaseBadge',
+        useCases: [
+          _i1.WidgetbookUseCase(
+            name: 'Badge with Image',
+            builder: _i6.badgeWithImage,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Badge with Text',
+            builder: _i6.badge,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Badge with Widget',
+            builder: _i6.badgeWithWidget,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Interactive Badge with Checkbox',
+            builder: _i6.interactiveBadgeWithCheckbox,
+          ),
+        ],
+      ),
+      _i1.WidgetbookComponent(
+        name: 'BaseButton',
+        useCases: [
+          _i1.WidgetbookUseCase(
+            name: 'Filled',
+            builder: _i7.buildBaseButtonFilled,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Ghost',
+            builder: _i7.buildBaseButtonGhost,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Outline',
+            builder: _i7.buildBaseButtonOutlined,
+          ),
+        ],
+      ),
+      _i1.WidgetbookComponent(
+        name: 'BaseCheckbox',
+        useCases: [
+          _i1.WidgetbookUseCase(
+            name: 'Badge Checkbox Component',
+            builder: _i6.badgeCheckboxComponent,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Checkbox',
+            builder: _i8.checkbox,
+          ),
+          _i1.WidgetbookUseCase(
+            name: 'Radio Group',
+            builder: _i8.radioGroup,
+          ),
+        ],
+      ),
     ],
   ),
 ];

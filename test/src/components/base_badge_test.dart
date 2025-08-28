@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:unping_ui/src/base_badge.dart';
-import 'package:unping_ui/src/base_checkbox.dart';
+import 'package:unping_ui/src/components/base_badge.dart';
+import 'package:unping_ui/src/components/base_checkbox.dart';
 
 void main() {
   group('BaseBadge', () {
