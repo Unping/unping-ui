@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/src/foundation/ui_text_styles.dart';
-import 'package:unping_ui/src/foundation/ui_spacing.dart';
+import 'package:unping_ui/unping_ui.dart';
 
 /// A description component that displays main content text with multiple lists of items.
 /// Each list can have its own heading and bullet point format.

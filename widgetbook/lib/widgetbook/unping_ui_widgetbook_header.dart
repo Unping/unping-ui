@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/src/foundation/ui_text_styles.dart';
-import 'package:unping_ui/src/foundation/ui_spacing.dart';
-import 'package:flutter/services.dart';
+import 'package:unping_ui/unping_ui.dart';
 
 /// A header that matches the Figma design: left-aligned logo + breadcrumbs,
 /// right-aligned URL. Typography and spacing follow the design tokens.
