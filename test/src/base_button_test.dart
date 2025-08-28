@@ -544,9 +544,11 @@ void main() {
             child: BaseButton(
               text: 'Test',
               textColor: Color(0xFFFFFFFF),
-              fontSize: 16.0,
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Arial',
+              textStyle: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Arial',
+              ),
               onPressed: () {},
             ),
           ),
@@ -556,6 +558,30 @@ void main() {
         expect(textWidget.style!.fontSize, equals(16.0));
         expect(textWidget.style!.fontWeight, equals(FontWeight.bold));
         expect(textWidget.style!.fontFamily, equals('Arial'));
+      });
+
+      testWidgets('uses UiTextStyles.textSm as default text style',
+          (tester) async {
+        await tester.pumpWidget(
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: BaseButton(
+              text: 'Test',
+              textColor: Color(0xFFFFFFFF),
+              onPressed: () {},
+            ),
+          ),
+        );
+
+        final textWidget = tester.widget<Text>(find.text('Test'));
+        // Verify default style matches UiTextStyles.textSm
+        expect(
+            textWidget.style!.fontSize, equals(UiTextStyles.textSm.fontSize));
+        expect(textWidget.style!.fontWeight,
+            equals(UiTextStyles.textSm.fontWeight));
+        expect(textWidget.style!.height, equals(UiTextStyles.textSm.height));
+        expect(textWidget.style!.fontFamily,
+            equals(UiTextStyles.textSm.fontFamily));
       });
 
       testWidgets('applies minimum height and width constraints',

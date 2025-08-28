@@ -85,14 +85,8 @@ class BaseButton extends StatefulWidget {
   /// Focus ring width (for focus state shadow)
   final double focusRingWidth;
 
-  /// Font size of the button text
-  final double fontSize;
-
-  /// Font weight of the button text
-  final FontWeight fontWeight;
-
-  /// Font family of the button text
-  final String? fontFamily;
+  /// Text style of the button text
+  final TextStyle textStyle;
 
   /// Border radius of the button
   final double borderRadius;
@@ -122,7 +116,7 @@ class BaseButton extends StatefulWidget {
   /// Useful for showcasing different states in Widgetbook or design systems
   final ButtonState? forceState;
 
-  const BaseButton({
+  BaseButton({
     super.key,
     this.text,
     this.icon,
@@ -143,9 +137,7 @@ class BaseButton extends StatefulWidget {
     this.borderWidth = 1.0,
     this.focusRingColor,
     this.focusRingWidth = 3.0,
-    this.fontSize = 14.0,
-    this.fontWeight = FontWeight.w400,
-    this.fontFamily = 'Outfit',
+    TextStyle? textStyle,
     this.borderRadius = UiRadius.xs,
     EdgeInsetsGeometry? padding,
     this.gap = 8.0,
@@ -159,6 +151,7 @@ class BaseButton extends StatefulWidget {
             (text != null
                 ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
                 : const EdgeInsets.all(8.0)), // Use 8px all around when no text
+        textStyle = textStyle ?? UiTextStyles.textSm,
         assert(text != null || icon != null,
             'Either text or icon must be provided');
 
@@ -322,14 +315,10 @@ class _BaseButtonState extends State<BaseButton>
 
       textWidget = Text(
         widget.text!,
-        style: TextStyle(
+        style: widget.textStyle.copyWith(
           color: textColor,
-          fontSize: widget.fontSize,
-          fontWeight: widget.fontWeight,
-          fontFamily: widget.fontFamily,
           decoration: widget.underlineText ? TextDecoration.underline : null,
           decorationColor: textColor,
-          height: 20 / widget.fontSize, // Line height as per Figma design
         ),
       );
     }
@@ -521,6 +510,7 @@ class Buttons {
         UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -543,6 +533,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
@@ -571,6 +562,7 @@ class Buttons {
         UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0,
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -593,6 +585,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
@@ -622,6 +615,7 @@ class Buttons {
         UiColors.neutral400, // Focus ring color from palette
     double focusRingWidth = 3.0, // Focus ring width from Figma
     bool underlineText = false,
+    TextStyle? textStyle, // Uses UiTextStyles.textSm by default
     ButtonState? forceState,
   }) {
     return BaseButton(
@@ -644,6 +638,7 @@ class Buttons {
       focusRingColor: focusRingColor,
       focusRingWidth: focusRingWidth,
       underlineText: underlineText,
+      textStyle: textStyle,
       forceState: forceState,
     );
   }
