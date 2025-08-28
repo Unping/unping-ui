@@ -145,7 +145,7 @@ class BaseCheckbox extends StatefulWidget {
     this.description,
     this.labelStyle,
     this.descriptionStyle,
-    this.textSpacing = 8.0,
+    this.textSpacing = UiSpacing.xs,
     this.uncheckedBackgroundColor = UiColors.background,
     this.checkedBackgroundColor = UiColors.neutral700,
     this.indeterminateBackgroundColor = UiColors.neutral700,
@@ -441,7 +441,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
 
       if (widget.description != null) {
         if (textWidgets.isNotEmpty) {
-          textWidgets.add(const SizedBox(height: 4));
+          textWidgets.add(SizedBox(height: UiSpacing.spacing1));
         }
         textWidgets.add(
           Text(
@@ -464,7 +464,10 @@ class _BaseCheckboxState extends State<BaseCheckbox>
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          padding: EdgeInsets.only(top: widget.label != null ? 2.0 : 0.0),
+          padding: EdgeInsets.only(
+              top: widget.label != null
+                  ? UiSpacing.spacing0_5
+                  : UiSpacing.spacing0),
           child: checkbox,
         ),
         if (textContent != null) ...[
@@ -525,7 +528,7 @@ class RadioGroup<T> extends StatefulWidget {
     this.value,
     this.onChanged,
     this.size = CheckboxSize.md,
-    this.spacing = 8.0,
+    this.spacing = UiSpacing.xs,
     this.direction = Axis.vertical,
     this.disabled = false,
     this.checkedBackgroundColor,
@@ -573,7 +576,8 @@ class _RadioGroupState<T> extends State<RadioGroup<T>> {
               checkColor: widget.checkColor ?? UiColors.onPrimary,
             ),
             if (option.label != null) ...[
-              SizedBox(width: widget.size == CheckboxSize.sm ? 6.0 : 8.0),
+              SizedBox(
+                  width: widget.size == CheckboxSize.sm ? 6.0 : UiSpacing.xs),
               option.label!,
             ],
           ],
@@ -645,7 +649,7 @@ class Checkboxes {
     String? description,
     TextStyle? labelStyle,
     TextStyle? descriptionStyle,
-    double textSpacing = 8.0,
+    double textSpacing = UiSpacing.xs,
     Color? checkedBackgroundColor,
     Color? uncheckedBackgroundColor,
     Color? checkedBorderColor,
@@ -684,7 +688,7 @@ class Checkboxes {
     String? description,
     TextStyle? labelStyle,
     TextStyle? descriptionStyle,
-    double textSpacing = 8.0,
+    double textSpacing = UiSpacing.xs,
     Color? checkedBackgroundColor,
     Color? uncheckedBackgroundColor,
     Color? checkedBorderColor,
@@ -730,7 +734,7 @@ class Checkboxes {
     T? value,
     ValueChanged<T?>? onChanged,
     CheckboxSize size = CheckboxSize.md,
-    double spacing = 8.0,
+    double spacing = UiSpacing.xs,
     Axis direction = Axis.vertical,
     bool disabled = false,
     Color? checkedBackgroundColor,
