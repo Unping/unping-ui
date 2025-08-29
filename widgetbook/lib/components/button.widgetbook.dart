@@ -3,6 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 @widgetbook.UseCase(
   name: 'Filled',
@@ -10,7 +11,9 @@ import 'package:unping_ui/unping_ui.dart';
   path: 'Components/Button',
 )
 Widget buildBaseButtonFilled(BuildContext context) {
-  return Column(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Filled'],
+    child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Row(children: [
@@ -214,7 +217,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
       ]),
 
     ],
-  );
+  ));
 }
 
 @widgetbook.UseCase(
@@ -223,7 +226,9 @@ Widget buildBaseButtonFilled(BuildContext context) {
   path: 'Components/Button',
 )
 Widget buildBaseButtonOutlined(BuildContext context) {
-  return Column(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Outline'],
+    child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Row(children: [
@@ -426,7 +431,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
         ),
       ]),
     ],
-  );
+  ));
 }
 
 @widgetbook.UseCase(
@@ -435,7 +440,9 @@ Widget buildBaseButtonOutlined(BuildContext context) {
   path: 'Components/Button',
 )
 Widget buildBaseButtonGhost(BuildContext context) {
-  return Column(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Button', 'Ghost'],
+    child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Row(children: [
@@ -638,6 +645,6 @@ Widget buildBaseButtonGhost(BuildContext context) {
         ),
       ]),
     ],
-  );
+  ));
 }
 

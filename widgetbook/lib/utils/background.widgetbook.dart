@@ -11,11 +11,20 @@ class UnpingUIWidgetbookBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      painter: RectanglePatternPainter(),
-      child: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: child,
+    return SizedBox(
+      width: double.infinity,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: RectanglePatternPainter(),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: MediaQuery.of(context).size.height,
+            ),
+            child: child,
+          ),
+        ),
       ),
     );
   }

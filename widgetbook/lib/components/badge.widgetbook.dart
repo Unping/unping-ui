@@ -1,6 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+
+import '../utils/container.widgetbook.dart';
 
 @UseCase(
   name: 'Badge with Image',
@@ -8,41 +10,43 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart';
   path: 'Components/Badge',
 )
 Widget badgeWithImage(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
-            text: 'Label',
-            leftWidget1: const BadgeImage(
-              imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
-            ),
-            size: BadgeSize.sm,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
-            text: 'Label',
-            leftWidget1: const BadgeImage(
-              imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
-            ),
-            size: BadgeSize.md,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
-            text: 'Label',
-            leftWidget1: const BadgeImage(
-              imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
-            ),
-            size: BadgeSize.lg,
-          ),
-        ),
-      ]),
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Badge'],
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
+                    text: 'Label',
+                    leftWidget1: const BadgeImage(
+                      imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
+                    ),
+                    size: BadgeSize.sm,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
+                    text: 'Label',
+                    leftWidget1: const BadgeImage(
+                      imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
+                    ),
+                    size: BadgeSize.md,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
+                    text: 'Label',
+                    leftWidget1: const BadgeImage(
+                      imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
+                    ),
+                    size: BadgeSize.lg,
+                  ),
+                ),
+              ]),
       // Image with removable option
       Row(children: [
         Container(
@@ -250,9 +254,9 @@ Widget badgeWithImage(BuildContext context) {
             rightWidget: BadgeCount(count: 8754),
           ),
         ),
-      ]
-      ),
-    ],
+      ]),
+      ],
+    ),
   );
 }
 
@@ -262,16 +266,18 @@ Widget badgeWithImage(BuildContext context) {
   path: 'Components/Badge',
 )
 Widget badge(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
-            text: 'Label',
-            size: BadgeSize.sm,
-          ),
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Badge'],
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
+                    text: 'Label',
+                    size: BadgeSize.sm,
+                  ),
         ),
         Container(
           padding: const EdgeInsets.all(16),
@@ -450,9 +456,9 @@ Widget badge(BuildContext context) {
             rightWidget: BadgeCount(count: 8754),
           ),
         ),
-      ]
-      ),
-    ],
+      ]),
+      ],
+    ),
   );
 }
 
@@ -463,22 +469,24 @@ Widget badge(BuildContext context) {
   path: 'Components/Badge',
 )
 Widget badgeWithWidget(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      // Basic dot examples
-      Row(children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
-            text: 'Label',
-            leftWidget1: const BadgeDot(),
-            size: BadgeSize.sm,
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: Badges.badge(
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Badge'],
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Basic dot examples
+        Row(children: [
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
+                    text: 'Label',
+                    leftWidget1: const BadgeDot(),
+                    size: BadgeSize.sm,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(16),
+                  child: Badges.badge(
             text: 'Label',
             leftWidget1: const BadgeDot(),
             size: BadgeSize.md,
@@ -670,9 +678,9 @@ Widget badgeWithWidget(BuildContext context) {
             rightWidget: BadgeCount(count: 8754),
           ),
         ),
-      ]
-      ),
-    ],
+      ]),
+      ],
+    ),
   );
 }
 
@@ -683,19 +691,21 @@ Widget badgeWithWidget(BuildContext context) {
   path: 'Components/Badge',
 )
 Widget badgeCheckboxComponent(BuildContext context) {
-  return StatefulBuilder(
-    builder: (context, setState) {
-      bool isChecked = false;
-      
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Interactive checkbox
-          Container(
-            padding: const EdgeInsets.all(16),
-            child: Badges.checkbox(
-              isChecked: isChecked,
-              onChanged: (value) {
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Badge'],
+    child: StatefulBuilder(
+      builder: (context, setState) {
+        bool isChecked = false;
+        
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Interactive checkbox
+            Container(
+              padding: const EdgeInsets.all(16),
+              child: Badges.checkbox(
+                isChecked: isChecked,
+                onChanged: (value) {
                 setState(() {
                   isChecked = value;
                 });
@@ -715,9 +725,10 @@ Widget badgeCheckboxComponent(BuildContext context) {
               ),
             ],
           ),
-        ],
-      );
-    },
+          ],
+        );
+      },
+    ),
   );
 }
 
@@ -727,84 +738,10 @@ Widget badgeCheckboxComponent(BuildContext context) {
   path: 'Components/Badge',
 )
 Widget badgeImageComponent(BuildContext context) {
-  return const BadgeImage(
-    imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
-  );
-}
-
-@UseCase(
-  name: 'Badge Count Component',
-  type: BadgeCount,
-  path: 'Components/Badge',
-)
-Widget badgeCountComponent(BuildContext context) {
-  return BadgeCount(count: 42);
-}
-
-@UseCase(
-  name: 'Badge Dot Component',
-  type: BadgeDot,
-  path: 'Components/Badge',
-)
-Widget badgeDotComponent(BuildContext context) {
-  return Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      Row(children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 6.0,
-            color: Color(0xFF17B26A), // Success green
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 8.0,
-            color: Color(0xFF17B26A), // Success green
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 10.0,
-            color: Color(0xFF17B26A), // Success green
-          ),
-        ),
-      ]),
-      // With different colors
-      Row(children: [
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 8.0,
-            color: Color(0xFF17B26A), // Green
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 8.0,
-            color: Color(0xFFF04438), // Red
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 8.0,
-            color: Color(0xFF2E90FA), // Blue
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(16),
-          child: const BadgeDot(
-            size: 8.0,
-            color: Color(0xFFF79009), // Orange
-          ),
-        ),
-      ]),
-    ],
+  return UnpingUISimpleContainer(
+    child: const BadgeImage(
+      imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
+    ),
   );
 }
 
@@ -814,20 +751,22 @@ Widget badgeDotComponent(BuildContext context) {
   path: 'Components/Badge',
 )
 Widget interactiveBadgeWithCheckbox(BuildContext context) {
-  return StatefulBuilder(
-    builder: (context, setState) {
-      bool isChecked1 = false;
-      bool isChecked2 = true;
-      bool isChecked3 = false;
-      
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            'Click checkboxes to toggle state:',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
+  return UnpingUIContainer(
+    breadcrumbs: ['Components', 'Badge'],
+    child: StatefulBuilder(
+      builder: (context, setState) {
+        bool isChecked1 = false;
+        bool isChecked2 = true;
+        bool isChecked3 = false;
+        
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Click checkboxes to toggle state:',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
               color: Color(0xFF101828),
             ),
           ),
@@ -919,8 +858,9 @@ Widget interactiveBadgeWithCheckbox(BuildContext context) {
               ),
             ),
           ]),
-        ],
-      );
-    },
+          ],
+        );
+      },
+    ),
   );
 }

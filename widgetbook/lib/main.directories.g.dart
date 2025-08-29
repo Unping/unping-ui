@@ -11,13 +11,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/components/base_badge.dart' as _i2;
-import 'package:widgetbook_workspace/components/base_button.dart' as _i3;
-import 'package:widgetbook_workspace/components/base_checkbox.dart' as _i4;
-import 'package:widgetbook_workspace/foundation/color.dart' as _i5;
-import 'package:widgetbook_workspace/foundation/radius.dart' as _i6;
-import 'package:widgetbook_workspace/foundation/spacing.dart' as _i7;
-import 'package:widgetbook_workspace/foundation/text_styles.dart' as _i8;
+import 'package:widgetbook_workspace/components/badge.widgetbook.dart' as _i2;
+import 'package:widgetbook_workspace/components/button.widgetbook.dart' as _i3;
+import 'package:widgetbook_workspace/components/checkbox.widgetbook.dart'
+    as _i4;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i5;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i6;
+import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart' as _i7;
+import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+    as _i8;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -26,20 +28,6 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'Badge',
         children: [
-          _i1.WidgetbookLeafComponent(
-            name: 'BadgeCount',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Badge Count Component',
-              builder: _i2.badgeCountComponent,
-            ),
-          ),
-          _i1.WidgetbookLeafComponent(
-            name: 'BadgeDot',
-            useCase: _i1.WidgetbookUseCase(
-              name: 'Badge Dot Component',
-              builder: _i2.badgeDotComponent,
-            ),
-          ),
           _i1.WidgetbookLeafComponent(
             name: 'BadgeImage',
             useCase: _i1.WidgetbookUseCase(
