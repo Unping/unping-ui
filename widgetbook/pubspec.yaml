@@ -28,7 +28,7 @@ flutter:
   
   assets:
     - web/icons/
-    - assets/README_UNPING_UI_COPIED.md
+    - assets/
     - assets/fonts/
   
   fonts:
