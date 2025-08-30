@@ -13,6 +13,8 @@ dependencies:
   widgetbook_annotation: ^3.5.0
   unping_ui:
     path: ../
+  markdown_widget: ^2.3.2+8
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +28,32 @@ flutter:
   
   assets:
     - web/icons/
+    - assets/README_UNPING_UI_COPIED.md
+    - assets/fonts/
+  
+  fonts:
+    - family: Outfit
+      fonts:
+        - asset: assets/fonts/Outfit-Thin.ttf
+          weight: 100
+        - asset: assets/fonts/Outfit-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/Outfit-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Outfit-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Outfit-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Outfit-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Outfit-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Outfit-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Outfit-Black.ttf
+          weight: 900
+    
+    - family: CourierPrime
+      fonts:
+        - asset: assets/fonts/CourierPrime-Regular.ttf
+          weight: 400
