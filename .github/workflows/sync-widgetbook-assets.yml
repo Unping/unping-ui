@@ -1,0 +1,47 @@
+name: Sync Widgetbook Assets
+
+on:
+  push:
+    branches: [main]
+    paths: 
+      - 'README.md'
+      - 'pubspec.yaml'
+      # Add more file paths here when you extend FILES_TO_SYNC
+  pull_request:
+    branches: [main]
+    paths:
+      - 'README.md'
+      - 'pubspec.yaml'
+      # Add more file paths here when you extend FILES_TO_SYNC
+
+jobs:
+  sync-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Make sync script executable
+        run: chmod +x scripts/sync-widgetbook-assets.sh
+        
+      - name: Sync widgetbook assets
+        run: ./scripts/sync-widgetbook-assets.sh
+        
+      - name: Check if there are changes
+        id: verify-changed-files
+        run: |
+          if git diff --quiet widgetbook/assets/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+          
+      - name: Commit and push changes
+        if: steps.verify-changed-files.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add widgetbook/assets/
+          git commit -m "Auto-sync: Update widgetbook assets from main project"
+          git push
