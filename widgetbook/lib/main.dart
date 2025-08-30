@@ -12,20 +12,47 @@ import 'main.directories.g.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   var readme = '';
+  var version = '';
+  var title = 'Unping UI';
+  
   try {
-    readme = await rootBundle.loadString('assets/README_UNPING_UI_COPIED.md');
+    readme = await rootBundle.loadString('assets/README_COPIED.md');
   } catch (e) {
-    debugPrint('Cannot read README.md: $e');
-  } finally {
-    runApp(WidgetbookApp(readme: readme));
+    debugPrint('Cannot read README.md from assets: $e');
+    readme = 'README.md not available. Please run: ./scripts/sync-widgetbook-assets.sh';
   }
+  
+  try {
+    version = await rootBundle.loadString('assets/UNPING_UI_VERSION.md');
+    version = version.trim(); // Remove any whitespace/newlines
+    // Generate title with version
+    if (version.isNotEmpty && version != 'unknown') {
+      title = 'Unping UI v$version';
+    }
+  } catch (e) {
+    debugPrint('Cannot read version from assets: $e');
+    version = 'unknown';
+  }
+  
+  runApp(WidgetbookApp(
+    readme: readme, 
+    version: version, 
+    title: title
+  ));
 }
 
 @widgetbook.App()
 class WidgetbookApp extends StatelessWidget {
-  const WidgetbookApp({super.key, this.readme = ''});
+  const WidgetbookApp({
+    super.key, 
+    this.readme = '', 
+    this.version = '',
+    this.title = 'Unping UI'
+  });
   
   final String readme;
+  final String version;
+  final String title;
   
   @override
   Widget build(BuildContext context) {
@@ -48,7 +75,10 @@ class WidgetbookApp extends StatelessWidget {
       directories: [
         WidgetbookUseCase(
           name: 'Introduction',
-          builder: (BuildContext context) => IntroductionWidgetbook(readme: readme),
+          builder: (BuildContext context) => IntroductionWidgetbook(
+            readme: readme,
+            title: title,
+          ),
         ),
         // Find and place Foundation directory as second entry
         ...directories.where((dir) => dir.name == 'Foundation'),

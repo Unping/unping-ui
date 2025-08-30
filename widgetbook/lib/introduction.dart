@@ -9,8 +9,13 @@ import 'utils/header.widgetbook.dart';
 import 'utils/description.widgetbook.dart';
 
 class IntroductionWidgetbook extends StatefulWidget {
-  const IntroductionWidgetbook({super.key, required this.readme});
+  const IntroductionWidgetbook({
+    super.key, 
+    required this.readme,
+    this.title = 'Unping UI',
+  });
   final String readme;
+  final String title;
 
   @override
   State<IntroductionWidgetbook> createState() => _IntroductionWidgetbookState();
@@ -45,7 +50,7 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
                 // Navigation breadcrumb using predefined header
                 UnpingUiWidgetbookHeader(
                   breadcrumbs: const ['Introduction'],
-                  title: "unping_ui v0.1.0",
+                  title: widget.title,
                 ),
                 const SizedBox(height: UiSpacing.spacing4),
                 
