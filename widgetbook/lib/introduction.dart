@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:markdown_widget/config/configs.dart';
 import 'package:markdown_widget/widget/all.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -107,7 +106,7 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
                     },
                   ),
                   CodeConfig(
-                    style: GoogleFonts.courierPrime(
+                    style: UiTextStyles.codeMedium.copyWith(
                       color: UiColors.neutral900,
                       backgroundColor: UiColors.neutral200,
                     ),
@@ -117,7 +116,7 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
                       color: UiColors.neutral900,
                       borderRadius: UiRadius.allSm,
                     ),
-                    textStyle: GoogleFonts.courierPrime(
+                    textStyle: UiTextStyles.codeMedium.copyWith(
                       color: UiColors.neutral100,
                     ),
                     wrapper: (child, _, language) => 
@@ -158,7 +157,7 @@ class _CodeWrapperWidget extends StatelessWidget {
     return Stack(
       children: [
         DefaultTextStyle(
-          style: GoogleFonts.courierPrime(color: UiColors.neutral100),
+          style: UiTextStyles.codeMedium.copyWith(color: UiColors.neutral100),
           child: child,
         ),
         if (language != null && language!.isNotEmpty)
