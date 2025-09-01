@@ -64,7 +64,7 @@ jobs:
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              workflow_id: 'publish_widgetbook.yml',
+              workflow_id: 'publish_widgetbook.yaml',
               ref: 'refs/tags/${{ env.version }}'  // Dispatch on the tag ref
             });
             console.log(`Triggered publish workflow for tag ${{ env.version }}`);
