@@ -34,16 +34,16 @@ jobs:
       - name: Install dependencies
         run: sudo apt-get update && sudo apt-get install -y gawk yq python3
 
-      - name: 🎯 Setup Dart
-        uses: dart-lang/setup-dart@v1
+      - name: 🎯 Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
-          sdk: "stable"
+          flutter-version: 'stable'
 
       - name: 📦 Install Dependencies
-        run: dart pub get
+        run: flutter pub get
 
       - name: 🧪 Run Tests with Coverage
-        run: dart test --coverage=coverage
+        run: flutter test --coverage=coverage
 
       - name: 📋 Format Coverage
         run: dart pub global activate coverage && dart pub global run coverage:format_coverage --lcov --in=coverage --out=coverage/lcov.info --report-on=lib
