@@ -1,0 +1,70 @@
+name: Add Tag release
+
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  tag-release:
+    if: github.event.pull_request.merged == true && (startsWith(github.head_ref, 'release/') || startsWith(github.head_ref, 'hotfix/'))
+    runs-on: ubuntu-latest
+     
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Extract version from pubspec.yaml
+        run: |
+          VERSION=$(grep '^version:' pubspec.yaml | sed 's/version: *\(.*\)/\1/')
+          echo "version=$VERSION" >> $GITHUB_ENV
+
+      - name: Create GitHub Release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { repo, owner } = context.repo;
+            
+            // First, explicitly create the tag
+            await github.rest.git.createTag({
+              owner,
+              repo,
+              tag: '${{ env.version }}',
+              message: 'Release ${{ env.version }}',
+              object: context.sha,
+              type: 'commit'
+            });
+            
+            // Then create the reference to push the tag
+            await github.rest.git.createRef({
+              owner,
+              repo,
+              ref: 'refs/tags/${{ env.version }}',
+              sha: context.sha
+            });
+            
+            // Finally create the release
+            const result = await github.rest.repos.createRelease({
+              owner,
+              repo,
+              tag_name: '${{ env.version }}',
+              name: 'Release ${{ env.version }}',
+              body: 'Auto-generated release for version ${{ env.version }}',
+              draft: false,
+              prerelease: false
+            });
+            console.log(`Created release: ${result.data.html_url}`);
+
+      - name: Trigger Publish Workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'publish_pub_dev.yml',
+              ref: 'refs/tags/${{ env.version }}'  // Dispatch on the tag ref
+            });
+            console.log(`Triggered publish workflow for tag ${{ env.version }}`);
