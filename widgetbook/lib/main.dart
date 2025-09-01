@@ -70,6 +70,10 @@ class WidgetbookApp extends StatelessWidget {
           );
         },
       ),
+      darkTheme: UiTheme.darkTheme(),
+      lightTheme: UiTheme.lightTheme(),
+      themeMode: ThemeMode.system,
+      initialRoute: '?path=introduction',
       // The [directories] variable does not exist yet,
       // it will be generated in the next step
       directories: [
