@@ -16,6 +16,51 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.head_ref || github.ref_name }}
 
+      - name: Create Appwrite config
+        run: echo '${{ secrets.APPWRITE_CONFIG }}' > appwrite.config.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '24'
+
+      - name: Install Appwrite CLI
+        run: npm install -g appwrite-cli
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+            channel: stable
+
+      - name: Install dependencies
+        run: |
+            flutter pub get
+
+      - name: Build Widgetbook
+        working-directory: widgetbook
+        run: |
+            flutter pub get
+            dart run build_runner build -d
+        #flutter build web -t lib/main.dart
+      
+      - name: Copy files from build directory to appwrite webserver
+        run: rsync -av --exclude='sites' ./ sites/unping-ui.com/
+
+      - name: Authenticate with Appwrite
+        run: appwrite client --endpoint https://cloud.appwrite.io/v1 --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" --key "${{ secrets.APPWRITE_API_KEY_GITHUB_ACTION_DEPLOYMENT_PROD }}"
+
+      - name: Push all sites to appwrite
+        run: appwrite push sites --all --force
+
+  widgetbook-cloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+
       - name: Setup flutter
         uses: subosito/flutter-action@v2
         with:
@@ -32,7 +77,7 @@ jobs:
         run: |
             flutter pub get
             dart run build_runner build -d
-            flutter build web -t lib/main.dart
+            flutter build web --release -t lib/main.dart
 
       - name: Install Widgetbook CLI
         run: dart pub global activate widgetbook_cli
