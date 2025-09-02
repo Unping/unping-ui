@@ -51,3 +51,37 @@ jobs:
 
       - name: Push all sites to appwrite
         run: appwrite push sites --all --force
+
+  widgetbook-cloud:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+          ref: ${{ github.head_ref || github.ref_name }}
+
+      - name: Setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+            channel: stable
+
+      - name: Bootstrap App
+        run: |
+            flutter pub get
+            # Add any other steps needed to make your
+            # app widgets available for Widgetbook
+
+      - name: Build Widgetbook
+        working-directory: widgetbook
+        run: |
+            flutter pub get
+            dart run build_runner build -d
+            flutter build web --release -t lib/main.dart
+
+      - name: Install Widgetbook CLI
+        run: dart pub global activate widgetbook_cli
+
+      - name: Push Widgetbook Build
+        working-directory: widgetbook
+        run: widgetbook cloud build push --api-key ${{ secrets.WIDGETBOOK_API_KEY }} --branch ${{ github.head_ref || github.ref_name }}
