@@ -44,7 +44,7 @@ jobs:
         run: cp -r ./widgetbook/build/web/* sites/unping-ui.com/
 
       - name: Authenticate with Appwrite
-        run: cd ./appwrite && appwrite client --endpoint https://cloud.appwrite.io/v1 --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" --key "${{ secrets.APPWRITE_API_KEY_GITHUB_ACTION_DEPLOYMENT_PROD }}"
+        run: appwrite client --endpoint https://cloud.appwrite.io/v1 --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" --key "${{ secrets.APPWRITE_API_KEY_GITHUB_ACTION_DEPLOYMENT_PROD }}"
 
       - name: Push all sites to appwrite
-        run: cd ./appwrite && appwrite push sites --all --force
+        run: appwrite push sites --all --force
