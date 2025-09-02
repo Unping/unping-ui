@@ -1,0 +1,60 @@
+{
+    "projectId": "68b66b3b001e2228dba7",
+    "endpoint": "https://fra.cloud.appwrite.io/v1",
+    "projectName": "unping-ui",
+    "settings": {
+        "services": {
+            "account": true,
+            "avatars": true,
+            "databases": true,
+            "locale": true,
+            "health": true,
+            "storage": true,
+            "teams": true,
+            "users": true,
+            "sites": true,
+            "functions": true,
+            "graphql": true,
+            "messaging": true
+        },
+        "auth": {
+            "methods": {
+                "jwt": true,
+                "phone": true,
+                "invites": true,
+                "anonymous": true,
+                "email-otp": true,
+                "magic-url": true,
+                "email-password": true
+            },
+            "security": {
+                "duration": 31536000,
+                "limit": 0,
+                "sessionsLimit": 10,
+                "passwordHistory": 0,
+                "passwordDictionary": false,
+                "personalDataCheck": false,
+                "sessionAlerts": false,
+                "mockNumbers": []
+            }
+        }
+    },
+    "sites": [
+        {
+            "$id": "68b66b9d0009a5d3e147",
+            "name": "unping-ui.com",
+            "enabled": true,
+            "logging": true,
+            "framework": "flutter",
+            "timeout": 30,
+            "installCommand": "flutter pub get",
+            "buildCommand": "flutter build web --release -t lib/main.dart",
+            "outputDirectory": "./build/web",
+            "specification": "s-0.5vcpu-512mb",
+            "buildRuntime": "node-22",
+            "adapter": "static",
+            "fallbackFile": "",
+            "path": "sites/unping-ui.com"
+        }
+    ]
+}
