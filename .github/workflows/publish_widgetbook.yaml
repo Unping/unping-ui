@@ -41,7 +41,7 @@ jobs:
             flutter build web -t lib/main.dart
       
       - name: Copy files from build directory to appwrite webserver
-        run: cp -r ./widgetbook/build/web/* appwrite/sites/unping-ui.com/
+        run: cp -r ./widgetbook/build/web/* sites/unping-ui.com/
 
       - name: Authenticate with Appwrite
         run: cd ./appwrite && appwrite client --endpoint https://cloud.appwrite.io/v1 --project-id "${{ secrets.APPWRITE_PROJECT_ID }}" --key "${{ secrets.APPWRITE_API_KEY_GITHUB_ACTION_DEPLOYMENT_PROD }}"
