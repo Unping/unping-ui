@@ -48,3 +48,7 @@ app.*.map.json
 
 # Test related
 coverage
+
+
+# Hide appwrite.config.json
+appwrite.config.json
