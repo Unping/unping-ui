@@ -51,7 +51,7 @@
             "buildCommand": "flutter build web --release -t lib/main.dart",
             "outputDirectory": "./build/web",
             "specification": "s-0.5vcpu-512mb",
-            "buildRuntime": "node-22",
+            "buildRuntime": "flutter-3.32",
             "adapter": "static",
             "fallbackFile": "",
             "path": "sites/unping-ui.com"
