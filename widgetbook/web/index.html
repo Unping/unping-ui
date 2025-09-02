@@ -28,11 +28,156 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <link href="favicon_unping_32_px.svg" rel="shortcut icon" type="image/x-icon">
+  <link href="favicon_unping_256_px.svg" rel="apple-touch-icon">
 
-  <title>widgetbook</title>
+  <title>Unping UI - Web & Desktop first Flutter components</title>
   <link rel="manifest" href="manifest.json">
+  
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  
+  <div id="loading-container">
+    <div class="spacer">
+        <div class="content-section" style="position: relative; z-index:1">
+            <div class="text-center" style="margin-bottom: 20px;">
+                <img src="favicon_unping_32_px.svg" width="80" class="logo"> 
+            </div>
+            <div class="text-center">
+              <svg class="spinner" width="30px" height="30px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="circle" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
+            </div>
+            <p id="loading" class="text-center" style="color:white;">
+              UnpingUI is loading, please wait...
+            </p>
+        </div>
+    </div>
+  </div>
+
+  <style>
+  body {
+    background-color:#1D2939;
+  }
+
+  #loading-container {
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .spacer{
+    margin-top: 20%;
+  }
+
+  .content-section{
+    text-align:center;
+    color:white;font-family: 'Outfit';font-style: normal;font-weight: 400;font-size: 18px;line-height: 28px;margin-top:15px
+  }
+
+  .text-center{
+    text-align:center;
+  }
+
+  .spinner
+  {
+    -webkit-animation: rotation 1.35s linear infinite;
+    animation: rotation 1.35s linear infinite;
+  }
+  
+  @-webkit-keyframes rotation
+  {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+    }
+  }
+  
+  @keyframes rotation
+  {
+    0% {
+      -webkit-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+  
+    100% {
+      -webkit-transform: rotate(270deg);
+      transform: rotate(270deg);
+    }
+  }
+  
+  .circle
+  {
+    stroke-dasharray: 180;
+    stroke-dashoffset: 0;
+    -webkit-transform-origin: center;
+    -ms-transform-origin: center;
+    transform-origin: center;
+    -webkit-animation: turn 1.35s ease-in-out infinite;
+    animation: turn 1.35s ease-in-out infinite;
+  }
+  
+  @-webkit-keyframes turn
+  {
+    0% {
+      stroke-dashoffset: 180;
+    }
+  
+    50% {
+      stroke-dashoffset: 45;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+  
+    100% {
+      stroke-dashoffset: 180;
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+  
+  @keyframes turn
+  {
+    0% {
+      stroke-dashoffset: 180;
+    }
+  
+    50% {
+      stroke-dashoffset: 45;
+      -webkit-transform: rotate(135deg);
+      transform: rotate(135deg);
+    }
+  
+    100% {
+      stroke-dashoffset: 180;
+      -webkit-transform: rotate(450deg);
+      transform: rotate(450deg);
+    }
+  }
+  
+  svg:nth-child(1){stroke:#ffffff;}
+  </style>
+  <script src="flutter_bootstrap.js" defer></script>
+  <script>
+    window.addEventListener('load', function(ev) {
+      var loading = document.querySelector('#loading');
+      loading.textContent = "UnpingUI is loading, please wait...";
+
+      _flutter.loader.load({
+        onEntrypointLoaded: async function(engineInitializer) {
+          loading.textContent = "UnpingUI is spinning the wheel of fortune...";
+          const appRunner = await engineInitializer.initializeEngine();
+
+          loading.textContent = "Unicorns are at the end of this road, I promise.";
+          document.getElementById('loading-container').style.display = "none";
+          await appRunner.runApp();
+        }
+      });
+    });
+  </script>
+  
 </body>
 </html>
