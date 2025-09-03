@@ -159,8 +159,12 @@
   
   svg:nth-child(1){stroke:#ffffff;}
   </style>
-  <script src="flutter_bootstrap.js" defer></script>
+
   <script>
+    //replaced by flutter build with flutter generated init script
+    {{flutter_js}}
+    {{flutter_build_config}}
+    
     window.addEventListener('load', function(ev) {
       var loading = document.querySelector('#loading');
       loading.textContent = "UnpingUI is loading, please wait...";
@@ -176,7 +180,7 @@
         }
       });
     });
+    
   </script>
-  
 </body>
 </html>
