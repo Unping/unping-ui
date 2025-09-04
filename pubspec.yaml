@@ -1,6 +1,6 @@
 name: unping_ui
 description: Desktop & Web first flutter component library
-version: 0.1.6
+version: 0.1.7
 publish_to: none
 
 environment:
