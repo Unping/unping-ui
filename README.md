@@ -5,6 +5,12 @@
 
 Desktop & Web first flutter components to build your component library with. Customizable, extendable, tested.
 
+## Design Resources 🎨
+
+Check out our complete design system and component library in Figma:
+
+[![Figma Design System](https://img.shields.io/badge/Figma-Design%20System-F24E1E?style=for-the-badge&logo=figma&logoColor=white)](https://www.figma.com/community/file/1545817431010952080)
+
 ## Installation 💻
 
 **❗ In order to start using Unping Ui you must have the [Flutter SDK][flutter_install_link] installed on your machine.**
