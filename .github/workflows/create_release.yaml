@@ -74,7 +74,7 @@ jobs:
           git push origin ${{ env.branch }}
 
       - name: Create Pull Request to main
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const { repo, owner } = context.repo;
@@ -94,7 +94,7 @@ jobs:
             });
 
       - name: Create Pull Request to develop
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const { repo, owner } = context.repo;
