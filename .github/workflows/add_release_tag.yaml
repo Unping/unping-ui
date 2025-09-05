@@ -22,7 +22,7 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_ENV
 
       - name: Create GitHub Release
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const { repo, owner } = context.repo;
@@ -58,7 +58,7 @@ jobs:
             console.log(`Created release: ${result.data.html_url}`);
 
       - name: Trigger Publish Workflow
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             await github.rest.actions.createWorkflowDispatch({
