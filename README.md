@@ -65,6 +65,10 @@ cd widgetbook && flutter run
 
 The components will be copied directly into your project, ready to use and customize!
 
+## Contributing 🤝
+
+We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to submit pull requests, report issues, and contribute to the project.
+
 [flutter_install_link]: https://docs.flutter.dev/get-started/install
 [fpx_link]: https://pub.dev/packages/fpx
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
