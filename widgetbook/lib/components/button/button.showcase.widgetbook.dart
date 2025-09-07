@@ -8,7 +8,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 @widgetbook.UseCase(
   name: 'Filled',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
 )
 Widget buildBaseButtonFilled(BuildContext context) {
   return UnpingUIContainer(
@@ -223,7 +223,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Outline',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
 )
 Widget buildBaseButtonOutlined(BuildContext context) {
   return UnpingUIContainer(
@@ -437,7 +437,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Ghost',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
 )
 Widget buildBaseButtonGhost(BuildContext context) {
   return UnpingUIContainer(
