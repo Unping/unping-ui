@@ -8,7 +8,7 @@ import '../utils/description.widgetbook.dart';
 @UseCase(
   name: 'Color Palette',
   type: UiColors,
-  designLink: 'https://www.figma.com/design/unping-ui-colors',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
   path: 'Foundation',
 )
 Widget buildUiColorsUseCase(BuildContext context) {

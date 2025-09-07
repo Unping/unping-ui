@@ -8,7 +8,7 @@ import 'package:widgetbook_workspace/utils/header.widgetbook.dart';
 @UseCase(
   name: 'Typography System',
   type: UiTextStyles,
-  designLink: 'https://www.figma.com/design/unping-ui-typography',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
   path: 'Foundation',
 )
 Widget buildUiTextStylesUseCase(BuildContext context) {
