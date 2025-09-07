@@ -8,7 +8,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 @widgetbook.UseCase(
   name: 'Filled',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
   designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7279&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildBaseButtonFilled(BuildContext context) {
@@ -224,7 +224,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Outline',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
 )
 Widget buildBaseButtonOutlined(BuildContext context) {
   return UnpingUIContainer(
@@ -438,7 +438,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
 @widgetbook.UseCase(
   name: 'Ghost',
   type: BaseButton,
-  path: 'Components/Button',
+  path: 'Components/Button/Showcase',
 )
 Widget buildBaseButtonGhost(BuildContext context) {
   return UnpingUIContainer(

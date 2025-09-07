@@ -12,14 +12,17 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
 import 'package:widgetbook_workspace/components/badge.widgetbook.dart' as _i2;
-import 'package:widgetbook_workspace/components/button.widgetbook.dart' as _i3;
-import 'package:widgetbook_workspace/components/checkbox.widgetbook.dart'
+import 'package:widgetbook_workspace/components/button/button.configurable.widgetbook.dart'
+    as _i3;
+import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
     as _i4;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i5;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i6;
-import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart' as _i7;
+import 'package:widgetbook_workspace/components/checkbox.widgetbook.dart'
+    as _i5;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i6;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i7;
+import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart' as _i8;
 import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
-    as _i8;
+    as _i9;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -68,23 +71,40 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'Button',
         children: [
-          _i1.WidgetbookComponent(
-            name: 'BaseButton',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Filled',
-                builder: _i3.buildBaseButtonFilled,
-              ),
-              _i1.WidgetbookUseCase(
-                name: 'Ghost',
-                builder: _i3.buildBaseButtonGhost,
-              ),
-              _i1.WidgetbookUseCase(
-                name: 'Outline',
-                builder: _i3.buildBaseButtonOutlined,
-              ),
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseButton',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableButton',
+                  builder: _i3.buildConfigurableButton,
+                ),
+              )
             ],
-          )
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseButton',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Filled',
+                    builder: _i4.buildBaseButtonFilled,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Ghost',
+                    builder: _i4.buildBaseButtonGhost,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Outline',
+                    builder: _i4.buildBaseButtonOutlined,
+                  ),
+                ],
+              )
+            ],
+          ),
         ],
       ),
       _i1.WidgetbookFolder(
@@ -95,11 +115,11 @@ final directories = <_i1.WidgetbookNode>[
             useCases: [
               _i1.WidgetbookUseCase(
                 name: 'Checkbox',
-                builder: _i4.checkbox,
+                builder: _i5.checkbox,
               ),
               _i1.WidgetbookUseCase(
                 name: 'Radio Group',
-                builder: _i4.radioGroup,
+                builder: _i5.radioGroup,
               ),
             ],
           )
@@ -114,7 +134,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i5.buildUiColorsUseCase,
+          builder: _i6.buildUiColorsUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-colors',
         ),
       ),
@@ -122,7 +142,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i6.buildUiRadiusUseCase,
+          builder: _i7.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -130,7 +150,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i7.buildUiSpacingUseCase,
+          builder: _i8.buildUiSpacingUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-spacing',
         ),
       ),
@@ -138,7 +158,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i8.buildUiTextStylesUseCase,
+          builder: _i9.buildUiTextStylesUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-typography',
         ),
       ),
