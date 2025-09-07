@@ -403,6 +403,17 @@ class UiTextStyles {
     lineHeight: 16,
     letterSpacing: 1.5,
   );
+
+  /// Get human-readable name for a text style
+  /// Used in UI development tools like Widgetbook for better UX
+  static String getTextStyleName(TextStyle style) {
+    if (style == textXs) return 'Text XS';
+    if (style == textSm) return 'Text SM';
+    if (style == textMd) return 'Text MD';
+    if (style == textLg) return 'Text LG';
+    if (style == textXl) return 'Text XL';
+    return 'Custom Style';
+  }
 }
 
 /// Theme extension for typography

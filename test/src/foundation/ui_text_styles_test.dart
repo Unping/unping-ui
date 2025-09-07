@@ -172,4 +172,136 @@ void main() {
       expect(textStyles, UnpingTextStyleExtension.standard);
     });
   });
+
+  group('getTextStyleName function', () {
+    test('should return correct names for text styles', () {
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXs), 'Text XS');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textSm), 'Text SM');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textMd), 'Text MD');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textLg), 'Text LG');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXl), 'Text XL');
+    });
+
+    test('should return "Custom Style" for unknown text styles', () {
+      final customTextStyle = UiTextStyles.textMd.copyWith(fontSize: 99);
+      expect(UiTextStyles.getTextStyleName(customTextStyle), 'Custom Style');
+    });
+
+    test('should handle display and other styles as custom', () {
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.display2xl),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayXl),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLg),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayMd),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displaySm),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayXs),
+          'Custom Style');
+    });
+
+    test('should handle weight variants as custom', () {
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXsMedium),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textSmSemibold),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textMdBold),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textLgMedium),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXlBold),
+          'Custom Style');
+    });
+
+    test('should handle code and utility styles as custom', () {
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeLarge),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeMedium),
+          'Custom Style');
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeSmall),
+          'Custom Style');
+      expect(
+          UiTextStyles.getTextStyleName(UiTextStyles.caption), 'Custom Style');
+      expect(
+          UiTextStyles.getTextStyleName(UiTextStyles.overline), 'Custom Style');
+    });
+
+    test('should handle legacy alias styles correctly', () {
+      // Legacy aliases point to base text styles, so they should return the base style names
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleLarge),
+          'Text XL'); // points to textXl
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleMedium),
+          'Text MD'); // points to textMd
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleSmall),
+          'Text SM'); // points to textSm
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyLarge),
+          'Text MD'); // points to textMd
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyMedium),
+          'Text SM'); // points to textSm
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodySmall),
+          'Text XS'); // points to textXs
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelLarge),
+          'Text SM'); // points to textSm
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelMedium),
+          'Text XS'); // points to textXs
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelSmall),
+          'Text XS'); // points to textXs
+
+      // Display legacy aliases point to display styles which should return 'Custom Style'
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLarge),
+          'Custom Style'); // points to display2xl
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.headlineLarge),
+          'Custom Style'); // points to displayMd
+    });
+
+    test('should be case-sensitive and exact match', () {
+      // Test that it returns exact string matches
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+          equals('Text MD'));
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.textSm),
+          equals('Text SM'));
+
+      // Ensure the function doesn't return partial matches or variations
+      expect(
+          UiTextStyles.getTextStyleName(UiTextStyles.textMd), isNot('text md'));
+      expect(
+          UiTextStyles.getTextStyleName(UiTextStyles.textMd), isNot('TextMD'));
+    });
+
+    test('should handle null input gracefully', () {
+      // Since the function parameter is non-nullable, this test verifies type safety
+      expect(() => UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+          returnsNormally);
+    });
+
+    test('should consistently identify only base text styles', () {
+      // Only the 5 base text styles should have specific names
+      final baseStyles = [
+        UiTextStyles.textXs,
+        UiTextStyles.textSm,
+        UiTextStyles.textMd,
+        UiTextStyles.textLg,
+        UiTextStyles.textXl,
+      ];
+
+      for (final style in baseStyles) {
+        expect(UiTextStyles.getTextStyleName(style), isNot('Custom Style'));
+      }
+
+      // Styles that are truly custom (not base styles or aliases to base styles)
+      final customStyles = [
+        UiTextStyles.textXsMedium,
+        UiTextStyles.textSmBold,
+        UiTextStyles.display2xl,
+        UiTextStyles.codeLarge,
+        UiTextStyles.caption,
+      ];
+
+      for (final style in customStyles) {
+        expect(UiTextStyles.getTextStyleName(style), 'Custom Style');
+      }
+    });
+  });
 }

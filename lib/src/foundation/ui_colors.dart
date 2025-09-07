@@ -97,6 +97,34 @@ class UiColors {
   static const Color textSecondary = neutral600;
   static const Color textTertiary = neutral500;
   static const Color textDisabled = neutral400;
+
+  /// Get human-readable name for a color
+  /// Used in UI development tools like Widgetbook for better UX
+  static String getColorName(Color color) {
+    if (color == neutral800) return 'Neutral 800';
+    if (color == onPrimary) return 'On Primary';
+    if (color == primary600) return 'Primary 600';
+    if (color == success600) return 'Success 600';
+    if (color == warning600) return 'Warning 600';
+    if (color == error600) return 'Error 600';
+    if (color == background) return 'Background';
+    if (color == neutral100) return 'Neutral 100';
+    if (color == neutral300) return 'Neutral 300';
+    if (color == neutral400) return 'Neutral 400';
+    if (color == primary500) return 'Primary 500';
+    if (color == primary400) return 'Primary 400';
+    if (color == primary300) return 'Primary 300';
+    if (color == success500) return 'Success 500';
+    if (color == success400) return 'Success 400';
+    if (color == success300) return 'Success 300';
+    if (color == warning500) return 'Warning 500';
+    if (color == warning400) return 'Warning 400';
+    if (color == warning300) return 'Warning 300';
+    if (color == error500) return 'Error 500';
+    if (color == error400) return 'Error 400';
+    if (color == error300) return 'Error 300';
+    return 'Custom Color';
+  }
 }
 
 /// Theme extension for Unping-UI specific colors
