@@ -67,3 +67,5 @@ We use Widgetbook for developing and testing new widgets in isolation. And espec
 - Use @UseCase annotations for widgetbook stories
 - Show different variants and states of widgets
 - Include knobs for interactive properties when relevant
+- Always create a "Showcase" story for each widget demonstrating its primary use cases in multiple configurations
+- In addition to the "Showcase" story, create a configurable file and story to let users configure the single component with various properties and see the changes in real-time
