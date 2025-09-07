@@ -8,7 +8,7 @@ import '../utils/description.widgetbook.dart';
 @UseCase(
   name: 'Spacing System',
   type: UiSpacing,
-  designLink: 'https://www.figma.com/design/unping-ui-spacing',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
   path: 'Foundation',
 )
 Widget buildUiSpacingUseCase(BuildContext context) {
