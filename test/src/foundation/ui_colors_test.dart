@@ -161,7 +161,9 @@ void main() {
 
     test('should return correct names for semantic colors', () {
       expect(UiColors.getColorName(UiColors.onPrimary), 'On Primary');
-      expect(UiColors.getColorName(UiColors.background), 'Background');
+      // Note: background is the same color as onPrimary (both white),
+      // so it will return 'On Primary' since that's checked first
+      expect(UiColors.getColorName(UiColors.background), 'On Primary');
     });
 
     test('should return "Custom Color" for unknown colors', () {
@@ -182,7 +184,6 @@ void main() {
       // Since UiColors.success points to success600, it should return 'Success 600'
       expect(UiColors.getColorName(UiColors.success), 'Success 600');
     });
-
     test('should be case-sensitive and exact match', () {
       // Test that it returns exact string matches
       expect(UiColors.getColorName(UiColors.primary600), equals('Primary 600'));

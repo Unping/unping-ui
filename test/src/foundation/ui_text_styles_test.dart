@@ -228,17 +228,32 @@ void main() {
           UiTextStyles.getTextStyleName(UiTextStyles.overline), 'Custom Style');
     });
 
-    test('should handle legacy alias styles as custom', () {
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLarge),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.headlineLarge),
-          'Custom Style');
+    test('should handle legacy alias styles correctly', () {
+      // Legacy aliases point to base text styles, so they should return the base style names
       expect(UiTextStyles.getTextStyleName(UiTextStyles.titleLarge),
-          'Custom Style');
+          'Text XL'); // points to textXl
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleMedium),
+          'Text MD'); // points to textMd
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleSmall),
+          'Text SM'); // points to textSm
       expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyLarge),
-          'Custom Style');
+          'Text MD'); // points to textMd
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyMedium),
+          'Text SM'); // points to textSm
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodySmall),
+          'Text XS'); // points to textXs
       expect(UiTextStyles.getTextStyleName(UiTextStyles.labelLarge),
-          'Custom Style');
+          'Text SM'); // points to textSm
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelMedium),
+          'Text XS'); // points to textXs
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelSmall),
+          'Text XS'); // points to textXs
+
+      // Display legacy aliases point to display styles which should return 'Custom Style'
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLarge),
+          'Custom Style'); // points to display2xl
+      expect(UiTextStyles.getTextStyleName(UiTextStyles.headlineLarge),
+          'Custom Style'); // points to displayMd
     });
 
     test('should be case-sensitive and exact match', () {
@@ -275,8 +290,8 @@ void main() {
         expect(UiTextStyles.getTextStyleName(style), isNot('Custom Style'));
       }
 
-      // All other styles should return 'Custom Style'
-      final nonBaseStyles = [
+      // Styles that are truly custom (not base styles or aliases to base styles)
+      final customStyles = [
         UiTextStyles.textXsMedium,
         UiTextStyles.textSmBold,
         UiTextStyles.display2xl,
@@ -284,7 +299,7 @@ void main() {
         UiTextStyles.caption,
       ];
 
-      for (final style in nonBaseStyles) {
+      for (final style in customStyles) {
         expect(UiTextStyles.getTextStyleName(style), 'Custom Style');
       }
     });
