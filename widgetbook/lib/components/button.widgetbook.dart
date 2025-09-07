@@ -9,6 +9,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   name: 'Filled',
   type: BaseButton,
   path: 'Components/Button',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7279&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildBaseButtonFilled(BuildContext context) {
   return UnpingUIContainer(

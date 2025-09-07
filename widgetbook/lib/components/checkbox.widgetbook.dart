@@ -7,6 +7,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   name: 'Checkbox',
   type: BaseCheckbox,
   path: 'Components/Checkbox',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget checkbox(BuildContext context) {
   return UnpingUIContainer(
