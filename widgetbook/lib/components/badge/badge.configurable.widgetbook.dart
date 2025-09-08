@@ -117,7 +117,7 @@ Widget buildConfigurableBadge(BuildContext context) {
         label: 'Count Value',
         initialValue: 5,
         min: 1,
-        max: 9999999,
+        max: 100,
       )
     : 5;
 
