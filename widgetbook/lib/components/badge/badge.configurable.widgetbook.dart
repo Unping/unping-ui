@@ -69,22 +69,6 @@ Widget buildConfigurableBadge(BuildContext context) {
     initialOption: BadgeSize.md,
   );
 
-  // Color properties
-  final backgroundColor = context.knobs.listOrNull(
-    label: 'Background Color',
-    options: [
-      null, // Default
-      UiColors.neutral700,
-      UiColors.neutral600,
-      UiColors.neutral500,
-      UiColors.primary600,
-      UiColors.success600,
-      UiColors.warning500,
-      UiColors.error600,
-    ],
-    labelBuilder: (color) => color != null ? UiColors.getColorName(color) : 'Default',
-  );
-
   final textColor = context.knobs.listOrNull(
     label: 'Text Color',
     options: [
@@ -95,21 +79,6 @@ Widget buildConfigurableBadge(BuildContext context) {
       UiColors.primary600,
       UiColors.success600,
       UiColors.warning600,
-      UiColors.error600,
-    ],
-    labelBuilder: (color) => color != null ? UiColors.getColorName(color) : 'Default',
-  );
-
-  final borderColor = context.knobs.listOrNull(
-    label: 'Border Color',
-    options: [
-      null, // Default
-      UiColors.neutral300,
-      UiColors.neutral400,
-      UiColors.neutral500,
-      UiColors.primary600,
-      UiColors.success600,
-      UiColors.warning500,
       UiColors.error600,
     ],
     labelBuilder: (color) => color != null ? UiColors.getColorName(color) : 'Default',
@@ -174,9 +143,7 @@ Widget buildConfigurableBadge(BuildContext context) {
               leftWidget2: leftWidget2,
               rightWidget: rightWidget,
               size: size,
-              backgroundColor: backgroundColor ?? UiColors.neutral700,
               textColor: textColor ?? UiColors.onPrimary,
-              borderColor: borderColor,
               removable: isRemovable,
               onRemove: isRemovable ? () {
                 // Handle remove action in widgetbook
