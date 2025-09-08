@@ -7,7 +7,7 @@ import '../../utils/container.widgetbook.dart';
 @UseCase(
   name: 'Badge with Image',
   type: BaseBadge,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
   designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget badgeWithImage(BuildContext context) {
@@ -264,7 +264,8 @@ Widget badgeWithImage(BuildContext context) {
 @UseCase(
   name: 'Badge with Text',
   type: BaseBadge,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget badge(BuildContext context) {
   return UnpingUIContainer(
@@ -467,7 +468,8 @@ Widget badge(BuildContext context) {
 @UseCase(
   name: 'Badge with Widget',
   type: BaseBadge,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget badgeWithWidget(BuildContext context) {
   return UnpingUIContainer(
@@ -689,7 +691,8 @@ Widget badgeWithWidget(BuildContext context) {
 @UseCase(
   name: 'Badge Checkbox Component',
   type: BaseCheckbox,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget badgeCheckboxComponent(BuildContext context) {
   return UnpingUIContainer(
@@ -736,7 +739,8 @@ Widget badgeCheckboxComponent(BuildContext context) {
 @UseCase(
   name: 'Badge Image Component',
   type: BadgeImage,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget badgeImageComponent(BuildContext context) {
   return UnpingUISimpleContainer(
@@ -749,7 +753,8 @@ Widget badgeImageComponent(BuildContext context) {
 @UseCase(
   name: 'Interactive Badge with Checkbox',
   type: BaseBadge,
-  path: 'Components/Badge',
+  path: 'Components/Badge/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget interactiveBadgeWithCheckbox(BuildContext context) {
   return UnpingUIContainer(
