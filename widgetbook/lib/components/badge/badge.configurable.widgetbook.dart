@@ -6,6 +6,30 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
+/// Example stateful checkbox widget for demonstration in Widgetbook
+class _ExampleCheckbox extends StatefulWidget {
+  const _ExampleCheckbox();
+
+  @override
+  State<_ExampleCheckbox> createState() => _ExampleCheckboxState();
+}
+
+class _ExampleCheckboxState extends State<_ExampleCheckbox> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Badges.checkbox(
+      isChecked: isChecked,
+      onChanged: (value) {
+        setState(() {
+          isChecked = value;
+        });
+      },
+    );
+  }
+}
+
 /// Helper function to create badge widgets based on type
 Widget? _createBadgeWidget(String widgetType, {int countValue = 5}) {
   switch (widgetType) {
@@ -16,12 +40,7 @@ Widget? _createBadgeWidget(String widgetType, {int countValue = 5}) {
         imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
       );
     case 'checkbox':
-      return Badges.checkbox(
-        isChecked: false,
-        onChanged: (value) {
-          // Interactive checkbox in widgetbook
-        },
-      );
+      return const _ExampleCheckbox();
     case 'count':
       return BadgeCount(count: countValue);
     case 'none':
