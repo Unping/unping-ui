@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 
-import '../utils/container.widgetbook.dart';
+import '../../utils/container.widgetbook.dart';
 
 @UseCase(
   name: 'Badge with Image',
