@@ -19,13 +19,20 @@ import 'package:widgetbook_workspace/components/button/button.configurable.widge
     as _i4;
 import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
     as _i5;
-import 'package:widgetbook_workspace/components/checkbox.widgetbook.dart'
+import 'package:widgetbook_workspace/components/checkbox/checkbox.configurable.widgetbook.dart'
     as _i6;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i7;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i8;
-import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart' as _i9;
+import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widgetbook.dart'
+    as _i8;
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
+    as _i7;
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
+    as _i9;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i10;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i11;
+import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
+    as _i12;
 import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
-    as _i10;
+    as _i13;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -146,21 +153,51 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'Checkbox',
         children: [
-          _i1.WidgetbookComponent(
-            name: 'BaseCheckbox',
-            useCases: [
-              _i1.WidgetbookUseCase(
-                name: 'Checkbox',
-                builder: _i6.checkbox,
-                designLink:
-                    'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseCheckbox',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableCheckbox',
+                  builder: _i6.buildConfigurableCheckbox,
+                  designLink:
+                      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                ),
               ),
-              _i1.WidgetbookUseCase(
-                name: 'Radio Group',
-                builder: _i6.radioGroup,
+              _i1.WidgetbookLeafComponent(
+                name: 'RadioGroup',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableRadioGroup',
+                  builder: _i7.buildConfigurableRadioGroup,
+                  designLink:
+                      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                ),
               ),
             ],
-          )
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseCheckbox',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Checkbox',
+                    builder: _i8.checkbox,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Radio Group',
+                    builder: _i9.radioGroup,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                ],
+              )
+            ],
+          ),
         ],
       ),
     ],
@@ -172,7 +209,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i7.buildUiColorsUseCase,
+          builder: _i10.buildUiColorsUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -181,7 +218,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i8.buildUiRadiusUseCase,
+          builder: _i11.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -189,7 +226,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i9.buildUiSpacingUseCase,
+          builder: _i12.buildUiSpacingUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -198,7 +235,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i10.buildUiTextStylesUseCase,
+          builder: _i13.buildUiTextStylesUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
