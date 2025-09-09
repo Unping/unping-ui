@@ -6,7 +6,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 @UseCase(
   name: 'Checkbox',
   type: BaseCheckbox,
-  path: 'Components/Checkbox',
+  path: 'Components/Checkbox/Showcase',
   designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget checkbox(BuildContext context) {
@@ -249,7 +249,8 @@ Widget checkbox(BuildContext context) {
 @UseCase(
   name: 'Radio Group',
   type: BaseCheckbox,
-  path: 'Components/Checkbox',
+  path: 'Components/Checkbox/Showcase',
+  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget radioGroup(BuildContext context) {
   return UnpingUIContainer(
