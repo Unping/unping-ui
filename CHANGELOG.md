@@ -34,3 +34,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 \n## [0.1.11] - 2025-09-08
 
+
+\n## [0.1.12] - 2025-09-09
+
