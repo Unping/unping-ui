@@ -15,6 +15,7 @@ class _ExampleCheckbox extends StatefulWidget {
   final TextStyle? descriptionStyle;
   final double textSpacing;
   final bool isDisabled;
+  final bool allowIndeterminate;
 
   const _ExampleCheckbox({
     required this.size,
@@ -24,6 +25,7 @@ class _ExampleCheckbox extends StatefulWidget {
     this.descriptionStyle,
     required this.textSpacing,
     required this.isDisabled,
+    required this.allowIndeterminate,
   });
 
   @override
@@ -36,17 +38,30 @@ class _ExampleCheckboxState extends State<_ExampleCheckbox> {
   void _handleStateChange(CheckboxState newState) {
     if (!widget.isDisabled) {
       setState(() {
-        // Cycle through states: unchecked -> checked -> indeterminate -> unchecked
-        switch (currentState) {
-          case CheckboxState.unchecked:
-            currentState = CheckboxState.checked;
-            break;
-          case CheckboxState.checked:
-            currentState = CheckboxState.indeterminate;
-            break;
-          case CheckboxState.indeterminate:
-            currentState = CheckboxState.unchecked;
-            break;
+        if (widget.allowIndeterminate) {
+          // Cycle through states: unchecked -> checked -> indeterminate -> unchecked
+          switch (currentState) {
+            case CheckboxState.unchecked:
+              currentState = CheckboxState.checked;
+              break;
+            case CheckboxState.checked:
+              currentState = CheckboxState.indeterminate;
+              break;
+            case CheckboxState.indeterminate:
+              currentState = CheckboxState.unchecked;
+              break;
+          }
+        } else {
+          // Only cycle between unchecked and checked
+          switch (currentState) {
+            case CheckboxState.unchecked:
+              currentState = CheckboxState.checked;
+              break;
+            case CheckboxState.checked:
+            case CheckboxState.indeterminate:
+              currentState = CheckboxState.unchecked;
+              break;
+          }
         }
       });
     }
@@ -154,6 +169,11 @@ Widget buildConfigurableCheckbox(BuildContext context) {
     initialValue: false,
   );
 
+  final allowIndeterminate = context.knobs.boolean(
+    label: 'Allow Indeterminate State',
+    initialValue: false,
+  );
+
   // Create checkbox
   final checkbox = _ExampleCheckbox(
     size: checkboxSize,
@@ -163,6 +183,7 @@ Widget buildConfigurableCheckbox(BuildContext context) {
     descriptionStyle: descriptionStyle,
     textSpacing: textSpacing,
     isDisabled: isDisabled,
+    allowIndeterminate: allowIndeterminate,
   );
 
   return UnpingUIContainer(
