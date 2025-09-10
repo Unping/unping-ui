@@ -2,17 +2,6 @@ name: Build Widgetbook
 
 on:
   workflow_call:
-    inputs:
-      target:
-        description: 'Build target for widgetbook (main.dart or lib/main.dart)'
-        required: false
-        type: string
-        default: 'lib/main.dart'
-      flutter-channel:
-        description: 'Flutter channel to use'
-        required: false
-        type: string
-        default: 'stable'
     outputs:
       build-path:
         description: 'Path to the built widgetbook web artifacts'
@@ -28,9 +17,7 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: ${{ inputs.flutter-channel }}
-          channel: ${{ inputs.flutter-channel }}
-          cache: true
+          channel: stable
 
       - name: 📦 Install Dependencies
         run: |
@@ -46,7 +33,7 @@ jobs:
       - name: 🏗️ Build Widgetbook Web
         run: |
           cd widgetbook
-          flutter build web --release -t ${{ inputs.target }}
+          flutter build web --release -t lib/main.dart
 
       - name: 📤 Upload Build Artifacts
         uses: actions/upload-artifact@v4
