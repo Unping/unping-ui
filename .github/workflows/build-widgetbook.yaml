@@ -1,0 +1,43 @@
+name: Build Widgetbook
+
+on:
+  workflow_call:
+    outputs:
+      build-path:
+        description: 'Path to the built widgetbook web artifacts'
+        value: './widgetbook/build/web'
+
+jobs:
+  build-widgetbook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📚 Git Checkout
+        uses: actions/checkout@v4
+
+      - name: 🐦 Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+      - name: 📦 Install Dependencies
+        run: |
+          flutter pub get
+          cd widgetbook
+          flutter pub get
+
+      - name: 🔧 Run Code Generation
+        run: |
+          cd widgetbook
+          dart run build_runner build --delete-conflicting-outputs
+
+      - name: 🏗️ Build Widgetbook Web
+        run: |
+          cd widgetbook
+          flutter build web --release -t lib/main.dart
+
+      - name: 📤 Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: widgetbook-build
+          path: ./widgetbook/build/web
+          retention-days: 1
