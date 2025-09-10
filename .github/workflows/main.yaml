@@ -24,7 +24,6 @@ jobs:
       flutter_channel: stable
 
   widgetbook-build:
-    needs: build
     uses: ./.github/workflows/build-widgetbook.yaml
     with:
       flutter-channel: stable
