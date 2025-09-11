@@ -222,9 +222,9 @@ class _BaseBadgeState extends State<BaseBadge> {
         borderRadius: BorderRadius.circular(widget.borderRadius),
         border: widget.borderColor != null
             ? Border.all(
-                color: widget.borderColor!,
-                width: widget.borderWidth,
-              )
+          color: widget.borderColor!,
+          width: widget.borderWidth,
+        )
             : null,
       ),
       padding: widget.padding,
@@ -361,7 +361,7 @@ class BadgeCount extends StatelessWidget {
     this.borderRadius = UiRadius.xs,
     this.padding = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
   }) : textStyle = textStyle ??
-            UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
+      UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
 
   @override
   Widget build(BuildContext context) {
@@ -419,9 +419,9 @@ class BadgeDot extends StatelessWidget {
         shape: BoxShape.circle,
         border: showOutline
             ? Border.all(
-                color: outlineColor,
-                width: outlineWidth,
-              )
+          color: outlineColor,
+          width: outlineWidth,
+        )
             : null,
       ),
     );
@@ -536,7 +536,7 @@ class _XIconPainter extends CustomPainter {
   // coverage:ignore-start
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-  // coverage:ignore-end
+// coverage:ignore-end
 }
 
 /// Custom painter for person icon
@@ -572,5 +572,5 @@ class _PersonIconPainter extends CustomPainter {
   // coverage:ignore-start
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-  // coverage:ignore-end
+// coverage:ignore-end
 }

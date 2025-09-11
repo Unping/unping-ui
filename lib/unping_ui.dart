@@ -8,3 +8,4 @@ export 'src/unping_ui.dart';
 
 // Export foundation design system
 export 'src/foundation/foundation.dart';
+export 'src/components/tooltip/ui_tooltip.dart';

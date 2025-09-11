@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
@@ -14,14 +14,14 @@ Future<void> main() async {
   var readme = '';
   var version = '';
   var title = 'Unping UI';
-  
+
   try {
     readme = await rootBundle.loadString('assets/README_COPIED.md');
   } catch (e) {
     debugPrint('Cannot read README.md from assets: $e');
     readme = 'README.md not available. Please run: ./scripts/sync-widgetbook-assets.sh';
   }
-  
+
   try {
     version = await rootBundle.loadString('assets/UNPING_UI_VERSION.md');
     version = version.trim(); // Remove any whitespace/newlines
@@ -33,27 +33,27 @@ Future<void> main() async {
     debugPrint('Cannot read version from assets: $e');
     version = 'unknown';
   }
-  
+
   runApp(WidgetbookApp(
-    readme: readme, 
-    version: version, 
-    title: title
+      readme: readme,
+      version: version,
+      title: title
   ));
 }
 
 @widgetbook.App()
 class WidgetbookApp extends StatelessWidget {
   const WidgetbookApp({
-    super.key, 
-    this.readme = '', 
+    super.key,
+    this.readme = '',
     this.version = '',
     this.title = 'Unping UI'
   });
-  
+
   final String readme;
   final String version;
   final String title;
-  
+
   @override
   Widget build(BuildContext context) {
     return Widgetbook(
@@ -91,4 +91,4 @@ class WidgetbookApp extends StatelessWidget {
       ],
     );
   }
-}
+}  
