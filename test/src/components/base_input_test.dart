@@ -153,9 +153,12 @@ void main() {
 
       final semantics = tester.getSemantics(find.byType(BaseInput));
       expect(semantics.label, contains('Email input field'));
-      expect(semantics.getSemanticsData().flags & SemanticsFlag.isTextField.index != 0, isTrue);
+      expect(
+          semantics.getSemanticsData().flags &
+                  SemanticsFlag.isTextField.index !=
+              0,
+          isTrue);
     });
-
 
     testWidgets('shows password strength indicator when enabled',
         (tester) async {
