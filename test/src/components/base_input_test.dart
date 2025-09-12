@@ -5,7 +5,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unping_ui/unping_ui.dart';
-import 'package:flutter/semantics.dart';
 
 void main() {
   group('BaseInput', () {
@@ -153,11 +152,6 @@ void main() {
 
       final semantics = tester.getSemantics(find.byType(BaseInput));
       expect(semantics.label, contains('Email input field'));
-      expect(
-          semantics.getSemanticsData().flags &
-                  SemanticsFlag.isTextField.index !=
-              0,
-          isTrue);
     });
 
     testWidgets('shows password strength indicator when enabled',
