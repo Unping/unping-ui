@@ -9,6 +9,16 @@ import 'package:flutter/semantics.dart';
 
 void main() {
   group('BaseInput', () {
+    bool _hasSemanticsFlag(SemanticsNode node, SemanticsFlag flag) {
+      try {
+        final flags = (node as dynamic).flags;
+        if (flags is Iterable<SemanticsFlag>) {
+          return flags.contains(flag);
+        }
+      } catch (_) {}
+      return node.hasFlag(flag);
+    }
+
     testWidgets('renders text input correctly', (tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -153,7 +163,7 @@ void main() {
 
       final semantics = tester.getSemantics(find.byType(BaseInput));
       expect(semantics.label, contains('Email input field'));
-      expect(semantics.hasFlag(SemanticsFlag.isTextField), isTrue);
+      expect(_hasSemanticsFlag(semantics, SemanticsFlag.isTextField), isTrue);
     });
 
     testWidgets('shows password strength indicator when enabled',
