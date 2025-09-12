@@ -27,12 +27,16 @@ import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable
     as _i7;
 import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
     as _i9;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i10;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i11;
+import 'package:widgetbook_workspace/components/input/input.configurable.widgetbook.dart'
+    as _i10;
+import 'package:widgetbook_workspace/components/input/input.showcase.widgetbook.dart'
+    as _i11;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i12;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i13;
 import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
-    as _i12;
+    as _i14;
 import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
-    as _i13;
+    as _i15;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -200,6 +204,59 @@ final directories = <_i1.WidgetbookNode>[
           ),
         ],
       ),
+      _i1.WidgetbookFolder(
+        name: 'Input',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseInput',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableInput',
+                  builder: _i10.buildConfigurableInput,
+                  designLink:
+                      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                ),
+              )
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseInput',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Passworrd Input',
+                    builder: _i11.passwordInput,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Search Input',
+                    builder: _i11.searchInput,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Text Area Input',
+                    builder: _i11.textAreaInput,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Text Input',
+                    builder: _i11.textInput,
+                    designLink:
+                        'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
     ],
   ),
   _i1.WidgetbookFolder(
@@ -209,7 +266,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i10.buildUiColorsUseCase,
+          builder: _i12.buildUiColorsUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -218,7 +275,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i11.buildUiRadiusUseCase,
+          builder: _i13.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -226,7 +283,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i12.buildUiSpacingUseCase,
+          builder: _i14.buildUiSpacingUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -235,7 +292,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i13.buildUiTextStylesUseCase,
+          builder: _i15.buildUiTextStylesUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
