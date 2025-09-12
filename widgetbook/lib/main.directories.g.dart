@@ -27,7 +27,7 @@ import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable
     as _i7;
 import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
     as _i9;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.widgetbook.dart'
+import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
     as _i10;
 import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i11;
 import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i12;
