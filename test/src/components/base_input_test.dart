@@ -9,16 +9,6 @@ import 'package:flutter/semantics.dart';
 
 void main() {
   group('BaseInput', () {
-    bool _hasSemanticsFlag(SemanticsNode node, SemanticsFlag flag) {
-      try {
-        final flags = (node as dynamic).flags;
-        if (flags is Iterable<SemanticsFlag>) {
-          return flags.contains(flag);
-        }
-      } catch (_) {}
-      return node.hasFlag(flag);
-    }
-
     testWidgets('renders text input correctly', (tester) async {
       await tester.pumpWidget(
         Directionality(
@@ -58,7 +48,7 @@ void main() {
 
       expect(find.text('Search me'), findsOneWidget);
 
-      // Tap the clear button (✕)
+// Tap the clear button (✕)
       await tester.tap(find.byType(GestureDetector).last);
       await tester.pump();
 
@@ -76,11 +66,11 @@ void main() {
         ),
       );
 
-      // Initially obscured
+// Initially obscured
       final editable = tester.widget<EditableText>(find.byType(EditableText));
       expect(editable.obscureText, isTrue);
 
-      // Tap the visibility toggle
+// Tap the visibility toggle
       await tester.tap(find.byType(GestureDetector).last);
       await tester.pump();
 
@@ -163,8 +153,9 @@ void main() {
 
       final semantics = tester.getSemantics(find.byType(BaseInput));
       expect(semantics.label, contains('Email input field'));
-      expect(_hasSemanticsFlag(semantics, SemanticsFlag.isTextField), isTrue);
+      expect(semantics.getSemanticsData().flags & SemanticsFlag.isTextField.index != 0, isTrue);
     });
+
 
     testWidgets('shows password strength indicator when enabled',
         (tester) async {
@@ -179,7 +170,7 @@ void main() {
         ),
       );
 
-      // Find the strength indicator text specifically
+// Find the strength indicator text specifically
       final strengthText = find.descendant(
         of: find.byType(BaseInput),
         matching: find.text('Strong'),
