@@ -1,3 +1,4 @@
+// lib/components/tooltip/ui_tooltip.dart
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +8,15 @@ enum UiTooltipPlacement { top, bottom, left, right, auto }
 enum UiTooltipVariant { neutral, info, success, warning, error }
 
 // Figma-aligned defaults
-const _kShow = Duration(milliseconds: 140);
-const _kHide = Duration(milliseconds: 120);
+const _kShow  = Duration(milliseconds: 140);
+const _kHide  = Duration(milliseconds: 120);
 const _kDelay = Duration(milliseconds: 350);
-const _kPad = EdgeInsets.symmetric(horizontal: 10, vertical: 6);
+const _kPad   = EdgeInsets.symmetric(horizontal: 10, vertical: 6);
 const _kRadius = BorderRadius.all(Radius.circular(6));
-const _kShadow = [BoxShadow(color: Color(0x33000000), blurRadius: 10, offset: Offset(0, 4))];
-const _kGap = 8.0;
+const _kShadow = [
+  BoxShadow(color: Color(0x33000000), blurRadius: 10, offset: Offset(0, 4))
+];
+const _kGap  = 8.0;
 const _kMaxW = 280.0;
 
 @immutable
@@ -69,12 +72,15 @@ class UiTooltipStyle {
   }
 }
 
-// Build style WITHOUT touching context. We pass width in later.
+/// Build style WITHOUT touching context. We pass viewport width later.
 UiTooltipStyle _styleFor(UiTooltipVariant variant, double viewportWidth) {
   final base = UiTextStyles.textXs.fontSize ?? 12.0;
   double fontSize = base;
-  if (viewportWidth <= 360) fontSize = (base - 2).clamp(10, base).toDouble();
-  else if (viewportWidth <= 480) fontSize = (base - 1).clamp(10, base).toDouble();
+  if (viewportWidth <= 360) {
+    fontSize = (base - 2).clamp(10, base).toDouble();
+  } else if (viewportWidth <= 480) {
+    fontSize = (base - 1).clamp(10, base).toDouble();
+  }
 
   final txt = UiTextStyles.textXs.copyWith(
     fontSize: fontSize,
@@ -83,12 +89,17 @@ UiTooltipStyle _styleFor(UiTooltipVariant variant, double viewportWidth) {
   );
 
   switch (variant) {
-    case UiTooltipVariant.info:    return UiTooltipStyle(background: UiColors.primary600, textStyle: txt);
-    case UiTooltipVariant.success: return UiTooltipStyle(background: UiColors.success600,  textStyle: txt);
-    case UiTooltipVariant.warning: return UiTooltipStyle(background: UiColors.warning600,  textStyle: txt);
-    case UiTooltipVariant.error:   return UiTooltipStyle(background: UiColors.error600,    textStyle: txt);
+    case UiTooltipVariant.info:
+      return UiTooltipStyle(background: UiColors.primary600, textStyle: txt);
+    case UiTooltipVariant.success:
+      return UiTooltipStyle(background: UiColors.success600, textStyle: txt);
+    case UiTooltipVariant.warning:
+      return UiTooltipStyle(background: UiColors.warning600, textStyle: txt);
+    case UiTooltipVariant.error:
+      return UiTooltipStyle(background: UiColors.error600, textStyle: txt);
     case UiTooltipVariant.neutral:
-    default:                       return UiTooltipStyle(background: UiColors.neutral900,  textStyle: txt);
+    default:
+      return UiTooltipStyle(background: UiColors.neutral900, textStyle: txt);
   }
 }
 
@@ -124,12 +135,18 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
   final _link = LayerLink();
   OverlayEntry? _entry;
   Timer? _delay;
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: widget.style?.showDuration ?? _kShow,
-    reverseDuration: widget.style?.hideDuration ?? _kHide,
-  );
+  late final AnimationController _controller;
   bool _visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: widget.style?.showDuration ?? _kShow,
+      reverseDuration: widget.style?.hideDuration ?? _kHide,
+    );
+  }
 
   @override
   void didUpdateWidget(covariant UiTooltip old) {
@@ -141,7 +158,8 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
     _controller.reverseDuration = widget.style?.hideDuration ?? _kHide;
 
     // if identity changes (label/child), close to avoid reparenting glitches
-    if (old.message != widget.message || old.child.key != widget.child.key) {
+    if (old.message != widget.message ||
+        old.child.key != widget.child.key) {
       _hide(immediate: true);
     }
   }
@@ -176,8 +194,17 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
 
   void _show() {
     if (!mounted || _visible || !widget.enabled) return;
+
+    // Ensure overlay exists; bail out gracefully if not.
+    final overlay = Overlay.maybeOf(context, rootOverlay: true);
+    if (overlay == null) return;
+
+    // belt-and-suspenders: make sure durations are set before forward()
+    _controller.duration ??= widget.style?.showDuration ?? _kShow;
+    _controller.reverseDuration ??= widget.style?.hideDuration ?? _kHide;
+
     _entry = OverlayEntry(builder: _buildOverlay);
-    Overlay.of(context).insert(_entry!);
+    overlay.insert(_entry!);
     _visible = true;
     _controller.forward(from: 0);
   }
@@ -232,18 +259,33 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
     Offset offset;
     switch (placement) {
       case UiTooltipPlacement.top:
-        targetAnchor = Alignment.topCenter;    followerAnchor = Alignment.bottomCenter; offset = const Offset(0, -_kGap); break;
+        targetAnchor = Alignment.topCenter;
+        followerAnchor = Alignment.bottomCenter;
+        offset = const Offset(0, -_kGap);
+        break;
       case UiTooltipPlacement.bottom:
-        targetAnchor = Alignment.bottomCenter; followerAnchor = Alignment.topCenter;    offset = const Offset(0, _kGap);  break;
+        targetAnchor = Alignment.bottomCenter;
+        followerAnchor = Alignment.topCenter;
+        offset = const Offset(0, _kGap);
+        break;
       case UiTooltipPlacement.left:
-        targetAnchor = Alignment.centerLeft;   followerAnchor = Alignment.centerRight;  offset = const Offset(-_kGap, 0); break;
+        targetAnchor = Alignment.centerLeft;
+        followerAnchor = Alignment.centerRight;
+        offset = const Offset(-_kGap, 0);
+        break;
       case UiTooltipPlacement.right:
-        targetAnchor = Alignment.centerRight;  followerAnchor = Alignment.centerLeft;   offset = const Offset(_kGap, 0);  break;
+        targetAnchor = Alignment.centerRight;
+        followerAnchor = Alignment.centerLeft;
+        offset = const Offset(_kGap, 0);
+        break;
       case UiTooltipPlacement.auto:
-        targetAnchor = Alignment.bottomCenter; followerAnchor = Alignment.topCenter;    offset = const Offset(0, _kGap);  break;
+        targetAnchor = Alignment.bottomCenter;
+        followerAnchor = Alignment.topCenter;
+        offset = const Offset(0, _kGap);
+        break;
     }
 
-    // Build style *now* using current viewport width
+    // Build style with current viewport width
     final vw = MediaQuery.sizeOf(context).width;
     final style = (widget.style ?? _styleFor(widget.variant, vw));
 
@@ -279,7 +321,7 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
 
     return Positioned.fill(
       child: IgnorePointer(
-        ignoring: true,
+        ignoring: true, // don’t block taps behind tooltip
         child: CompositedTransformFollower(
           link: _link,
           targetAnchor: targetAnchor,
@@ -299,8 +341,10 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
       core = Semantics(tooltip: widget.message, child: core);
     }
 
+    // Hover + focus for desktop/web; long-press for touch.
     return FocusableActionDetector(
-      onShowHoverHighlight: widget.triggerOnHover ? (h) => h ? _scheduleShow() : _hide() : null,
+      onShowHoverHighlight:
+      widget.triggerOnHover ? (h) => h ? _scheduleShow() : _hide() : null,
       onShowFocusHighlight: (f) => f ? _scheduleShow() : _hide(),
       child: MouseRegion(
         onEnter: widget.triggerOnHover ? (_) => _scheduleShow() : null,
@@ -310,7 +354,9 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
           onLongPress: widget.triggerOnLongPress ? _scheduleShow : null,
           onLongPressEnd: (_) => _hide(),
           onTapDown: (_) {
-            if (!widget.triggerOnLongPress && defaultTargetPlatform == TargetPlatform.android) {
+            // tiny tap shows briefly on touch UIs without long press
+            if (!widget.triggerOnLongPress &&
+                defaultTargetPlatform == TargetPlatform.android) {
               _scheduleShow();
             }
           },
