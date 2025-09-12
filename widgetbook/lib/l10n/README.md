@@ -6,6 +6,6 @@ To add further language options follow this format
 
 use `Flutter run` to generate the localization files
 
-To use localization text use the language extenstion
+To use localization text use the language extension
 
 `context.lang.{string}`
