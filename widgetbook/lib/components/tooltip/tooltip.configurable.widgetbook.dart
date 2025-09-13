@@ -37,7 +37,7 @@ Widget tooltipShowcase(BuildContext context) {
             ),
           ),
 
-// EXAMPLES
+// Gallery
           Padding(
             padding: UiSpacing.allXxl,
             child: _TooltipGallery(),
