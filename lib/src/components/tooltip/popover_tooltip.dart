@@ -62,7 +62,8 @@ class _PopoverTooltipState extends State<PopoverTooltip>
 
     final vw = MediaQuery.sizeOf(context).width;
     final style = widget.style ?? styleFor(widget.variant, vw);
-    final placement = resolvePlacement(context: context, explicit: widget.placement);
+    final placement =
+        resolvePlacement(context: context, explicit: widget.placement);
 
     _entry = buildTooltipOverlay(
       context: context,

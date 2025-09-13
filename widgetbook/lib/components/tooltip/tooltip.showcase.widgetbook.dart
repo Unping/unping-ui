@@ -6,7 +6,6 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_workspace/utils/background.widgetbook.dart';
 import 'package:widgetbook_workspace/utils/header.widgetbook.dart';
 
-
 @widgetbook.UseCase(
   name: 'Tooltip – configurable',
   type: UiTooltip,
@@ -29,14 +28,14 @@ Widget tooltipConfigurable(BuildContext context) {
   final long = context.knobs.boolean(label: 'Long text', initialValue: false);
   final enabled = context.knobs.boolean(label: 'Enabled', initialValue: true);
   final hover =
-  context.knobs.boolean(label: 'Trigger on hover', initialValue: true);
+      context.knobs.boolean(label: 'Trigger on hover', initialValue: true);
   final longPress =
-  context.knobs.boolean(label: 'Trigger on long-press', initialValue: true);
+      context.knobs.boolean(label: 'Trigger on long-press', initialValue: true);
 
   final msg = long
       ? 'Very long tooltip that wraps within a constrained max width to stay readable across small viewports.'
-      : context.knobs.string(label: 'Message', initialValue: 'This is a tooltip');
-
+      : context.knobs
+          .string(label: 'Message', initialValue: 'This is a tooltip');
 
   return UnpingUIWidgetbookBackground(
     child: Center(

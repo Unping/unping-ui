@@ -4,25 +4,26 @@ import 'package:unping_ui/unping_ui.dart';
 
 /// Enums
 enum UiTooltipPlacement { top, bottom, left, right, auto }
+
 enum UiTooltipVariant { neutral, info, success, warning, error }
 
 const kTooltipShowDuration = Duration(milliseconds: 140);
 const kTooltipHideDuration = Duration(milliseconds: 120);
-const kTooltipShowDelay    = Duration(milliseconds: 350);
+const kTooltipShowDelay = Duration(milliseconds: 350);
 
 // Token-backed padding/radius; same final values as before.
-const kTooltipPadding  = EdgeInsets.symmetric(
+const kTooltipPadding = EdgeInsets.symmetric(
   horizontal: UiSpacing.xs, // 8.0
-  vertical: UiSpacing.sm,   // 12.0
+  vertical: UiSpacing.sm, // 12.0
 );
-const kTooltipRadius   = BorderRadius.all(Radius.circular(UiRadius.sm)); // 8.0
+const kTooltipRadius = BorderRadius.all(Radius.circular(UiRadius.sm)); // 8.0
 
-const kTooltipShadow   = [
+const kTooltipShadow = [
   BoxShadow(color: Color(0x33000000), blurRadius: 10, offset: Offset(0, 4)),
 ];
 
 // Keep gap ≈ 8.0 (token-backed) and same max width.
-const kTooltipGap      = UiSpacing.xs; // 8.0
+const kTooltipGap = UiSpacing.xs; // 8.0
 const kTooltipMaxWidth = 280.0;
 
 /// Style container

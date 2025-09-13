@@ -27,32 +27,32 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-          Flexible(
-            child: Row(
-              children: [
-                if (logo != null) ...[
-                  logo!,
-                  SizedBox(width: UiSpacing.spacing4), // gap-4
-                ],
-                Flexible(
-                  child: _buildBreadcrumbs(context),
-                ),
+        Flexible(
+          child: Row(
+            children: [
+              if (logo != null) ...[
+                logo!,
+                SizedBox(width: UiSpacing.spacing4), // gap-4
               ],
+              Flexible(
+                child: _buildBreadcrumbs(context),
+              ),
+            ],
+          ),
+        ),
+        if (url != null)
+          Flexible(
+            child: Text(
+              url!,
+              style: UiTextStyles.textXs.copyWith(
+                color: Colors.white, // White #FFFFFF
+              ),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.right,
             ),
           ),
-          if (url != null)
-            Flexible(
-              child: Text(
-                url!,
-                style: UiTextStyles.textXs.copyWith(
-                  color: Colors.white, // White #FFFFFF
-                ),
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.right,
-              ),
-            ),
-        ],
-      );
+      ],
+    );
   }
 
   Widget _buildBreadcrumbs(BuildContext context) {
@@ -79,7 +79,7 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
         widgets.add(SizedBox(width: UiSpacing.spacing2));
       }
     }
-    
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: widgets,
@@ -188,18 +188,18 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
         borderRadius: BorderRadius.circular(27), // rounded-[27px]
         boxShadow: [
           BoxShadow(
-            color: Colors.white.withValues(alpha:0.4),
+            color: Colors.white.withValues(alpha: 0.4),
             blurRadius: 8.111,
             spreadRadius: 0,
             offset: Offset.zero,
           ),
           BoxShadow(
-            color: const Color(0xFF101828).withValues(alpha:0.1),
+            color: const Color(0xFF101828).withValues(alpha: 0.1),
             blurRadius: 3.375,
             offset: const Offset(0, 1.125),
           ),
           BoxShadow(
-            color: const Color(0xFF101828).withValues(alpha:0.06),
+            color: const Color(0xFF101828).withValues(alpha: 0.06),
             blurRadius: 2.25,
             offset: const Offset(0, 1.125),
           ),
@@ -219,4 +219,3 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
     );
   }
 }
-

@@ -186,17 +186,17 @@ class _UiTooltipState extends State<UiTooltip> with TickerProviderStateMixin {
     core = MouseRegion(
       onEnter: widget.triggerOnHover
           ? (_) {
-        _hovering = true;
-        _scheduleShow();
-      }
+              _hovering = true;
+              _scheduleShow();
+            }
           : null,
       onExit: widget.triggerOnHover
           ? (_) {
-        if (_hovering) {
-          _hovering = false;
-          _hide();
-        }
-      }
+              if (_hovering) {
+                _hovering = false;
+                _hide();
+              }
+            }
           : null,
       child: core,
     );

@@ -115,18 +115,83 @@ class Tooltips {
   }
 
   // Keep your predefined variant factories for convenience
-  static UiTooltip neutral({Key? key, required Widget child, required String message, UiTooltipPlacement placement = UiTooltipPlacement.auto, bool enabled = true, UiTooltipStyle? style})
-  => text(key: key, child: child, message: message, placement: placement, enabled: enabled, style: style, variant: UiTooltipVariant.neutral);
+  static UiTooltip neutral(
+          {Key? key,
+          required Widget child,
+          required String message,
+          UiTooltipPlacement placement = UiTooltipPlacement.auto,
+          bool enabled = true,
+          UiTooltipStyle? style}) =>
+      text(
+          key: key,
+          child: child,
+          message: message,
+          placement: placement,
+          enabled: enabled,
+          style: style,
+          variant: UiTooltipVariant.neutral);
 
-  static UiTooltip info({Key? key, required Widget child, required String message, UiTooltipPlacement placement = UiTooltipPlacement.auto, bool enabled = true, UiTooltipStyle? style})
-  => text(key: key, child: child, message: message, placement: placement, enabled: enabled, style: style, variant: UiTooltipVariant.info);
+  static UiTooltip info(
+          {Key? key,
+          required Widget child,
+          required String message,
+          UiTooltipPlacement placement = UiTooltipPlacement.auto,
+          bool enabled = true,
+          UiTooltipStyle? style}) =>
+      text(
+          key: key,
+          child: child,
+          message: message,
+          placement: placement,
+          enabled: enabled,
+          style: style,
+          variant: UiTooltipVariant.info);
 
-  static UiTooltip success({Key? key, required Widget child, required String message, UiTooltipPlacement placement = UiTooltipPlacement.auto, bool enabled = true, UiTooltipStyle? style})
-  => text(key: key, child: child, message: message, placement: placement, enabled: enabled, style: style, variant: UiTooltipVariant.success);
+  static UiTooltip success(
+          {Key? key,
+          required Widget child,
+          required String message,
+          UiTooltipPlacement placement = UiTooltipPlacement.auto,
+          bool enabled = true,
+          UiTooltipStyle? style}) =>
+      text(
+          key: key,
+          child: child,
+          message: message,
+          placement: placement,
+          enabled: enabled,
+          style: style,
+          variant: UiTooltipVariant.success);
 
-  static UiTooltip warning({Key? key, required Widget child, required String message, UiTooltipPlacement placement = UiTooltipPlacement.auto, bool enabled = true, UiTooltipStyle? style})
-  => text(key: key, child: child, message: message, placement: placement, enabled: enabled, style: style, variant: UiTooltipVariant.warning);
+  static UiTooltip warning(
+          {Key? key,
+          required Widget child,
+          required String message,
+          UiTooltipPlacement placement = UiTooltipPlacement.auto,
+          bool enabled = true,
+          UiTooltipStyle? style}) =>
+      text(
+          key: key,
+          child: child,
+          message: message,
+          placement: placement,
+          enabled: enabled,
+          style: style,
+          variant: UiTooltipVariant.warning);
 
-  static UiTooltip error({Key? key, required Widget child, required String message, UiTooltipPlacement placement = UiTooltipPlacement.auto, bool enabled = true, UiTooltipStyle? style})
-  => text(key: key, child: child, message: message, placement: placement, enabled: enabled, style: style, variant: UiTooltipVariant.error);
+  static UiTooltip error(
+          {Key? key,
+          required Widget child,
+          required String message,
+          UiTooltipPlacement placement = UiTooltipPlacement.auto,
+          bool enabled = true,
+          UiTooltipStyle? style}) =>
+      text(
+          key: key,
+          child: child,
+          message: message,
+          placement: placement,
+          enabled: enabled,
+          style: style,
+          variant: UiTooltipVariant.error);
 }

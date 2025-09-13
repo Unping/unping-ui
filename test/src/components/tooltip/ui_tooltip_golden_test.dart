@@ -38,10 +38,10 @@ Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
 }
 
 Future<TestGesture> _hoverOver(
-    WidgetTester tester,
-    Finder target, {
-      Offset? at,
-    }) async {
+  WidgetTester tester,
+  Finder target, {
+  Offset? at,
+}) async {
   final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
   await gesture.addPointer();
   addTearDown(() => gesture.removePointer());
@@ -53,18 +53,18 @@ Future<TestGesture> _hoverOver(
 
 /// 350ms delay + a bit of show animation
 Future<void> _showTooltipAndSettle(
-    WidgetTester tester,
-    Finder trigger,
-    ) async {
+  WidgetTester tester,
+  Finder trigger,
+) async {
   await _hoverOver(tester, trigger);
   await tester.pump(const Duration(milliseconds: 360));
   await tester.pump(const Duration(milliseconds: 200));
 }
 
 Future<void> _expectGoldenOrSkip(
-    WidgetTester tester,
-    String path,
-    ) async {
+  WidgetTester tester,
+  String path,
+) async {
   if (kSkipGoldens) {
     // Smoke assertion so the test still asserts something meaningful.
     expect(find.byType(MaterialApp), findsOneWidget);
@@ -164,8 +164,7 @@ void main() {
             child: UiTooltip(
               placement: UiTooltipPlacement.auto,
               variant: UiTooltipVariant.error,
-              message:
-              'Very long tooltip that wraps within a constrained max '
+              message: 'Very long tooltip that wraps within a constrained max '
                   'width to stay readable across small viewports.',
               child: const Text('Auto near bottom'),
             ),
@@ -230,4 +229,3 @@ void main() {
     });
   });
 }
-

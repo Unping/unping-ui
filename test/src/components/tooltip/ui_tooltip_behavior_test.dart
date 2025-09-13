@@ -29,10 +29,10 @@ Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
 }
 
 Future<TestGesture> _hoverOver(
-    WidgetTester tester,
-    Finder target, {
-      Offset? at,
-    }) async {
+  WidgetTester tester,
+  Finder target, {
+  Offset? at,
+}) async {
   final g = await tester.createGesture(kind: PointerDeviceKind.mouse);
   await g.addPointer();
   addTearDown(() => g.removePointer());
@@ -67,35 +67,35 @@ void main() {
   });
 
   testWidgets('rich() sets semantics via message and renders content',
-          (tester) async {
-        const semanticsText = 'Semantics-only label';
+      (tester) async {
+    const semanticsText = 'Semantics-only label';
 
-        await tester.pumpWidget(
-          _wrap(
-            Tooltips.rich(
-              child: const Text('Rich'),
-              message: semanticsText,
-              content: const Text(
-                'RICH-CONTENT',
-                style: TextStyle(color: Colors.white),
-              ),
-              placement: UiTooltipPlacement.top,
-            ),
+    await tester.pumpWidget(
+      _wrap(
+        Tooltips.rich(
+          child: const Text('Rich'),
+          message: semanticsText,
+          content: const Text(
+            'RICH-CONTENT',
+            style: TextStyle(color: Colors.white),
           ),
-        );
+          placement: UiTooltipPlacement.top,
+        ),
+      ),
+    );
 
-        await _hoverOver(tester, find.text('Rich'));
-        await tester.pump(const Duration(milliseconds: 360));
-        await tester.pump(const Duration(milliseconds: 200));
+    await _hoverOver(tester, find.text('Rich'));
+    await tester.pump(const Duration(milliseconds: 360));
+    await tester.pump(const Duration(milliseconds: 200));
 
-        expect(find.text('RICH-CONTENT'), findsOneWidget);
+    expect(find.text('RICH-CONTENT'), findsOneWidget);
 
-        final hasTooltipSemantics = find.byWidgetPredicate((w) {
-          if (w is Semantics) return w.properties.tooltip == semanticsText;
-          return false;
-        });
-        expect(hasTooltipSemantics, findsOneWidget);
-      });
+    final hasTooltipSemantics = find.byWidgetPredicate((w) {
+      if (w is Semantics) return w.properties.tooltip == semanticsText;
+      return false;
+    });
+    expect(hasTooltipSemantics, findsOneWidget);
+  });
 
   testWidgets('shows on hover after delay, hides on exit', (tester) async {
     final k = UniqueKey();
@@ -326,7 +326,4 @@ void main() {
     await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.text('POPOVER!'), findsNothing);
   });
-
-
-
 }

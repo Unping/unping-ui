@@ -12,4 +12,3 @@ export 'src/components/tooltip/tooltip_variants.dart';
 export 'src/components/tooltip/tooltip_types.dart';
 // Export foundation design system
 export 'src/foundation/foundation.dart';
-

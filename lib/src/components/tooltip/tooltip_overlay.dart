@@ -90,19 +90,34 @@ OverlayEntry buildTooltipOverlay({
 (Alignment, Alignment, Offset) _anchorsFor(UiTooltipPlacement placement) {
   switch (placement) {
     case UiTooltipPlacement.top:
-      return (Alignment.topCenter, Alignment.bottomCenter,
-      const Offset(0, kTooltipGap * -1));
+      return (
+        Alignment.topCenter,
+        Alignment.bottomCenter,
+        const Offset(0, kTooltipGap * -1)
+      );
     case UiTooltipPlacement.bottom:
-      return (Alignment.bottomCenter, Alignment.topCenter,
-      const Offset(0, kTooltipGap));
+      return (
+        Alignment.bottomCenter,
+        Alignment.topCenter,
+        const Offset(0, kTooltipGap)
+      );
     case UiTooltipPlacement.left:
-      return (Alignment.centerLeft, Alignment.centerRight,
-      const Offset(kTooltipGap * -1, 0));
+      return (
+        Alignment.centerLeft,
+        Alignment.centerRight,
+        const Offset(kTooltipGap * -1, 0)
+      );
     case UiTooltipPlacement.right:
-      return (Alignment.centerRight, Alignment.centerLeft,
-      const Offset(kTooltipGap, 0));
+      return (
+        Alignment.centerRight,
+        Alignment.centerLeft,
+        const Offset(kTooltipGap, 0)
+      );
     case UiTooltipPlacement.auto:
-      return (Alignment.bottomCenter, Alignment.topCenter,
-      const Offset(0, kTooltipGap));
+      return (
+        Alignment.bottomCenter,
+        Alignment.topCenter,
+        const Offset(0, kTooltipGap)
+      );
   }
 }
