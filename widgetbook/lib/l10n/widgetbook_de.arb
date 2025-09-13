@@ -1,0 +1,17 @@
+{
+    "button": "Knopf",
+    "label": "Beschriftung",
+    "save": "Speichern",
+    "cancel": "Abbrechen",
+    "submit": "Absenden",
+    "name": "Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "success": "Erfolg",
+    "error": "Fehler",
+    "loading": "Lädt",
+    "home": "Startseite",
+    "settings": "Einstellungen",
+    "profile": "Profil",
+    "option": "Option"
+}

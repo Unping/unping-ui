@@ -73,9 +73,8 @@ class RectanglePatternPainter extends CustomPainter {
 
     // Create a vertical alpha mask to fade the pattern in over the first 300px
     const fadeInHeight = 300.0;
-    final fadeStop = size.height == 0
-        ? 0.0
-        : (fadeInHeight / size.height).clamp(0.0, 1.0);
+    final fadeStop =
+        size.height == 0 ? 0.0 : (fadeInHeight / size.height).clamp(0.0, 1.0);
 
     final gradient = LinearGradient(
       begin: Alignment.topCenter,

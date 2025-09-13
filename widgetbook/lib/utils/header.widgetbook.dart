@@ -27,32 +27,32 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-          Flexible(
-            child: Row(
-              children: [
-                if (logo != null) ...[
-                  logo!,
-                  SizedBox(width: UiSpacing.spacing4), // gap-4
-                ],
-                Flexible(
-                  child: _buildBreadcrumbs(context),
-                ),
+        Flexible(
+          child: Row(
+            children: [
+              if (logo != null) ...[
+                logo!,
+                SizedBox(width: UiSpacing.spacing4), // gap-4
               ],
+              Flexible(
+                child: _buildBreadcrumbs(context),
+              ),
+            ],
+          ),
+        ),
+        if (url != null)
+          Flexible(
+            child: Text(
+              url!,
+              style: UiTextStyles.textXs.copyWith(
+                color: Colors.white, // White #FFFFFF
+              ),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.right,
             ),
           ),
-          if (url != null)
-            Flexible(
-              child: Text(
-                url!,
-                style: UiTextStyles.textXs.copyWith(
-                  color: Colors.white, // White #FFFFFF
-                ),
-                overflow: TextOverflow.ellipsis,
-                textAlign: TextAlign.right,
-              ),
-            ),
-        ],
-      );
+      ],
+    );
   }
 
   Widget _buildBreadcrumbs(BuildContext context) {
@@ -79,7 +79,7 @@ class UnpingUiWidgetbookHeaderTopBar extends StatelessWidget {
         widgets.add(SizedBox(width: UiSpacing.spacing2));
       }
     }
-    
+
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: widgets,
@@ -219,4 +219,3 @@ class UnpingUiWidgetbookHeaderLogo extends StatelessWidget {
     );
   }
 }
-
