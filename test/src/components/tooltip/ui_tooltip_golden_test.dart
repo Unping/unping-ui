@@ -5,12 +5,33 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unping_ui/unping_ui.dart';
 
-/// Wraps the widget in a predictable environment for goldens.
+//   enable real golden checks after you generate baselines.
+const bool kSkipGoldens = false;
+
+/// Minimal test theme with Unping extensions so tokens resolve.
+ThemeData _testTheme() {
+  return ThemeData.light().copyWith(
+    extensions: const <ThemeExtension<dynamic>>[
+      UnpingColorExtension.light,
+      UiSpacingExtension.light,
+      UiRadiusExtension.light,
+    ],
+    textTheme: TextTheme(
+      bodyMedium: UiTextStyles.textMd,
+    ),
+  );
+}
+
+/// Wraps the widget in a predictable environment for tests/goldens.
 Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
   return MaterialApp(
-    theme: UiTheme.lightTheme(),
+    theme: _testTheme(),
     home: MediaQuery(
-      data: MediaQueryData(size: size, devicePixelRatio: 1.0, textScaleFactor: 1.0),
+      data: MediaQueryData(
+        size: size,
+        devicePixelRatio: 1.0,
+        textScaleFactor: 1.0,
+      ),
       child: Scaffold(body: Center(child: child)),
     ),
   );
@@ -30,12 +51,29 @@ Future<TestGesture> _hoverOver(
   return gesture;
 }
 
-/// Pump long enough to pass showDelay + animation and settle the overlay.
-Future<void> _showTooltipAndSettle(WidgetTester tester, Finder trigger) async {
+/// 350ms delay + a bit of show animation
+Future<void> _showTooltipAndSettle(
+    WidgetTester tester,
+    Finder trigger,
+    ) async {
   await _hoverOver(tester, trigger);
-  // 350ms delay + a bit for the show animation
   await tester.pump(const Duration(milliseconds: 360));
   await tester.pump(const Duration(milliseconds: 200));
+}
+
+Future<void> _expectGoldenOrSkip(
+    WidgetTester tester,
+    String path,
+    ) async {
+  if (kSkipGoldens) {
+    // Smoke assertion so the test still asserts something meaningful.
+    expect(find.byType(MaterialApp), findsOneWidget);
+  } else {
+    await expectLater(
+      find.byType(MaterialApp),
+      matchesGoldenFile(path),
+    );
+  }
 }
 
 void main() {
@@ -55,11 +93,9 @@ void main() {
       );
 
       await _showTooltipAndSettle(tester, find.text('Target'));
-
-      // Capture the whole app so Overlay content is included.
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/tooltip_top_neutral.png'),
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_top_neutral.png',
       );
     });
 
@@ -76,10 +112,9 @@ void main() {
       );
 
       await _showTooltipAndSettle(tester, find.text('Info'));
-
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/tooltip_bottom_info.png'),
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_bottom_info.png',
       );
     });
 
@@ -96,10 +131,9 @@ void main() {
       );
 
       await _showTooltipAndSettle(tester, find.text('Success'));
-
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/tooltip_left_success.png'),
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_left_success.png',
       );
     });
 
@@ -116,15 +150,13 @@ void main() {
       );
 
       await _showTooltipAndSettle(tester, find.text('Warning'));
-
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/tooltip_right_warning.png'),
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_right_warning.png',
       );
     });
 
     testWidgets('auto / error with long text near bottom edge', (tester) async {
-      // Put the trigger near the bottom so AUTO prefers bottom placement.
       await tester.pumpWidget(
         _wrap(
           Padding(
@@ -133,8 +165,8 @@ void main() {
               placement: UiTooltipPlacement.auto,
               variant: UiTooltipVariant.error,
               message:
-              'Very long tooltip that wraps within a constrained max width '
-                  'to stay readable across small viewports.',
+              'Very long tooltip that wraps within a constrained max '
+                  'width to stay readable across small viewports.',
               child: const Text('Auto near bottom'),
             ),
           ),
@@ -143,11 +175,59 @@ void main() {
       );
 
       await _showTooltipAndSettle(tester, find.text('Auto near bottom'));
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_auto_error_long.png',
+      );
+    });
 
-      await expectLater(
-        find.byType(MaterialApp),
-        matchesGoldenFile('goldens/tooltip_auto_error_long.png'),
+    testWidgets('rich() content golden', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          Tooltips.rich(
+            child: const Text('Rich Target'),
+            message: 'Semantics label',
+            content: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: const [
+                Icon(Icons.info, size: 16, color: Colors.white),
+                SizedBox(width: 8),
+                Text('Rich tooltip', style: TextStyle(color: Colors.white)),
+              ],
+            ),
+            placement: UiTooltipPlacement.top,
+            variant: UiTooltipVariant.info,
+          ),
+        ),
+      );
+
+      await _showTooltipAndSettle(tester, find.text('Rich Target'));
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_rich_info.png',
+      );
+    });
+
+    testWidgets('popover() golden', (tester) async {
+      await tester.pumpWidget(
+        _wrap(
+          Tooltips.popover(
+            child: const Text('Click me'),
+            message: 'Popover content',
+            variant: UiTooltipVariant.neutral,
+            placement: UiTooltipPlacement.bottom,
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Click me'));
+      await tester.pump(const Duration(milliseconds: 50));
+      await tester.pump(const Duration(milliseconds: 200));
+      await _expectGoldenOrSkip(
+        tester,
+        'goldens/tooltip_popover_neutral.png',
       );
     });
   });
 }
+
