@@ -536,7 +536,7 @@ class _XIconPainter extends CustomPainter {
   // coverage:ignore-start
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-  // coverage:ignore-end
+// coverage:ignore-end
 }
 
 /// Custom painter for person icon
@@ -572,5 +572,5 @@ class _PersonIconPainter extends CustomPainter {
   // coverage:ignore-start
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-  // coverage:ignore-end
+// coverage:ignore-end
 }
