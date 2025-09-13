@@ -132,7 +132,6 @@ UiTooltipStyle styleFor(UiTooltipVariant variant, double viewportWidth) {
     case UiTooltipVariant.error:
       return UiTooltipStyle(background: UiColors.error600, textStyle: txt);
     case UiTooltipVariant.neutral:
-    default:
       return UiTooltipStyle(background: UiColors.neutral900, textStyle: txt);
   }
 }

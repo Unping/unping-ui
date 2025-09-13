@@ -30,7 +30,7 @@ Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
       data: MediaQueryData(
         size: size,
         devicePixelRatio: 1.0,
-        textScaleFactor: 1.0,
+        textScaler: const TextScaler.linear(1.0),
       ),
       child: Scaffold(body: Center(child: child)),
     ),

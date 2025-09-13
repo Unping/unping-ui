@@ -178,7 +178,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
                 borderRadius: BorderRadius.circular(18),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.white.withOpacity(0.4),
+                    color: Colors.white.withValues(alpha:0.4),
                     blurRadius: 12,
                   ),
                 ],
@@ -224,7 +224,7 @@ class UnpingUIWidgetbookGradientHeader extends StatelessWidget {
         letterSpacing: -1.44,
         shadows: [
           Shadow(
-            color: Colors.white.withOpacity(0.4),
+            color: Colors.white.withValues(alpha:0.4),
             blurRadius: 12,
           ),
         ],

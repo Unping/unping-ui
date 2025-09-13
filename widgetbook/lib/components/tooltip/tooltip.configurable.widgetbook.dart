@@ -62,7 +62,7 @@ class _TooltipBodyText extends StatelessWidget {
       // Figma: Text xl / 700
 
       height: 1.5,
-      color: Colors.white.withOpacity(.92),
+      color: Colors.white.withValues(alpha: .92),
     );
 
     return ConstrainedBox(
@@ -201,7 +201,7 @@ class _NumberedLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = UiTextStyles.textMd.copyWith(
-      color: Colors.white.withOpacity(.92),
+      color: Colors.white.withValues(alpha:.92),
       height: 1.6,
     );
     return RichText(
@@ -227,7 +227,7 @@ class _BulletLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = UiTextStyles.textSm.copyWith(
-      color: Colors.white.withOpacity(.92),
+      color: Colors.white.withValues(alpha:.92),
       height: 1.6,
     );
     return Padding(
@@ -266,7 +266,7 @@ class _TooltipGallery extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(UiRadius.lg),
-        border: Border.all(color: UiColors.neutral700.withOpacity(.6)),
+        border: Border.all(color: UiColors.neutral700.withValues(alpha:.6)),
       ),
       child: LayoutBuilder(
         builder: (_, __) {
@@ -475,7 +475,7 @@ class _TooltipExtendedCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final bg = light ? Colors.white : UiColors.neutral900;
     final titleColor = light ? UiColors.neutral900 : Colors.white;
-    final bodyColor  = light ? UiColors.neutral600 : Colors.white.withOpacity(.88);
+    final bodyColor  = light ? UiColors.neutral600 : Colors.white.withValues(alpha:.88);
 
     return Stack(
       clipBehavior: Clip.none,

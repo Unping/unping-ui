@@ -212,13 +212,13 @@ class _ColorSwatch extends StatelessWidget {
             offset: const Offset(0, 12),
             blurRadius: 16,
             spreadRadius: -4,
-            color: const Color(0xFF101828).withOpacity(0.1),
+            color: const Color(0xFF101828).withValues(alpha: 0.1),
           ),
           BoxShadow(
             offset: const Offset(0, 4),
             blurRadius: 6,
             spreadRadius: -2,
-            color: const Color(0xFF101828).withOpacity(0.05),
+            color: const Color(0xFF101828).withValues(alpha:0.05),
           ),
         ],
       ),
@@ -260,7 +260,7 @@ class _ColorSwatch extends StatelessWidget {
                   ),
                   const SizedBox(height: 2), // Reduced spacing
                   SelectableText(
-                    '#${color.value.toRadixString(16).toUpperCase().substring(2)}',
+                    '#${ color.toARGB32().toRadixString(16).toUpperCase().substring(2)}',
                     style: UiTextStyles.textXs.copyWith(
                       color: UiColors.neutral500,
                     )
