@@ -211,7 +211,7 @@ Widget searchInput(BuildContext context) {
 }
 
 @UseCase(
-  name: 'Passworrd Input',
+  name: 'Password Input',
   type: BaseInput,
   path: 'Components/Input/Showcase',
   designLink:

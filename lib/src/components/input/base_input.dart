@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 
-
-
 /// A base class for input components that matches the Figma design.
 /// This will be extended to have variants such as text fields, text areas,
 /// and other input controls that provide users with ways to enter and edit data.
