@@ -115,7 +115,7 @@ void main() {
 
       expect(find.text('Botón'), findsOneWidget);
     });
-    testWidgets('Widget shows localized text change from English to Germen',
+    testWidgets('Widget shows localized text change from English to German',
         (tester) async {
       final localeNotifier = ValueNotifier(const Locale('en'));
       await tester.pumpWidget(
@@ -126,7 +126,7 @@ void main() {
               return Scaffold(
                 body: GestureDetector(
                     onTap: () {
-                      localeNotifier.value = Locale('de');
+                      localeNotifier.value = const Locale('de');
                     },
                     child: Text(context.lang.button)),
               );
