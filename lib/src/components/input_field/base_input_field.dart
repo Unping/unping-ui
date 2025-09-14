@@ -254,7 +254,7 @@ class BaseInputField extends StatefulWidget {
     this.borderRadius = UiRadius.xs,
     this.contentPadding,
     this.labelGap = 8.0, // UiSpacing.xs
-    this.helperGap = 8.0, // UiSpacing.xs  
+    this.helperGap = 8.0, // UiSpacing.xs
     this.iconGap = 8.0, // UiSpacing.xs
     this.forceState,
     this.focusNode,
@@ -274,10 +274,11 @@ class _BaseInputFieldState extends State<BaseInputField> {
   void initState() {
     super.initState();
     _focusNode = widget.focusNode ?? FocusNode();
-    _controller = widget.controller ?? TextEditingController(text: widget.value);
-    
+    _controller =
+        widget.controller ?? TextEditingController(text: widget.value);
+
     _focusNode.addListener(_handleFocusChange);
-    
+
     // If we don't have a controller and value is provided, set it
     if (widget.controller == null && widget.value != null) {
       _controller.text = widget.value!;
@@ -298,7 +299,7 @@ class _BaseInputFieldState extends State<BaseInputField> {
   @override
   void didUpdateWidget(BaseInputField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    
+
     // Update controller text if value changed and we're managing the controller
     if (widget.controller == null && widget.value != oldWidget.value) {
       _controller.text = widget.value ?? '';
@@ -314,6 +315,7 @@ class _BaseInputFieldState extends State<BaseInputField> {
 
   /// Get the effective text style
   TextStyle get _effectiveTextStyle => widget.textStyle ?? UiTextStyles.textSm;
+
   /// Priority: forceState > disabled > error > focused > normal
   InputFieldState get _currentState {
     if (widget.forceState != null) {
@@ -331,14 +333,17 @@ class _BaseInputFieldState extends State<BaseInputField> {
   /// Get size-specific dimensions
   EdgeInsetsGeometry get _sizedContentPadding {
     if (widget.contentPadding != null) return widget.contentPadding!;
-    
+
     switch (widget.size) {
       case InputFieldSize.sm:
-        return EdgeInsets.symmetric(horizontal: UiSpacing.sm, vertical: UiSpacing.xs);
+        return EdgeInsets.symmetric(
+            horizontal: UiSpacing.sm, vertical: UiSpacing.xs);
       case InputFieldSize.md:
-        return EdgeInsets.symmetric(horizontal: UiSpacing.m, vertical: UiSpacing.sm);
+        return EdgeInsets.symmetric(
+            horizontal: UiSpacing.m, vertical: UiSpacing.sm);
       case InputFieldSize.lg:
-        return EdgeInsets.symmetric(horizontal: UiSpacing.l, vertical: UiSpacing.m);
+        return EdgeInsets.symmetric(
+            horizontal: UiSpacing.l, vertical: UiSpacing.m);
     }
   }
 
@@ -358,20 +363,20 @@ class _BaseInputFieldState extends State<BaseInputField> {
     final state = _currentState;
     switch (state) {
       case InputFieldState.disabled:
-        return widget.disabledBackgroundColor ?? 
-               (widget.variant == InputFieldVariant.filled 
-                ? UiColors.neutral100 
+        return widget.disabledBackgroundColor ??
+            (widget.variant == InputFieldVariant.filled
+                ? UiColors.neutral100
                 : const Color(0x00000000)); // Transparent
       case InputFieldState.focused:
-        return widget.focusBackgroundColor ?? 
-               (widget.variant == InputFieldVariant.filled 
-                ? UiColors.neutral50 
+        return widget.focusBackgroundColor ??
+            (widget.variant == InputFieldVariant.filled
+                ? UiColors.neutral50
                 : const Color(0x00000000)); // Transparent
       case InputFieldState.error:
       case InputFieldState.normal:
-        return widget.backgroundColor ?? 
-               (widget.variant == InputFieldVariant.filled 
-                ? UiColors.neutral50 
+        return widget.backgroundColor ??
+            (widget.variant == InputFieldVariant.filled
+                ? UiColors.neutral50
                 : const Color(0x00000000)); // Transparent
     }
   }
@@ -424,7 +429,8 @@ class _BaseInputFieldState extends State<BaseInputField> {
 
   /// Build focus ring decoration
   BoxDecoration? get _focusRingDecoration {
-    if (_currentState != InputFieldState.focused || widget.focusRingColor == null) {
+    if (_currentState != InputFieldState.focused ||
+        widget.focusRingColor == null) {
       return null;
     }
 
@@ -451,11 +457,11 @@ class _BaseInputFieldState extends State<BaseInputField> {
         if (widget.label != null) ...[
           Text(
             widget.label!,
-            style: widget.labelStyle ?? 
-                   UiTextStyles.textSm.copyWith(
-                     color: widget.labelColor ?? UiColors.neutral700,
-                     fontWeight: FontWeight.w500,
-                   ),
+            style: widget.labelStyle ??
+                UiTextStyles.textSm.copyWith(
+                  color: widget.labelColor ?? UiColors.neutral700,
+                  fontWeight: FontWeight.w500,
+                ),
           ),
           SizedBox(height: widget.labelGap),
         ],
@@ -486,7 +492,8 @@ class _BaseInputFieldState extends State<BaseInputField> {
                   // Leading icon
                   if (widget.leadingIcon != null) ...[
                     Padding(
-                      padding: EdgeInsets.only(left: _sizedContentPadding.horizontal / 2),
+                      padding: EdgeInsets.only(
+                          left: _sizedContentPadding.horizontal / 2),
                       child: widget.leadingIcon!,
                     ),
                     SizedBox(width: widget.iconGap),
@@ -498,7 +505,8 @@ class _BaseInputFieldState extends State<BaseInputField> {
                       controller: _controller,
                       focusNode: _focusNode,
                       style: _effectiveTextStyle.copyWith(color: _textColor),
-                      cursorColor: widget.focusBorderColor ?? UiColors.primary600,
+                      cursorColor:
+                          widget.focusBorderColor ?? UiColors.primary600,
                       backgroundCursorColor: UiColors.neutral200,
                       keyboardType: widget.keyboardType ?? TextInputType.text,
                       textInputAction: widget.textInputAction,
@@ -520,7 +528,8 @@ class _BaseInputFieldState extends State<BaseInputField> {
                   if (widget.trailingIcon != null) ...[
                     SizedBox(width: widget.iconGap),
                     Padding(
-                      padding: EdgeInsets.only(right: _sizedContentPadding.horizontal / 2),
+                      padding: EdgeInsets.only(
+                          right: _sizedContentPadding.horizontal / 2),
                       child: widget.trailingIcon!,
                     ),
                   ],
@@ -535,18 +544,19 @@ class _BaseInputFieldState extends State<BaseInputField> {
                   child: Container(
                     padding: _sizedContentPadding.add(
                       EdgeInsets.only(
-                        left: widget.leadingIcon != null 
-                          ? 24.0 + widget.iconGap 
-                          : 0.0,
+                        left: widget.leadingIcon != null
+                            ? 24.0 + widget.iconGap
+                            : 0.0,
                       ),
                     ),
                     alignment: Alignment.centerLeft,
                     child: Text(
                       widget.placeholder!,
-                      style: widget.placeholderStyle ?? 
-                             _effectiveTextStyle.copyWith(
-                               color: widget.placeholderColor ?? UiColors.neutral400,
-                             ),
+                      style: widget.placeholderStyle ??
+                          _effectiveTextStyle.copyWith(
+                            color:
+                                widget.placeholderColor ?? UiColors.neutral400,
+                          ),
                     ),
                   ),
                 ),
@@ -559,15 +569,15 @@ class _BaseInputFieldState extends State<BaseInputField> {
           SizedBox(height: widget.helperGap),
           Text(
             widget.errorText ?? widget.helperText!,
-            style: widget.errorText != null 
-              ? (widget.errorStyle ?? 
-                 UiTextStyles.textXs.copyWith(
-                   color: widget.errorTextColor ?? UiColors.error600,
-                 ))
-              : (widget.helperStyle ?? 
-                 UiTextStyles.textXs.copyWith(
-                   color: widget.helperTextColor ?? UiColors.neutral500,
-                 )),
+            style: widget.errorText != null
+                ? (widget.errorStyle ??
+                    UiTextStyles.textXs.copyWith(
+                      color: widget.errorTextColor ?? UiColors.error600,
+                    ))
+                : (widget.helperStyle ??
+                    UiTextStyles.textXs.copyWith(
+                      color: widget.helperTextColor ?? UiColors.neutral500,
+                    )),
           ),
         ],
       ],

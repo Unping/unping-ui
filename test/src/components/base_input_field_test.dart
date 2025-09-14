@@ -157,7 +157,7 @@ void main() {
           find.byType(Container).first,
         );
         final decoration = container.decoration as BoxDecoration;
-        
+
         expect(decoration.border, isA<Border>());
         expect((decoration.border as Border).top.width, equals(1.0));
       });
@@ -179,7 +179,7 @@ void main() {
           find.byType(Container).first,
         );
         final decoration = container.decoration as BoxDecoration;
-        
+
         expect(decoration.color, equals(UiColors.neutral50));
       });
 
@@ -201,7 +201,7 @@ void main() {
         );
         final decoration = container.decoration as BoxDecoration;
         final border = decoration.border as Border;
-        
+
         expect(border.bottom.width, equals(1.0));
         expect(border.top.width, equals(0.0));
         expect(border.left.width, equals(0.0));
@@ -287,7 +287,7 @@ void main() {
         );
         final decoration = container.decoration as BoxDecoration;
         final border = decoration.border as Border;
-        
+
         expect(border.top.color, equals(UiColors.error600));
       });
 
@@ -309,7 +309,7 @@ void main() {
         );
         final decoration = container.decoration as BoxDecoration;
         final border = decoration.border as Border;
-        
+
         expect(border.top.color, equals(UiColors.primary600));
       });
     });
@@ -570,9 +570,10 @@ void main() {
           find.byType(Container).first,
         );
         final decoration = container.decoration as BoxDecoration;
-        
+
         expect(decoration.color, equals(UiColors.primary50));
-        expect((decoration.border as Border).top.color, equals(UiColors.primary300));
+        expect((decoration.border as Border).top.color,
+            equals(UiColors.primary300));
       });
 
       testWidgets('should apply custom text styles',
@@ -597,7 +598,7 @@ void main() {
         final editableText = tester.widget<EditableText>(
           find.byType(EditableText),
         );
-        
+
         expect(editableText.style.fontSize, equals(18));
         expect(editableText.style.fontWeight, equals(FontWeight.bold));
       });
