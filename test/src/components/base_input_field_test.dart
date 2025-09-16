@@ -8,7 +8,7 @@ void main() {
       final inputField = BaseInputField(
         textColor: const Color(0xFF000000),
       );
-      
+
       expect(inputField, isA<BaseInputField>());
       expect(inputField.textColor, equals(const Color(0xFF000000)));
       expect(inputField.variant, equals(InputFieldVariant.outlined));
@@ -60,7 +60,7 @@ void main() {
         iconGap: 10.0,
         forceState: InputFieldState.error,
       );
-      
+
       expect(inputField, isA<BaseInputField>());
       expect(inputField.placeholder, equals('Test placeholder'));
       expect(inputField.label, equals('Test label'));
@@ -83,7 +83,8 @@ void main() {
       expect(inputField.textCapitalization, equals(TextCapitalization.words));
       expect(inputField.backgroundColor, equals(const Color(0xFFFFFFFF)));
       expect(inputField.focusBackgroundColor, equals(const Color(0xFFE0E0E0)));
-      expect(inputField.disabledBackgroundColor, equals(const Color(0xFFF5F5F5)));
+      expect(
+          inputField.disabledBackgroundColor, equals(const Color(0xFFF5F5F5)));
       expect(inputField.borderColor, equals(const Color(0xFF000000)));
       expect(inputField.focusBorderColor, equals(const Color(0xFF0000FF)));
       expect(inputField.errorBorderColor, equals(const Color(0xFFFF0000)));
@@ -376,7 +377,8 @@ void main() {
             home: Scaffold(
               body: BaseInputField(
                 textColor: UiColors.neutral900,
-                contentPadding: const EdgeInsets.all(50.0), // Large custom padding
+                contentPadding:
+                    const EdgeInsets.all(50.0), // Large custom padding
                 placeholder: 'Test placeholder',
                 size: InputFieldSize.md, // Ensure we're not using default size
               ),
@@ -419,9 +421,10 @@ void main() {
 
         // Verify large size renders
         expect(find.text('Large input'), findsOneWidget);
-        
+
         // Access the widget to ensure large size code paths are executed
-        final inputFieldWidget = tester.widget<BaseInputField>(find.byType(BaseInputField));
+        final inputFieldWidget =
+            tester.widget<BaseInputField>(find.byType(BaseInputField));
         expect(inputFieldWidget.size, equals(InputFieldSize.lg));
       });
 
@@ -736,7 +739,8 @@ void main() {
         expect(find.text(initialValue), findsOneWidget);
       });
 
-      testWidgets('should update controller text when value changes via didUpdateWidget',
+      testWidgets(
+          'should update controller text when value changes via didUpdateWidget',
           (WidgetTester tester) async {
         String currentValue = 'Initial value';
 
@@ -777,7 +781,8 @@ void main() {
         expect(find.text('Initial value'), findsNothing);
       });
 
-      testWidgets('should not update controller when external controller is used',
+      testWidgets(
+          'should not update controller when external controller is used',
           (WidgetTester tester) async {
         final controller = TextEditingController(text: 'Controller text');
         String currentValue = 'Widget value';
