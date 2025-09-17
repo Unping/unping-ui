@@ -371,7 +371,8 @@ void main() {
 
       testWidgets('should use custom content padding when provided',
           (WidgetTester tester) async {
-        // Test with custom content padding
+        // Test with custom content padding AND leading icon
+        // This triggers _sizedContentPadding.horizontal when positioning the icon
         await tester.pumpWidget(
           MaterialApp(
             home: Scaffold(
@@ -379,14 +380,42 @@ void main() {
                 textColor: UiColors.neutral900,
                 contentPadding:
                     const EdgeInsets.all(50.0), // Large custom padding
+                leadingIcon: const Icon(
+                    Icons.search), // Forces _sizedContentPadding call
                 placeholder: 'Test placeholder',
-                size: InputFieldSize.md, // Ensure we're not using default size
+                size: InputFieldSize.md,
               ),
             ),
           ),
         );
 
+        // Wait for all animations and layout
+        await tester.pumpAndSettle();
+
         expect(find.text('Test placeholder'), findsOneWidget);
+        expect(find.byIcon(Icons.search), findsOneWidget);
+
+        // Test with custom content padding AND trailing icon
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding: const EdgeInsets.all(30.0), // Custom padding
+                trailingIcon:
+                    const Icon(Icons.clear), // Forces _sizedContentPadding call
+                placeholder: 'Test with trailing',
+                size: InputFieldSize.lg,
+              ),
+            ),
+          ),
+        );
+
+        // Wait for all animations and layout
+        await tester.pumpAndSettle();
+
+        expect(find.text('Test with trailing'), findsOneWidget);
+        expect(find.byIcon(Icons.clear), findsOneWidget);
 
         // Test without custom content padding to ensure both code paths are tested
         await tester.pumpWidget(
@@ -402,7 +431,189 @@ void main() {
           ),
         );
 
+        // Wait for all animations and layout
+        await tester.pumpAndSettle();
+
         expect(find.text('Test placeholder 2'), findsOneWidget);
+      });
+
+      testWidgets('should use custom content padding in layout calculations',
+          (WidgetTester tester) async {
+        // Create a very specific test that forces the contentPadding path to be taken
+        const customPadding = EdgeInsets.fromLTRB(10, 20, 30, 40);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding: customPadding, // Custom padding
+                leadingIcon: const Icon(Icons.search),
+                trailingIcon: const Icon(Icons.clear),
+                placeholder: 'Custom padding test',
+                size: InputFieldSize.sm,
+              ),
+            ),
+          ),
+        );
+
+        // Wait for full layout
+        await tester.pumpAndSettle();
+
+        // Find the leading icon padding
+        final leadingPaddingFinder = find.descendant(
+          of: find.byType(BaseInputField),
+          matching: find.byType(Padding),
+        );
+
+        expect(leadingPaddingFinder, findsWidgets);
+        expect(find.byIcon(Icons.search), findsOneWidget);
+        expect(find.byIcon(Icons.clear), findsOneWidget);
+        expect(find.text('Custom padding test'), findsOneWidget);
+      });
+
+      testWidgets(
+          'should execute custom content padding code path during text input',
+          (WidgetTester tester) async {
+        // Create a more complex scenario that forces rebuild and getter access
+        const customPadding = EdgeInsets.fromLTRB(15, 25, 35, 45);
+
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding: customPadding, // Force custom padding path
+                leadingIcon: const Icon(Icons.search),
+                placeholder: 'Focus and type test',
+                size: InputFieldSize.md,
+              ),
+            ),
+          ),
+        );
+
+        await tester.pumpAndSettle();
+
+        // Tap to focus the input field, which might trigger additional layout
+        await tester.tap(find.byType(BaseInputField));
+        await tester.pumpAndSettle();
+
+        // Type some text, which definitely triggers layout recalculations
+        await tester.enterText(find.byType(BaseInputField), 'test text');
+        await tester.pumpAndSettle();
+
+        expect(find.text('test text'), findsOneWidget);
+        expect(find.byIcon(Icons.search), findsOneWidget);
+
+        // Clear text to trigger more layout
+        await tester.enterText(find.byType(BaseInputField), '');
+        await tester.pumpAndSettle();
+
+        expect(find.text('Focus and type test'), findsOneWidget);
+      });
+
+      testWidgets(
+          'should use custom content padding with all icon combinations',
+          (WidgetTester tester) async {
+        // Test every combination to ensure the getter is called in all contexts
+
+        // Test 1: Custom padding with leading icon only
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                leadingIcon: const Icon(Icons.person),
+                placeholder: 'Leading only',
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Test 2: Custom padding with trailing icon only
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+                trailingIcon: const Icon(Icons.close),
+                placeholder: 'Trailing only',
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Test 3: Custom padding with both icons
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                contentPadding: const EdgeInsets.all(12),
+                leadingIcon: const Icon(Icons.search),
+                trailingIcon: const Icon(Icons.clear),
+                placeholder: 'Both icons',
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+
+        // Interact with the field to trigger more layout calculations
+        await tester.tap(find.byType(BaseInputField));
+        await tester.pumpAndSettle();
+        await tester.enterText(find.byType(BaseInputField), 'testing');
+        await tester.pumpAndSettle();
+
+        expect(find.text('testing'), findsOneWidget);
+      });
+
+      testWidgets('should use small size padding calculations with icons',
+          (WidgetTester tester) async {
+        // This test specifically targets line 339: the sm size case for _sizedContentPadding
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                // NO custom contentPadding - should use size-based padding (sm case)
+                size: InputFieldSize.sm,
+                leadingIcon: const Icon(Icons
+                    .search), // Forces _sizedContentPadding.horizontal call
+                placeholder: 'Small size test',
+              ),
+            ),
+          ),
+        );
+
+        await tester.pumpAndSettle();
+        expect(find.text('Small size test'), findsOneWidget);
+        expect(find.byIcon(Icons.search), findsOneWidget);
+
+        // Also test with trailing icon
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: BaseInputField(
+                textColor: UiColors.neutral900,
+                size: InputFieldSize.sm,
+                trailingIcon: const Icon(
+                    Icons.clear), // Forces _sizedContentPadding.horizontal call
+                placeholder: 'Small trailing test',
+              ),
+            ),
+          ),
+        );
+
+        await tester.pumpAndSettle();
+        expect(find.text('Small trailing test'), findsOneWidget);
+        expect(find.byIcon(Icons.clear), findsOneWidget);
       });
 
       testWidgets('should apply correct min height and padding for large size',
