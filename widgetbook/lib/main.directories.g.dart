@@ -170,7 +170,7 @@ final directories = <_i1.WidgetbookNode>[
                 ),
               ),
               _i1.WidgetbookLeafComponent(
-                name: '_ExampleRadioGroup',
+                name: 'RadioGroup',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableRadioGroup',
                   builder: _i7.buildConfigurableRadioGroup,
