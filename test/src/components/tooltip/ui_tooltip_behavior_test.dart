@@ -12,9 +12,7 @@ ThemeData _testTheme() {
       UiSpacingExtension.light,
       UiRadiusExtension.light,
     ],
-    textTheme: TextTheme(
-      bodyMedium: UiTextStyles.textMd,
-    ),
+    textTheme: TextTheme(bodyMedium: UiTextStyles.textMd),
   );
 }
 
@@ -66,8 +64,9 @@ void main() {
     expect(hasTooltipSemantics, findsOneWidget);
   });
 
-  testWidgets('rich() sets semantics via message and renders content',
-      (tester) async {
+  testWidgets('rich() sets semantics via message and renders content', (
+    tester,
+  ) async {
     const semanticsText = 'Semantics-only label';
 
     await tester.pumpWidget(
@@ -327,4 +326,3 @@ void main() {
     expect(find.text('POPOVER!'), findsNothing);
   });
 }
-     

@@ -17,7 +17,8 @@ OverlayEntry buildTooltipOverlay({
 }) {
   final anchors = _anchorsFor(placement);
 
-  final childContent = content ??
+  final childContent =
+      content ??
       Text(
         message,
         softWrap: true,
@@ -28,9 +29,10 @@ OverlayEntry buildTooltipOverlay({
   final bubble = FadeTransition(
     opacity: CurvedAnimation(parent: controller, curve: Curves.easeOut),
     child: ScaleTransition(
-      scale: Tween<double>(begin: 0.98, end: 1.0).animate(
-        CurvedAnimation(parent: controller, curve: Curves.easeOut),
-      ),
+      scale: Tween<double>(
+        begin: 0.98,
+        end: 1.0,
+      ).animate(CurvedAnimation(parent: controller, curve: Curves.easeOut)),
       child: Material(
         type: MaterialType.transparency,
         child: ConstrainedBox(
@@ -41,10 +43,7 @@ OverlayEntry buildTooltipOverlay({
               borderRadius: style.radius,
               boxShadow: style.shadow,
             ),
-            child: Padding(
-              padding: style.padding,
-              child: childContent,
-            ),
+            child: Padding(padding: style.padding, child: childContent),
           ),
         ),
       ),
@@ -93,31 +92,31 @@ OverlayEntry buildTooltipOverlay({
       return (
         Alignment.topCenter,
         Alignment.bottomCenter,
-        const Offset(0, kTooltipGap * -1)
+        const Offset(0, kTooltipGap * -1),
       );
     case UiTooltipPlacement.bottom:
       return (
         Alignment.bottomCenter,
         Alignment.topCenter,
-        const Offset(0, kTooltipGap)
+        const Offset(0, kTooltipGap),
       );
     case UiTooltipPlacement.left:
       return (
         Alignment.centerLeft,
         Alignment.centerRight,
-        const Offset(kTooltipGap * -1, 0)
+        const Offset(kTooltipGap * -1, 0),
       );
     case UiTooltipPlacement.right:
       return (
         Alignment.centerRight,
         Alignment.centerLeft,
-        const Offset(kTooltipGap, 0)
+        const Offset(kTooltipGap, 0),
       );
     case UiTooltipPlacement.auto:
       return (
         Alignment.bottomCenter,
         Alignment.topCenter,
-        const Offset(0, kTooltipGap)
+        const Offset(0, kTooltipGap),
       );
   }
 }

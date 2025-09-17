@@ -55,8 +55,9 @@ void main() {
       expect(find.text('Right'), findsOneWidget);
     });
 
-    testWidgets('should apply different sizes correctly',
-        (WidgetTester tester) async {
+    testWidgets('should apply different sizes correctly', (
+      WidgetTester tester,
+    ) async {
       for (final size in BadgeSize.values) {
         await tester.pumpWidget(
           Directionality(
@@ -118,8 +119,9 @@ void main() {
   });
 
   group('BadgeImage', () {
-    testWidgets('should render with fallback when no image',
-        (WidgetTester tester) async {
+    testWidgets('should render with fallback when no image', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -131,14 +133,13 @@ void main() {
       expect(find.byType(Container), findsWidgets);
     });
 
-    testWidgets('should render with custom fallback',
-        (WidgetTester tester) async {
+    testWidgets('should render with custom fallback', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            fallback: Text('FB'),
-          ),
+          child: BadgeImage(fallback: Text('FB')),
         ),
       );
 
@@ -159,8 +160,9 @@ void main() {
       expect(checkboxFinder, findsOneWidget);
     });
 
-    testWidgets('should render unchecked checkbox',
-        (WidgetTester tester) async {
+    testWidgets('should render unchecked checkbox', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -172,8 +174,9 @@ void main() {
       expect(checkboxFinder, findsOneWidget);
     });
 
-    testWidgets('should handle tap when onChanged is provided',
-        (WidgetTester tester) async {
+    testWidgets('should handle tap when onChanged is provided', (
+      WidgetTester tester,
+    ) async {
       bool tappedValue = false;
       bool? receivedValue;
 
@@ -195,8 +198,9 @@ void main() {
       expect(receivedValue, true);
     });
 
-    testWidgets('should not respond to tap when onChanged is null',
-        (WidgetTester tester) async {
+    testWidgets('should not respond to tap when onChanged is null', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -222,8 +226,9 @@ void main() {
       expect(find.text('5'), findsOneWidget);
     });
 
-    testWidgets('should render max count with plus sign',
-        (WidgetTester tester) async {
+    testWidgets('should render max count with plus sign', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -249,8 +254,9 @@ void main() {
   });
 
   group('BaseBadge removable functionality', () {
-    testWidgets('should show remove button when removable is true',
-        (WidgetTester tester) async {
+    testWidgets('should show remove button when removable is true', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -267,8 +273,9 @@ void main() {
       expect(find.byType(GestureDetector), findsWidgets);
     });
 
-    testWidgets('should call onRemove callback when remove button is tapped',
-        (WidgetTester tester) async {
+    testWidgets('should call onRemove callback when remove button is tapped', (
+      WidgetTester tester,
+    ) async {
       bool removeCalled = false;
 
       await tester.pumpWidget(
@@ -286,42 +293,45 @@ void main() {
 
       // Find the GestureDetector that handles the remove tap
       final gestureDetectors = find.byType(GestureDetector);
-      await tester
-          .tap(gestureDetectors.last); // Last one should be the remove button
+      await tester.tap(
+        gestureDetectors.last,
+      ); // Last one should be the remove button
       await tester.pumpAndSettle();
 
       expect(removeCalled, true);
     });
 
     testWidgets(
-        'should hide badge when remove button is tapped without callback',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: BaseBadge(
-            text: 'Removable Badge',
-            removable: true,
-            backgroundColor: const Color(0xFF3B4554),
-            textColor: const Color(0xFFFFFFFF),
+      'should hide badge when remove button is tapped without callback',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: BaseBadge(
+              text: 'Removable Badge',
+              removable: true,
+              backgroundColor: const Color(0xFF3B4554),
+              textColor: const Color(0xFFFFFFFF),
+            ),
           ),
-        ),
-      );
+        );
 
-      expect(find.text('Removable Badge'), findsOneWidget);
+        expect(find.text('Removable Badge'), findsOneWidget);
 
-      // Find and tap the remove button
-      final gestureDetectors = find.byType(GestureDetector);
-      await tester.tap(gestureDetectors.last);
-      await tester.pumpAndSettle();
+        // Find and tap the remove button
+        final gestureDetectors = find.byType(GestureDetector);
+        await tester.tap(gestureDetectors.last);
+        await tester.pumpAndSettle();
 
-      // Badge should be hidden (replaced with SizedBox.shrink)
-      expect(find.text('Removable Badge'), findsNothing);
-      expect(find.byType(SizedBox), findsOneWidget);
-    });
+        // Badge should be hidden (replaced with SizedBox.shrink)
+        expect(find.text('Removable Badge'), findsNothing);
+        expect(find.byType(SizedBox), findsOneWidget);
+      },
+    );
 
-    testWidgets('should not show right widget when removable is true',
-        (WidgetTester tester) async {
+    testWidgets('should not show right widget when removable is true', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -342,22 +352,22 @@ void main() {
   });
 
   group('BadgeImage with imageUrl', () {
-    testWidgets('should render network image when imageUrl is provided',
-        (WidgetTester tester) async {
+    testWidgets('should render network image when imageUrl is provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: 'https://example.com/image.jpg',
-          ),
+          child: BadgeImage(imageUrl: 'https://example.com/image.jpg'),
         ),
       );
 
       expect(find.byType(Image), findsOneWidget);
     });
 
-    testWidgets('should show fallback when network image fails to load',
-        (WidgetTester tester) async {
+    testWidgets('should show fallback when network image fails to load', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -376,32 +386,30 @@ void main() {
     });
 
     testWidgets(
-        'should show default avatar when network image fails without fallback',
-        (WidgetTester tester) async {
+      'should show default avatar when network image fails without fallback',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const Directionality(
+            textDirection: TextDirection.ltr,
+            child: BadgeImage(imageUrl: 'https://invalid-url.com/image.jpg'),
+          ),
+        );
+
+        // Wait for image to fail loading
+        await tester.pumpAndSettle();
+
+        // Should show default avatar (CustomPaint with person icon)
+        expect(find.byType(CustomPaint), findsOneWidget);
+      },
+    );
+
+    testWidgets('should show contrast border when showContrastBorder is true', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: 'https://invalid-url.com/image.jpg',
-          ),
-        ),
-      );
-
-      // Wait for image to fail loading
-      await tester.pumpAndSettle();
-
-      // Should show default avatar (CustomPaint with person icon)
-      expect(find.byType(CustomPaint), findsOneWidget);
-    });
-
-    testWidgets('should show contrast border when showContrastBorder is true',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const Directionality(
-          textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            showContrastBorder: true,
-          ),
+          child: BadgeImage(showContrastBorder: true),
         ),
       );
 
@@ -410,29 +418,26 @@ void main() {
       expect(find.byType(Positioned), findsOneWidget);
     });
 
-    testWidgets('should handle empty imageUrl string',
-        (WidgetTester tester) async {
+    testWidgets('should handle empty imageUrl string', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: '',
-            fallback: Text('Empty URL Fallback'),
-          ),
+          child: BadgeImage(imageUrl: '', fallback: Text('Empty URL Fallback')),
         ),
       );
 
       expect(find.text('Empty URL Fallback'), findsOneWidget);
     });
 
-    testWidgets('should handle null imageUrl with no fallback',
-        (WidgetTester tester) async {
+    testWidgets('should handle null imageUrl with no fallback', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: null,
-          ),
+          child: BadgeImage(imageUrl: null),
         ),
       );
 
@@ -453,8 +458,9 @@ void main() {
       expect(find.byType(Container), findsOneWidget);
     });
 
-    testWidgets('should render with outline when showOutline is true',
-        (WidgetTester tester) async {
+    testWidgets('should render with outline when showOutline is true', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -469,15 +475,13 @@ void main() {
       expect(find.byType(Container), findsOneWidget);
     });
 
-    testWidgets('should render with custom size and color',
-        (WidgetTester tester) async {
+    testWidgets('should render with custom size and color', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: BadgeDot(
-            size: 10.0,
-            color: Color(0xFFFF0000),
-          ),
+          child: BadgeDot(size: 10.0, color: Color(0xFFFF0000)),
         ),
       );
 
@@ -486,53 +490,48 @@ void main() {
   });
 
   group('Badge checkbox with size conversion', () {
-    testWidgets('should create small checkbox when size <= 16',
-        (WidgetTester tester) async {
+    testWidgets('should create small checkbox when size <= 16', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
-          child: Badges.checkbox(
-            isChecked: false,
-            size: 14.0,
-          ),
+          child: Badges.checkbox(isChecked: false, size: 14.0),
         ),
       );
 
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create medium checkbox when size <= 20',
-        (WidgetTester tester) async {
+    testWidgets('should create medium checkbox when size <= 20', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
-          child: Badges.checkbox(
-            isChecked: false,
-            size: 18.0,
-          ),
+          child: Badges.checkbox(isChecked: false, size: 18.0),
         ),
       );
 
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create large checkbox when size > 20',
-        (WidgetTester tester) async {
+    testWidgets('should create large checkbox when size > 20', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
-          child: Badges.checkbox(
-            isChecked: false,
-            size: 24.0,
-          ),
+          child: Badges.checkbox(isChecked: false, size: 24.0),
         ),
       );
 
       expect(find.byType(BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should create checkbox with custom colors',
-        (WidgetTester tester) async {
+    testWidgets('should create checkbox with custom colors', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -550,8 +549,9 @@ void main() {
   });
 
   group('BaseBadge with border properties', () {
-    testWidgets('should render without border when borderColor is null',
-        (WidgetTester tester) async {
+    testWidgets('should render without border when borderColor is null', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -567,8 +567,9 @@ void main() {
       expect(find.text('No Border Badge'), findsOneWidget);
     });
 
-    testWidgets('should apply minHeight constraint when provided',
-        (WidgetTester tester) async {
+    testWidgets('should apply minHeight constraint when provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -582,49 +583,55 @@ void main() {
       );
 
       expect(find.text('Min Height Badge'), findsOneWidget);
-      expect(find.byType(BoxConstraints),
-          findsNothing); // BoxConstraints is not a widget
-    });
-
-    testWidgets('should render BadgeImage with default avatar and test painter',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const Directionality(
-          textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: null, // No image URL to trigger default avatar
-            size: 24.0,
-          ),
-        ),
-      );
-
-      expect(find.byType(BadgeImage), findsOneWidget);
-      expect(find.byType(CustomPaint), findsOneWidget);
-
-      // Trigger a repaint to exercise shouldRepaint method
-      await tester.pump();
+      expect(
+        find.byType(BoxConstraints),
+        findsNothing,
+      ); // BoxConstraints is not a widget
     });
 
     testWidgets(
-        'should render BadgeImage with error fallback to default avatar',
-        (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const Directionality(
-          textDirection: TextDirection.ltr,
-          child: BadgeImage(
-            imageUrl: 'invalid-url', // Invalid URL to trigger error fallback
-            size: 24.0,
+      'should render BadgeImage with default avatar and test painter',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const Directionality(
+            textDirection: TextDirection.ltr,
+            child: BadgeImage(
+              imageUrl: null, // No image URL to trigger default avatar
+              size: 24.0,
+            ),
           ),
-        ),
-      );
+        );
 
-      expect(find.byType(BadgeImage), findsOneWidget);
-      // Wait for the image to fail and trigger the fallback
-      await tester.pump();
-    });
+        expect(find.byType(BadgeImage), findsOneWidget);
+        expect(find.byType(CustomPaint), findsOneWidget);
 
-    testWidgets('should test custom painters shouldRepaint methods',
-        (WidgetTester tester) async {
+        // Trigger a repaint to exercise shouldRepaint method
+        await tester.pump();
+      },
+    );
+
+    testWidgets(
+      'should render BadgeImage with error fallback to default avatar',
+      (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const Directionality(
+            textDirection: TextDirection.ltr,
+            child: BadgeImage(
+              imageUrl: 'invalid-url', // Invalid URL to trigger error fallback
+              size: 24.0,
+            ),
+          ),
+        );
+
+        expect(find.byType(BadgeImage), findsOneWidget);
+        // Wait for the image to fail and trigger the fallback
+        await tester.pump();
+      },
+    );
+
+    testWidgets('should test custom painters shouldRepaint methods', (
+      WidgetTester tester,
+    ) async {
       // Test removable badge with X icon painter
       await tester.pumpWidget(
         Directionality(
