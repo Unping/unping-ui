@@ -82,10 +82,10 @@ class BaseBadge extends StatefulWidget {
     EdgeInsetsGeometry? padding,
     double? gap,
     this.minHeight,
-  }) : textStyle = textStyle ?? _getDefaultTextStyle(size),
-       borderRadius = borderRadius ?? _getDefaultBorderRadius(size),
-       padding = padding ?? _getDefaultPadding(size),
-       gap = gap ?? _getDefaultGap(size);
+  })  : textStyle = textStyle ?? _getDefaultTextStyle(size),
+        borderRadius = borderRadius ?? _getDefaultBorderRadius(size),
+        padding = padding ?? _getDefaultPadding(size),
+        gap = gap ?? _getDefaultGap(size);
 
   @override
   State<BaseBadge> createState() => _BaseBadgeState();
@@ -346,9 +346,8 @@ class BadgeCount extends StatelessWidget {
     TextStyle? textStyle,
     this.borderRadius = UiRadius.xs,
     this.padding = const EdgeInsets.symmetric(horizontal: 6.0, vertical: 0.0),
-  }) : textStyle =
-           textStyle ??
-           UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
+  }) : textStyle = textStyle ??
+            UiTextStyles.textXs.copyWith(fontWeight: UiTextStyles.medium);
 
   @override
   Widget build(BuildContext context) {

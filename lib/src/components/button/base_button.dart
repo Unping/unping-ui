@@ -147,16 +147,15 @@ class BaseButton extends StatefulWidget {
     this.isLoading = false,
     this.loadingWidget,
     this.forceState,
-  }) : padding =
-           padding ??
-           (text != null
-               ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
-               : const EdgeInsets.all(8.0)), // Use 8px all around when no text
-       textStyle = textStyle ?? UiTextStyles.textSm,
-       assert(
-         text != null || icon != null,
-         'Either text or icon must be provided',
-       );
+  })  : padding = padding ??
+            (text != null
+                ? const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)
+                : const EdgeInsets.all(8.0)), // Use 8px all around when no text
+        textStyle = textStyle ?? UiTextStyles.textSm,
+        assert(
+          text != null || icon != null,
+          'Either text or icon must be provided',
+        );
 
   @override
   State<BaseButton> createState() => _BaseButtonState();

@@ -122,15 +122,16 @@ class Tooltips {
     UiTooltipPlacement placement = UiTooltipPlacement.auto,
     bool enabled = true,
     UiTooltipStyle? style,
-  }) => text(
-    key: key,
-    child: child,
-    message: message,
-    placement: placement,
-    enabled: enabled,
-    style: style,
-    variant: UiTooltipVariant.neutral,
-  );
+  }) =>
+      text(
+        key: key,
+        child: child,
+        message: message,
+        placement: placement,
+        enabled: enabled,
+        style: style,
+        variant: UiTooltipVariant.neutral,
+      );
 
   static UiTooltip info({
     Key? key,
@@ -139,15 +140,16 @@ class Tooltips {
     UiTooltipPlacement placement = UiTooltipPlacement.auto,
     bool enabled = true,
     UiTooltipStyle? style,
-  }) => text(
-    key: key,
-    child: child,
-    message: message,
-    placement: placement,
-    enabled: enabled,
-    style: style,
-    variant: UiTooltipVariant.info,
-  );
+  }) =>
+      text(
+        key: key,
+        child: child,
+        message: message,
+        placement: placement,
+        enabled: enabled,
+        style: style,
+        variant: UiTooltipVariant.info,
+      );
 
   static UiTooltip success({
     Key? key,
@@ -156,15 +158,16 @@ class Tooltips {
     UiTooltipPlacement placement = UiTooltipPlacement.auto,
     bool enabled = true,
     UiTooltipStyle? style,
-  }) => text(
-    key: key,
-    child: child,
-    message: message,
-    placement: placement,
-    enabled: enabled,
-    style: style,
-    variant: UiTooltipVariant.success,
-  );
+  }) =>
+      text(
+        key: key,
+        child: child,
+        message: message,
+        placement: placement,
+        enabled: enabled,
+        style: style,
+        variant: UiTooltipVariant.success,
+      );
 
   static UiTooltip warning({
     Key? key,
@@ -173,15 +176,16 @@ class Tooltips {
     UiTooltipPlacement placement = UiTooltipPlacement.auto,
     bool enabled = true,
     UiTooltipStyle? style,
-  }) => text(
-    key: key,
-    child: child,
-    message: message,
-    placement: placement,
-    enabled: enabled,
-    style: style,
-    variant: UiTooltipVariant.warning,
-  );
+  }) =>
+      text(
+        key: key,
+        child: child,
+        message: message,
+        placement: placement,
+        enabled: enabled,
+        style: style,
+        variant: UiTooltipVariant.warning,
+      );
 
   static UiTooltip error({
     Key? key,
@@ -190,13 +194,14 @@ class Tooltips {
     UiTooltipPlacement placement = UiTooltipPlacement.auto,
     bool enabled = true,
     UiTooltipStyle? style,
-  }) => text(
-    key: key,
-    child: child,
-    message: message,
-    placement: placement,
-    enabled: enabled,
-    style: style,
-    variant: UiTooltipVariant.error,
-  );
+  }) =>
+      text(
+        key: key,
+        child: child,
+        message: message,
+        placement: placement,
+        enabled: enabled,
+        style: style,
+        variant: UiTooltipVariant.error,
+      );
 }

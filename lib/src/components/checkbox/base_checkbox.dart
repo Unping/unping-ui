@@ -404,14 +404,12 @@ class _BaseCheckboxState extends State<BaseCheckbox>
     // Build the text content
     Widget? textContent;
     if (widget.label != null || widget.description != null) {
-      final labelStyle =
-          widget.labelStyle ??
+      final labelStyle = widget.labelStyle ??
           UiTextStyles.textSmMedium.copyWith(
             color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
           );
 
-      final descriptionStyle =
-          widget.descriptionStyle ??
+      final descriptionStyle = widget.descriptionStyle ??
           UiTextStyles.textSm.copyWith(
             color: isDisabled ? UiColors.neutral500 : UiColors.onPrimary,
           );
@@ -536,14 +534,12 @@ class _RadioGroupState<T> extends State<RadioGroup<T>> {
           mainAxisSize: MainAxisSize.min,
           children: [
             BaseCheckbox(
-              state: isSelected
-                  ? CheckboxState.checked
-                  : CheckboxState.unchecked,
+              state:
+                  isSelected ? CheckboxState.checked : CheckboxState.unchecked,
               shape: CheckboxShape.circle,
               size: widget.size,
-              onChanged: widget.disabled
-                  ? null
-                  : (_) => _handleChanged(option.value),
+              onChanged:
+                  widget.disabled ? null : (_) => _handleChanged(option.value),
               checkedBackgroundColor:
                   widget.checkedBackgroundColor ?? UiColors.neutral700,
               uncheckedBackgroundColor:

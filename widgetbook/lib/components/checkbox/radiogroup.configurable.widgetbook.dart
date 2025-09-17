@@ -53,14 +53,15 @@ class _ExampleRadioGroupState extends State<_ExampleRadioGroup> {
 
 @widgetbook.UseCase(
   name: 'ConfigurableRadioGroup',
-  type: RadioGroup,
+  type:
+      _ExampleRadioGroup, // ===> concrete (non-generic) widget type, no rename
   path: 'Components/Checkbox/Configurable',
   designLink:
       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildConfigurableRadioGroup(BuildContext context) {
   // Radio group size
-  final radioSize = context.knobs.list(
+  final radioSize = context.knobs.list<CheckboxSize>(
     label: 'Size',
     options: CheckboxSize.values,
     labelBuilder: (value) => value.name,
@@ -76,9 +77,9 @@ Widget buildConfigurableRadioGroup(BuildContext context) {
   );
 
   // Direction
-  final direction = context.knobs.list(
+  final direction = context.knobs.list<Axis>(
     label: 'Direction',
-    options: [Axis.vertical, Axis.horizontal],
+    options: const [Axis.vertical, Axis.horizontal],
     labelBuilder: (axis) => axis == Axis.vertical ? 'Vertical' : 'Horizontal',
     initialOption: Axis.vertical,
   );
@@ -104,7 +105,7 @@ Widget buildConfigurableRadioGroup(BuildContext context) {
   );
 
   // Generate radio options based on numberOfOptions
-  final options = List.generate(numberOfOptions, (index) {
+  final options = List<RadioOption<String>>.generate(numberOfOptions, (index) {
     final value = 'option${index + 1}';
     final text = hasLabels ? 'Option ${index + 1}' : null;
 
@@ -128,7 +129,7 @@ Widget buildConfigurableRadioGroup(BuildContext context) {
   );
 
   return UnpingUIContainer(
-    breadcrumbs: ['Components', 'RadioGroup', 'Configurable'],
+    breadcrumbs: const ['Components', 'RadioGroup', 'Configurable'],
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

@@ -17,8 +17,7 @@ OverlayEntry buildTooltipOverlay({
 }) {
   final anchors = _anchorsFor(placement);
 
-  final childContent =
-      content ??
+  final childContent = content ??
       Text(
         message,
         softWrap: true,
