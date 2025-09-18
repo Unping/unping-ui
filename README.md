@@ -26,7 +26,7 @@ Before you can use Unping UI components in your project, you need to install and
 
 2. **Add the unping-ui repository to fpx:**
    ```sh
-   fpx repository add https://github.com/unping/unping-ui
+   fpx repository add --url https://github.com/unping/unping-ui --name unping-ui
    ```
 
 3. **Use fpx to paste components from unping-ui into your project:**

@@ -1,0 +1,12 @@
+bricks:
+  path: lib/src/components
+variables:
+  foundation:
+    color:
+      path: lib/src/foundation/ui_colors.dart
+    spacing:
+      path: lib/src/foundation/ui_spacing.dart
+    text_styles:
+      path: lib/src/foundation/ui_text_styles.dart
+    radius:
+      path: lib/src/foundation/ui_radius.dart
