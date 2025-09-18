@@ -161,7 +161,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'Configurable',
             children: [
               _i1.WidgetbookLeafComponent(
-                name: 'ExampleCheckbox',
+                name: 'BaseCheckbox',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableCheckbox',
                   builder: _i6.buildConfigurableCheckbox,
