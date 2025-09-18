@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
-// Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 /// Example stateful checkbox widget for demonstration in Widgetbook
-class _ExampleCheckbox extends StatefulWidget {
+class ExampleCheckbox extends StatefulWidget {
   final CheckboxSize size;
   final String? label;
   final String? description;
@@ -17,7 +16,8 @@ class _ExampleCheckbox extends StatefulWidget {
   final bool isDisabled;
   final bool allowIndeterminate;
 
-  const _ExampleCheckbox({
+  const ExampleCheckbox({
+    super.key,
     required this.size,
     this.label,
     this.description,
@@ -29,17 +29,17 @@ class _ExampleCheckbox extends StatefulWidget {
   });
 
   @override
-  State<_ExampleCheckbox> createState() => _ExampleCheckboxState();
+  State<ExampleCheckbox> createState() => ExampleCheckboxState();
 }
 
-class _ExampleCheckboxState extends State<_ExampleCheckbox> {
+class ExampleCheckboxState extends State<ExampleCheckbox> {
   CheckboxState currentState = CheckboxState.unchecked;
 
   void _handleStateChange(CheckboxState newState) {
     if (!widget.isDisabled) {
       setState(() {
         if (widget.allowIndeterminate) {
-          // Cycle through states: unchecked -> checked -> indeterminate -> unchecked
+          // Cycle unchecked → checked → indeterminate → unchecked
           switch (currentState) {
             case CheckboxState.unchecked:
               currentState = CheckboxState.checked;
@@ -52,7 +52,7 @@ class _ExampleCheckboxState extends State<_ExampleCheckbox> {
               break;
           }
         } else {
-          // Only cycle between unchecked and checked
+          // Only unchecked ↔ checked
           switch (currentState) {
             case CheckboxState.unchecked:
               currentState = CheckboxState.checked;
@@ -84,13 +84,13 @@ class _ExampleCheckboxState extends State<_ExampleCheckbox> {
 
 @widgetbook.UseCase(
   name: 'ConfigurableCheckbox',
-  type: BaseCheckbox,
+  type: ExampleCheckbox, // PUBLIC widget type (no quotes / no parentheses)
   path: 'Components/Checkbox/Configurable',
   designLink:
       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildConfigurableCheckbox(BuildContext context) {
-  // Checkbox size
+  // Size
   final checkboxSize = context.knobs.list(
     label: 'Size',
     options: CheckboxSize.values,
@@ -98,24 +98,16 @@ Widget buildConfigurableCheckbox(BuildContext context) {
     initialOption: CheckboxSize.md,
   );
 
-  // Text content
-  final hasLabel = context.knobs.boolean(
-    label: 'Has Label',
-    initialValue: true,
-  );
-
+  // Label / description toggles
+  final hasLabel =
+      context.knobs.boolean(label: 'Has Label', initialValue: true);
   final labelText = hasLabel
-      ? context.knobs.string(
-          label: 'Label Text',
-          initialValue: 'Checkbox Label',
-        )
+      ? context.knobs
+          .string(label: 'Label Text', initialValue: 'Checkbox Label')
       : null;
 
-  final hasDescription = context.knobs.boolean(
-    label: 'Has Description',
-    initialValue: false,
-  );
-
+  final hasDescription =
+      context.knobs.boolean(label: 'Has Description', initialValue: false);
   final descriptionText = hasDescription
       ? context.knobs.string(
           label: 'Description Text',
@@ -123,8 +115,8 @@ Widget buildConfigurableCheckbox(BuildContext context) {
         )
       : null;
 
-  // Text styling
-  final labelStyle = context.knobs.listOrNull(
+  // Text styles
+  final labelStyle = context.knobs.listOrNull<TextStyle>(
     label: 'Label Style (override default)',
     options: [
       null,
@@ -140,7 +132,7 @@ Widget buildConfigurableCheckbox(BuildContext context) {
         style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
   );
 
-  final descriptionStyle = context.knobs.listOrNull(
+  final descriptionStyle = context.knobs.listOrNull<TextStyle>(
     label: 'Description Style (override default)',
     options: [
       null,
@@ -164,19 +156,16 @@ Widget buildConfigurableCheckbox(BuildContext context) {
     max: UiSpacing.spacing24,
   );
 
-  // Interaction states
-  final isDisabled = context.knobs.boolean(
-    label: 'Disabled',
-    initialValue: false,
-  );
+  // Interaction toggles
+  final isDisabled =
+      context.knobs.boolean(label: 'Disabled', initialValue: false);
 
   final allowIndeterminate = context.knobs.boolean(
     label: 'Allow Indeterminate State',
     initialValue: false,
   );
 
-  // Create checkbox
-  final checkbox = _ExampleCheckbox(
+  final checkbox = ExampleCheckbox(
     size: checkboxSize,
     label: labelText,
     description: descriptionText,
@@ -188,7 +177,7 @@ Widget buildConfigurableCheckbox(BuildContext context) {
   );
 
   return UnpingUIContainer(
-    breadcrumbs: ['Components', 'Checkbox', 'Configurable'],
+    breadcrumbs: const ['Components', 'Checkbox', 'Configurable'],
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
