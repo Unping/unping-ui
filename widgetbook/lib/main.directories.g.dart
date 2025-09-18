@@ -33,6 +33,10 @@ import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
     as _i12;
 import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
     as _i13;
+import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+    as _i14;
+import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
+    as _i15;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -196,6 +200,41 @@ final directories = <_i1.WidgetbookNode>[
                   ),
                 ],
               )
+            ],
+          ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Toggle',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseToggle',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableToggle',
+                  builder: _i14.buildConfigurableToggle,
+                  designLink:
+                  'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
+                ),
+              ),
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseToggle',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Toggle',
+                    builder: _i15.toggle,
+                    designLink:
+                    'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
+                  ),
+                ],
+              ),
             ],
           ),
         ],
