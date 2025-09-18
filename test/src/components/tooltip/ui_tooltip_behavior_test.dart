@@ -1,7 +1,5 @@
 // dart format width=80
 import 'dart:ui' show PointerDeviceKind;
-
-import 'package:flutter/gestures.dart' show LogicalKeyboardKey;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -156,11 +154,18 @@ void main() {
     await tester.pump(const Duration(milliseconds: 200));
 
     final el = tester.element(find.text(tipText));
+    final constrained = el.findAncestorWidgetOfExactType<ConstrainedBox>();
+    expect(constrained, isNotNull);
+
+    final constraints = (constrained as ConstrainedBox).constraints;
+    expect(constraints.maxWidth, equals(280.0));
+
     final decorated = el.findAncestorWidgetOfExactType<DecoratedBox>();
     expect(decorated, isNotNull);
 
-    final box = decorated!.decoration as BoxDecoration;
+    final box = (decorated as DecoratedBox).decoration as BoxDecoration;
     expect(box.color, equals(UiColors.success600));
+
   });
 
   testWidgets('disabled tooltip never shows', (tester) async {
@@ -367,7 +372,7 @@ void main() {
                     dismissed = true;
                   },
                 );
-                Overlay.of(context, rootOverlay: true)!.insert(entry);
+                Overlay.of(context, rootOverlay: true).insert(entry);
                 controller.forward(from: 0);
               });
               return CompositedTransformTarget(
