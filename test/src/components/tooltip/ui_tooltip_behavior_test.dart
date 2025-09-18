@@ -165,7 +165,6 @@ void main() {
 
     final box = (decorated as DecoratedBox).decoration as BoxDecoration;
     expect(box.color, equals(UiColors.success600));
-
   });
 
   testWidgets('disabled tooltip never shows', (tester) async {
