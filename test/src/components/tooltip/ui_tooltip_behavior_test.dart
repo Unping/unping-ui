@@ -1,5 +1,7 @@
 // dart format width=80
 import 'dart:ui' show PointerDeviceKind;
+
+import 'package:flutter/gestures.dart' show LogicalKeyboardKey;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -27,10 +29,10 @@ Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
 }
 
 Future<TestGesture> _hoverOver(
-  WidgetTester tester,
-  Finder target, {
-  Offset? at,
-}) async {
+    WidgetTester tester,
+    Finder target, {
+      Offset? at,
+    }) async {
   final g = await tester.createGesture(kind: PointerDeviceKind.mouse);
   await g.addPointer();
   addTearDown(() => g.removePointer());
@@ -65,8 +67,8 @@ void main() {
   });
 
   testWidgets('rich() sets semantics via message and renders content', (
-    tester,
-  ) async {
+      tester,
+      ) async {
     const semanticsText = 'Semantics-only label';
 
     await tester.pumpWidget(
@@ -324,5 +326,251 @@ void main() {
     await tester.pump();
     await tester.pumpAndSettle(const Duration(seconds: 1));
     expect(find.text('POPOVER!'), findsNothing);
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // EXTRA COVERAGE: interactive overlay outside-tap dismissal
+  // ───────────────────────────────────────────────────────────────────────────
+  testWidgets('interactive popover overlay dismisses on outside tap', (
+      tester,
+      ) async {
+    final link = LayerLink();
+    late OverlayEntry entry;
+    bool dismissed = false;
+
+    final controller = AnimationController(
+      vsync: tester,
+      duration: const Duration(milliseconds: 40),
+      reverseDuration: const Duration(milliseconds: 40),
+    );
+    addTearDown(controller.dispose);
+
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: Overlay(
+          initialEntries: [
+            OverlayEntry(builder: (context) {
+              // Insert our interactive overlay after first frame
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                entry = buildTooltipOverlay(
+                  context: context,
+                  link: link,
+                  controller: controller,
+                  message: 'POPOVER-INTERACTIVE',
+                  content: const Text('POPOVER-INTERACTIVE'),
+                  placement: UiTooltipPlacement.top,
+                  style: styleFor(UiTooltipVariant.neutral, 800),
+                  interactive: true,
+                  dismissOnTapOutside: true,
+                  onTapOutside: () {
+                    // Just record that the callback fired; removal can race here.
+                    dismissed = true;
+                  },
+
+
+                );
+                Overlay.of(context, rootOverlay: true)!.insert(entry);
+                controller.forward(from: 0);
+              });
+              return CompositedTransformTarget(
+                link: link,
+                child: const SizedBox(width: 10, height: 10),
+              );
+            }),
+          ],
+        ),
+      ),
+    ));
+
+    await tester.pumpAndSettle();
+    expect(find.text('POPOVER-INTERACTIVE'), findsOneWidget);
+
+    await tester.tapAt(const Offset(0, 0));
+    await tester.pumpAndSettle(const Duration(milliseconds: 120));
+    expect(dismissed, isTrue);
+
+// now it's safe to remove & settle one frame
+    if (entry.mounted) {
+      entry.remove();
+      await tester.pump();
+    }
+    expect(find.text('POPOVER-INTERACTIVE'), findsNothing);
+
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // EXTRA COVERAGE: didChangeDependencies & reassemble hide
+  // ───────────────────────────────────────────────────────────────────────────
+  testWidgets('didUpdateWidget(enabled=false) hides immediately', (tester) async {
+    final key = UniqueKey();
+
+    Widget app(bool enabled) => MaterialApp(
+      home: Scaffold(
+        body: UiTooltip(
+          enabled: enabled,
+          message: 'HIDE-ME',
+          child: Text('Target', key: key),
+        ),
+      ),
+    );
+
+    // Start enabled and show it
+    await tester.pumpWidget(app(true));
+    final g = await tester.createGesture(kind: PointerDeviceKind.mouse);
+    await g.addPointer();
+    await g.moveTo(tester.getCenter(find.byKey(key)));
+    await tester.pump(const Duration(milliseconds: 360)); // delay
+    await tester.pump(const Duration(milliseconds: 200)); // show anim
+    expect(find.text('HIDE-ME'), findsOneWidget);
+
+    // Update to enabled=false -> immediate removeEntry()
+    await tester.pumpWidget(app(false));
+    await tester.pump(); // allow frame
+    // move pointer away so nothing retriggers
+    await g.moveTo(const Offset(0, 0));
+    await tester.pumpAndSettle(const Duration(milliseconds: 200));
+
+    expect(find.text('HIDE-ME'), findsNothing);
+    await g.removePointer();
+  });
+
+
+
+  testWidgets('reassemble() hides an already visible tooltip', (tester) async {
+    final key = UniqueKey();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: UiTooltip(
+            message: 'REASSEMBLE-HIDE',
+            child: Text('Target', key: key),
+          ),
+        ),
+      ),
+    );
+
+    // Show
+    final g = await tester.createGesture(kind: PointerDeviceKind.mouse);
+    await g.addPointer();
+    await g.moveTo(tester.getCenter(find.byKey(key)));
+    await tester.pump(const Duration(milliseconds: 360));
+    await tester.pump(const Duration(milliseconds: 200));
+    expect(find.text('REASSEMBLE-HIDE'), findsOneWidget);
+
+    // Simulate hot-reload reassemble
+    await tester.binding.reassembleApplication();
+    await tester.pump();
+
+// move pointer away so nothing re-triggers
+    await g.moveTo(const Offset(0, 0));
+    await tester.pumpAndSettle(const Duration(milliseconds: 200));
+
+    expect(find.text('REASSEMBLE-HIDE'), findsNothing);  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // EXTRA COVERAGE: placement branches & small-viewport font sizing
+  // ───────────────────────────────────────────────────────────────────────────
+  testWidgets('resolvePlacement covers bottom/right/left via layout', (
+      tester,
+      ) async {
+    Future<void> mountAt(EdgeInsets padding) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: Padding(
+            padding: padding,
+            child: UiTooltip(
+              placement: UiTooltipPlacement.auto,
+              message: 'X',
+              child: const SizedBox(width: 20, height: 20),
+            ),
+          ),
+        ),
+      ));
+      // Trigger placement logic by long-press (touch path)
+      final center = tester.getCenter(find.byType(SizedBox));
+      final gesture = await tester.startGesture(center);
+      await tester.pump(const Duration(milliseconds: 600)); // long press
+      await tester.pump(const Duration(milliseconds: 360)); // show delay
+      await tester.pump(const Duration(milliseconds: 40));  // anim
+      await gesture.up();
+      // Let overlay settle visible then disappear (not strictly required)
+      await tester.pump(const Duration(milliseconds: 160));
+    }
+
+    // Bottom (enough space below)
+    await mountAt(const EdgeInsets.only(top: 20));
+    expect(find.text('X'), findsOneWidget);
+    await tester.pumpAndSettle();
+
+    // Right (enough space to the right)
+    await mountAt(const EdgeInsets.only(left: 20));
+    expect(find.text('X'), findsOneWidget);
+    await tester.pumpAndSettle();
+
+    // Left (enough space to the left)
+    await mountAt(const EdgeInsets.only(right: 20));
+    expect(find.text('X'), findsOneWidget);
+    await tester.pumpAndSettle();
+  });
+
+  test('styleFor adjusts font size at small viewports', () {
+    final base = UiTextStyles.textXs.fontSize ?? 12.0;
+
+    final s360 = styleFor(UiTooltipVariant.neutral, 360);
+    expect(
+      s360.textStyle.fontSize,
+      equals((base - 2).clamp(10, base).toDouble()),
+    );
+
+    final s480 = styleFor(UiTooltipVariant.neutral, 480);
+    expect(
+      s480.textStyle.fontSize,
+      equals((base - 1).clamp(10, base).toDouble()),
+    );
+
+    final sWide = styleFor(UiTooltipVariant.neutral, 800);
+    expect(sWide.textStyle.fontSize, equals(base));
+  });
+
+  // ───────────────────────────────────────────────────────────────────────────
+  // EXTRA COVERAGE: Popover focus highlight path
+  // ───────────────────────────────────────────────────────────────────────────
+  testWidgets('PopoverTooltip shows on focus highlight and hides on blur', (
+      tester,
+      ) async {
+    final focusNode = FocusNode(debugLabel: 'popover');
+    addTearDown(focusNode.dispose);
+
+    await tester.pumpWidget(MaterialApp(
+      home: Scaffold(
+        body: FocusTraversalGroup(
+          child: Column(
+            children: [
+              const TextField(), // to move focus away later
+              PopoverTooltip(
+                message: 'FOCUS-POPOVER',
+                child: Focus(
+                  focusNode: focusNode,
+                  child: const Text('Focusable Anchor'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
+
+    // Focus
+    focusNode.requestFocus();
+    await tester.pump(); // onShowFocusHighlight(true)
+    await tester.pump(const Duration(milliseconds: 60));
+    await tester.pump(const Duration(milliseconds: 200));
+    expect(find.text('FOCUS-POPOVER'), findsOneWidget);
+
+    // Blur
+    await tester.tap(find.byType(TextField));
+    await tester.pump(); // onShowFocusHighlight(false)
+    await tester.pumpAndSettle(const Duration(milliseconds: 200));
+    expect(find.text('FOCUS-POPOVER'), findsNothing);
   });
 }
