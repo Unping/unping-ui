@@ -29,10 +29,10 @@ Widget _wrap(Widget child, {Size size = const Size(800, 600)}) {
 }
 
 Future<TestGesture> _hoverOver(
-    WidgetTester tester,
-    Finder target, {
-      Offset? at,
-    }) async {
+  WidgetTester tester,
+  Finder target, {
+  Offset? at,
+}) async {
   final g = await tester.createGesture(kind: PointerDeviceKind.mouse);
   await g.addPointer();
   addTearDown(() => g.removePointer());
@@ -67,8 +67,8 @@ void main() {
   });
 
   testWidgets('rich() sets semantics via message and renders content', (
-      tester,
-      ) async {
+    tester,
+  ) async {
     const semanticsText = 'Semantics-only label';
 
     await tester.pumpWidget(
@@ -332,8 +332,8 @@ void main() {
   // EXTRA COVERAGE: interactive overlay outside-tap dismissal
   // ───────────────────────────────────────────────────────────────────────────
   testWidgets('interactive popover overlay dismisses on outside tap', (
-      tester,
-      ) async {
+    tester,
+  ) async {
     final link = LayerLink();
     late OverlayEntry entry;
     bool dismissed = false;
@@ -366,8 +366,6 @@ void main() {
                     // Just record that the callback fired; removal can race here.
                     dismissed = true;
                   },
-
-
                 );
                 Overlay.of(context, rootOverlay: true)!.insert(entry);
                 controller.forward(from: 0);
@@ -395,24 +393,24 @@ void main() {
       await tester.pump();
     }
     expect(find.text('POPOVER-INTERACTIVE'), findsNothing);
-
   });
 
   // ───────────────────────────────────────────────────────────────────────────
   // EXTRA COVERAGE: didChangeDependencies & reassemble hide
   // ───────────────────────────────────────────────────────────────────────────
-  testWidgets('didUpdateWidget(enabled=false) hides immediately', (tester) async {
+  testWidgets('didUpdateWidget(enabled=false) hides immediately',
+      (tester) async {
     final key = UniqueKey();
 
     Widget app(bool enabled) => MaterialApp(
-      home: Scaffold(
-        body: UiTooltip(
-          enabled: enabled,
-          message: 'HIDE-ME',
-          child: Text('Target', key: key),
-        ),
-      ),
-    );
+          home: Scaffold(
+            body: UiTooltip(
+              enabled: enabled,
+              message: 'HIDE-ME',
+              child: Text('Target', key: key),
+            ),
+          ),
+        );
 
     // Start enabled and show it
     await tester.pumpWidget(app(true));
@@ -433,8 +431,6 @@ void main() {
     expect(find.text('HIDE-ME'), findsNothing);
     await g.removePointer();
   });
-
-
 
   testWidgets('reassemble() hides an already visible tooltip', (tester) async {
     final key = UniqueKey();
@@ -465,14 +461,15 @@ void main() {
     await g.moveTo(const Offset(0, 0));
     await tester.pumpAndSettle(const Duration(milliseconds: 200));
 
-    expect(find.text('REASSEMBLE-HIDE'), findsNothing);  });
+    expect(find.text('REASSEMBLE-HIDE'), findsNothing);
+  });
 
   // ───────────────────────────────────────────────────────────────────────────
   // EXTRA COVERAGE: placement branches & small-viewport font sizing
   // ───────────────────────────────────────────────────────────────────────────
   testWidgets('resolvePlacement covers bottom/right/left via layout', (
-      tester,
-      ) async {
+    tester,
+  ) async {
     Future<void> mountAt(EdgeInsets padding) async {
       await tester.pumpWidget(MaterialApp(
         home: Scaffold(
@@ -491,7 +488,7 @@ void main() {
       final gesture = await tester.startGesture(center);
       await tester.pump(const Duration(milliseconds: 600)); // long press
       await tester.pump(const Duration(milliseconds: 360)); // show delay
-      await tester.pump(const Duration(milliseconds: 40));  // anim
+      await tester.pump(const Duration(milliseconds: 40)); // anim
       await gesture.up();
       // Let overlay settle visible then disappear (not strictly required)
       await tester.pump(const Duration(milliseconds: 160));
@@ -536,8 +533,8 @@ void main() {
   // EXTRA COVERAGE: Popover focus highlight path
   // ───────────────────────────────────────────────────────────────────────────
   testWidgets('PopoverTooltip shows on focus highlight and hides on blur', (
-      tester,
-      ) async {
+    tester,
+  ) async {
     final focusNode = FocusNode(debugLabel: 'popover');
     addTearDown(focusNode.dispose);
 
