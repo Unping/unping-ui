@@ -2,7 +2,6 @@
 import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
 import 'tooltip_types.dart';
 import 'tooltip_overlay.dart';
 

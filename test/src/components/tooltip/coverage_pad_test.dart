@@ -1,8 +1,3 @@
-// test/src/components/tooltip/coverage_pad_test.dart
-// These tests are intentionally lightweight "branch pokers" to execute lines
-// that are otherwise hard to reach from normal behavioral tests.
-// Keep them focused and fast.
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
