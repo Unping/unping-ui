@@ -92,4 +92,142 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1));
     });
   });
+
+  testWidgets('resolvePlacement → RIGHT when only right has room',
+      (tester) async {
+    final boxKey = GlobalKey();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              final screenH = constraints.maxHeight; // usually 600
+
+              // Ensure top/bottom spaces are both < 56 so top/bottom won’t win.
+              const double topPad = 40.0; // < 56
+              const double bottomPad = 40.0; // < 56
+              const double boxW = 40.0;
+              final double boxH = screenH - topPad - bottomPad;
+
+              // Make left small (< 120) so right can win, and right large (>= 120).
+              const double leftPad = 20.0; // left space = 20 (< 120)
+              // right space = screenW - (leftPad + boxW) = screenW - 60 (>=120 on normal test screens)
+
+              return Stack(children: [
+                Positioned(
+                  top: topPad,
+                  left: leftPad,
+                  child: Container(
+                    key: boxKey,
+                    width: boxW,
+                    height: boxH,
+                  ),
+                ),
+              ]);
+            },
+          ),
+        ),
+      ),
+    );
+
+    // Now resolve using the container’s exact BuildContext
+    final ctx = boxKey.currentContext!;
+    final p = resolvePlacement(context: ctx, explicit: UiTooltipPlacement.auto);
+    expect(p, UiTooltipPlacement.right);
+  });
+
+  testWidgets('resolvePlacement → LEFT when only left has room',
+      (tester) async {
+    final boxKey = GlobalKey();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: LayoutBuilder(
+            builder: (context, constraints) {
+              final screenW = constraints.maxWidth;
+              final screenH = constraints.maxHeight;
+
+              // Keep top/bottom < 56 to block those branches.
+              const double topPad = 40.0; // < 56
+              const double bottomPad = 40.0; // < 56
+              const double boxW = 40.0;
+              final double boxH = screenH - topPad - bottomPad;
+
+              // Make right small (< 120) to block RIGHT, and left big (>= 120) to force LEFT.
+              const double rightPad = 100.0; // right space (< 120)
+              final double leftPad =
+                  screenW - rightPad - boxW; // left space (>= 120)
+
+              return Stack(children: [
+                Positioned(
+                  top: topPad,
+                  left: leftPad,
+                  child: Container(
+                    key: boxKey,
+                    width: boxW,
+                    height: boxH,
+                  ),
+                ),
+              ]);
+            },
+          ),
+        ),
+      ),
+    );
+
+    final ctx = boxKey.currentContext!;
+    final p = resolvePlacement(context: ctx, explicit: UiTooltipPlacement.auto);
+    expect(p, UiTooltipPlacement.left);
+  });
+
+  testWidgets(
+      'resolvePlacement → BOTTOM when bottom has room (and top does not)',
+      (tester) async {
+    final key = GlobalKey();
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: LayoutBuilder(builder: (context, c) {
+            const topPad = 10.0; // < 56 (so TOP won't win)
+            const boxH = 40.0; // small box
+            // leave plenty of space below: spaceBottom = screenH - (topPad + boxH) >= 56
+            return Stack(children: [
+              Positioned(
+                top: topPad,
+                left: 0,
+                child: Container(key: key, width: 40, height: boxH),
+              ),
+            ]);
+          }),
+        ),
+      ),
+    );
+
+    final ctx = key.currentContext!;
+    final p = resolvePlacement(context: ctx, explicit: UiTooltipPlacement.auto);
+    expect(p, UiTooltipPlacement.bottom);
+  });
+
+  testWidgets(
+      'resolvePlacement → TOP when render box is null/has no size (guard path)',
+      (tester) async {
+    // Call resolvePlacement from a context that does NOT back a RenderBox with size.
+    // Using a Builder directly under MaterialApp before any sized child ensures rb is null or !hasSize.
+    UiTooltipPlacement? result;
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Builder(builder: (ctx) {
+          result =
+              resolvePlacement(context: ctx, explicit: UiTooltipPlacement.auto);
+          return const SizedBox(); // keep the tree valid
+        }),
+      ),
+    );
+
+    expect(result, UiTooltipPlacement.top);
+  });
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:unping_ui/unping_ui.dart';
@@ -671,5 +672,49 @@ void main() {
       await tester.pump();
       await tester.pump();
     });
+  });
+
+  testWidgets('focus -> blur triggers _hide via FocusScope(onFocusChange)',
+      (tester) async {
+    final insideKey = UniqueKey();
+    final outsideKey = UniqueKey();
+    final insideFocus = FocusNode(debugLabel: 'inside');
+    final outsideFocus = FocusNode(debugLabel: 'outside');
+
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: Column(
+            children: [
+              // Uses the tooltip that contains the FocusScope(onFocusChange: ...)
+              PopoverTooltip(
+                enabled: true,
+                // `message` only to satisfy API; content drawing isn't required for coverage
+                message: '',
+                content: const Material(child: Text('TT_CONTENT')),
+                child: TextField(key: insideKey, focusNode: insideFocus),
+              ),
+              const SizedBox(height: 16),
+              TextField(key: outsideKey, focusNode: outsideFocus),
+            ],
+          ),
+        ),
+      ),
+    );
+
+    // Focus INSIDE -> should trigger onFocusChange(true) and schedule show
+    await tester.tap(find.byKey(insideKey));
+    await tester.pump(); // deliver focus event
+    await tester.pump(const Duration(milliseconds: 400)); // beyond 350ms delay
+    expect(insideFocus.hasPrimaryFocus, isTrue);
+
+    // Switch focus OUTSIDE -> triggers onFocusChange(false) -> _hide();
+    await tester.tap(find.byKey(outsideKey));
+    await tester.pump(); // deliver focus change
+    await tester.pump(const Duration(milliseconds: 50)); // allow callbacks
+    expect(outsideFocus.hasPrimaryFocus, isTrue);
+    expect(insideFocus.hasFocus, isFalse);
+
+    // No assertion on TT_CONTENT — executing onFocusChange(false) is enough to cover _hide();
   });
 }

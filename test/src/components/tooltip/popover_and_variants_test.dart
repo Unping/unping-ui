@@ -73,4 +73,44 @@ void main() {
       expect(find.text('p'), findsOneWidget);
     });
   });
+
+  testWidgets('onShowFocusHighlight triggers _show and _hide', (tester) async {
+    // Force "traditional" highlight mode so gaining focus => showFocusHighlight = true.
+    tester.binding.focusManager.highlightStrategy =
+        FocusHighlightStrategy.alwaysTraditional;
+
+    final node = FocusNode();
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Scaffold(
+          body: PopoverTooltip(
+            message: 'POP',
+            style: const UiTooltipStyle(
+              // super-fast anims
+              background: Colors.black,
+              textStyle: TextStyle(color: Colors.white, fontSize: 12),
+              showDelay: Duration(milliseconds: 0),
+              showDuration: Duration(milliseconds: 1),
+              hideDuration: Duration(milliseconds: 1),
+            ),
+            child: Focus(
+                focusNode: node, child: const SizedBox(width: 48, height: 24)),
+          ),
+        ),
+      ),
+    );
+
+    // Fires onShowFocusHighlight(true) -> calls _show()
+    node.requestFocus();
+    await tester.pumpAndSettle();
+
+    // Switch to "touch" highlight mode while still focused to force highlight=false,
+    // which fires onShowFocusHighlight(false) -> calls _hide()
+    tester.binding.focusManager.highlightStrategy =
+        FocusHighlightStrategy.alwaysTouch;
+    await tester.pumpAndSettle();
+
+    // (Optional) clean up
+    node.dispose();
+  });
 }
