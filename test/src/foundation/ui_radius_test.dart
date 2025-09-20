@@ -26,10 +26,8 @@ void main() {
 
     test('copyWith should work correctly', () {
       const original = UiRadiusExtension();
-      final modified = original.copyWith(
-        xs: 10.0,
-        md: 20.0,
-      ) as UiRadiusExtension;
+      final modified =
+          original.copyWith(xs: 10.0, md: 20.0) as UiRadiusExtension;
 
       expect(modified.xs, 10.0);
       expect(modified.md, 20.0);
@@ -52,30 +50,30 @@ void main() {
 
   group('UiRadiusContext extension', () {
     testWidgets(
-        'should provide access to radius extension through BuildContext',
-        (WidgetTester tester) async {
-      late UiRadiusExtension radius;
+      'should provide access to radius extension through BuildContext',
+      (WidgetTester tester) async {
+        late UiRadiusExtension radius;
 
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData(
-            extensions: [UiRadiusExtension.light],
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData(extensions: [UiRadiusExtension.light]),
+            home: Builder(
+              builder: (context) {
+                radius = context.UiRadius;
+                return Container();
+              },
+            ),
           ),
-          home: Builder(
-            builder: (context) {
-              radius = context.UiRadius;
-              return Container();
-            },
-          ),
-        ),
-      );
+        );
 
-      expect(radius, isA<UiRadiusExtension>());
-      expect(radius.md, 12.0);
-    });
+        expect(radius, isA<UiRadiusExtension>());
+        expect(radius.md, 12.0);
+      },
+    );
 
-    testWidgets('should fallback to light extension when not in theme',
-        (WidgetTester tester) async {
+    testWidgets('should fallback to light extension when not in theme', (
+      WidgetTester tester,
+    ) async {
       late UiRadiusExtension radius;
 
       await tester.pumpWidget(

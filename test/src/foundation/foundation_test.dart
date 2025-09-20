@@ -55,7 +55,9 @@ void main() {
       expect(UiSpacingExtension.light, isA<UiSpacingExtension>());
       expect(UiRadiusExtension.light, isA<UiRadiusExtension>());
       expect(
-          UnpingTextStyleExtension.standard, isA<UnpingTextStyleExtension>());
+        UnpingTextStyleExtension.standard,
+        isA<UnpingTextStyleExtension>(),
+      );
     });
   });
 }

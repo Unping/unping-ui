@@ -158,12 +158,8 @@ class _BaseBadgeState extends State<BaseBadge> {
       child: Container(
         width: 14.0,
         height: 14.0,
-        decoration: const BoxDecoration(
-          shape: BoxShape.circle,
-        ),
-        child: CustomPaint(
-          painter: _XIconPainter(color: widget.textColor),
-        ),
+        decoration: const BoxDecoration(shape: BoxShape.circle),
+        child: CustomPaint(painter: _XIconPainter(color: widget.textColor)),
       ),
     );
   }
@@ -186,9 +182,7 @@ class _BaseBadgeState extends State<BaseBadge> {
     children.add(
       Text(
         widget.text,
-        style: widget.textStyle.copyWith(
-          color: widget.textColor,
-        ),
+        style: widget.textStyle.copyWith(color: widget.textColor),
       ),
     );
 
@@ -214,17 +208,12 @@ class _BaseBadgeState extends State<BaseBadge> {
     }
 
     return Container(
-      constraints: BoxConstraints(
-        minHeight: widget.minHeight ?? 0,
-      ),
+      constraints: BoxConstraints(minHeight: widget.minHeight ?? 0),
       decoration: BoxDecoration(
         color: widget.backgroundColor,
         borderRadius: BorderRadius.circular(widget.borderRadius),
         border: widget.borderColor != null
-            ? Border.all(
-                color: widget.borderColor!,
-                width: widget.borderWidth,
-              )
+            ? Border.all(color: widget.borderColor!, width: widget.borderWidth)
             : null,
       ),
       padding: widget.padding,
@@ -300,10 +289,7 @@ class BadgeImage extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(borderRadius),
-                  border: Border.all(
-                    color: contrastBorderColor,
-                    width: 0.333,
-                  ),
+                  border: Border.all(color: contrastBorderColor, width: 0.333),
                 ),
               ),
             ),
@@ -373,12 +359,7 @@ class BadgeCount extends StatelessWidget {
         borderRadius: BorderRadius.circular(borderRadius),
       ),
       padding: padding,
-      child: Text(
-        displayText,
-        style: textStyle.copyWith(
-          color: textColor,
-        ),
-      ),
+      child: Text(displayText, style: textStyle.copyWith(color: textColor)),
     );
   }
 }
@@ -418,10 +399,7 @@ class BadgeDot extends StatelessWidget {
         color: color,
         shape: BoxShape.circle,
         border: showOutline
-            ? Border.all(
-                color: outlineColor,
-                width: outlineWidth,
-              )
+            ? Border.all(color: outlineColor, width: outlineWidth)
             : null,
       ),
     );

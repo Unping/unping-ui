@@ -13,10 +13,7 @@ class UiTheme {
   // coverage:ignore-end
 
   /// Light theme configuration
-  static ThemeData lightTheme({
-    Color? primaryColor,
-    Color? backgroundColor,
-  }) {
+  static ThemeData lightTheme({Color? primaryColor, Color? backgroundColor}) {
     final colorScheme = ColorScheme.light(
       primary: primaryColor ?? UiColors.primary500,
       secondary: UiColors.primary600,
@@ -111,16 +108,12 @@ class UiTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: UiRadius.allMd,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: UiRadius.allMd),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: UiRadius.allMd,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: UiRadius.allMd),
         ),
       ),
 
@@ -128,31 +121,18 @@ class UiTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: UiColors.neutral50,
-        border: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
+        border: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        enabledBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        focusedBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        errorBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        focusedErrorBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
         contentPadding: UiSpacing.allM,
       ),
     );
   }
 
   /// Dark theme configuration
-  static ThemeData darkTheme({
-    Color? primaryColor,
-    Color? backgroundColor,
-  }) {
+  static ThemeData darkTheme({Color? primaryColor, Color? backgroundColor}) {
     final colorScheme = ColorScheme.dark(
       primary: primaryColor ?? UiColors.primary400,
       secondary: UiColors.primary500,
@@ -247,16 +227,12 @@ class UiTheme {
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 0,
-          shape: RoundedRectangleBorder(
-            borderRadius: UiRadius.allMd,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: UiRadius.allMd),
         ),
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: UiRadius.allMd,
-          ),
+          shape: RoundedRectangleBorder(borderRadius: UiRadius.allMd),
         ),
       ),
 
@@ -264,21 +240,11 @@ class UiTheme {
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: UiColors.neutral800,
-        border: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        errorBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
-        focusedErrorBorder: OutlineInputBorder(
-          borderRadius: UiRadius.allMd,
-        ),
+        border: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        enabledBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        focusedBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        errorBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
+        focusedErrorBorder: OutlineInputBorder(borderRadius: UiRadius.allMd),
         contentPadding: UiSpacing.allM,
       ),
     );

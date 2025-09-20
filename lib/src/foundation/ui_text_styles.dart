@@ -780,40 +780,76 @@ class UnpingTextStyleExtension
     return UnpingTextStyleExtension(
       // Figma-based styles
       display2xl: TextStyle.lerp(display2xl, other.display2xl, t)!,
-      display2xlMedium:
-          TextStyle.lerp(display2xlMedium, other.display2xlMedium, t)!,
-      display2xlSemibold:
-          TextStyle.lerp(display2xlSemibold, other.display2xlSemibold, t)!,
+      display2xlMedium: TextStyle.lerp(
+        display2xlMedium,
+        other.display2xlMedium,
+        t,
+      )!,
+      display2xlSemibold: TextStyle.lerp(
+        display2xlSemibold,
+        other.display2xlSemibold,
+        t,
+      )!,
       display2xlBold: TextStyle.lerp(display2xlBold, other.display2xlBold, t)!,
       displayXl: TextStyle.lerp(displayXl, other.displayXl, t)!,
-      displayXlMedium:
-          TextStyle.lerp(displayXlMedium, other.displayXlMedium, t)!,
-      displayXlSemibold:
-          TextStyle.lerp(displayXlSemibold, other.displayXlSemibold, t)!,
+      displayXlMedium: TextStyle.lerp(
+        displayXlMedium,
+        other.displayXlMedium,
+        t,
+      )!,
+      displayXlSemibold: TextStyle.lerp(
+        displayXlSemibold,
+        other.displayXlSemibold,
+        t,
+      )!,
       displayXlBold: TextStyle.lerp(displayXlBold, other.displayXlBold, t)!,
       displayLg: TextStyle.lerp(displayLg, other.displayLg, t)!,
-      displayLgMedium:
-          TextStyle.lerp(displayLgMedium, other.displayLgMedium, t)!,
-      displayLgSemibold:
-          TextStyle.lerp(displayLgSemibold, other.displayLgSemibold, t)!,
+      displayLgMedium: TextStyle.lerp(
+        displayLgMedium,
+        other.displayLgMedium,
+        t,
+      )!,
+      displayLgSemibold: TextStyle.lerp(
+        displayLgSemibold,
+        other.displayLgSemibold,
+        t,
+      )!,
       displayLgBold: TextStyle.lerp(displayLgBold, other.displayLgBold, t)!,
       displayMd: TextStyle.lerp(displayMd, other.displayMd, t)!,
-      displayMdMedium:
-          TextStyle.lerp(displayMdMedium, other.displayMdMedium, t)!,
-      displayMdSemibold:
-          TextStyle.lerp(displayMdSemibold, other.displayMdSemibold, t)!,
+      displayMdMedium: TextStyle.lerp(
+        displayMdMedium,
+        other.displayMdMedium,
+        t,
+      )!,
+      displayMdSemibold: TextStyle.lerp(
+        displayMdSemibold,
+        other.displayMdSemibold,
+        t,
+      )!,
       displayMdBold: TextStyle.lerp(displayMdBold, other.displayMdBold, t)!,
       displaySm: TextStyle.lerp(displaySm, other.displaySm, t)!,
-      displaySmMedium:
-          TextStyle.lerp(displaySmMedium, other.displaySmMedium, t)!,
-      displaySmSemibold:
-          TextStyle.lerp(displaySmSemibold, other.displaySmSemibold, t)!,
+      displaySmMedium: TextStyle.lerp(
+        displaySmMedium,
+        other.displaySmMedium,
+        t,
+      )!,
+      displaySmSemibold: TextStyle.lerp(
+        displaySmSemibold,
+        other.displaySmSemibold,
+        t,
+      )!,
       displaySmBold: TextStyle.lerp(displaySmBold, other.displaySmBold, t)!,
       displayXs: TextStyle.lerp(displayXs, other.displayXs, t)!,
-      displayXsMedium:
-          TextStyle.lerp(displayXsMedium, other.displayXsMedium, t)!,
-      displayXsSemibold:
-          TextStyle.lerp(displayXsSemibold, other.displayXsSemibold, t)!,
+      displayXsMedium: TextStyle.lerp(
+        displayXsMedium,
+        other.displayXsMedium,
+        t,
+      )!,
+      displayXsSemibold: TextStyle.lerp(
+        displayXsSemibold,
+        other.displayXsSemibold,
+        t,
+      )!,
       displayXsBold: TextStyle.lerp(displayXsBold, other.displayXsBold, t)!,
       textXl: TextStyle.lerp(textXl, other.textXl, t)!,
       textXlMedium: TextStyle.lerp(textXlMedium, other.textXlMedium, t)!,
@@ -831,8 +867,11 @@ class UnpingTextStyleExtension
       textSmMedium: TextStyle.lerp(textSmMedium, other.textSmMedium, t)!,
       textSmSemibold: TextStyle.lerp(textSmSemibold, other.textSmSemibold, t)!,
       textSmBold: TextStyle.lerp(textSmBold, other.textSmBold, t)!,
-      textSmUnderline:
-          TextStyle.lerp(textSmUnderline, other.textSmUnderline, t)!,
+      textSmUnderline: TextStyle.lerp(
+        textSmUnderline,
+        other.textSmUnderline,
+        t,
+      )!,
       textXs: TextStyle.lerp(textXs, other.textXs, t)!,
       textXsMedium: TextStyle.lerp(textXsMedium, other.textXsMedium, t)!,
       textXsSemibold: TextStyle.lerp(textXsSemibold, other.textXsSemibold, t)!,

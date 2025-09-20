@@ -139,8 +139,9 @@ class UiSpacing {
   static const EdgeInsets allXxxl = EdgeInsets.all(xxxl);
 
   /// Horizontal edge insets
-  static const EdgeInsets horizontalZero =
-      EdgeInsets.symmetric(horizontal: zero);
+  static const EdgeInsets horizontalZero = EdgeInsets.symmetric(
+    horizontal: zero,
+  );
   static const EdgeInsets horizontalXxs = EdgeInsets.symmetric(horizontal: xxs);
   static const EdgeInsets horizontalXs = EdgeInsets.symmetric(horizontal: xs);
   static const EdgeInsets horizontalSm = EdgeInsets.symmetric(horizontal: sm);
@@ -148,8 +149,9 @@ class UiSpacing {
   static const EdgeInsets horizontalL = EdgeInsets.symmetric(horizontal: l);
   static const EdgeInsets horizontalXl = EdgeInsets.symmetric(horizontal: xl);
   static const EdgeInsets horizontalXxl = EdgeInsets.symmetric(horizontal: xxl);
-  static const EdgeInsets horizontalXxxl =
-      EdgeInsets.symmetric(horizontal: xxxl);
+  static const EdgeInsets horizontalXxxl = EdgeInsets.symmetric(
+    horizontal: xxxl,
+  );
 
   /// Vertical edge insets
   static const EdgeInsets verticalZero = EdgeInsets.symmetric(vertical: zero);

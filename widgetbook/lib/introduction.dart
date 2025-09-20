@@ -9,7 +9,7 @@ import 'utils/description.widgetbook.dart';
 
 class IntroductionWidgetbook extends StatefulWidget {
   const IntroductionWidgetbook({
-    super.key, 
+    super.key,
     required this.readme,
     this.title = 'Unping UI',
   });
@@ -27,10 +27,14 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
     super.initState();
     readme = widget.readme
         .replaceAll('# Unping UI', '') // Remove main title
-        .replaceAll(RegExp(r'\[!\[.*?\]\[.*?\]\]\[.*?\]'), '') // Remove badge links like [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-        .replaceAll(RegExp(r'\[.*?_badge\]:.*'), '') // Remove badge reference definitions
-        .replaceAll(RegExp(r'\[.*?_link\]:.*'), '') // Remove link reference definitions
-        .replaceAll(RegExp(r'\n\s*\n\s*\n'), '\n\n') // Clean up excessive newlines
+        .replaceAll(RegExp(r'\[!\[.*?\]\[.*?\]\]\[.*?\]'),
+            '') // Remove badge links like [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
+        .replaceAll(RegExp(r'\[.*?_badge\]:.*'),
+            '') // Remove badge reference definitions
+        .replaceAll(
+            RegExp(r'\[.*?_link\]:.*'), '') // Remove link reference definitions
+        .replaceAll(
+            RegExp(r'\n\s*\n\s*\n'), '\n\n') // Clean up excessive newlines
         .trim();
   }
 
@@ -52,30 +56,30 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
                   title: widget.title,
                 ),
                 const SizedBox(height: UiSpacing.spacing4),
-                
+
                 // Description section using the reusable component
                 UnpingUiWidgetbookDescription(
-                  description: 'Welcome to unping_ui, a comprehensive Flutter widget library designed to accelerate your development process. Our collection of carefully crafted components follows modern design principles while maintaining consistency and accessibility across all implementations.\n\n',
-                  lists: {
-                    'Key Features:': [
-                      'Copy & paste ready widgets for rapid development',
-                      'Customizable and extendable components',
-                      'Comprehensive test coverage for reliability',
-                      'Modern design system with consistent styling',
-                      'Full accessibility support',
-                    ],
-                    'Getting Started:': [
-                      'Browse components in the left sidebar',
-                      'View live examples and interact with knobs',
-                      'Copy code directly into your Flutter project',
-                      'Customize components to match your brand',
-                    ],
-                  }
-                ),
+                    description:
+                        'Welcome to unping_ui, a comprehensive Flutter widget library designed to accelerate your development process. Our collection of carefully crafted components follows modern design principles while maintaining consistency and accessibility across all implementations.\n\n',
+                    lists: {
+                      'Key Features:': [
+                        'Copy & paste ready widgets for rapid development',
+                        'Customizable and extendable components',
+                        'Comprehensive test coverage for reliability',
+                        'Modern design system with consistent styling',
+                        'Full accessibility support',
+                      ],
+                      'Getting Started:': [
+                        'Browse components in the left sidebar',
+                        'View live examples and interact with knobs',
+                        'Copy code directly into your Flutter project',
+                        'Customize components to match your brand',
+                      ],
+                    }),
               ],
             ),
           ),
-          
+
           // Content section with markdown
           Container(
             padding: UiSpacing.allXxl,
@@ -119,7 +123,7 @@ class _IntroductionWidgetbookState extends State<IntroductionWidgetbook> {
                     textStyle: UiTextStyles.codeMedium.copyWith(
                       color: UiColors.neutral100,
                     ),
-                    wrapper: (child, _, language) => 
+                    wrapper: (child, _, language) =>
                         _CodeWrapperWidget(child, language),
                   ),
                   H1Config(

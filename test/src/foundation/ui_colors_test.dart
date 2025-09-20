@@ -53,8 +53,9 @@ void main() {
   });
 
   group('UnpingColorExtension', () {
-    testWidgets('should provide light theme colors',
-        (WidgetTester tester) async {
+    testWidgets('should provide light theme colors', (
+      WidgetTester tester,
+    ) async {
       const colorExtension = UnpingColorExtension.light;
 
       expect(colorExtension.primary25, UiColors.primary25);
@@ -83,9 +84,7 @@ void main() {
 
     test('copyWith should work correctly', () {
       const original = UnpingColorExtension.light;
-      final modified = original.copyWith(
-        textDisabled: const Color(0xFF123456),
-      );
+      final modified = original.copyWith(textDisabled: const Color(0xFF123456));
 
       expect(modified.textDisabled, const Color(0xFF123456));
       expect(modified.textPrimary, original.textPrimary);
@@ -100,27 +99,27 @@ void main() {
   });
 
   group('UnpingColorContext extension', () {
-    testWidgets('should provide access to color extension through BuildContext',
-        (WidgetTester tester) async {
-      late UnpingColorExtension colors;
+    testWidgets(
+      'should provide access to color extension through BuildContext',
+      (WidgetTester tester) async {
+        late UnpingColorExtension colors;
 
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData(
-            extensions: [UnpingColorExtension.light],
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData(extensions: [UnpingColorExtension.light]),
+            home: Builder(
+              builder: (context) {
+                colors = context.UiColors;
+                return Container();
+              },
+            ),
           ),
-          home: Builder(
-            builder: (context) {
-              colors = context.UiColors;
-              return Container();
-            },
-          ),
-        ),
-      );
+        );
 
-      expect(colors, isA<UnpingColorExtension>());
-      expect(colors.primary, UiColors.primary600);
-    });
+        expect(colors, isA<UnpingColorExtension>());
+        expect(colors.primary, UiColors.primary600);
+      },
+    );
   });
 
   group('getColorName function', () {
