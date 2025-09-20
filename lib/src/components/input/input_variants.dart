@@ -4,12 +4,12 @@ import 'package:unping_ui/src/components/input/input_types.dart';
 /// A factory class for creating predefined input components based on the design system.
 class Inputs {
   // Private constructor to prevent instantiation.
-  Inputs._();
+  Inputs._(); // coverage:ignore-line
 
   /// Returns a standard single-line text input field.
   ///
   /// Use for general text entry. Supports optional label, placeholder, helper text,
-  /// prefix/suffix icons, validation, and size configuration.
+  /// prefix/suffix icons,   validation, and size configuration.
   ///
   /// [label] - Optional text displayed above the input.
   /// [placeholder] - Hint text shown when the field is empty.

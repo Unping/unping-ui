@@ -402,7 +402,7 @@ class _PasswordInputState extends State<PasswordInput> {
   /// Builds the helper text string based on the current strength.
   /// Returns null if the indicator should not be shown.
   String? _getStrengthHelperText() {
-    if (!widget.showStrengthIndicator || _strength == PasswordStrength.None) {
+    if (!widget.showStrengthIndicator) {
       return null;
     }
 
