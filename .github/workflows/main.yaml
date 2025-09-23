@@ -38,7 +38,7 @@ jobs:
           - 'base_button'
           - 'base_badge'
           - 'base_checkbox'
-    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@main
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@e482878a988a809cf1f88b46156a4bd8f2906e7b
     with:
       component_name: ${{ matrix.component }}
       flutter_version: 'stable'
