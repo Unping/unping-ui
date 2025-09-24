@@ -38,6 +38,6 @@ jobs:
           - 'button'
           - 'badge'
           - 'checkbox'
-    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@main
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@787d9fba8dc8faf3b6f8bdafc963958b1a898c47
     with:
       component_name: ${{ matrix.component }}
