@@ -38,6 +38,6 @@ jobs:
           - 'base_button'
           - 'base_badge'
           - 'base_checkbox'
-    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@cb1a758d9003e839041dda5cb10974cea5678f29
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@4577d96b1e68f4efd707076d69a55ddfa0f6e681
     with:
       component_name: ${{ matrix.component }}
