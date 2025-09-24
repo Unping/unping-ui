@@ -35,9 +35,9 @@ jobs:
     strategy:
       matrix:
         component: 
-          - 'unping-ui/button'
-          - 'unping-ui/badge'
-          - 'unping-ui/checkbox'
+          - 'button'
+          - 'badge'
+          - 'checkbox'
     uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@main
     with:
       component_name: ${{ matrix.component }}
