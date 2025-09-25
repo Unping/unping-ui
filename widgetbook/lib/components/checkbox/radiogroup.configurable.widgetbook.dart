@@ -4,6 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 /// Example stateful radio group widget for demonstration in Widgetbook
@@ -106,7 +107,7 @@ Widget buildConfigurableRadioGroup(BuildContext context) {
   // Generate radio options based on numberOfOptions
   final options = List.generate(numberOfOptions, (index) {
     final value = 'option${index + 1}';
-    final text = hasLabels ? 'Option ${index + 1}' : null;
+    final text = hasLabels ? '${context.lang.option} ${index + 1}' : null;
 
     if (text != null) {
       return RadioOption.text(

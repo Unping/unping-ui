@@ -261,7 +261,7 @@ class _ColorSwatch extends StatelessWidget {
                   ),
                   const SizedBox(height: 2), // Reduced spacing
                   SelectableText(
-                      '#${color.toARGB32().toRadixString(16).toUpperCase().substring(2)}',
+                      '#${color.value.toRadixString(16).toUpperCase().substring(2)}',
                       style: UiTextStyles.textXs.copyWith(
                         color: UiColors.neutral500,
                       )),

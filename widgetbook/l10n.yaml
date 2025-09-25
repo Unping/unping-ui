@@ -1,0 +1,3 @@
+arb-dir: lib/l10n
+template-arb-file: widgetbook_en.arb
+output-localization-file: unping_widgetbook_localizations.dart

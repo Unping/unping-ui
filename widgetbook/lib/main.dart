@@ -4,6 +4,7 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:widgetbook_workspace/introduction.dart';
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/unping_widgetbook_localizations.dart';
 
 // This file does not exist yet,
 // it will be generated in the next step
@@ -57,6 +58,8 @@ class WidgetbookApp extends StatelessWidget {
         title: 'Unping UI Widgetbook',
         theme: UiTheme.lightTheme(),
         darkTheme: UiTheme.darkTheme(),
+        supportedLocales: AppLocalizations.supportedLocales,
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
         home: child,
         debugShowCheckedModeBanner: false,
         builder: (context, child) {
@@ -66,6 +69,11 @@ class WidgetbookApp extends StatelessWidget {
           );
         },
       ),
+      addons: [
+        LocalizationAddon(
+            locales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.localizationsDelegates)
+      ],
       darkTheme: UiTheme.darkTheme(),
       lightTheme: UiTheme.lightTheme(),
       themeMode: ThemeMode.system,
