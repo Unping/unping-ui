@@ -189,6 +189,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Option'**
   String get option;
+
+  /// No description provided for @inputLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get inputLabel;
+
+  /// No description provided for @inputPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Placeholder'**
+  String get inputPlaceholder;
+
+  /// No description provided for @inputFocused.
+  ///
+  /// In en, this message translates to:
+  /// **'Focused'**
+  String get inputFocused;
+
+  /// No description provided for @inputError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get inputError;
+
+  /// No description provided for @inputErrorMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Error message'**
+  String get inputErrorMessage;
+
+  /// No description provided for @inputDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get inputDisabled;
+
+  /// No description provided for @inputWithPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'With prefix'**
+  String get inputWithPrefix;
+
+  /// No description provided for @inputWithSuffix.
+  ///
+  /// In en, this message translates to:
+  /// **'With suffix'**
+  String get inputWithSuffix;
+
+  /// No description provided for @inputEmailPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get inputEmailPlaceholder;
+
+  /// No description provided for @inputUsernamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Username'**
+  String get inputUsernamePlaceholder;
+
+  /// No description provided for @inputDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get inputDescription;
+
+  /// No description provided for @inputDescriptionPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something...'**
+  String get inputDescriptionPlaceholder;
+
+  /// No description provided for @inputWritePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Write...'**
+  String get inputWritePlaceholder;
+
+  /// No description provided for @inputTooLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Too long'**
+  String get inputTooLong;
+
+  /// No description provided for @inputWithCounter.
+  ///
+  /// In en, this message translates to:
+  /// **'With counter'**
+  String get inputWithCounter;
+
+  /// No description provided for @inputMaxCharsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Max 120 chars'**
+  String get inputMaxCharsPlaceholder;
+
+  /// No description provided for @inputSearchPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get inputSearchPlaceholder;
+
+  /// No description provided for @inputClearableSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Clearable search'**
+  String get inputClearableSearch;
+
+  /// No description provided for @inputPasswordLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get inputPasswordLabel;
+
+  /// No description provided for @inputPasswordPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter password'**
+  String get inputPasswordPlaceholder;
+
+  /// No description provided for @inputWeakPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Weak password'**
+  String get inputWeakPassword;
 }
 
 class _AppLocalizationsDelegate

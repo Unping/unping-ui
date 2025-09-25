@@ -52,4 +52,67 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get option => 'Option';
+
+  @override
+  String get inputLabel => 'Label';
+
+  @override
+  String get inputPlaceholder => 'Placeholder';
+
+  @override
+  String get inputFocused => 'Focused';
+
+  @override
+  String get inputError => 'Error';
+
+  @override
+  String get inputErrorMessage => 'Error message';
+
+  @override
+  String get inputDisabled => 'Disabled';
+
+  @override
+  String get inputWithPrefix => 'With prefix';
+
+  @override
+  String get inputWithSuffix => 'With suffix';
+
+  @override
+  String get inputEmailPlaceholder => 'Email';
+
+  @override
+  String get inputUsernamePlaceholder => 'Username';
+
+  @override
+  String get inputDescription => 'Description';
+
+  @override
+  String get inputDescriptionPlaceholder => 'Write something...';
+
+  @override
+  String get inputWritePlaceholder => 'Write...';
+
+  @override
+  String get inputTooLong => 'Too long';
+
+  @override
+  String get inputWithCounter => 'With counter';
+
+  @override
+  String get inputMaxCharsPlaceholder => 'Max 120 chars';
+
+  @override
+  String get inputSearchPlaceholder => 'Search...';
+
+  @override
+  String get inputClearableSearch => 'Clearable search';
+
+  @override
+  String get inputPasswordLabel => 'Password';
+
+  @override
+  String get inputPasswordPlaceholder => 'Enter password';
+
+  @override
+  String get inputWeakPassword => 'Weak password';
 }
