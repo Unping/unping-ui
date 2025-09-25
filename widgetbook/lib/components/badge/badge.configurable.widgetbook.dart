@@ -4,6 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 /// Example stateful checkbox widget for demonstration in Widgetbook
@@ -61,7 +62,7 @@ Widget buildConfigurableBadge(BuildContext context) {
   // Basic properties
   final badgeText = context.knobs.string(
     label: 'Text',
-    initialValue: 'Label',
+    initialValue: context.lang.label,
   );
 
   final size = context.knobs.list(

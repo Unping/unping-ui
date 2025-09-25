@@ -1,0 +1,17 @@
+{
+    "button": "Button",
+    "label": "Label",
+    "save": "Save",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "success": "Success",
+    "error": "Error",
+    "loading": "Loading",
+    "home": "Home",
+    "settings": "Settings",
+    "profile": "Profile",
+    "option": "Option"
+}

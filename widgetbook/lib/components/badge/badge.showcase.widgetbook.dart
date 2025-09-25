@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 
 import '../../utils/container.widgetbook.dart';
 
@@ -21,7 +22,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -32,7 +33,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -43,7 +44,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -57,7 +58,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -72,7 +73,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -87,7 +88,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -105,7 +106,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -117,7 +118,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -129,7 +130,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeImage(
                 imageUrl:
                     'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
@@ -144,7 +145,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -156,7 +157,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -168,7 +169,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -183,7 +184,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -199,7 +200,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -215,7 +216,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -234,7 +235,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -247,7 +248,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -260,7 +261,7 @@ Widget badgeWithImage(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeImage(
                 imageUrl:
@@ -293,21 +294,21 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.sm,
             ),
           ),
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.md,
             ),
           ),
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.lg,
             ),
           ),
@@ -317,7 +318,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.sm,
               removable: true,
               onRemove: () {
@@ -328,7 +329,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.md,
               removable: true,
               onRemove: () {
@@ -339,7 +340,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.lg,
               removable: true,
               onRemove: () {
@@ -353,7 +354,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.sm,
               rightWidget: BadgeCount(count: 5),
             ),
@@ -361,7 +362,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.md,
               rightWidget: BadgeCount(count: 324),
             ),
@@ -369,7 +370,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               size: BadgeSize.lg,
               rightWidget: BadgeCount(count: 52),
             ),
@@ -380,7 +381,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.sm,
             ),
@@ -388,7 +389,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               size: BadgeSize.md,
             ),
@@ -396,7 +397,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.lg,
             ),
@@ -407,7 +408,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.sm,
               removable: true,
@@ -419,7 +420,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               size: BadgeSize.md,
               removable: true,
@@ -431,7 +432,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.lg,
               removable: true,
@@ -446,7 +447,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.sm,
               rightWidget: BadgeCount(count: 15),
@@ -455,7 +456,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               size: BadgeSize.md,
               rightWidget: BadgeCount(count: 3),
@@ -464,7 +465,7 @@ Widget badge(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               size: BadgeSize.lg,
               rightWidget: BadgeCount(count: 8754),
@@ -494,7 +495,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.sm,
             ),
@@ -502,7 +503,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.md,
             ),
@@ -510,7 +511,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.lg,
             ),
@@ -521,7 +522,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.sm,
               removable: true,
@@ -533,7 +534,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.md,
               removable: true,
@@ -545,7 +546,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.lg,
               removable: true,
@@ -560,7 +561,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.sm,
               rightWidget: BadgeCount(count: 5),
@@ -569,7 +570,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.md,
               rightWidget: BadgeCount(count: 324),
@@ -578,7 +579,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: const BadgeDot(),
               size: BadgeSize.lg,
               rightWidget: BadgeCount(count: 52),
@@ -590,7 +591,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.sm,
@@ -599,7 +600,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.md,
@@ -608,7 +609,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.lg,
@@ -620,7 +621,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.sm,
@@ -633,7 +634,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.md,
@@ -646,7 +647,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.lg,
@@ -662,7 +663,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.sm,
@@ -672,7 +673,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: true),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.md,
@@ -682,7 +683,7 @@ Widget badgeWithWidget(BuildContext context) {
           Container(
             padding: const EdgeInsets.all(16),
             child: Badges.badge(
-              text: 'Label',
+              text: context.lang.label,
               leftWidget1: Badges.checkbox(isChecked: false),
               leftWidget2: const BadgeDot(),
               size: BadgeSize.lg,

@@ -1,0 +1,17 @@
+{
+    "button": "Botón",
+    "label": "Etiqueta",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "submit": "Presentar",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "success": "Éxito",
+    "error": "Error",
+    "loading": "Cargando",
+    "home": "Inicio",
+    "settings": "Ajustes",
+    "profile": "Perfil",
+    "option": "Opción"
+}
