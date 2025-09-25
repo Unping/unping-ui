@@ -86,7 +86,8 @@ class _ExampleCheckboxState extends State<_ExampleCheckbox> {
   name: 'ConfigurableCheckbox',
   type: BaseCheckbox,
   path: 'Components/Checkbox/Configurable',
-  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+  designLink:
+      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildConfigurableCheckbox(BuildContext context) {
   // Checkbox size

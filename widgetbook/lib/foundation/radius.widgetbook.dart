@@ -28,27 +28,27 @@ Widget buildUiRadiusUseCase(BuildContext context) {
                 title: "Border Radius",
               ),
               const SizedBox(height: UiSpacing.spacing4),
-              
+
               // Description section using the reusable component
               UnpingUiWidgetbookDescription(
-                description: 'Border radius values define the curvature of element corners, creating visual consistency and hierarchy across the design system. Our radius scale provides a comprehensive range from sharp edges to fully rounded elements.\n\n',
-                lists: {
-                  'Categories:': [
-                    'NONE: Sharp corners with no radius (0px).',
-                    'XS (Extra Small): Subtle rounding for minimal softness (4px).',
-                    'SM (Small): Light rounding for gentle corners (8px).',
-                    'MD (Medium): Standard rounding for most components (12px).',
-                    'LG (Large): Prominent rounding for emphasis (16px).',
-                    'XL (Extra Large): Strong rounding for standout elements (28px).',
-                    'XXL (Double Extra Large): Maximum rounding (32px).',
-                    'FULL: Fully rounded for pills and circular elements.',
-                  ],
-                }
-              ),
+                  description:
+                      'Border radius values define the curvature of element corners, creating visual consistency and hierarchy across the design system. Our radius scale provides a comprehensive range from sharp edges to fully rounded elements.\n\n',
+                  lists: {
+                    'Categories:': [
+                      'NONE: Sharp corners with no radius (0px).',
+                      'XS (Extra Small): Subtle rounding for minimal softness (4px).',
+                      'SM (Small): Light rounding for gentle corners (8px).',
+                      'MD (Medium): Standard rounding for most components (12px).',
+                      'LG (Large): Prominent rounding for emphasis (16px).',
+                      'XL (Extra Large): Strong rounding for standout elements (28px).',
+                      'XXL (Double Extra Large): Maximum rounding (32px).',
+                      'FULL: Fully rounded for pills and circular elements.',
+                    ],
+                  }),
             ],
           ),
         ),
-        
+
         // Radius showcase section
         Container(
           padding: UiSpacing.allXxl,
