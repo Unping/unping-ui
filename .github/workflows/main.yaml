@@ -4,12 +4,16 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches:
       - main
       - develop
       - 'feature/**'
+  workflow_dispatch:
 
 jobs:
   spell-check:
@@ -22,3 +26,18 @@ jobs:
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
     with:
       flutter_channel: stable
+
+  widgetbook-build:
+    uses: ./.github/workflows/build-widgetbook.yaml
+
+  # Ensure components are compatible with fpx
+  fpx-compatibility:
+    strategy:
+      matrix:
+        component: 
+          - 'button'
+          - 'badge'
+          - 'checkbox'
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@main
+    with:
+      component_name: ${{ matrix.component }}
