@@ -37,9 +37,9 @@ Widget buildConfigurableButton(BuildContext context) {
       UiColors.warning600,
       UiColors.error600,
     ],
-    labelBuilder: (color) => color != null ? UiColors.getColorName(color) : 'Default',
+    labelBuilder: (color) =>
+        color != null ? UiColors.getColorName(color) : 'Default',
   );
-
 
   final hasIcon = context.knobs.boolean(
     label: 'Has Icon',
@@ -54,7 +54,7 @@ Widget buildConfigurableButton(BuildContext context) {
       options: ['star', 'heart', 'check', 'add', 'arrow'],
       initialOption: 'star',
     );
-    
+
     // Use appropriate default color for icon based on button type
     Color iconColor;
     if (textColor != null) {
@@ -72,7 +72,7 @@ Widget buildConfigurableButton(BuildContext context) {
           iconColor = UiColors.neutral800;
       }
     }
-    
+
     iconWidget = _buildIcon(iconType, iconColor);
   }
 
@@ -111,9 +111,9 @@ Widget buildConfigurableButton(BuildContext context) {
       UiTextStyles.textLg,
       UiTextStyles.textXl,
     ],
-    labelBuilder: (style) => style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
+    labelBuilder: (style) =>
+        style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
   );
-
 
   // Create the appropriate button based on type
   BaseButton button;

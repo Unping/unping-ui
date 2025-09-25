@@ -45,14 +45,14 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
             description,
             style: descriptionStyle ?? _defaultDescriptionStyle,
           ),
-          
+
           // Dynamic lists sections
           ...lists.entries.map((entry) {
             final heading = entry.key;
             final items = entry.value;
-            
+
             if (items.isEmpty) return const SizedBox.shrink();
-            
+
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -66,9 +66,8 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
                   final index = itemEntry.key;
                   final item = itemEntry.value;
                   // Use numbered bullets for most lists, but use bullet points for items starting with bullet
-                  final bulletText = item.startsWith('•') 
-                      ? item 
-                      : '${index + 1}. $item';
+                  final bulletText =
+                      item.startsWith('•') ? item : '${index + 1}. $item';
                   return _buildBulletPoint(bulletText);
                 }),
               ],
@@ -90,14 +89,14 @@ class UnpingUiWidgetbookDescription extends StatelessWidget {
   }
 
   TextStyle get _defaultDescriptionStyle => UiTextStyles.textXs.copyWith(
-    color: Colors.white, // White #FFFFFF
-  );
+        color: Colors.white, // White #FFFFFF
+      );
 
   TextStyle get _defaultHeadingStyle => UiTextStyles.textXsSemibold.copyWith(
-    color: Colors.white, // White #FFFFFF
-  );
+        color: Colors.white, // White #FFFFFF
+      );
 
   TextStyle get _defaultBulletPointStyle => UiTextStyles.textXs.copyWith(
-    color: Colors.white, // White #FFFFFF
-  );
+        color: Colors.white, // White #FFFFFF
+      );
 }
