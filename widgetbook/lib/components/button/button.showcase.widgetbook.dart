@@ -3,6 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 @widgetbook.UseCase(
@@ -22,14 +23,14 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -42,7 +43,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -70,14 +71,14 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.hovered),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -90,7 +91,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -118,14 +119,14 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.focused),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -138,7 +139,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -166,14 +167,14 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -186,7 +187,7 @@ Widget buildBaseButtonFilled(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.filled(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -228,14 +229,14 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -248,7 +249,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -276,14 +277,14 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.hovered),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -296,7 +297,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -324,14 +325,14 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.focused),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -344,7 +345,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -372,14 +373,14 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -392,7 +393,7 @@ Widget buildBaseButtonOutlined(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.outline(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -434,14 +435,14 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -454,7 +455,7 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: () {},
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -482,14 +483,14 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.hovered),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -502,7 +503,7 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -530,14 +531,14 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   forceState: ButtonState.focused),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -550,7 +551,7 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                  text: 'Button',
+                  text: context.lang.button,
                   onPressed: () {},
                   icon: Icon(
                     Icons.radio_button_unchecked,
@@ -578,14 +579,14 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
               ),
             ),
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
@@ -598,7 +599,7 @@ Widget buildBaseButtonGhost(BuildContext context) {
             Container(
               padding: const EdgeInsets.all(16),
               child: Buttons.ghost(
-                text: 'Button',
+                text: context.lang.button,
                 onPressed: null,
                 icon: Icon(
                   Icons.radio_button_unchecked,
