@@ -53,7 +53,7 @@ class _ExampleRadioGroupState extends State<_ExampleRadioGroup> {
 
 @widgetbook.UseCase(
   name: 'ConfigurableRadioGroup',
-  type: RadioGroup,
+  type: _ExampleRadioGroup, // Must be a concrete Widget class
   path: 'Components/Checkbox/Configurable',
   designLink:
       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
