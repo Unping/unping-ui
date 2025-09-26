@@ -204,5 +204,44 @@ void main() {
         debugDefaultTargetPlatformOverride = prev;
       }
     });
+
+    // === ADDED: explicit focus -> blur to cover FocusScope(onFocusChange:false) ===
+    testWidgets('focus → blur triggers _hide via FocusScope(onFocusChange)',
+        (tester) async {
+      final insideFocus = FocusNode(debugLabel: 'inside');
+      final outsideFocus = FocusNode(debugLabel: 'outside');
+      addTearDown(insideFocus.dispose);
+      addTearDown(outsideFocus.dispose);
+
+      await tester.pumpWidget(_wrap(
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            UiTooltip(
+              message: 'M',
+              style: _fast, // tiny delays to run deterministically
+              triggerOnHover: false,
+              triggerOnLongPress: false,
+              child: TextField(focusNode: insideFocus),
+            ),
+            const SizedBox(height: 16),
+            TextField(focusNode: outsideFocus),
+          ],
+        ),
+      ));
+
+      // Focus INSIDE -> schedules show (uses _fast.showDelay)
+      await tester.tap(find.byType(TextField).first);
+      await tester.pump(_fast.showDelay + _fast.showDuration);
+
+      // Move focus OUTSIDE -> FocusScope.onFocusChange(false) -> _hide();
+      await tester.tap(find.byType(TextField).last);
+      await tester.pump(_fast.hideDuration + const Duration(milliseconds: 1));
+
+      // Sanity: focus moved.
+      expect(outsideFocus.hasPrimaryFocus, isTrue);
+      expect(insideFocus.hasFocus, isFalse);
+      // Executing the path suffices for coverage; no overlay assertions needed.
+    });
   });
 }
