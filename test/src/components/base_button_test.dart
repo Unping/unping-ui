@@ -55,8 +55,9 @@ void main() {
       expect(find.byType(Icon), findsOneWidget);
     });
 
-    testWidgets('throws assertion error when both text and icon are null',
-        (tester) async {
+    testWidgets('throws assertion error when both text and icon are null', (
+      tester,
+    ) async {
       expect(
         () => BaseButton(textColor: Color(0xFFFFFFFF)),
         throwsAssertionError,
@@ -220,8 +221,9 @@ void main() {
         expect(textWidget.style!.color, equals(Color(0xFF00FF00)));
       });
 
-      testWidgets('respects disabled state even with forced state',
-          (tester) async {
+      testWidgets('respects disabled state even with forced state', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -259,8 +261,9 @@ void main() {
         expect(textWidget.style!.color, equals(Color(0xFFFFFFFF)));
 
         // Hover over the button
-        final gesture =
-            await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture = await tester.createGesture(
+          kind: PointerDeviceKind.mouse,
+        );
         await gesture.addPointer(location: Offset.zero);
         await gesture.moveTo(tester.getCenter(find.byType(BaseButton)));
         await tester.pump();
@@ -305,8 +308,9 @@ void main() {
         );
 
         // Hover over the disabled button
-        final gesture =
-            await tester.createGesture(kind: PointerDeviceKind.mouse);
+        final gesture = await tester.createGesture(
+          kind: PointerDeviceKind.mouse,
+        );
         await gesture.addPointer(location: Offset.zero);
         await gesture.moveTo(tester.getCenter(find.byType(BaseButton)));
         await tester.pump();
@@ -332,10 +336,12 @@ void main() {
         );
 
         // Get the Focus widget's onFocusChange callback by inspecting the widget tree
-        final focusWidget = tester.widget<Focus>(find.descendant(
-          of: find.byType(BaseButton),
-          matching: find.byType(Focus),
-        ));
+        final focusWidget = tester.widget<Focus>(
+          find.descendant(
+            of: find.byType(BaseButton),
+            matching: find.byType(Focus),
+          ),
+        );
 
         // Initially should have normal text color
         var textWidget = tester.widget<Text>(find.text('Test'));
@@ -363,8 +369,9 @@ void main() {
         }
       });
 
-      testWidgets('does not respond to focus changes when disabled',
-          (tester) async {
+      testWidgets('does not respond to focus changes when disabled', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -379,10 +386,12 @@ void main() {
         );
 
         // Get the Focus widget's onFocusChange callback
-        final focusWidget = tester.widget<Focus>(find.descendant(
-          of: find.byType(BaseButton),
-          matching: find.byType(Focus),
-        ));
+        final focusWidget = tester.widget<Focus>(
+          find.descendant(
+            of: find.byType(BaseButton),
+            matching: find.byType(Focus),
+          ),
+        );
 
         // Should have disabled text color
         var textWidget = tester.widget<Text>(find.text('Test'));
@@ -442,12 +451,15 @@ void main() {
         );
 
         final container = tester.widget<Container>(find.byType(Container));
-        expect(container.padding,
-            equals(EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)));
+        expect(
+          container.padding,
+          equals(EdgeInsets.symmetric(horizontal: 14.0, vertical: 8.0)),
+        );
       });
 
-      testWidgets('applies default padding for icon-only button',
-          (tester) async {
+      testWidgets('applies default padding for icon-only button', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -560,8 +572,9 @@ void main() {
         expect(textWidget.style!.fontFamily, equals('Arial'));
       });
 
-      testWidgets('uses UiTextStyles.textSm as default text style',
-          (tester) async {
+      testWidgets('uses UiTextStyles.textSm as default text style', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -576,16 +589,23 @@ void main() {
         final textWidget = tester.widget<Text>(find.text('Test'));
         // Verify default style matches UiTextStyles.textSm
         expect(
-            textWidget.style!.fontSize, equals(UiTextStyles.textSm.fontSize));
-        expect(textWidget.style!.fontWeight,
-            equals(UiTextStyles.textSm.fontWeight));
+          textWidget.style!.fontSize,
+          equals(UiTextStyles.textSm.fontSize),
+        );
+        expect(
+          textWidget.style!.fontWeight,
+          equals(UiTextStyles.textSm.fontWeight),
+        );
         expect(textWidget.style!.height, equals(UiTextStyles.textSm.height));
-        expect(textWidget.style!.fontFamily,
-            equals(UiTextStyles.textSm.fontFamily));
+        expect(
+          textWidget.style!.fontFamily,
+          equals(UiTextStyles.textSm.fontFamily),
+        );
       });
 
-      testWidgets('applies minimum height and width constraints',
-          (tester) async {
+      testWidgets('applies minimum height and width constraints', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
@@ -704,10 +724,7 @@ void main() {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
-            child: Buttons.ghost(
-              text: 'Ghost Button',
-              onPressed: () {},
-            ),
+            child: Buttons.ghost(text: 'Ghost Button', onPressed: () {}),
           ),
         );
 
@@ -736,15 +753,13 @@ void main() {
     });
 
     group('filled', () {
-      testWidgets('creates filled button with correct defaults',
-          (tester) async {
+      testWidgets('creates filled button with correct defaults', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
-            child: Buttons.filled(
-              text: 'Filled Button',
-              onPressed: () {},
-            ),
+            child: Buttons.filled(text: 'Filled Button', onPressed: () {}),
           ),
         );
 
@@ -778,15 +793,13 @@ void main() {
     });
 
     group('outline', () {
-      testWidgets('creates outline button with correct defaults',
-          (tester) async {
+      testWidgets('creates outline button with correct defaults', (
+        tester,
+      ) async {
         await tester.pumpWidget(
           Directionality(
             textDirection: TextDirection.ltr,
-            child: Buttons.outline(
-              text: 'Outline Button',
-              onPressed: () {},
-            ),
+            child: Buttons.outline(text: 'Outline Button', onPressed: () {}),
           ),
         );
 

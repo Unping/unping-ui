@@ -33,29 +33,29 @@ void main() {
 
   group('UiSpacingContext extension', () {
     testWidgets(
-        'should provide access to spacing extension through BuildContext',
-        (WidgetTester tester) async {
-      late UiSpacingExtension spacing;
+      'should provide access to spacing extension through BuildContext',
+      (WidgetTester tester) async {
+        late UiSpacingExtension spacing;
 
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData(
-            extensions: [UiSpacingExtension.light],
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData(extensions: [UiSpacingExtension.light]),
+            home: Builder(
+              builder: (context) {
+                spacing = context.UiSpacing;
+                return Container();
+              },
+            ),
           ),
-          home: Builder(
-            builder: (context) {
-              spacing = context.UiSpacing;
-              return Container();
-            },
-          ),
-        ),
-      );
+        );
 
-      expect(spacing, isA<UiSpacingExtension>());
-    });
+        expect(spacing, isA<UiSpacingExtension>());
+      },
+    );
 
-    testWidgets('should fallback to light extension when not in theme',
-        (WidgetTester tester) async {
+    testWidgets('should fallback to light extension when not in theme', (
+      WidgetTester tester,
+    ) async {
       late UiSpacingExtension spacing;
 
       await tester.pumpWidget(

@@ -361,9 +361,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
           width: widget.actualSize,
           height: widget.actualSize,
           decoration: decoration,
-          child: Center(
-            child: _buildCheckMark(),
-          ),
+          child: Center(child: _buildCheckMark()),
         );
       },
     );
@@ -371,10 +369,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
     final isDisabled = widget.onChanged == null;
 
     if (isDisabled) {
-      checkbox = Opacity(
-        opacity: widget.disabledOpacity,
-        child: checkbox,
-      );
+      checkbox = Opacity(opacity: widget.disabledOpacity, child: checkbox);
     }
 
     // Wrap checkbox with interaction handlers for non-disabled state
@@ -396,10 +391,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
         child: MouseRegion(
           onEnter: (_) => setState(() => _isHovered = true),
           onExit: (_) => setState(() => _isHovered = false),
-          child: GestureDetector(
-            onTap: _handleTap,
-            child: checkbox,
-          ),
+          child: GestureDetector(onTap: _handleTap, child: checkbox),
         ),
       );
     }
@@ -425,24 +417,14 @@ class _BaseCheckboxState extends State<BaseCheckbox>
       final textWidgets = <Widget>[];
 
       if (widget.label != null) {
-        textWidgets.add(
-          Text(
-            widget.label!,
-            style: labelStyle,
-          ),
-        );
+        textWidgets.add(Text(widget.label!, style: labelStyle));
       }
 
       if (widget.description != null) {
         if (textWidgets.isNotEmpty) {
           textWidgets.add(SizedBox(height: UiSpacing.spacing1));
         }
-        textWidgets.add(
-          Text(
-            widget.description!,
-            style: descriptionStyle,
-          ),
-        );
+        textWidgets.add(Text(widget.description!, style: descriptionStyle));
       }
 
       textContent = Column(
@@ -459,9 +441,10 @@ class _BaseCheckboxState extends State<BaseCheckbox>
       children: [
         Container(
           padding: EdgeInsets.only(
-              top: widget.label != null
-                  ? UiSpacing.spacing0_5
-                  : UiSpacing.spacing0),
+            top: widget.label != null
+                ? UiSpacing.spacing0_5
+                : UiSpacing.spacing0,
+          ),
           child: checkbox,
         ),
         if (textContent != null) ...[
@@ -480,9 +463,7 @@ class _BaseCheckboxState extends State<BaseCheckbox>
     }
 
     // Ensure proper layout constraints
-    return IntrinsicWidth(
-      child: combinedWidget,
-    );
+    return IntrinsicWidth(child: combinedWidget);
   }
 }
 
@@ -571,7 +552,8 @@ class _RadioGroupState<T> extends State<RadioGroup<T>> {
             ),
             if (option.label != null) ...[
               SizedBox(
-                  width: widget.size == CheckboxSize.sm ? 6.0 : UiSpacing.xs),
+                width: widget.size == CheckboxSize.sm ? 6.0 : UiSpacing.xs,
+              ),
               option.label!,
             ],
           ],
@@ -606,10 +588,7 @@ class RadioOption<T> {
   /// Optional label widget to display next to the radio button
   final Widget? label;
 
-  const RadioOption({
-    required this.value,
-    this.label,
-  });
+  const RadioOption({required this.value, this.label});
 
   /// Create a radio option with text label
   factory RadioOption.text({
@@ -621,10 +600,7 @@ class RadioOption<T> {
       value: value,
       label: Text(
         text,
-        style: style ??
-            UiTextStyles.textSm.copyWith(
-              color: UiColors.onPrimary,
-            ),
+        style: style ?? UiTextStyles.textSm.copyWith(color: UiColors.onPrimary),
       ),
     );
   }
@@ -757,10 +733,7 @@ class _CheckMarkPainter extends CustomPainter {
   final Color color;
   final double progress;
 
-  _CheckMarkPainter({
-    required this.color,
-    required this.progress,
-  });
+  _CheckMarkPainter({required this.color, required this.progress});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -804,10 +777,7 @@ class _IndeterminatePainter extends CustomPainter {
   final Color color;
   final double progress;
 
-  _IndeterminatePainter({
-    required this.color,
-    required this.progress,
-  });
+  _IndeterminatePainter({required this.color, required this.progress});
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -822,11 +792,7 @@ class _IndeterminatePainter extends CustomPainter {
     final startX = (size.width - lineWidth) / 2;
     final endX = startX + lineWidth;
 
-    canvas.drawLine(
-      Offset(startX, centerY),
-      Offset(endX, centerY),
-      paint,
-    );
+    canvas.drawLine(Offset(startX, centerY), Offset(endX, centerY), paint);
   }
 
   // coverage:ignore-start

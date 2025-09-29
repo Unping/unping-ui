@@ -129,7 +129,6 @@ Widget buildConfigurableInput(BuildContext context) {
       );
   }
 
-
   return UnpingUIContainer(
     breadcrumbs: ['Components', 'Input', 'Configurable'],
     child: Padding(

@@ -35,8 +35,9 @@ void main() {
       expect(changedState, unping.CheckboxState.checked);
     });
 
-    testWidgets('does not respond to taps when disabled',
-        (WidgetTester tester) async {
+    testWidgets('does not respond to taps when disabled', (
+      WidgetTester tester,
+    ) async {
       unping.CheckboxState? changedState;
 
       await tester.pumpWidget(
@@ -54,8 +55,9 @@ void main() {
       expect(changedState, isNull);
     });
 
-    testWidgets('radio button does not uncheck itself',
-        (WidgetTester tester) async {
+    testWidgets('radio button does not uncheck itself', (
+      WidgetTester tester,
+    ) async {
       unping.CheckboxState? changedState;
 
       await tester.pumpWidget(
@@ -74,8 +76,9 @@ void main() {
       expect(changedState, isNull);
     });
 
-    testWidgets('radio button does not support indeterminate state',
-        (WidgetTester tester) async {
+    testWidgets('radio button does not support indeterminate state', (
+      WidgetTester tester,
+    ) async {
       // Radio buttons created through the factory should only use checked/unchecked
       unping.RadioState? changedState;
 
@@ -92,13 +95,14 @@ void main() {
       // The radio button should be in unchecked state initially
       await tester.tap(find.byType(unping.BaseCheckbox));
       expect(
-          changedState,
-          unping
-              .RadioState.checked); // Should go to checked, never indeterminate
+        changedState,
+        unping.RadioState.checked,
+      ); // Should go to checked, never indeterminate
     });
 
-    testWidgets('renders different sizes correctly',
-        (WidgetTester tester) async {
+    testWidgets('renders different sizes correctly', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -133,8 +137,9 @@ void main() {
       expect(changedState, unping.CheckboxState.checked);
     });
 
-    testWidgets('supports focus and keyboard navigation',
-        (WidgetTester tester) async {
+    testWidgets('supports focus and keyboard navigation', (
+      WidgetTester tester,
+    ) async {
       unping.CheckboxState? changedState;
 
       await tester.pumpWidget(
@@ -220,8 +225,9 @@ void main() {
       expect(selectedValue, 'option1');
     });
 
-    testWidgets('renders horizontally when specified',
-        (WidgetTester tester) async {
+    testWidgets('renders horizontally when specified', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -299,8 +305,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('radio button handles selection callback',
-        (WidgetTester tester) async {
+    testWidgets('radio button handles selection callback', (
+      WidgetTester tester,
+    ) async {
       unping.RadioState? changedState;
 
       await tester.pumpWidget(
@@ -374,8 +381,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should handle hover state changes',
-        (WidgetTester tester) async {
+    testWidgets('should handle hover state changes', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -398,8 +406,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should handle indeterminate state',
-        (WidgetTester tester) async {
+    testWidgets('should handle indeterminate state', (
+      WidgetTester tester,
+    ) async {
       unping.CheckboxState? changedState;
 
       await tester.pumpWidget(
@@ -417,8 +426,9 @@ void main() {
       expect(changedState, unping.CheckboxState.checked);
     });
 
-    testWidgets('should handle checkbox with label',
-        (WidgetTester tester) async {
+    testWidgets('should handle checkbox with label', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -434,8 +444,9 @@ void main() {
       expect(find.byType(Row), findsOneWidget);
     });
 
-    testWidgets('should handle checkbox with description',
-        (WidgetTester tester) async {
+    testWidgets('should handle checkbox with description', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -451,8 +462,9 @@ void main() {
       expect(find.byType(Column), findsOneWidget);
     });
 
-    testWidgets('should handle checkbox with both label and description',
-        (WidgetTester tester) async {
+    testWidgets('should handle checkbox with both label and description', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -471,8 +483,9 @@ void main() {
       expect(find.byType(Row), findsOneWidget);
     });
 
-    testWidgets('should handle disabled checkbox with text',
-        (WidgetTester tester) async {
+    testWidgets('should handle disabled checkbox with text', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -489,8 +502,9 @@ void main() {
       expect(find.text('Disabled Description'), findsOneWidget);
     });
 
-    testWidgets('should handle checkbox with forceVisualState',
-        (WidgetTester tester) async {
+    testWidgets('should handle checkbox with forceVisualState', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -505,8 +519,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should handle forceVisualState when disabled',
-        (WidgetTester tester) async {
+    testWidgets('should handle forceVisualState when disabled', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -521,8 +536,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should handle text with custom spacing',
-        (WidgetTester tester) async {
+    testWidgets('should handle text with custom spacing', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -540,8 +556,9 @@ void main() {
       expect(find.byType(SizedBox), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('should handle text click when not disabled',
-        (WidgetTester tester) async {
+    testWidgets('should handle text click when not disabled', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -558,8 +575,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should use IntrinsicWidth for proper layout',
-        (WidgetTester tester) async {
+    testWidgets('should use IntrinsicWidth for proper layout', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -574,8 +592,9 @@ void main() {
       expect(find.byType(IntrinsicWidth), findsOneWidget);
     });
 
-    testWidgets('should handle custom label and description styles',
-        (WidgetTester tester) async {
+    testWidgets('should handle custom label and description styles', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -585,8 +604,10 @@ void main() {
             label: 'Styled Label',
             description: 'Styled Description',
             labelStyle: const TextStyle(fontSize: 16, color: Color(0xFF000000)),
-            descriptionStyle:
-                const TextStyle(fontSize: 12, color: Color(0xFF666666)),
+            descriptionStyle: const TextStyle(
+              fontSize: 12,
+              color: Color(0xFF666666),
+            ),
           ),
         ),
       );
@@ -615,8 +636,9 @@ void main() {
       expect(changedState, unping.CheckboxState.checked);
     });
 
-    testWidgets('should ignore keyboard events when disabled',
-        (WidgetTester tester) async {
+    testWidgets('should ignore keyboard events when disabled', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -631,8 +653,9 @@ void main() {
       expect(find.byType(unping.BaseCheckbox), findsOneWidget);
     });
 
-    testWidgets('should handle state animation when widget updates',
-        (WidgetTester tester) async {
+    testWidgets('should handle state animation when widget updates', (
+      WidgetTester tester,
+    ) async {
       // Test animation when state changes from checked to unchecked
       await tester.pumpWidget(
         Directionality(
@@ -660,42 +683,42 @@ void main() {
     });
 
     testWidgets(
-        'should handle state animation when widget updates from unchecked to checked',
-        (WidgetTester tester) async {
-      // Test animation when state changes from unchecked to checked
-      await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: unping.BaseCheckbox(
-            state: unping.CheckboxState.unchecked,
-            onChanged: (state) {},
+      'should handle state animation when widget updates from unchecked to checked',
+      (WidgetTester tester) async {
+        // Test animation when state changes from unchecked to checked
+        await tester.pumpWidget(
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: unping.BaseCheckbox(
+              state: unping.CheckboxState.unchecked,
+              onChanged: (state) {},
+            ),
           ),
-        ),
-      );
+        );
 
-      // Update to checked state
-      await tester.pumpWidget(
-        Directionality(
-          textDirection: TextDirection.ltr,
-          child: unping.BaseCheckbox(
-            state: unping.CheckboxState.checked,
-            onChanged: (state) {},
+        // Update to checked state
+        await tester.pumpWidget(
+          Directionality(
+            textDirection: TextDirection.ltr,
+            child: unping.BaseCheckbox(
+              state: unping.CheckboxState.checked,
+              onChanged: (state) {},
+            ),
           ),
-        ),
-      );
+        );
 
-      await tester.pumpAndSettle();
-      expect(find.byType(unping.BaseCheckbox), findsOneWidget);
-    });
+        await tester.pumpAndSettle();
+        expect(find.byType(unping.BaseCheckbox), findsOneWidget);
+      },
+    );
 
-    testWidgets('should test indeterminate state with custom paint',
-        (WidgetTester tester) async {
+    testWidgets('should test indeterminate state with custom paint', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
-          child: unping.BaseCheckbox(
-            state: unping.CheckboxState.indeterminate,
-          ),
+          child: unping.BaseCheckbox(state: unping.CheckboxState.indeterminate),
         ),
       );
 
@@ -720,10 +743,12 @@ void main() {
       );
 
       // Get the Focus widget's onFocusChange callback by inspecting the widget tree
-      final focusWidget = tester.widget<Focus>(find.descendant(
-        of: find.byType(unping.BaseCheckbox),
-        matching: find.byType(Focus),
-      ));
+      final focusWidget = tester.widget<Focus>(
+        find.descendant(
+          of: find.byType(unping.BaseCheckbox),
+          matching: find.byType(Focus),
+        ),
+      );
 
       // Trigger focus change by calling the callback directly
       if (focusWidget.onFocusChange != null) {
@@ -745,8 +770,9 @@ void main() {
       }
     });
 
-    testWidgets('does not respond to focus changes when disabled',
-        (tester) async {
+    testWidgets('does not respond to focus changes when disabled', (
+      tester,
+    ) async {
       await tester.pumpWidget(
         const Directionality(
           textDirection: TextDirection.ltr,
@@ -759,25 +785,28 @@ void main() {
 
       // Disabled checkbox should not have Focus widget from unping.BaseCheckbox
       expect(
-          find.descendant(
-            of: find.byType(unping.BaseCheckbox),
-            matching: find.byType(Focus),
-          ),
-          findsNothing);
+        find.descendant(
+          of: find.byType(unping.BaseCheckbox),
+          matching: find.byType(Focus),
+        ),
+        findsNothing,
+      );
 
       expect(
-          find.descendant(
-            of: find.byType(unping.BaseCheckbox),
-            matching: find.byType(MouseRegion),
-          ),
-          findsNothing);
+        find.descendant(
+          of: find.byType(unping.BaseCheckbox),
+          matching: find.byType(MouseRegion),
+        ),
+        findsNothing,
+      );
 
       expect(
-          find.descendant(
-            of: find.byType(unping.BaseCheckbox),
-            matching: find.byType(GestureDetector),
-          ),
-          findsNothing);
+        find.descendant(
+          of: find.byType(unping.BaseCheckbox),
+          matching: find.byType(GestureDetector),
+        ),
+        findsNothing,
+      );
     });
 
     testWidgets('handles keyboard events', (tester) async {
@@ -794,10 +823,12 @@ void main() {
       );
 
       // Get the Focus widget to test keyboard events
-      final focusWidget = tester.widget<Focus>(find.descendant(
-        of: find.byType(unping.BaseCheckbox),
-        matching: find.byType(Focus),
-      ));
+      final focusWidget = tester.widget<Focus>(
+        find.descendant(
+          of: find.byType(unping.BaseCheckbox),
+          matching: find.byType(Focus),
+        ),
+      );
 
       // Test space key
       if (focusWidget.onKeyEvent != null) {
@@ -870,8 +901,9 @@ void main() {
   });
 
   group('Radio Group', () {
-    testWidgets('should handle radio group value changes',
-        (WidgetTester tester) async {
+    testWidgets('should handle radio group value changes', (
+      WidgetTester tester,
+    ) async {
       String? selectedValue;
 
       await tester.pumpWidget(
@@ -892,8 +924,9 @@ void main() {
       expect(selectedValue, 'option1');
     });
 
-    testWidgets('should show selected value in radio group',
-        (WidgetTester tester) async {
+    testWidgets('should show selected value in radio group', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,
@@ -912,8 +945,9 @@ void main() {
       expect(find.text('Option 2'), findsOneWidget);
     });
 
-    testWidgets('should handle disabled radio group',
-        (WidgetTester tester) async {
+    testWidgets('should handle disabled radio group', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         Directionality(
           textDirection: TextDirection.ltr,

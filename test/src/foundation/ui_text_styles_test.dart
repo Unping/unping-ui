@@ -95,14 +95,14 @@ void main() {
 
     test('should have standard static instance', () {
       expect(
-          UnpingTextStyleExtension.standard, isA<UnpingTextStyleExtension>());
+        UnpingTextStyleExtension.standard,
+        isA<UnpingTextStyleExtension>(),
+      );
     });
 
     test('should support custom text styles in constructor', () {
       final customStyle = UiTextStyles.textMd.copyWith(color: Colors.red);
-      final extension = UnpingTextStyleExtension(
-        textMd: customStyle,
-      );
+      final extension = UnpingTextStyleExtension(textMd: customStyle);
 
       expect(extension.textMd, customStyle);
       expect(extension.textSm, UiTextStyles.textSm); // should use default
@@ -132,30 +132,30 @@ void main() {
 
   group('UnpingTextStyleContext extension', () {
     testWidgets(
-        'should provide access to text style extension through BuildContext',
-        (WidgetTester tester) async {
-      late UnpingTextStyleExtension textStyles;
+      'should provide access to text style extension through BuildContext',
+      (WidgetTester tester) async {
+        late UnpingTextStyleExtension textStyles;
 
-      await tester.pumpWidget(
-        MaterialApp(
-          theme: ThemeData(
-            extensions: [UnpingTextStyleExtension.standard],
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: ThemeData(extensions: [UnpingTextStyleExtension.standard]),
+            home: Builder(
+              builder: (context) {
+                textStyles = context.UiTextStyles;
+                return Container();
+              },
+            ),
           ),
-          home: Builder(
-            builder: (context) {
-              textStyles = context.UiTextStyles;
-              return Container();
-            },
-          ),
-        ),
-      );
+        );
 
-      expect(textStyles, isA<UnpingTextStyleExtension>());
-      expect(textStyles.textMd.fontSize, 16);
-    });
+        expect(textStyles, isA<UnpingTextStyleExtension>());
+        expect(textStyles.textMd.fontSize, 16);
+      },
+    );
 
-    testWidgets('should fallback to standard extension when not in theme',
-        (WidgetTester tester) async {
+    testWidgets('should fallback to standard extension when not in theme', (
+      WidgetTester tester,
+    ) async {
       late UnpingTextStyleExtension textStyles;
 
       await tester.pumpWidget(
@@ -188,92 +188,156 @@ void main() {
     });
 
     test('should handle display and other styles as custom', () {
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.display2xl),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayXl),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLg),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayMd),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displaySm),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayXs),
-          'Custom Style');
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.display2xl),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displayXl),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displayLg),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displayMd),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displaySm),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displayXs),
+        'Custom Style',
+      );
     });
 
     test('should handle weight variants as custom', () {
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXsMedium),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textSmSemibold),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textMdBold),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textLgMedium),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textXlBold),
-          'Custom Style');
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textXsMedium),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textSmSemibold),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textMdBold),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textLgMedium),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textXlBold),
+        'Custom Style',
+      );
     });
 
     test('should handle code and utility styles as custom', () {
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeLarge),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeMedium),
-          'Custom Style');
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.codeSmall),
-          'Custom Style');
       expect(
-          UiTextStyles.getTextStyleName(UiTextStyles.caption), 'Custom Style');
+        UiTextStyles.getTextStyleName(UiTextStyles.codeLarge),
+        'Custom Style',
+      );
       expect(
-          UiTextStyles.getTextStyleName(UiTextStyles.overline), 'Custom Style');
+        UiTextStyles.getTextStyleName(UiTextStyles.codeMedium),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.codeSmall),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.caption),
+        'Custom Style',
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.overline),
+        'Custom Style',
+      );
     });
 
     test('should handle legacy alias styles correctly', () {
       // Legacy aliases point to base text styles, so they should return the base style names
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleLarge),
-          'Text XL'); // points to textXl
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleMedium),
-          'Text MD'); // points to textMd
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.titleSmall),
-          'Text SM'); // points to textSm
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyLarge),
-          'Text MD'); // points to textMd
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodyMedium),
-          'Text SM'); // points to textSm
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.bodySmall),
-          'Text XS'); // points to textXs
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelLarge),
-          'Text SM'); // points to textSm
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelMedium),
-          'Text XS'); // points to textXs
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.labelSmall),
-          'Text XS'); // points to textXs
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.titleLarge),
+        'Text XL',
+      ); // points to textXl
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.titleMedium),
+        'Text MD',
+      ); // points to textMd
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.titleSmall),
+        'Text SM',
+      ); // points to textSm
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.bodyLarge),
+        'Text MD',
+      ); // points to textMd
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.bodyMedium),
+        'Text SM',
+      ); // points to textSm
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.bodySmall),
+        'Text XS',
+      ); // points to textXs
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.labelLarge),
+        'Text SM',
+      ); // points to textSm
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.labelMedium),
+        'Text XS',
+      ); // points to textXs
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.labelSmall),
+        'Text XS',
+      ); // points to textXs
 
       // Display legacy aliases point to display styles which should return 'Custom Style'
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.displayLarge),
-          'Custom Style'); // points to display2xl
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.headlineLarge),
-          'Custom Style'); // points to displayMd
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.displayLarge),
+        'Custom Style',
+      ); // points to display2xl
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.headlineLarge),
+        'Custom Style',
+      ); // points to displayMd
     });
 
     test('should be case-sensitive and exact match', () {
       // Test that it returns exact string matches
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textMd),
-          equals('Text MD'));
-      expect(UiTextStyles.getTextStyleName(UiTextStyles.textSm),
-          equals('Text SM'));
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+        equals('Text MD'),
+      );
+      expect(
+        UiTextStyles.getTextStyleName(UiTextStyles.textSm),
+        equals('Text SM'),
+      );
 
       // Ensure the function doesn't return partial matches or variations
       expect(
-          UiTextStyles.getTextStyleName(UiTextStyles.textMd), isNot('text md'));
+        UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+        isNot('text md'),
+      );
       expect(
-          UiTextStyles.getTextStyleName(UiTextStyles.textMd), isNot('TextMD'));
+        UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+        isNot('TextMD'),
+      );
     });
 
     test('should handle null input gracefully', () {
       // Since the function parameter is non-nullable, this test verifies type safety
-      expect(() => UiTextStyles.getTextStyleName(UiTextStyles.textMd),
-          returnsNormally);
+      expect(
+        () => UiTextStyles.getTextStyleName(UiTextStyles.textMd),
+        returnsNormally,
+      );
     });
 
     test('should consistently identify only base text styles', () {
