@@ -52,4 +52,67 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get option => 'Option';
+
+  @override
+  String get inputLabel => 'Beschriftung';
+
+  @override
+  String get inputPlaceholder => 'Platzhalter';
+
+  @override
+  String get inputFocused => 'Fokussiert';
+
+  @override
+  String get inputError => 'Fehler';
+
+  @override
+  String get inputErrorMessage => 'Fehlermeldung';
+
+  @override
+  String get inputDisabled => 'Deaktiviert';
+
+  @override
+  String get inputWithPrefix => 'Mit Präfix';
+
+  @override
+  String get inputWithSuffix => 'Mit Suffix';
+
+  @override
+  String get inputEmailPlaceholder => 'E-Mail';
+
+  @override
+  String get inputUsernamePlaceholder => 'Benutzername';
+
+  @override
+  String get inputDescription => 'Beschreibung';
+
+  @override
+  String get inputDescriptionPlaceholder => 'Etwas schreiben...';
+
+  @override
+  String get inputWritePlaceholder => 'Schreiben...';
+
+  @override
+  String get inputTooLong => 'Zu lang';
+
+  @override
+  String get inputWithCounter => 'Mit Zähler';
+
+  @override
+  String get inputMaxCharsPlaceholder => 'Max. 120 Zeichen';
+
+  @override
+  String get inputSearchPlaceholder => 'Suchen...';
+
+  @override
+  String get inputClearableSearch => 'Löschbare Suche';
+
+  @override
+  String get inputPasswordLabel => 'Passwort';
+
+  @override
+  String get inputPasswordPlaceholder => 'Passwort eingeben';
+
+  @override
+  String get inputWeakPassword => 'Schwaches Passwort';
 }

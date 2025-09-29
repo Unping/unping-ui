@@ -4,6 +4,8 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // UI library
 import 'package:unping_ui/unping_ui.dart';
+
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 @widgetbook.UseCase(
@@ -12,6 +14,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   path: 'Components/Input/Configurable',
 )
 Widget buildConfigurableInput(BuildContext context) {
+
   // Variant selection
   final variant = context.knobs.list(
     label: 'Variant',
@@ -22,7 +25,9 @@ Widget buildConfigurableInput(BuildContext context) {
   // Placeholder
   final placeholder = context.knobs.string(
     label: 'Placeholder',
-    initialValue: variant == 'search' ? 'Search' : 'Enter value',
+    initialValue: variant == 'search'
+        ? context.lang.inputSearchPlaceholder
+        : context.lang.inputPlaceholder,
   );
 
   // Tooltip knob
@@ -88,13 +93,13 @@ Widget buildConfigurableInput(BuildContext context) {
         size: size,
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
-        errorText: state == InputState.error ? 'This field has an error' : null,
+        errorText: state == InputState.error ? context.lang.inputErrorMessage : null,
       );
       break;
 
     case 'search':
       input = Inputs.search(
-        placeholder: placeholder.isEmpty ? 'Search' : placeholder,
+        placeholder: placeholder.isEmpty ? context.lang.inputSearchPlaceholder : placeholder,
         onSubmitted: (_) {},
         size: size,
         forceState: state,
@@ -104,11 +109,11 @@ Widget buildConfigurableInput(BuildContext context) {
 
     case 'password':
       input = Inputs.password(
-        placeholder: 'Password',
+        placeholder: context.lang.inputPasswordPlaceholder,
         size: size,
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
-        errorText: state == InputState.error ? 'This field has an error' : null,
+        errorText: state == InputState.error ? context.lang.inputWeakPassword : null,
       );
       break;
 
@@ -120,7 +125,7 @@ Widget buildConfigurableInput(BuildContext context) {
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
         errorText: state == InputState.error
-            ? (customError.isNotEmpty ? customError : 'Error message')
+            ? (customError.isNotEmpty ? customError : context.lang.inputErrorMessage)
             : null,
         prefixIcon: hasPrefixIcon ? _buildIconData(prefixIconType) : null,
         suffixIcon: hasSuffixIcon ? _buildIconData(suffixIconType) : null,

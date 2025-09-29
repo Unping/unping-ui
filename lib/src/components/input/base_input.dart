@@ -203,8 +203,8 @@ class _BaseInputState extends State<BaseInput> {
   var _ownsFocusNode = false;
   var _focused = false;
   var _obscured = false;
-  var _validationMessage;
-  var _currentHeight;
+  String? _validationMessage;
+  double? _currentHeight;
   var _hasText = false;
 
   @override
@@ -705,14 +705,14 @@ class _BaseInputState extends State<BaseInput> {
     }
 
     final strength = _calculateStrength(_controller.text);
-    final colors = const PasswordStrengthColors(
+    final colors = PasswordStrengthColors(
       weak: UiColors.error400,
       medium: UiColors.warning400,
       strong: UiColors.success400,
     );
 
-    var color;
-    var label;
+    Color color;
+    String label;
     switch (strength) {
       case PasswordStrength.weak:
         color = colors.weak;
@@ -779,6 +779,7 @@ class ResizableBox extends StatefulWidget {
   final ValueChanged<double> onHeightChanged;
 
   const ResizableBox({
+    super.key,
     required this.initialHeight,
     required this.child,
     required this.onHeightChanged,

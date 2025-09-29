@@ -30,14 +30,27 @@ jobs:
   widgetbook-build:
     uses: ./.github/workflows/build-widgetbook.yaml
 
+  # Discover available components
+  discover-components:
+    runs-on: ubuntu-latest
+    outputs:
+      components: ${{ steps.get-components.outputs.components }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Get component directories
+        id: get-components
+        run: |
+          components=$(ls -1 lib/src/components/ | jq -R -s -c 'split("\n")[:-1]')
+          echo "components=$components" >> $GITHUB_OUTPUT
+
   # Ensure components are compatible with fpx
   fpx-compatibility:
+    needs: discover-components
     strategy:
       matrix:
-        component: 
-          - 'button'
-          - 'badge'
-          - 'checkbox'
-    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@main
+        component: ${{ fromJson(needs.discover-components.outputs.components) }}
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@e4010b35848bd64194f16bce2b7ff77b740d0bdd
     with:
       component_name: ${{ matrix.component }}

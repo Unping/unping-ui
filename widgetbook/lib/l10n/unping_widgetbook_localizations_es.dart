@@ -52,4 +52,67 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get option => 'Opción';
+
+  @override
+  String get inputLabel => 'Etiqueta';
+
+  @override
+  String get inputPlaceholder => 'Marcador de posición';
+
+  @override
+  String get inputFocused => 'Enfocado';
+
+  @override
+  String get inputError => 'Error';
+
+  @override
+  String get inputErrorMessage => 'Mensaje de error';
+
+  @override
+  String get inputDisabled => 'Deshabilitado';
+
+  @override
+  String get inputWithPrefix => 'Con prefijo';
+
+  @override
+  String get inputWithSuffix => 'Con sufijo';
+
+  @override
+  String get inputEmailPlaceholder => 'Correo electrónico';
+
+  @override
+  String get inputUsernamePlaceholder => 'Nombre de usuario';
+
+  @override
+  String get inputDescription => 'Descripción';
+
+  @override
+  String get inputDescriptionPlaceholder => 'Escribe algo...';
+
+  @override
+  String get inputWritePlaceholder => 'Escribir...';
+
+  @override
+  String get inputTooLong => 'Demasiado largo';
+
+  @override
+  String get inputWithCounter => 'Con contador';
+
+  @override
+  String get inputMaxCharsPlaceholder => 'Máximo 120 caracteres';
+
+  @override
+  String get inputSearchPlaceholder => 'Buscar...';
+
+  @override
+  String get inputClearableSearch => 'Búsqueda borrable';
+
+  @override
+  String get inputPasswordLabel => 'Contraseña';
+
+  @override
+  String get inputPasswordPlaceholder => 'Ingrese contraseña';
+
+  @override
+  String get inputWeakPassword => 'Contraseña débil';
 }

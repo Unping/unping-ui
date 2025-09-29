@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 Widget _pad(Widget child) => Container(
@@ -24,28 +25,28 @@ Widget showcaseTextInput(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _pad(Inputs.text(
-          label: 'Label',
-          placeholder: 'Placeholder',
+          label: context.lang.inputLabel,
+          placeholder: context.lang.inputPlaceholder,
           onChanged: (_) {},
         )),
         _pad(Inputs.text(
-          label: 'Focused',
-          placeholder: 'Placeholder',
+          label: context.lang.inputFocused,
+          placeholder: context.lang.inputPlaceholder,
           forceState: InputState.focused,
         )),
         _pad(Inputs.text(
-          label: 'Error',
-          placeholder: 'Placeholder',
-          errorText: 'Error message',
+          label: context.lang.inputError,
+          placeholder: context.lang.inputPlaceholder,
+          errorText: context.lang.inputErrorMessage,
         )),
         _pad(Inputs.text(
-          label: 'Disabled',
-          placeholder: 'Placeholder',
+          label: context.lang.inputDisabled,
+          placeholder: context.lang.inputPlaceholder,
           enabled: false,
         )),
         _pad(Inputs.text(
-            label: 'With prefix',
-            placeholder: 'Email',
+            label: context.lang.inputWithPrefix,
+            placeholder: context.lang.inputEmailPlaceholder,
             prefix: const Icon(
               Icons.alternate_email,
               size: 18,
@@ -53,8 +54,8 @@ Widget showcaseTextInput(BuildContext context) {
             ))),
         _pad(
           Inputs.text(
-              label: 'With suffix',
-              placeholder: 'Username',
+              label: context.lang.inputWithSuffix,
+              placeholder: context.lang.inputUsernamePlaceholder,
               suffix: const Icon(
                 Icons.check_circle,
                 size: 18,
@@ -78,32 +79,32 @@ Widget showcaseTextArea(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _pad(Inputs.textArea(
-          label: 'Description',
-          placeholder: 'Write something...',
+          label: context.lang.inputDescription,
+          placeholder: context.lang.inputDescriptionPlaceholder,
           minLines: 3,
           maxLines: 8,
           resizable: true,
         )),
         _pad(Inputs.textArea(
-          label: 'Focused',
-          placeholder: 'Write...',
+          label: context.lang.inputFocused,
+          placeholder: context.lang.inputWritePlaceholder,
           forceState: InputState.focused,
         )),
         _pad(Inputs.textArea(
-          label: 'Error',
-          placeholder: 'Write...',
-          errorText: 'Too long',
+          label: context.lang.inputError,
+          placeholder: context.lang.inputWritePlaceholder,
+          errorText: context.lang.inputTooLong,
         )),
         _pad(
           Inputs.textArea(
-            label: 'Disabled',
-            placeholder: 'Write...',
+            label: context.lang.inputDisabled,
+            placeholder: context.lang.inputWritePlaceholder,
             enabled: false,
           ),
         ),
         _pad(Inputs.textArea(
-          label: 'With counter',
-          placeholder: 'Max 120 chars',
+          label: context.lang.inputWithCounter,
+          placeholder: context.lang.inputMaxCharsPlaceholder,
           maxLength: 120,
           showCharacterCount: true,
         )),
@@ -123,9 +124,9 @@ Widget showcaseSearchInput(BuildContext context) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _pad(Inputs.search(placeholder: 'Search...')),
+        _pad(Inputs.search(placeholder: context.lang.inputSearchPlaceholder)),
         _pad(BaseInput(
-          placeholder: 'Clearable search',
+          placeholder: context.lang.inputClearableSearch,
           prefix: const Icon(
             Icons.search,
             size: 18,
@@ -134,11 +135,11 @@ Widget showcaseSearchInput(BuildContext context) {
           showClearButton: true,
         )),
         _pad(Inputs.search(
-          placeholder: 'Focused',
+          placeholder: context.lang.inputFocused,
           forceState: InputState.focused,
         )),
         _pad(Inputs.search(
-          placeholder: 'Disabled',
+          placeholder: context.lang.inputDisabled,
           enabled: false,
         )),
       ],
@@ -158,24 +159,24 @@ Widget showcasePasswordInput(BuildContext context) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         _pad(Inputs.password(
-          label: 'Password',
-          placeholder: 'Enter password',
+          label: context.lang.inputPasswordLabel,
+          placeholder: context.lang.inputPasswordPlaceholder,
           showStrengthIndicator: true,
         )),
         _pad(Inputs.password(
-          label: 'Focused',
-          placeholder: 'Enter password',
+          label: context.lang.inputFocused,
+          placeholder: context.lang.inputPasswordPlaceholder,
           showStrengthIndicator: true,
           forceState: InputState.focused,
         )),
         _pad(Inputs.password(
-          label: 'Error',
-          placeholder: 'Enter password',
-          errorText: 'Weak password',
+          label: context.lang.inputError,
+          placeholder: context.lang.inputPasswordPlaceholder,
+          errorText: context.lang.inputWeakPassword,
         )),
         _pad(Inputs.password(
-          label: 'Disabled',
-          placeholder: 'Enter password',
+          label: context.lang.inputDisabled,
+          placeholder: context.lang.inputPasswordPlaceholder,
           showStrengthIndicator: true,
           enabled: false,
         )),
