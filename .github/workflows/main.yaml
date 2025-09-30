@@ -51,6 +51,6 @@ jobs:
     strategy:
       matrix:
         component: ${{ fromJson(needs.discover-components.outputs.components) }}
-    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@e4010b35848bd64194f16bce2b7ff77b740d0bdd
+    uses: jdde/fpx/.github/workflows/reusable-fpx-compatibility.yml@83aa5b937853a9a7eabc3e5491f3a17168b17fc6
     with:
       component_name: ${{ matrix.component }}
