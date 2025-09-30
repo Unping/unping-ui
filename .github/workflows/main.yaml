@@ -37,7 +37,7 @@ jobs:
       components: ${{ steps.get-components.outputs.components }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: Get component directories
         id: get-components
