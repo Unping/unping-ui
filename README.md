@@ -3,7 +3,6 @@
 [![License: MPL 2.0](https://img.shields.io/badge/License-MPL_2.0-brightgreen.svg)](https://opensource.org/licenses/MPL-2.0)
 
 [![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
-[![License: MIT][license_badge]][license_link]
 
 Desktop & Web first flutter components to build your component library with. Customizable, extendable, tested.
 
@@ -73,7 +72,6 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 [flutter_install_link]: https://docs.flutter.dev/get-started/install
 [fpx_link]: https://pub.dev/packages/fpx
-[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[license_link]: https://opensource.org/licenses/MIT
+[license_link]: https://opensource.org/license/mpl-2-0
 [very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
 [very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
