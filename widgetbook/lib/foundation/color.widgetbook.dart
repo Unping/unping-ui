@@ -8,7 +8,8 @@ import '../utils/description.widgetbook.dart';
 @UseCase(
   name: 'Color Palette',
   type: UiColors,
-  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
+  designLink:
+      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
   path: 'Foundation',
 )
 Widget buildUiColorsUseCase(BuildContext context) {
@@ -20,18 +21,19 @@ Widget buildUiColorsUseCase(BuildContext context) {
         Container(
           padding: UiSpacing.allXxl,
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Navigation breadcrumb using predefined header
-                UnpingUiWidgetbookHeader(
-                  breadcrumbs: const ['Foundation', 'Colors'],
-                  title: "Colors",
-                ),
-                const SizedBox(height: UiSpacing.spacing4),
-                
-                // Description section using the reusable component
-                UnpingUiWidgetbookDescription(
-                  description: 'Our color palette is meticulously designed to be both vibrant and functional, offering a cohesive aesthetic across all projects. Each hue has been thoughtfully selected and tested to ensure it complements our typographic styles and enhances overall readability. By prioritizing accessibility, we ensure that our color choices are inclusive, enabling all users to engage with our interface comfortably and effectively.\n\n',
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Navigation breadcrumb using predefined header
+              UnpingUiWidgetbookHeader(
+                breadcrumbs: const ['Foundation', 'Colors'],
+                title: "Colors",
+              ),
+              const SizedBox(height: UiSpacing.spacing4),
+
+              // Description section using the reusable component
+              UnpingUiWidgetbookDescription(
+                  description:
+                      'Our color palette is meticulously designed to be both vibrant and functional, offering a cohesive aesthetic across all projects. Each hue has been thoughtfully selected and tested to ensure it complements our typographic styles and enhances overall readability. By prioritizing accessibility, we ensure that our color choices are inclusive, enabling all users to engage with our interface comfortably and effectively.\n\n',
                   lists: {
                     'Categories:': [
                       'Gray: Neutral colors used for backgrounds, text, and secondary elements.',
@@ -45,12 +47,11 @@ Widget buildUiColorsUseCase(BuildContext context) {
                       'Warning: Apply to non-critical alerts that require user attention.',
                       'Error: Use sparingly to draw attention to critical issues.',
                     ],
-                  }
-                ),
-              ],
+                  }),
+            ],
           ),
         ),
-        
+
         // Color palette section
         Container(
           padding: UiSpacing.allXxl,
@@ -78,7 +79,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                 ),
               ),
               UiSpacing.horizontalGapXl,
-              
+
               // Success column
               Expanded(
                 child: _ColorColumn(
@@ -100,7 +101,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                 ),
               ),
               UiSpacing.horizontalGapXl,
-              
+
               // Warning column
               Expanded(
                 child: _ColorColumn(
@@ -122,7 +123,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
                 ),
               ),
               UiSpacing.horizontalGapXl,
-              
+
               // Error column
               Expanded(
                 child: _ColorColumn(
@@ -153,7 +154,7 @@ Widget buildUiColorsUseCase(BuildContext context) {
 
 class _ColorData {
   const _ColorData(this.weight, this.color);
-  
+
   final String weight;
   final Color color;
 }
@@ -182,12 +183,12 @@ class _ColorColumn extends StatelessWidget {
         ),
         const SizedBox(height: 16),
         ...colors.map((colorData) => Padding(
-          padding: const EdgeInsets.only(bottom: 8),
-          child: _ColorSwatch(
-            weight: colorData.weight,
-            color: colorData.color,
-          ),
-        )),
+              padding: const EdgeInsets.only(bottom: 8),
+              child: _ColorSwatch(
+                weight: colorData.weight,
+                color: colorData.color,
+              ),
+            )),
       ],
     );
   }
@@ -212,13 +213,13 @@ class _ColorSwatch extends StatelessWidget {
             offset: const Offset(0, 12),
             blurRadius: 16,
             spreadRadius: -4,
-            color: const Color(0xFF101828).withOpacity(0.1),
+            color: const Color(0xFF101828).withValues(alpha: 0.1),
           ),
           BoxShadow(
             offset: const Offset(0, 4),
             blurRadius: 6,
             spreadRadius: -2,
-            color: const Color(0xFF101828).withOpacity(0.05),
+            color: const Color(0xFF101828).withValues(alpha: 0.05),
           ),
         ],
       ),
@@ -260,11 +261,10 @@ class _ColorSwatch extends StatelessWidget {
                   ),
                   const SizedBox(height: 2), // Reduced spacing
                   SelectableText(
-                    '#${color.value.toRadixString(16).toUpperCase().substring(2)}',
-                    style: UiTextStyles.textXs.copyWith(
-                      color: UiColors.neutral500,
-                    )
-                  ),
+                      '#${color.value.toRadixString(16).toUpperCase().substring(2)}',
+                      style: UiTextStyles.textXs.copyWith(
+                        color: UiColors.neutral500,
+                      )),
                 ],
               ),
             ),
@@ -274,4 +274,3 @@ class _ColorSwatch extends StatelessWidget {
     );
   }
 }
-

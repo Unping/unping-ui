@@ -4,7 +4,9 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
+import 'package:unping_ui/unping_ui.dart';
 
 /// Example stateful checkbox widget for demonstration in Widgetbook
 class _ExampleCheckbox extends StatefulWidget {
@@ -37,7 +39,8 @@ Widget? _createBadgeWidget(String widgetType, {int countValue = 5}) {
       return const BadgeDot();
     case 'image':
       return const BadgeImage(
-        imageUrl: 'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
+        imageUrl:
+            'http://localhost:3845/assets/08a3b47613f2d0f6aced2c3c467602e3aa1638f1.png',
       );
     case 'checkbox':
       return const _ExampleCheckbox();
@@ -53,13 +56,14 @@ Widget? _createBadgeWidget(String widgetType, {int countValue = 5}) {
   name: 'ConfigurableBadge',
   type: BaseBadge,
   path: 'Components/Badge/Configurable',
-  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+  designLink:
+      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildConfigurableBadge(BuildContext context) {
   // Basic properties
   final badgeText = context.knobs.string(
     label: 'Text',
-    initialValue: 'Label',
+    initialValue: context.lang.label,
   );
 
   final size = context.knobs.list(
@@ -81,7 +85,8 @@ Widget buildConfigurableBadge(BuildContext context) {
       UiColors.warning600,
       UiColors.error600,
     ],
-    labelBuilder: (color) => color != null ? UiColors.getColorName(color) : 'Default',
+    labelBuilder: (color) =>
+        color != null ? UiColors.getColorName(color) : 'Default',
   );
 
   // Left Widget 1 configuration
@@ -113,15 +118,16 @@ Widget buildConfigurableBadge(BuildContext context) {
   );
 
   final countValue = rightWidgetType == 'count'
-    ? context.knobs.int.slider(
-        label: 'Count Value',
-        initialValue: 5,
-        min: 1,
-        max: 100,
-      )
-    : 5;
+      ? context.knobs.int.slider(
+          label: 'Count Value',
+          initialValue: 5,
+          min: 1,
+          max: 100,
+        )
+      : 5;
 
-  final rightWidget = _createBadgeWidget(rightWidgetType, countValue: countValue);
+  final rightWidget =
+      _createBadgeWidget(rightWidgetType, countValue: countValue);
 
   // Badge behavior
   final isRemovable = context.knobs.boolean(
@@ -145,9 +151,11 @@ Widget buildConfigurableBadge(BuildContext context) {
               size: size,
               textColor: textColor ?? UiColors.onPrimary,
               removable: isRemovable,
-              onRemove: isRemovable ? () {
-                // Handle remove action in widgetbook
-              } : null,
+              onRemove: isRemovable
+                  ? () {
+                      // Handle remove action in widgetbook
+                    }
+                  : null,
             ),
           ),
         ])

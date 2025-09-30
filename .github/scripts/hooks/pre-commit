@@ -8,12 +8,13 @@
 echo "Running pre-commit checks..."
 
 # Format Dart code and check if any files were changed
-echo "Checking Dart formatting..."
-if ! dart format --line-length 80 --set-exit-if-changed lib test; then
+echo "Checking Dart formatting for directories..."
+if ! dart format --line-length 80 --set-exit-if-changed .; then
   echo "❌ Dart formatting check failed!"
-  echo "Run 'dart format --line-length 80 lib test' to fix formatting issues."
+  echo "Run 'dart format --line-length 80 .' to fix formatting issues."
   exit 1
 fi
+
 
 echo "✅ All pre-commit checks passed!"
 exit 0

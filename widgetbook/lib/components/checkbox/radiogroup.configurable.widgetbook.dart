@@ -1,9 +1,10 @@
-import 'package:flutter/material.dart' hide RadioGroup;
+import 'package:flutter/material.dart';
 import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 /// Example stateful radio group widget for demonstration in Widgetbook
@@ -53,9 +54,10 @@ class _ExampleRadioGroupState extends State<_ExampleRadioGroup> {
 
 @widgetbook.UseCase(
   name: 'ConfigurableRadioGroup',
-  type: RadioGroup,
+  type: _ExampleRadioGroup, // Must be a concrete Widget class
   path: 'Components/Checkbox/Configurable',
-  designLink: 'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+  designLink:
+      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
 )
 Widget buildConfigurableRadioGroup(BuildContext context) {
   // Radio group size
@@ -105,8 +107,8 @@ Widget buildConfigurableRadioGroup(BuildContext context) {
   // Generate radio options based on numberOfOptions
   final options = List.generate(numberOfOptions, (index) {
     final value = 'option${index + 1}';
-    final text = hasLabels ? 'Option ${index + 1}' : null;
-    
+    final text = hasLabels ? '${context.lang.option} ${index + 1}' : null;
+
     if (text != null) {
       return RadioOption.text(
         value: value,
