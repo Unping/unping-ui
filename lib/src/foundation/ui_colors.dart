@@ -98,6 +98,9 @@ class UiColors {
   static const Color textTertiary = neutral500;
   static const Color textDisabled = neutral400;
 
+  // Toggle colors
+  static const Color toggleActive = Color(0xFF647690);
+
   /// Get human-readable name for a color
   /// Used in UI development tools like Widgetbook for better UX
   static String getColorName(Color color) {

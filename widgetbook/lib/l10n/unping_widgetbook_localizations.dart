@@ -315,6 +315,240 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Weak password'**
   String get inputWeakPassword;
+
+  /// No description provided for @tooltipTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Tooltips'**
+  String get tooltipTitle;
+
+  /// No description provided for @tooltipDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Tooltips are essential for providing contextual information and guidance to users within an application. Our design system includes a variety of tooltip styles to ensure consistency and clarity across all user interfaces. These components are designed to be easily recognizable and to provide quick, helpful information without disrupting the user\'s workflow.'**
+  String get tooltipDescription;
+
+  /// No description provided for @tooltipCategories.
+  ///
+  /// In en, this message translates to:
+  /// **'Categories:'**
+  String get tooltipCategories;
+
+  /// No description provided for @tooltipBasicCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Tooltip'**
+  String get tooltipBasicCategory;
+
+  /// No description provided for @tooltipBasicCategoryDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple tooltips that provide brief information or descriptions.'**
+  String get tooltipBasicCategoryDesc;
+
+  /// No description provided for @tooltipExtendedCategory.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended Tooltip'**
+  String get tooltipExtendedCategory;
+
+  /// No description provided for @tooltipExtendedCategoryDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Tooltips with additional details or instructions.'**
+  String get tooltipExtendedCategoryDesc;
+
+  /// No description provided for @tooltipUsageTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Usage Tips:'**
+  String get tooltipUsageTips;
+
+  /// No description provided for @tooltipBasicUsageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Basic Tooltip:'**
+  String get tooltipBasicUsageTitle;
+
+  /// No description provided for @tooltipConciseInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Concise Information'**
+  String get tooltipConciseInfo;
+
+  /// No description provided for @tooltipConciseInfoDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use basic tooltips to provide brief, concise information or descriptions.'**
+  String get tooltipConciseInfoDesc;
+
+  /// No description provided for @tooltipContextualHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Contextual Help'**
+  String get tooltipContextualHelp;
+
+  /// No description provided for @tooltipContextualHelpDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Place tooltips near the relevant UI elements to offer immediate contextual help.'**
+  String get tooltipContextualHelpDesc;
+
+  /// No description provided for @tooltipConsistentStyling.
+  ///
+  /// In en, this message translates to:
+  /// **'Consistent Styling'**
+  String get tooltipConsistentStyling;
+
+  /// No description provided for @tooltipConsistentStylingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure that all basic tooltips have a consistent style, including font, color, and background.'**
+  String get tooltipConsistentStylingDesc;
+
+  /// No description provided for @tooltipExtendedUsageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Extended Tooltip:'**
+  String get tooltipExtendedUsageTitle;
+
+  /// No description provided for @tooltipDetailedInfo.
+  ///
+  /// In en, this message translates to:
+  /// **'Detailed Information'**
+  String get tooltipDetailedInfo;
+
+  /// No description provided for @tooltipDetailedInfoDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use extended tooltips to provide more detailed information or instructions.'**
+  String get tooltipDetailedInfoDesc;
+
+  /// No description provided for @tooltipUserGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'User Guidance'**
+  String get tooltipUserGuidance;
+
+  /// No description provided for @tooltipUserGuidanceDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Place extended tooltips near complex UI elements to guide users through their interactions.'**
+  String get tooltipUserGuidanceDesc;
+
+  /// No description provided for @tooltipClearFormatting.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear Formatting'**
+  String get tooltipClearFormatting;
+
+  /// No description provided for @tooltipClearFormattingDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure that extended tooltips are well-formatted, with clear headings, bullet points, or steps as needed.'**
+  String get tooltipClearFormattingDesc;
+
+  /// No description provided for @tooltipGeneralTips.
+  ///
+  /// In en, this message translates to:
+  /// **'General Tips:'**
+  String get tooltipGeneralTips;
+
+  /// No description provided for @tooltipPlacement.
+  ///
+  /// In en, this message translates to:
+  /// **'Placement'**
+  String get tooltipPlacement;
+
+  /// No description provided for @tooltipPlacementDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Position tooltips close to the relevant UI elements to maintain context and usability.'**
+  String get tooltipPlacementDesc;
+
+  /// No description provided for @tooltipTrigger.
+  ///
+  /// In en, this message translates to:
+  /// **'Trigger'**
+  String get tooltipTrigger;
+
+  /// No description provided for @tooltipTriggerDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Use hover or focus states to trigger tooltips, ensuring they appear when users need them.'**
+  String get tooltipTriggerDesc;
+
+  /// No description provided for @tooltipDismissal.
+  ///
+  /// In en, this message translates to:
+  /// **'Dismissal'**
+  String get tooltipDismissal;
+
+  /// No description provided for @tooltipDismissalDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow users to dismiss tooltips easily, either by clicking away or after a short delay.'**
+  String get tooltipDismissalDesc;
+
+  /// No description provided for @tooltipAccessibility.
+  ///
+  /// In en, this message translates to:
+  /// **'Accessibility'**
+  String get tooltipAccessibility;
+
+  /// No description provided for @tooltipAccessibilityDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Ensure tooltips are accessible to screen readers and keyboard users.'**
+  String get tooltipAccessibilityDesc;
+
+  /// No description provided for @tooltipMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a tooltip'**
+  String get tooltipMessage;
+
+  /// No description provided for @tooltipExtendedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Tooltips are used to describe or identify an element. In most scenarios, tooltips help the user understand the meaning, function or alt-text of an element.'**
+  String get tooltipExtendedMessage;
+
+  /// No description provided for @toggleSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small toggle'**
+  String get toggleSmall;
+
+  /// No description provided for @toggleSmallDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a small sized toggle.'**
+  String get toggleSmallDesc;
+
+  /// No description provided for @toggleMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium toggle'**
+  String get toggleMedium;
+
+  /// No description provided for @toggleMediumDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a medium sized toggle.'**
+  String get toggleMediumDesc;
+
+  /// No description provided for @toggleLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large toggle'**
+  String get toggleLarge;
+
+  /// No description provided for @toggleLargeDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a large sized toggle.'**
+  String get toggleLargeDesc;
 }
 
 class _AppLocalizationsDelegate
