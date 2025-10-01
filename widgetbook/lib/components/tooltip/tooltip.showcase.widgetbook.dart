@@ -8,7 +8,7 @@ import 'package:widgetbook_workspace/utils/background.widgetbook.dart';
 import 'package:widgetbook_workspace/utils/header.widgetbook.dart';
 import 'package:widgetbook_workspace/l10n/language_extension.dart';
 
-// import the interaction helper (no additional UseCase in that file)
+// import the interaction helper (configurable UseCase is in that file)
 import 'tooltip.configurable.widgetbook.dart';
 
 @UseCase(
@@ -328,8 +328,8 @@ class _TooltipColumn extends StatelessWidget {
               message: c.text,
               placement: _mapPlacement(c.tail.side),
               variant: variant,
-              triggerOnHover: true,
-              triggerOnLongPress: true,
+              triggerOnHover: false,
+              triggerOnLongPress: false,
               child: c,
             ),
           ),
@@ -341,8 +341,8 @@ class _TooltipColumn extends StatelessWidget {
               message: 'This is a tooltip',
               placement: _mapPlacement(t.side),
               variant: variant,
-              triggerOnHover: true,
-              triggerOnLongPress: true,
+              triggerOnHover: false,
+              triggerOnLongPress: false,
               child: _TooltipExtendedCard(light: light, tail: t),
             ),
           ),
