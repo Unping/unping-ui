@@ -6,6 +6,7 @@ import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart';
 import 'package:widgetbook_workspace/utils/background.widgetbook.dart';
 import 'package:widgetbook_workspace/utils/header.widgetbook.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 
 // import the interaction helper (no additional UseCase in that file)
 import 'tooltip.configurable.widgetbook.dart';
@@ -28,12 +29,12 @@ Widget tooltipShowcase(BuildContext context) {
             padding: UiSpacing.allXxl,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 UnpingUiWidgetbookHeader(
                   breadcrumbs: ['Components', 'Tooltip'],
-                  title: 'Tooltips',
+                  title: context.lang.tooltipTitle,
                 ),
-                SizedBox(height: UiSpacing.spacing4),
+                const SizedBox(height: UiSpacing.spacing4),
                 _TooltipBodyText(),
               ],
             ),
@@ -68,79 +69,65 @@ class _TooltipBodyText extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Tooltips are essential for providing contextual information and guidance to users within an application. '
-            'Our design system includes a variety of tooltip styles to ensure consistency and clarity across all user interfaces. '
-            'These components are designed to be easily recognizable and to provide quick, helpful information without disrupting '
-            'the user’s workflow.',
+            context.lang.tooltipDescription,
             style: body,
           ),
           const SizedBox(height: UiSpacing.spacing6),
-          const _SectionTitle('Categories:'),
+          _SectionTitle(context.lang.tooltipCategories),
           const SizedBox(height: UiSpacing.spacing3),
-          const _NumberedLine(1,
-              bold: 'Basic Tooltip',
-              rest:
-                  'Simple tooltips that provide brief information or descriptions.'),
-          const _NumberedLine(2,
-              bold: 'Extended Tooltip',
-              rest: 'Tooltips with additional details or instructions.'),
+          _NumberedLine(1,
+              bold: context.lang.tooltipBasicCategory,
+              rest: context.lang.tooltipBasicCategoryDesc),
+          _NumberedLine(2,
+              bold: context.lang.tooltipExtendedCategory,
+              rest: context.lang.tooltipExtendedCategoryDesc),
           const SizedBox(height: UiSpacing.spacing6),
-          const _SectionTitle('Usage Tips:'),
+          _SectionTitle(context.lang.tooltipUsageTips),
           const SizedBox(height: UiSpacing.spacing3),
-          const _SubsectionTitle('Basic Tooltip:'),
-          const _BulletLine(
-            bold: 'Concise Information',
-            rest:
-                'Use basic tooltips to provide brief, concise information or descriptions.',
+          _SubsectionTitle(context.lang.tooltipBasicUsageTitle),
+          _BulletLine(
+            bold: context.lang.tooltipConciseInfo,
+            rest: context.lang.tooltipConciseInfoDesc,
           ),
-          const _BulletLine(
-            bold: 'Contextual Help',
-            rest:
-                'Place tooltips near the relevant UI elements to offer immediate contextual help.',
+          _BulletLine(
+            bold: context.lang.tooltipContextualHelp,
+            rest: context.lang.tooltipContextualHelpDesc,
           ),
-          const _BulletLine(
-            bold: 'Consistent Styling',
-            rest:
-                'Ensure that all basic tooltips have a consistent style, including font, color, and background.',
+          _BulletLine(
+            bold: context.lang.tooltipConsistentStyling,
+            rest: context.lang.tooltipConsistentStylingDesc,
           ),
           const SizedBox(height: UiSpacing.spacing4),
-          const _SubsectionTitle('Extended Tooltip:'),
-          const _BulletLine(
-            bold: 'Detailed Information',
-            rest:
-                'Use extended tooltips to provide more detailed information or instructions.',
+          _SubsectionTitle(context.lang.tooltipExtendedUsageTitle),
+          _BulletLine(
+            bold: context.lang.tooltipDetailedInfo,
+            rest: context.lang.tooltipDetailedInfoDesc,
           ),
-          const _BulletLine(
-            bold: 'User Guidance',
-            rest:
-                'Place extended tooltips near complex UI elements to guide users through their interactions.',
+          _BulletLine(
+            bold: context.lang.tooltipUserGuidance,
+            rest: context.lang.tooltipUserGuidanceDesc,
           ),
-          const _BulletLine(
-            bold: 'Clear Formatting',
-            rest:
-                'Ensure that extended tooltips are well-formatted, with clear headings, bullet points, or steps as needed.',
+          _BulletLine(
+            bold: context.lang.tooltipClearFormatting,
+            rest: context.lang.tooltipClearFormattingDesc,
           ),
           const SizedBox(height: UiSpacing.spacing4),
-          const _SectionTitle('General Tips:'),
-          const _BulletLine(
-            bold: 'Placement',
-            rest:
-                'Position tooltips close to the relevant UI elements to maintain context and usability.',
+          _SectionTitle(context.lang.tooltipGeneralTips),
+          _BulletLine(
+            bold: context.lang.tooltipPlacement,
+            rest: context.lang.tooltipPlacementDesc,
           ),
-          const _BulletLine(
-            bold: 'Trigger',
-            rest:
-                'Use hover or focus states to trigger tooltips, ensuring they appear when users need them.',
+          _BulletLine(
+            bold: context.lang.tooltipTrigger,
+            rest: context.lang.tooltipTriggerDesc,
           ),
-          const _BulletLine(
-            bold: 'Dismissal',
-            rest:
-                'Allow users to dismiss tooltips easily, either by clicking away or after a short delay.',
+          _BulletLine(
+            bold: context.lang.tooltipDismissal,
+            rest: context.lang.tooltipDismissalDesc,
           ),
-          const _BulletLine(
-            bold: 'Accessibility',
-            rest:
-                'Ensure tooltips are accessible to screen readers and keyboard users.',
+          _BulletLine(
+            bold: context.lang.tooltipAccessibility,
+            rest: context.lang.tooltipAccessibilityDesc,
           ),
         ],
       ),

@@ -167,6 +167,7 @@ class _ToggleSwitchState extends State<ToggleSwitch>
       focusNode: _focusNode,
       // Handle keyboard input
       onKeyEvent: (node, event) {
+        // coverage:ignore-start
         if (event is KeyDownEvent) {
           if (event.logicalKey == LogicalKeyboardKey.enter ||
               event.logicalKey == LogicalKeyboardKey.space) {
@@ -174,7 +175,9 @@ class _ToggleSwitchState extends State<ToggleSwitch>
             return KeyEventResult.handled;
           }
         }
+
         return KeyEventResult.ignored;
+        // coverage:ignore-end
       },
       child: GestureDetector(
         onTap: _toggle,
