@@ -36,6 +36,11 @@ import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i13;
 import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
     as _i14;
 import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+
+    as _i13;
+import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+    as _i14;
+import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
     as _i15;
 
 final directories = <_i1.WidgetbookNode>[
