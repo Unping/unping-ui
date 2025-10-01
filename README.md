@@ -10,6 +10,8 @@ Desktop & Web first flutter components to build your component library with. Cus
 
 Explore our component library in action at [widgetbook.unping-ui.com](https://widgetbook.unping-ui.com) to see all components and their variations!
 
+![Unping UI Components Demo](assets/images/widgetbook-demo.gif)
+
 ## Design Resources 🎨
 
 Check out our complete design system and component library in Figma:
