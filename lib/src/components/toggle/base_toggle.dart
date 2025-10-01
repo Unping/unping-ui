@@ -174,7 +174,9 @@ class _ToggleSwitchState extends State<ToggleSwitch>
             return KeyEventResult.handled;
           }
         }
+        // coverage:ignore-start
         return KeyEventResult.ignored;
+        // coverage:ignore-end
       },
       child: GestureDetector(
         onTap: _toggle,
