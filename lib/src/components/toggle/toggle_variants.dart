@@ -3,8 +3,9 @@ import 'package:unping_ui/unping_ui.dart';
 
 /// Central place to define toggle variants
 class Toggles {
-  // coverage:ignore-next-line
+  // coverage:ignore-start
   Toggles._();
+  // coverage:ignore-end
 
   /// Basic switch toggle variant
   static Widget switchToggle({
