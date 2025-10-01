@@ -1,0 +1,21 @@
+# Exclude widgetbook folder from pub.dev publishing
+widgetbook/
+
+# Exclude development and build directories
+.dart_tool/
+build/
+.idea/
+.vscode/
+.github/
+
+# Exclude coverage reports
+coverage/
+
+# Exclude documentation site
+sites/
+
+# Exclude scripts
+scripts/
+
+# Exclude example (if you want to keep it separate)
+# example/
