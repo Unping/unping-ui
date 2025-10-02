@@ -3,6 +3,14 @@ import 'package:flutter/services.dart';
 import 'foundation_compat.dart';
 import 'notification_types.dart';
 
+// Notification shadow opacity (alpha channel, 0-255)
+const int kNotificationShadowAlpha = 25;
+// Close button icon opacity
+const double kNotificationCloseButtonOpacity = 0.7;
+// Swipe background opacity
+const double kNotificationSwipeBackgroundOpacity = 0.1;
+
+
 /// A base notification widget that provides the foundation for all notification types.
 /// Supports customizable styling, actions, icons, and animations.
 class BaseNotification extends StatefulWidget {
@@ -462,7 +470,7 @@ class _BaseNotificationState extends State<BaseNotification>
         boxShadow: widget.elevation > 0
             ? [
                 BoxShadow(
-                  color: Color.fromARGB(25, 0, 0, 0),
+                  color: Color.fromARGB(kNotificationShadowAlpha, 0, 0, 0),
                   blurRadius: widget.elevation * 2,
                   offset: Offset(0, widget.elevation),
                 ),
@@ -490,11 +498,12 @@ class _BaseNotificationState extends State<BaseNotification>
                     child: Icon(
                       Icons.close,
                       size: 16,
-                      color: Color.fromARGB(
-                          (0.7 * 255).toInt(),
-                          _getTextColor().red,
-                          _getTextColor().green,
-                          _getTextColor().blue),
+                  color: Color.fromARGB(
+                    (kNotificationCloseButtonOpacity * 255).toInt(),
+                    _getTextColor().red,
+                    _getTextColor().green,
+                    _getTextColor().blue,
+                  ),
                     ),
                   ),
                 ],
@@ -520,8 +529,12 @@ class _BaseNotificationState extends State<BaseNotification>
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-                      Color.fromARGB((0.1 * 255).toInt(), _getIconColor().red,
-                          _getIconColor().green, _getIconColor().blue),
+            Color.fromARGB(
+              (kNotificationSwipeBackgroundOpacity * 255).toInt(),
+              _getIconColor().red,
+              _getIconColor().green,
+              _getIconColor().blue,
+            ),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null
