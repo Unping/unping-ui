@@ -406,11 +406,9 @@ class NotificationManager {
   /// Build wrapper for positioning and stacking notifications
   Widget _buildNotificationWrapper(NotificationEntry entry) {
     return Positioned.fill(
-      child: IgnorePointer(
-        child: Material(
-          type: MaterialType.transparency,
-          child: entry.notification,
-        ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: entry.notification,
       ),
     );
   }

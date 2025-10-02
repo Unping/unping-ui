@@ -461,7 +461,7 @@ Widget notificationVariantsUseCase(BuildContext context) {
                         children: [
                           Row(
                             children: [
-                              Icon(Icons.wifi_off, color: Colors.orange),
+                              Icon(Icons.wifi_off, color: UiColors.warning),
                               const SizedBox(width: 8),
                               const Text(
                                 'Connection Status',

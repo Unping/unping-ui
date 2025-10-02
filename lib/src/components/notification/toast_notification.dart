@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'foundation_compat.dart';
 import 'base_notification.dart';
 import 'notification_types.dart';
 
@@ -253,45 +252,45 @@ class ToastNotification extends StatelessWidget {
 
   /// Get margin based on position
   EdgeInsetsGeometry _getPositionMargin() {
-    const defaultMargin = UiSpacing.spacing4;
+  const defaultMargin = kNotificationDefaultMargin;
 
     if (margin != null) return margin!;
 
     switch (position) {
       case ToastPosition.topCenter:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           top: defaultMargin,
           left: defaultMargin,
           right: defaultMargin,
         );
       case ToastPosition.topLeft:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           top: defaultMargin,
           left: defaultMargin,
         );
       case ToastPosition.topRight:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           top: defaultMargin,
           right: defaultMargin,
         );
       case ToastPosition.bottomCenter:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           bottom: defaultMargin,
           left: defaultMargin,
           right: defaultMargin,
         );
       case ToastPosition.bottomLeft:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           bottom: defaultMargin,
           left: defaultMargin,
         );
       case ToastPosition.bottomRight:
-        return const EdgeInsets.only(
+        return EdgeInsets.only(
           bottom: defaultMargin,
           right: defaultMargin,
         );
       case ToastPosition.center:
-        return const EdgeInsets.all(defaultMargin);
+        return EdgeInsets.all(defaultMargin);
     }
   }
 
