@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/unping_ui.dart';
+import 'notification_manager.dart';
+import 'notification_types.dart';
 
 /// Public API for the notification system with predefined variants.
 /// This class provides easy-to-use static methods for showing different types of notifications.

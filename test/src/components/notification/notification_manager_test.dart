@@ -399,11 +399,11 @@ void main() {
       // Test that properties have default values
       expect(manager.maxSimultaneous, equals(3));
       expect(manager.stackSpacing, equals(60.0));
-      
+
       // Test that properties can be modified
       manager.maxSimultaneous = 5;
       manager.stackSpacing = 80.0;
-      
+
       expect(manager.maxSimultaneous, equals(5));
       expect(manager.stackSpacing, equals(80.0));
     });

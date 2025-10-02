@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/unping_ui.dart';
+import '../../foundation/foundation.dart';
+import 'base_notification.dart';
+import 'notification_types.dart';
 
 /// A toast notification widget that appears as a floating overlay.
 /// Toasts are typically positioned at the top or corners of the screen

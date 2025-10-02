@@ -1,6 +1,9 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
-import 'package:unping_ui/unping_ui.dart';
+import 'base_notification.dart';
+import 'notification_types.dart';
+import 'toast_notification.dart';
+import 'snackbar_notification.dart';
 
 /// A notification entry in the queue
 class NotificationEntry {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:unping_ui/unping_ui.dart';
+import '../../foundation/foundation.dart';
+import 'notification_types.dart';
 
 /// A base notification widget that provides the foundation for all notification types.
 /// Supports customizable styling, actions, icons, and animations.
@@ -460,7 +461,7 @@ class _BaseNotificationState extends State<BaseNotification>
         boxShadow: widget.elevation > 0
             ? [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Colors.black.withValues(alpha: 0.1),
                   blurRadius: widget.elevation * 2,
                   offset: Offset(0, widget.elevation),
                 ),
@@ -488,7 +489,7 @@ class _BaseNotificationState extends State<BaseNotification>
                     child: Icon(
                       Icons.close,
                       size: 16,
-                      color: _getTextColor().withOpacity(0.7),
+                      color: _getTextColor().withValues(alpha: 0.7),
                     ),
                   ),
                 ],
@@ -514,7 +515,7 @@ class _BaseNotificationState extends State<BaseNotification>
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-                      _getIconColor().withOpacity(0.1),
+                      _getIconColor().withValues(alpha: 0.1),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/unping_ui.dart';
+import '../../foundation/foundation.dart';
+import 'base_notification.dart';
+import 'notification_types.dart';
 
 /// A snackbar notification widget that appears at the bottom of the screen.
 /// Snackbars are typically used for brief messages and can include action buttons.
