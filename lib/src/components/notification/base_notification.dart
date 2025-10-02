@@ -462,8 +462,7 @@ class _BaseNotificationState extends State<BaseNotification>
         boxShadow: widget.elevation > 0
             ? [
                 BoxShadow(
-                  color: Color.fromARGB((0.1 * 255).toInt(), Colors.black.red,
-                      Colors.black.green, Colors.black.blue),
+                  color: Color.fromARGB(25, 0, 0, 0),
                   blurRadius: widget.elevation * 2,
                   offset: Offset(0, widget.elevation),
                 ),

@@ -61,7 +61,9 @@ class NotificationEntry {
 class NotificationManager {
   static final NotificationManager _instance = NotificationManager._internal();
 
-  /// Singleton access
+  /// Singleton access (Dart convention)
+  static NotificationManager get instance => _instance;
+
   factory NotificationManager() => _instance;
 
   NotificationManager._internal();

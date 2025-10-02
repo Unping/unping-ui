@@ -3,6 +3,51 @@ import '../../foundation/ui_spacing.dart';
 /// Shared default margin for notifications (toast/snackbar)
 const kNotificationDefaultMargin = UiSpacing.spacing4;
 
+/// Returns the margin for a notification based on position and optional override.
+EdgeInsetsGeometry getNotificationMargin(
+  ToastPosition position,
+  EdgeInsetsGeometry? margin,
+) {
+  const defaultMargin = kNotificationDefaultMargin;
+  if (margin != null) return margin;
+  switch (position) {
+    case ToastPosition.topCenter:
+      return EdgeInsets.only(
+        top: defaultMargin,
+        left: defaultMargin,
+        right: defaultMargin,
+      );
+    case ToastPosition.topLeft:
+      return EdgeInsets.only(
+        top: defaultMargin,
+        left: defaultMargin,
+      );
+    case ToastPosition.topRight:
+      return EdgeInsets.only(
+        top: defaultMargin,
+        right: defaultMargin,
+      );
+    case ToastPosition.bottomCenter:
+      return EdgeInsets.only(
+        bottom: defaultMargin,
+        left: defaultMargin,
+        right: defaultMargin,
+      );
+    case ToastPosition.bottomLeft:
+      return EdgeInsets.only(
+        bottom: defaultMargin,
+        left: defaultMargin,
+      );
+    case ToastPosition.bottomRight:
+      return EdgeInsets.only(
+        bottom: defaultMargin,
+        right: defaultMargin,
+      );
+    case ToastPosition.center:
+      return EdgeInsets.all(defaultMargin);
+  }
+}
+
 /// Type of notification for semantic meaning and styling
 enum NotificationType {
   /// Success notification - for positive outcomes and confirmations

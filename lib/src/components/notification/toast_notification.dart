@@ -252,46 +252,7 @@ class ToastNotification extends StatelessWidget {
 
   /// Get margin based on position
   EdgeInsetsGeometry _getPositionMargin() {
-  const defaultMargin = kNotificationDefaultMargin;
-
-    if (margin != null) return margin!;
-
-    switch (position) {
-      case ToastPosition.topCenter:
-        return EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        );
-      case ToastPosition.topLeft:
-        return EdgeInsets.only(
-          top: defaultMargin,
-          left: defaultMargin,
-        );
-      case ToastPosition.topRight:
-        return EdgeInsets.only(
-          top: defaultMargin,
-          right: defaultMargin,
-        );
-      case ToastPosition.bottomCenter:
-        return EdgeInsets.only(
-          bottom: defaultMargin,
-          left: defaultMargin,
-          right: defaultMargin,
-        );
-      case ToastPosition.bottomLeft:
-        return EdgeInsets.only(
-          bottom: defaultMargin,
-          left: defaultMargin,
-        );
-      case ToastPosition.bottomRight:
-        return EdgeInsets.only(
-          bottom: defaultMargin,
-          right: defaultMargin,
-        );
-      case ToastPosition.center:
-        return EdgeInsets.all(defaultMargin);
-    }
+    return getNotificationMargin(position, margin);
   }
 
   /// Get slide animation offset based on position
