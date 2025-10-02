@@ -59,6 +59,7 @@ class NotificationEntry {
 
 /// Global notification manager for handling notification display and queue
 class NotificationManager {
+  int _idCounter = 0;
   static final NotificationManager _instance = NotificationManager._internal();
 
   /// Singleton access (Dart convention)
@@ -417,7 +418,8 @@ class NotificationManager {
 
   /// Generate unique ID for notifications
   String _generateId() {
-    return 'notification_${DateTime.now().millisecondsSinceEpoch}_${_queue.length}';
+    _idCounter++;
+    return 'notification_${DateTime.now().millisecondsSinceEpoch}_$_idCounter';
   }
 
   /// Get notification type from widget

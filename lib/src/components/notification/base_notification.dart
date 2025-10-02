@@ -123,6 +123,16 @@ class BaseNotification extends StatefulWidget {
 }
 
 class _BaseNotificationState extends State<BaseNotification>
+
+  /// Helper to apply opacity to a color using ARGB
+  Color _applyOpacity(Color color, double opacity) {
+    return Color.fromARGB(
+      (opacity * 255).toInt(),
+      color.red,
+      color.green,
+      color.blue,
+    );
+  }
     with TickerProviderStateMixin {
   late AnimationController _controller;
   late AnimationController _progressController;
@@ -498,12 +508,7 @@ class _BaseNotificationState extends State<BaseNotification>
                     child: Icon(
                       Icons.close,
                       size: 16,
-                  color: Color.fromARGB(
-                    (kNotificationCloseButtonOpacity * 255).toInt(),
-                    _getTextColor().red,
-                    _getTextColor().green,
-                    _getTextColor().blue,
-                  ),
+                  color: _applyOpacity(_getTextColor(), kNotificationCloseButtonOpacity),
                     ),
                   ),
                 ],
@@ -529,12 +534,7 @@ class _BaseNotificationState extends State<BaseNotification>
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-            Color.fromARGB(
-              (kNotificationSwipeBackgroundOpacity * 255).toInt(),
-              _getIconColor().red,
-              _getIconColor().green,
-              _getIconColor().blue,
-            ),
+            _applyOpacity(_getIconColor(), kNotificationSwipeBackgroundOpacity),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null
