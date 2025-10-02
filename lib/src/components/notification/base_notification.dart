@@ -122,7 +122,7 @@ class BaseNotification extends StatefulWidget {
   State<BaseNotification> createState() => _BaseNotificationState();
 }
 
-class _BaseNotificationState extends State<BaseNotification>
+class _BaseNotificationState extends State<BaseNotification> with TickerProviderStateMixin {
 
   /// Helper to apply opacity to a color using ARGB
   Color _applyOpacity(Color color, double opacity) {
@@ -133,7 +133,6 @@ class _BaseNotificationState extends State<BaseNotification>
       color.blue,
     );
   }
-    with TickerProviderStateMixin {
   late AnimationController _controller;
   late AnimationController _progressController;
   late Animation<double> _scaleAnimation;
