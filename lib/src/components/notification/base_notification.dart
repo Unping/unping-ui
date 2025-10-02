@@ -462,7 +462,8 @@ class _BaseNotificationState extends State<BaseNotification>
         boxShadow: widget.elevation > 0
             ? [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
+                  color: Color.fromARGB((0.1 * 255).toInt(), Colors.black.red,
+                      Colors.black.green, Colors.black.blue),
                   blurRadius: widget.elevation * 2,
                   offset: Offset(0, widget.elevation),
                 ),
@@ -490,7 +491,11 @@ class _BaseNotificationState extends State<BaseNotification>
                     child: Icon(
                       Icons.close,
                       size: 16,
-                      color: _getTextColor().withOpacity(0.7),
+                      color: Color.fromARGB(
+                          (0.7 * 255).toInt(),
+                          _getTextColor().red,
+                          _getTextColor().green,
+                          _getTextColor().blue),
                     ),
                   ),
                 ],
@@ -516,7 +521,8 @@ class _BaseNotificationState extends State<BaseNotification>
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-                      _getIconColor().withOpacity(0.1),
+                      Color.fromARGB((0.1 * 255).toInt(), _getIconColor().red,
+                          _getIconColor().green, _getIconColor().blue),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null
