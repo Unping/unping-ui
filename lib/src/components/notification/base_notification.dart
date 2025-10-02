@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import '../../foundation/foundation.dart';
+import 'foundation_compat.dart';
 import 'notification_types.dart';
 
 /// A base notification widget that provides the foundation for all notification types.
@@ -334,7 +334,7 @@ class _BaseNotificationState extends State<BaseNotification>
               color: textColor,
             ),
           ),
-          const SizedBox(height: UiSpacing.spacing1),
+          const SizedBox(height: 4.0),
         ],
         Text(
           widget.message,
@@ -343,9 +343,9 @@ class _BaseNotificationState extends State<BaseNotification>
           ),
         ),
         if (widget.actions.isNotEmpty) ...[
-          const SizedBox(height: UiSpacing.spacing3),
+          const SizedBox(height: 12.0),
           Wrap(
-            spacing: UiSpacing.spacing2,
+            spacing: 8.0,
             children: widget.actions
                 .map((action) => _buildActionButton(action))
                 .toList(),
@@ -427,8 +427,8 @@ class _BaseNotificationState extends State<BaseNotification>
           height: 2,
           decoration: BoxDecoration(
             borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(UiRadius.sm),
-              bottomRight: Radius.circular(UiRadius.sm),
+              bottomLeft: Radius.circular(8.0),
+              bottomRight: Radius.circular(8.0),
             ),
           ),
           child: LinearProgressIndicator(
@@ -442,8 +442,9 @@ class _BaseNotificationState extends State<BaseNotification>
   }
 
   Widget _buildNotification() {
-    final borderRadius = widget.borderRadius ?? UiRadius.allSm;
-    final padding = widget.padding ?? const EdgeInsets.all(UiSpacing.spacing4);
+    final borderRadius =
+        widget.borderRadius ?? const BorderRadius.all(Radius.circular(8.0));
+    final padding = widget.padding ?? const EdgeInsets.all(16.0);
 
     Widget notification = Container(
       width: widget.width,
@@ -461,7 +462,7 @@ class _BaseNotificationState extends State<BaseNotification>
         boxShadow: widget.elevation > 0
             ? [
                 BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.1),
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: widget.elevation * 2,
                   offset: Offset(0, widget.elevation),
                 ),
@@ -478,18 +479,18 @@ class _BaseNotificationState extends State<BaseNotification>
               children: [
                 // Icon
                 widget.icon ?? _getDefaultIcon(),
-                const SizedBox(width: UiSpacing.spacing3),
+                const SizedBox(width: 12.0),
                 // Content
                 Expanded(child: _buildContent()),
                 // Close button
                 if (widget.showCloseButton && widget.dismissible) ...[
-                  const SizedBox(width: UiSpacing.spacing2),
+                  const SizedBox(width: 8.0),
                   GestureDetector(
                     onTap: _dismiss,
                     child: Icon(
                       Icons.close,
                       size: 16,
-                      color: _getTextColor().withValues(alpha: 0.7),
+                      color: _getTextColor().withOpacity(0.7),
                     ),
                   ),
                 ],
@@ -515,7 +516,7 @@ class _BaseNotificationState extends State<BaseNotification>
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-                      _getIconColor().withValues(alpha: 0.1),
+                      _getIconColor().withOpacity(0.1),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null

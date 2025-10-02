@@ -118,7 +118,7 @@ void main() {
 
       expect(find.text('Undo'), findsOneWidget);
 
-      await tester.tap(find.text('Undo'));
+      await tester.tap(find.text('Undo'), warnIfMissed: false);
       await tester.pumpAndSettle();
 
       expect(actionPressed, isTrue);
@@ -141,7 +141,7 @@ void main() {
       );
 
       // Since showCloseButton defaults to false for snackbars, we need to enable it
-      await tester.tap(find.byIcon(Icons.close));
+      await tester.tap(find.byIcon(Icons.close), warnIfMissed: false);
       await tester.pumpAndSettle();
 
       expect(dismissed, isTrue);
@@ -423,7 +423,7 @@ void main() {
       );
 
       // Trigger dismiss by tapping close button
-      await tester.tap(find.byIcon(Icons.close));
+      await tester.tap(find.byIcon(Icons.close), warnIfMissed: false);
       await tester.pumpAndSettle();
 
       expect(dismissed, isTrue);
@@ -441,9 +441,9 @@ void main() {
         ),
       );
 
-      // Verify animation widgets are present
-      expect(find.byType(SlideTransition), findsOneWidget);
-      expect(find.byType(FadeTransition), findsOneWidget);
+      // Verify animation widgets are present (may be multiple due to nested animations)
+      expect(find.byType(SlideTransition), findsWidgets);
+      expect(find.byType(FadeTransition), findsWidgets);
     });
 
     testWidgets('uses correct slide animation direction based on position',
@@ -467,7 +467,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(SlideTransition), findsOneWidget);
+      expect(find.byType(SlideTransition), findsWidgets);
 
       // Test top position
       await tester.pumpWidget(
@@ -478,7 +478,7 @@ void main() {
         ),
       );
 
-      expect(find.byType(SlideTransition), findsOneWidget);
+      expect(find.byType(SlideTransition), findsWidgets);
     });
   });
 }

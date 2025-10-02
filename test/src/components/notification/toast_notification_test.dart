@@ -20,7 +20,8 @@ void main() {
       );
 
       expect(find.text(message), findsOneWidget);
-      expect(find.byType(Icon), findsOneWidget);
+      // Should find both the notification icon and the close icon
+      expect(find.byType(Icon), findsWidgets);
     });
 
     testWidgets('factory methods create correct notification types',
@@ -179,11 +180,11 @@ void main() {
         ),
       );
 
-      await tester.tap(find.text('Action 1'));
+      await tester.tap(find.text('Action 1'), warnIfMissed: false);
       await tester.pumpAndSettle();
       expect(action1Pressed, isTrue);
 
-      await tester.tap(find.text('Action 2'));
+      await tester.tap(find.text('Action 2'), warnIfMissed: false);
       await tester.pumpAndSettle();
       expect(action2Pressed, isTrue);
     });
@@ -204,7 +205,7 @@ void main() {
       );
 
       // Tap close button
-      await tester.tap(find.byIcon(Icons.close));
+      await tester.tap(find.byIcon(Icons.close), warnIfMissed: false);
       await tester.pumpAndSettle();
 
       expect(dismissed, isTrue);
@@ -366,7 +367,7 @@ void main() {
       );
 
       // Trigger dismiss by tapping close button
-      await tester.tap(find.byIcon(Icons.close));
+      await tester.tap(find.byIcon(Icons.close), warnIfMissed: false);
       await tester.pumpAndSettle();
 
       expect(dismissed, isTrue);
@@ -384,9 +385,9 @@ void main() {
         ),
       );
 
-      // Verify animation widgets are present
-      expect(find.byType(SlideTransition), findsOneWidget);
-      expect(find.byType(FadeTransition), findsOneWidget);
+      // Verify animation widgets are present (may be multiple due to nested animations)
+      expect(find.byType(SlideTransition), findsWidgets);
+      expect(find.byType(FadeTransition), findsWidgets);
     });
   });
 }

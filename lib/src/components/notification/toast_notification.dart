@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../foundation/foundation.dart';
+import 'foundation_compat.dart';
 import 'base_notification.dart';
 import 'notification_types.dart';
 

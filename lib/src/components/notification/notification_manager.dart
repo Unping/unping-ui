@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'base_notification.dart';
@@ -25,6 +26,9 @@ class NotificationEntry {
   /// Animation controller for the notification
   AnimationController? animationController;
 
+  /// Timer for auto-dismiss
+  Timer? timer;
+
   /// Timestamp when the notification was created
   final DateTime createdAt;
 
@@ -43,6 +47,14 @@ class NotificationEntry {
     this.onDismiss,
     this.isVisible = false,
   });
+
+  /// Dispose the entry and clean up resources
+  void dispose() {
+    timer?.cancel();
+    timer = null;
+    overlayEntry?.remove();
+    overlayEntry = null;
+  }
 }
 
 /// Global notification manager for handling notification display and queue
@@ -243,13 +255,31 @@ class NotificationManager {
 
   /// Dismiss all notifications
   void dismissAll() {
-    // Hide all visible notifications
+    // Hide all visible notifications without processing queue
     final entries = List<NotificationEntry>.from(_visibleNotifications.values);
     for (final entry in entries) {
-      _hideNotification(entry);
+      // Cancel timer
+      entry.timer?.cancel();
+      entry.timer = null;
+
+      // Remove overlay if manager is still initialized
+      if (_initialized) {
+        entry.overlayEntry?.remove();
+      }
+      entry.overlayEntry = null;
+      entry.isVisible = false;
+      _visibleNotifications.remove(entry.id);
+
+      // Call dismiss callback
+      if (entry.onDismiss != null) {
+        entry.onDismiss!();
+      }
     }
 
-    // Clear the queue
+    // Clear the queue and dispose entries
+    for (final entry in _queue) {
+      entry.dispose();
+    }
     _queue.clear();
   }
 
@@ -319,7 +349,8 @@ class NotificationManager {
 
   /// Show a notification
   void _showNotification(NotificationEntry entry) {
-    if (_overlayContext == null) return;
+    // Check if manager is still initialized and has valid context
+    if (!_initialized || _overlayContext == null) return;
 
     final overlay = Overlay.of(_overlayContext!);
 
@@ -336,10 +367,11 @@ class NotificationManager {
     // Insert the overlay
     overlay.insert(overlayEntry);
 
-    // Set up auto-dismiss timer
+    // Set up auto-dismiss timer with proper cancellation
     if (entry.duration != null) {
-      Future.delayed(entry.duration!, () {
-        if (_visibleNotifications.containsKey(entry.id)) {
+      entry.timer = Timer(entry.duration!, () {
+        // Double-check the notification is still active and manager is initialized
+        if (_initialized && _visibleNotifications.containsKey(entry.id)) {
           dismiss(entry.id);
         }
       });
@@ -348,7 +380,14 @@ class NotificationManager {
 
   /// Hide a notification
   void _hideNotification(NotificationEntry entry) {
-    entry.overlayEntry?.remove();
+    // Cancel timer if it exists
+    entry.timer?.cancel();
+    entry.timer = null;
+
+    // Only try to remove overlay if manager is still initialized
+    if (_initialized) {
+      entry.overlayEntry?.remove();
+    }
     entry.overlayEntry = null;
     entry.isVisible = false;
     _visibleNotifications.remove(entry.id);
@@ -358,8 +397,10 @@ class NotificationManager {
       entry.onDismiss!();
     }
 
-    // Process queue to show next notification
-    _processQueue();
+    // Process queue to show next notification (only if still initialized)
+    if (_initialized) {
+      _processQueue();
+    }
   }
 
   /// Build wrapper for positioning and stacking notifications
@@ -393,7 +434,20 @@ class NotificationManager {
 
   /// Dispose the manager and clean up resources
   void dispose() {
-    dismissAll();
+    // Dispose all visible notifications and timers
+    for (final entry in _visibleNotifications.values) {
+      entry.dispose();
+    }
+
+    // Dispose all queued notifications
+    for (final entry in _queue) {
+      entry.dispose();
+    }
+
+    // Clear all collections
+    _visibleNotifications.clear();
+    _queue.clear();
+
     _initialized = false;
     _overlayContext = null;
   }
