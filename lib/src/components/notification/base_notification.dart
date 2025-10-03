@@ -10,7 +10,6 @@ const double kNotificationCloseButtonOpacity = 0.7;
 // Swipe background opacity
 const double kNotificationSwipeBackgroundOpacity = 0.1;
 
-
 /// A base notification widget that provides the foundation for all notification types.
 /// Supports customizable styling, actions, icons, and animations.
 class BaseNotification extends StatefulWidget {
@@ -122,17 +121,20 @@ class BaseNotification extends StatefulWidget {
   State<BaseNotification> createState() => _BaseNotificationState();
 }
 
-class _BaseNotificationState extends State<BaseNotification> with TickerProviderStateMixin {
-
+class _BaseNotificationState extends State<BaseNotification>
+    with TickerProviderStateMixin {
   /// Helper to apply opacity to a color using ARGB
   Color _applyOpacity(Color color, double opacity) {
+    final int alpha = (opacity * 255).toInt();
+    final int value = color.value;
     return Color.fromARGB(
-      (opacity * 255).toInt(),
-      color.red,
-      color.green,
-      color.blue,
+      alpha,
+      (value >> 16) & 0xFF, // red
+      (value >> 8) & 0xFF,  // green
+      value & 0xFF,         // blue
     );
   }
+
   late AnimationController _controller;
   late AnimationController _progressController;
   late Animation<double> _scaleAnimation;
@@ -507,7 +509,8 @@ class _BaseNotificationState extends State<BaseNotification> with TickerProvider
                     child: Icon(
                       Icons.close,
                       size: 16,
-                  color: _applyOpacity(_getTextColor(), kNotificationCloseButtonOpacity),
+                      color: _applyOpacity(
+                          _getTextColor(), kNotificationCloseButtonOpacity),
                     ),
                   ),
                 ],
@@ -533,7 +536,8 @@ class _BaseNotificationState extends State<BaseNotification> with TickerProvider
             ? Container(
                 decoration: BoxDecoration(
                   color: widget.swipeConfig.backgroundColor ??
-            _applyOpacity(_getIconColor(), kNotificationSwipeBackgroundOpacity),
+                      _applyOpacity(
+                          _getIconColor(), kNotificationSwipeBackgroundOpacity),
                   borderRadius: borderRadius,
                 ),
                 child: widget.swipeConfig.icon != null

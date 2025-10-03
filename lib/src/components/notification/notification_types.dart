@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../foundation/ui_spacing.dart';
+
 /// Shared default margin for notifications (toast/snackbar)
 const kNotificationDefaultMargin = UiSpacing.spacing4;
 
