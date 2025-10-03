@@ -1,4 +1,3 @@
-// dart format width=80
 // coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_import, prefer_relative_imports, directives_ordering
@@ -31,6 +30,8 @@ import 'package:widgetbook_workspace/components/inputs/input.configurable.widget
     as _i10;
 import 'package:widgetbook_workspace/components/inputs/input.showcase.widgetbook.dart'
     as _i11;
+import 'package:widgetbook_workspace/components/notification.widgetbook.dart'
+    as _i19;
 import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
     as _i12;
 import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
@@ -342,4 +343,55 @@ final directories = <_i1.WidgetbookNode>[
       ),
     ],
   ),
+      _i1.WidgetbookFolder(
+        name: 'notification',
+        children: [
+          _i1.WidgetbookComponent(
+            name: 'BaseNotification',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Base Notification',
+                builder: _i19.baseNotificationUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Custom Styled Notifications',
+                builder: _i19.customStyledNotificationsUseCase,
+              ),
+            ],
+          ),
+          _i1.WidgetbookLeafComponent(
+            name: 'Notifications',
+            useCase: _i1.WidgetbookUseCase(
+              name: 'Notification Variants',
+              builder: _i19.notificationVariantsUseCase,
+            ),
+          ),
+          _i1.WidgetbookComponent(
+            name: 'SnackbarNotification',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Snackbar Notification',
+                builder: _i19.snackbarNotificationUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Snackbar Notification Variants',
+                builder: _i19.snackbarNotificationVariantsUseCase,
+              ),
+            ],
+          ),
+          _i1.WidgetbookComponent(
+            name: 'ToastNotification',
+            useCases: [
+              _i1.WidgetbookUseCase(
+                name: 'Toast Notification',
+                builder: _i19.toastNotificationUseCase,
+              ),
+              _i1.WidgetbookUseCase(
+                name: 'Toast Notification Variants',
+                builder: _i19.toastNotificationVariantsUseCase,
+              ),
+            ],
+          ),
+        ],
+      )
 ];
