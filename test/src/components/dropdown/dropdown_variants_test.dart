@@ -232,7 +232,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // Search for 'a'
-      final editableText = tester.widget<EditableText>(find.byType(EditableText));
+      final editableText =
+          tester.widget<EditableText>(find.byType(EditableText));
       editableText.controller.text = 'a';
       await tester.pump();
 

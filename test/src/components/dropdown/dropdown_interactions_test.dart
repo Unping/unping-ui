@@ -284,8 +284,8 @@ void main() {
 
       expect(find.text('Option A'), findsWidgets);
 
-      // Tap outside (on container background)
-      await tester.tapAt(Offset(10, 10));
+      // Tap outside (on container background) - pick a point well outside menu bounds
+      await tester.tapAt(Offset(50, 200));
       await tester.pumpAndSettle();
 
       // Menu should close (option not visible)
@@ -460,7 +460,8 @@ void main() {
       expect(find.text('Cherry'), findsOneWidget);
 
       // Type in search (case insensitive search)
-      final editableText = tester.widget<EditableText>(find.byType(EditableText));
+      final editableText =
+          tester.widget<EditableText>(find.byType(EditableText));
       editableText.controller.text = 'ban';
       await tester.pump();
 
@@ -501,7 +502,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // Type search text to filter
-      final editableText = tester.widget<EditableText>(find.byType(EditableText));
+      final editableText =
+          tester.widget<EditableText>(find.byType(EditableText));
       editableText.controller.text = 'ban';
       await tester.pump();
 

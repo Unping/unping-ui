@@ -473,13 +473,19 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
 
     return OverlayEntry(
       builder: (context) => GestureDetector(
-        behavior: HitTestBehavior.translucent,
+        behavior: HitTestBehavior.opaque,
         onTap: () {
           _isInteractingWithMenu = false;
           _closeMenu();
         },
         child: Stack(
           children: [
+            // Full-screen backdrop to catch taps
+            Positioned.fill(
+              child: Container(
+                color: const Color(0x00000000), // Transparent
+              ),
+            ),
             Positioned(
               left: menuLeft,
               top: finalTop,

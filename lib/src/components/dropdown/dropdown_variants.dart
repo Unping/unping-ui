@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart' show Material;
 import 'package:flutter/widgets.dart';
 import 'package:unping_ui/unping_ui.dart';
-import 'dropdown_types.dart';
-import 'base_dropdown.dart';
-import 'dropdown_menu.dart';
 
 /// Predefined dropdown configurations matching common design patterns
 class Dropdowns {
