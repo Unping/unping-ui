@@ -35,14 +35,16 @@ import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widge
     as _i12;
 import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
     as _i13;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
     as _i14;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i15;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i16;
+import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
+    as _i15;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i16;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i17;
 import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
-    as _i17;
-import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
     as _i18;
+import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+    as _i19;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -289,15 +291,27 @@ final directories = <_i1.WidgetbookNode>[
       _i1.WidgetbookFolder(
         name: 'Tooltip',
         children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'UiTooltip',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Interactive Tooltip',
+                  builder: _i14.buildConfigurableTooltip,
+                ),
+              )
+            ],
+          ),
           _i1.WidgetbookLeafComponent(
             name: 'UiTooltip',
             useCase: _i1.WidgetbookUseCase(
               name: 'Tooltip – placements & variants',
-              builder: _i14.tooltipShowcase,
+              builder: _i15.tooltipShowcase,
               designLink:
                   'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4938-63907',
             ),
-          )
+          ),
         ],
       ),
     ],
@@ -309,7 +323,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i15.buildUiColorsUseCase,
+          builder: _i16.buildUiColorsUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -318,7 +332,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i16.buildUiRadiusUseCase,
+          builder: _i17.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -326,7 +340,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i17.buildUiSpacingUseCase,
+          builder: _i18.buildUiSpacingUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -335,7 +349,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i18.buildUiTextStylesUseCase,
+          builder: _i19.buildUiTextStylesUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
