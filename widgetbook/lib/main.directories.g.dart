@@ -226,7 +226,9 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseDropdown',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableDropdown',
-                  builder: _i10.buildCoolButtonUseCase,
+                  builder: _i10.buildConfigurableDropdown,
+                  designLink:
+                      'https://www.figma.com/design/cSxzk4PnnsUO4mxTwKjkNf/unping-ui.com-%7C-Public--Community-?node-id=4919-61142&t=qP6frzBuXXGCqLoA-0',
                 ),
               )
             ],
