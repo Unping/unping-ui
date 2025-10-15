@@ -11,7 +11,6 @@ import 'package:widgetbook_workspace/l10n/language_extension.dart';
   designLink:
       'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
 )
-
 Widget toggle(BuildContext context) {
   return UnpingUIContainer(
     breadcrumbs: ['Components', 'Toggle'],

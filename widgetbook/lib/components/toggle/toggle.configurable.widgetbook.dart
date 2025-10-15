@@ -11,7 +11,7 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   type: ToggleSwitch,
   path: 'Components/Toggle/Configurable',
   designLink:
-  'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
+      'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
 )
 Widget buildConfigurableToggle(BuildContext context) {
   // Toggle size
@@ -23,14 +23,18 @@ Widget buildConfigurableToggle(BuildContext context) {
   );
 
   // Text content
-  final hasLabel = context.knobs.boolean(label: 'Has Label', initialValue: true);
-  final labelText =
-  hasLabel ? context.knobs.string(label: 'Label Text', initialValue: 'Remember me') : null;
+  final hasLabel =
+      context.knobs.boolean(label: 'Has Label', initialValue: true);
+  final labelText = hasLabel
+      ? context.knobs.string(label: 'Label Text', initialValue: 'Remember me')
+      : null;
 
   final hasDescription =
-  context.knobs.boolean(label: 'Has Description', initialValue: false);
+      context.knobs.boolean(label: 'Has Description', initialValue: false);
   final descriptionText = hasDescription
-      ? context.knobs.string(label: 'Description Text', initialValue: 'Save my login details for next time.')
+      ? context.knobs.string(
+          label: 'Description Text',
+          initialValue: 'Save my login details for next time.')
       : null;
 
   // Text styling
@@ -47,7 +51,7 @@ Widget buildConfigurableToggle(BuildContext context) {
       UiTextStyles.textSmBold,
     ],
     labelBuilder: (style) =>
-    style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
+        style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
   );
 
   final descriptionStyle = context.knobs.listOrNull(
@@ -63,7 +67,7 @@ Widget buildConfigurableToggle(BuildContext context) {
       UiTextStyles.textSmBold,
     ],
     labelBuilder: (style) =>
-    style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
+        style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
   );
 
   // Spacing
@@ -75,7 +79,8 @@ Widget buildConfigurableToggle(BuildContext context) {
   );
 
   // Interaction states
-  final isDisabled = context.knobs.boolean(label: 'Disabled', initialValue: false);
+  final isDisabled =
+      context.knobs.boolean(label: 'Disabled', initialValue: false);
 
   // Animation
   final animationDuration = Duration(
@@ -88,9 +93,12 @@ Widget buildConfigurableToggle(BuildContext context) {
   );
 
   // Colors
-  final activeColor = context.knobs.color(label: 'Active Color', initialValue: UiColors.toggleActive);
-  final inactiveColor = context.knobs.color(label: 'Inactive Color', initialValue: UiColors.neutral600);
-  final thumbColor = context.knobs.color(label: 'Thumb Color', initialValue: UiColors.neutral400);
+  final activeColor = context.knobs
+      .color(label: 'Active Color', initialValue: UiColors.toggleActive);
+  final inactiveColor = context.knobs
+      .color(label: 'Inactive Color', initialValue: UiColors.neutral600);
+  final thumbColor = context.knobs
+      .color(label: 'Thumb Color', initialValue: UiColors.neutral400);
 
   // Create toggle
   final toggle = _ExampleToggle(
@@ -187,4 +195,3 @@ class _ExampleToggleState extends State<_ExampleToggle> {
     );
   }
 }
-
