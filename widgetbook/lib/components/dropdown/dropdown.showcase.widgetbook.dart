@@ -3,6 +3,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 /// Sample data for dropdown options
@@ -75,8 +76,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Country',
-                placeholder: 'Select a country',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownCountryPlaceholder,
                 options: _countriesShort,
                 selectedValue: null,
                 onChanged: (value) {},
@@ -84,8 +85,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Country',
-                placeholder: 'Select a country',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownCountryPlaceholder,
                 options: _countriesShort,
                 selectedValue: 'USA',
                 onChanged: (value) {},
@@ -93,9 +94,9 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Country',
-                placeholder: 'Select a country',
-                helperText: 'Choose your country',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownCountryPlaceholder,
+                helperText: context.lang.dropdownHelperChoose,
                 options: _countriesShort,
                 selectedValue: null,
                 onChanged: (value) {},
@@ -111,8 +112,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Small',
-                placeholder: 'Select...',
+                label: context.lang.dropdownSmall,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 size: DropdownSize.sm,
@@ -120,8 +121,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Medium',
-                placeholder: 'Select...',
+                label: context.lang.dropdownMedium,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 size: DropdownSize.md,
@@ -129,8 +130,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Large',
-                placeholder: 'Select...',
+                label: context.lang.dropdownLarge,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 size: DropdownSize.lg,
@@ -146,8 +147,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Normal',
-                placeholder: 'Select...',
+                label: context.lang.dropdownNormal,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 forceState: DropdownState.normal,
@@ -155,8 +156,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Focused',
-                placeholder: 'Select...',
+                label: context.lang.dropdownFocused,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 forceState: DropdownState.focused,
@@ -164,8 +165,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Disabled',
-                placeholder: 'Select...',
+                label: context.lang.dropdownDisabled,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 enabled: false,
@@ -173,9 +174,9 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Error',
-                placeholder: 'Select...',
-                errorText: 'This field is required',
+                label: context.lang.dropdownError,
+                placeholder: context.lang.dropdownPlaceholder,
+                errorText: context.lang.dropdownErrorRequired,
                 options: _countriesShort,
                 onChanged: (value) {},
               ),
@@ -190,8 +191,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Country',
-                placeholder: 'Search country...',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownCountrySearch,
                 options: _countriesShort,
                 onChanged: (value) {},
                 prefix:
@@ -200,8 +201,8 @@ Widget buildDropdownSingleSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Location',
-                placeholder: 'Choose location...',
+                label: context.lang.dropdownLocation,
+                placeholder: context.lang.dropdownLocationPlaceholder,
                 options: _countriesShort,
                 onChanged: (value) {},
                 prefix: Icon(Icons.location_on,
@@ -218,14 +219,14 @@ Widget buildDropdownSingleSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Country',
-                placeholder: 'Search countries...',
-                helperText:
-                    'Type to search from ${_countriesLong.length} countries',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownCountrySearchMany,
+                helperText: context.lang
+                    .dropdownHelperTypeToSearch('${_countriesLong.length}'),
                 options: _countriesLong,
                 onChanged: (value) {},
                 searchable: true,
-                searchPlaceholder: 'Search...',
+                searchPlaceholder: context.lang.dropdownSearchPlaceholder,
               ),
             ),
           ],
@@ -253,8 +254,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Skills',
-                placeholder: 'Select skills...',
+                label: context.lang.dropdownSkills,
+                placeholder: context.lang.dropdownSkillsPlaceholder,
                 options: _skills,
                 selectedValues: [],
                 onChanged: (values) {},
@@ -262,8 +263,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Skills',
-                placeholder: 'Select skills...',
+                label: context.lang.dropdownSkills,
+                placeholder: context.lang.dropdownSkillsPlaceholder,
                 options: _skills,
                 selectedValues: ['Flutter', 'Dart'],
                 onChanged: (values) {},
@@ -271,9 +272,9 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Skills',
-                placeholder: 'Select skills...',
-                helperText: '3 selected',
+                label: context.lang.dropdownSkills,
+                placeholder: context.lang.dropdownSkillsPlaceholder,
+                helperText: '3 ${context.lang.dropdownHelperSelected}',
                 options: _skills,
                 selectedValues: ['Flutter', 'Dart', 'React'],
                 onChanged: (values) {},
@@ -289,8 +290,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Small',
-                placeholder: 'Select...',
+                label: context.lang.dropdownSmall,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 onChanged: (values) {},
                 size: DropdownSize.sm,
@@ -298,8 +299,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Medium',
-                placeholder: 'Select...',
+                label: context.lang.dropdownMedium,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 onChanged: (values) {},
                 size: DropdownSize.md,
@@ -307,8 +308,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Large',
-                placeholder: 'Select...',
+                label: context.lang.dropdownLarge,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 onChanged: (values) {},
                 size: DropdownSize.lg,
@@ -324,8 +325,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Normal',
-                placeholder: 'Select...',
+                label: context.lang.dropdownNormal,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 onChanged: (values) {},
                 forceState: DropdownState.normal,
@@ -333,8 +334,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Focused',
-                placeholder: 'Select...',
+                label: context.lang.dropdownFocused,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 onChanged: (values) {},
                 forceState: DropdownState.focused,
@@ -342,8 +343,8 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Disabled',
-                placeholder: 'Select...',
+                label: context.lang.dropdownDisabled,
+                placeholder: context.lang.dropdownPlaceholder,
                 options: _skills,
                 selectedValues: ['Flutter', 'Dart'],
                 onChanged: (values) {},
@@ -352,9 +353,9 @@ Widget buildDropdownMultiSelect(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Error',
-                placeholder: 'Select...',
-                errorText: 'At least one required',
+                label: context.lang.dropdownError,
+                placeholder: context.lang.dropdownPlaceholder,
+                errorText: context.lang.dropdownErrorAtLeastOne,
                 options: _skills,
                 onChanged: (values) {},
               ),
@@ -369,14 +370,14 @@ Widget buildDropdownMultiSelect(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Countries',
-                placeholder: 'Search and select...',
-                helperText: 'Select multiple countries',
+                label: context.lang.dropdownSelectCountries,
+                placeholder: context.lang.dropdownSearchAndSelect,
+                helperText: context.lang.dropdownHelperSelect,
                 options: _countriesLong,
                 selectedValues: ['United States', 'Canada'],
                 onChanged: (values) {},
                 searchable: true,
-                searchPlaceholder: 'Type to search...',
+                searchPlaceholder: context.lang.dropdownTypeToSearch,
               ),
             ),
           ],
@@ -404,8 +405,8 @@ Widget buildDropdownCombobox(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Assign to',
-                placeholder: 'Search users...',
+                label: context.lang.dropdownAssignTo,
+                placeholder: context.lang.dropdownSearchUsers,
                 options: [
                   'John Doe',
                   'Jane Smith',
@@ -446,8 +447,8 @@ Widget buildDropdownCombobox(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Assign to',
-                placeholder: 'Search users...',
+                label: context.lang.dropdownAssignTo,
+                placeholder: context.lang.dropdownSearchUsers,
                 options: [
                   'John Doe',
                   'Jane Smith',
@@ -472,8 +473,8 @@ Widget buildDropdownCombobox(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Small',
-                placeholder: 'Search...',
+                label: context.lang.dropdownSmall,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 size: DropdownSize.sm,
                 optionBuilder: (country) => Text(
@@ -486,8 +487,8 @@ Widget buildDropdownCombobox(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Medium',
-                placeholder: 'Search...',
+                label: context.lang.dropdownMedium,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 size: DropdownSize.md,
                 optionBuilder: (country) => Text(
@@ -500,8 +501,8 @@ Widget buildDropdownCombobox(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Large',
-                placeholder: 'Search...',
+                label: context.lang.dropdownLarge,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 size: DropdownSize.lg,
                 optionBuilder: (country) => Text(
@@ -522,8 +523,8 @@ Widget buildDropdownCombobox(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Normal',
-                placeholder: 'Search...',
+                label: context.lang.dropdownNormal,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 optionBuilder: (c) => Text(c,
                     style: UiTextStyles.textMd
@@ -534,8 +535,8 @@ Widget buildDropdownCombobox(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Focused',
-                placeholder: 'Search...',
+                label: context.lang.dropdownFocused,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 optionBuilder: (c) => Text(c,
                     style: UiTextStyles.textMd
@@ -546,8 +547,8 @@ Widget buildDropdownCombobox(BuildContext context) {
             ),
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Disabled',
-                placeholder: 'Search...',
+                label: context.lang.dropdownDisabled,
+                placeholder: context.lang.dropdownSearchPlaceholder,
                 options: _countriesShort,
                 selectedValue: 'USA',
                 optionBuilder: (c) => Text(c,
@@ -567,9 +568,10 @@ Widget buildDropdownCombobox(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Country',
-                placeholder: 'Type to search...',
-                helperText: 'Search from ${_countriesLong.length} countries',
+                label: context.lang.dropdownCountry,
+                placeholder: context.lang.dropdownTypeToSearch,
+                helperText: context.lang
+                    .dropdownHelperTypeToSearch('${_countriesLong.length}'),
                 options: _countriesLong,
                 optionBuilder: (country) => Text(
                   country,
@@ -624,24 +626,24 @@ Widget buildDropdownActionMenu(BuildContext context) {
                 items: [
                   DropdownMenuAction(
                     icon: Icon(Icons.edit, size: 16, color: UiColors.onPrimary),
-                    label: 'Edit',
+                    label: context.lang.dropdownEdit,
                     onTap: () => debugPrint('Edit'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.copy, size: 16, color: UiColors.onPrimary),
-                    label: 'Duplicate',
+                    label: context.lang.dropdownDuplicate,
                     onTap: () => debugPrint('Duplicate'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.archive,
                         size: 16, color: UiColors.onPrimary),
-                    label: 'Archive',
+                    label: context.lang.dropdownArchive,
                     onTap: () => debugPrint('Archive'),
                     showDivider: true,
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.delete, size: 16, color: UiColors.error),
-                    label: 'Delete',
+                    label: context.lang.dropdownDelete,
                     onTap: () => debugPrint('Delete'),
                     destructive: true,
                   ),
@@ -661,7 +663,7 @@ Widget buildDropdownActionMenu(BuildContext context) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'Actions',
+                        context.lang.dropdownActions,
                         style: UiTextStyles.textMd.copyWith(
                           color: UiColors.neutral800,
                           fontWeight: FontWeight.w500,
@@ -677,21 +679,21 @@ Widget buildDropdownActionMenu(BuildContext context) {
                   DropdownMenuAction(
                     icon: Icon(Icons.download,
                         size: 16, color: UiColors.onPrimary),
-                    label: 'Download',
+                    label: context.lang.dropdownDownload,
                     shortcut: '⌘D',
                     onTap: () => debugPrint('Download'),
                   ),
                   DropdownMenuAction(
                     icon:
                         Icon(Icons.share, size: 16, color: UiColors.onPrimary),
-                    label: 'Share',
+                    label: context.lang.dropdownShare,
                     shortcut: '⌘S',
                     onTap: () => debugPrint('Share'),
                   ),
                   DropdownMenuAction(
                     icon:
                         Icon(Icons.print, size: 16, color: UiColors.onPrimary),
-                    label: 'Print',
+                    label: context.lang.dropdownPrint,
                     shortcut: '⌘P',
                     onTap: () => debugPrint('Print'),
                   ),
@@ -722,19 +724,19 @@ Widget buildDropdownActionMenu(BuildContext context) {
                 items: [
                   DropdownMenuAction(
                     icon: Icon(Icons.save, size: 16, color: UiColors.onPrimary),
-                    label: 'Save',
+                    label: context.lang.dropdownSave,
                     shortcut: '⌘S',
                     onTap: () => debugPrint('Save'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.undo, size: 16, color: UiColors.onPrimary),
-                    label: 'Undo',
+                    label: context.lang.dropdownUndo,
                     shortcut: '⌘Z',
                     onTap: () => debugPrint('Undo'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.redo, size: 16, color: UiColors.onPrimary),
-                    label: 'Redo',
+                    label: context.lang.dropdownRedo,
                     shortcut: '⌘⇧Z',
                     onTap: () => debugPrint('Redo'),
                     showDivider: true,
@@ -742,7 +744,7 @@ Widget buildDropdownActionMenu(BuildContext context) {
                   DropdownMenuAction(
                     icon: Icon(Icons.settings,
                         size: 16, color: UiColors.onPrimary),
-                    label: 'Preferences',
+                    label: context.lang.dropdownPreferences,
                     shortcut: '⌘,',
                     onTap: () => debugPrint('Preferences'),
                   ),
@@ -771,7 +773,7 @@ Widget buildDropdownActionMenu(BuildContext context) {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        'File',
+                        context.lang.dropdownFile,
                         style: UiTextStyles.textMd
                             .copyWith(color: UiColors.onPrimary),
                       ),
@@ -785,24 +787,24 @@ Widget buildDropdownActionMenu(BuildContext context) {
                   DropdownMenuAction(
                     icon: Icon(Icons.create_new_folder,
                         size: 16, color: UiColors.onPrimary),
-                    label: 'New',
+                    label: context.lang.dropdownNew,
                     onTap: () => debugPrint('New'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.file_open,
                         size: 16, color: UiColors.neutral400),
-                    label: 'Open',
+                    label: context.lang.dropdownOpen,
                     enabled: false,
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.save, size: 16, color: UiColors.onPrimary),
-                    label: 'Save',
+                    label: context.lang.dropdownSave,
                     onTap: () => debugPrint('Save'),
                   ),
                   DropdownMenuAction(
                     icon: Icon(Icons.save_as,
                         size: 16, color: UiColors.neutral400),
-                    label: 'Save As',
+                    label: context.lang.dropdownSaveAs,
                     enabled: false,
                   ),
                 ],
@@ -836,9 +838,9 @@ Widget buildDropdownScrolling(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.select<String>(
-                label: 'Select from 50 options',
-                placeholder: 'Choose an option...',
-                helperText: 'Scroll to see all options',
+                label: context.lang.dropdownSelectFromMany('50'),
+                placeholder: context.lang.dropdownChoose,
+                helperText: context.lang.dropdownHelperScroll,
                 options: manyOptions,
                 onChanged: (value) {},
                 menuMaxHeight: 300,
@@ -852,14 +854,14 @@ Widget buildDropdownScrolling(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.multiSelect<String>(
-                label: 'Select countries',
-                placeholder: 'Search and select...',
-                helperText: 'Use search to filter 100 countries',
+                label: context.lang.dropdownSelectCountries,
+                placeholder: context.lang.dropdownSearchAndSelect,
+                helperText: context.lang.dropdownHelperUseSearch('100'),
                 options: manyCountries,
                 selectedValues: ['Country 1', 'Country 5', 'Country 10'],
                 onChanged: (values) {},
                 searchable: true,
-                searchPlaceholder: 'Type to search...',
+                searchPlaceholder: context.lang.dropdownTypeToSearch,
                 menuMaxHeight: 350,
               ),
             ),
@@ -871,9 +873,9 @@ Widget buildDropdownScrolling(BuildContext context) {
           children: [
             _DropdownWrapper(
               child: Dropdowns.combobox<String>(
-                label: 'Search from 50 options',
-                placeholder: 'Type to filter...',
-                helperText: 'Searchable dropdown with many items',
+                label: context.lang.dropdownSearchFromMany('50'),
+                placeholder: context.lang.dropdownTypeToFilter,
+                helperText: context.lang.dropdownHelperSearchable,
                 options: manyOptions,
                 optionBuilder: (option) => Text(
                   option,

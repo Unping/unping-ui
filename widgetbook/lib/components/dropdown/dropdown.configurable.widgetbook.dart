@@ -4,6 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // Import the widget from your app
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/language_extension.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 @widgetbook.UseCase(
@@ -30,12 +31,12 @@ Widget buildConfigurableDropdown(BuildContext context) {
   // Basic properties
   final label = context.knobs.stringOrNull(
     label: 'Label',
-    initialValue: 'Select an option',
+    initialValue: context.lang.dropdownLabel,
   );
 
   final placeholder = context.knobs.string(
     label: 'Placeholder',
-    initialValue: 'Choose...',
+    initialValue: context.lang.dropdownChoose,
   );
 
   final helperText = context.knobs.stringOrNull(

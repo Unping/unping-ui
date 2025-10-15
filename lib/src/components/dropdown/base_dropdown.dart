@@ -2,8 +2,6 @@ import 'package:flutter/material.dart' show Material;
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:unping_ui/unping_ui.dart';
-import 'dropdown_types.dart';
-import 'dropdown_menu.dart';
 
 /// A base dropdown widget that provides customizable dropdown functionality.
 ///
@@ -418,8 +416,6 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
     double actualMaxHeight;
 
     // Decide whether to show below or above based on available space
-    final preferBelow =
-        widget.config.menuPosition != DropdownMenuPosition.above;
     final bool showBelow;
 
     if (widget.config.menuPosition == DropdownMenuPosition.above) {

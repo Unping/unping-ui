@@ -1,6 +1,5 @@
 import 'package:flutter/widgets.dart';
 import 'package:unping_ui/unping_ui.dart';
-import 'dropdown_types.dart';
 
 /// A menu item in a dropdown list
 class DropdownMenuItem extends StatefulWidget {
@@ -687,8 +686,6 @@ class _VirtualScrollListState extends State<_VirtualScrollList> {
 
   @override
   Widget build(BuildContext context) {
-    final visibleItemCount = _lastVisibleIndex - _firstVisibleIndex;
-
     return SizedBox(
       height: widget.maxHeight,
       child: ListView.builder(
