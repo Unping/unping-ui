@@ -30,11 +30,14 @@ enum DropdownState {
 }
 
 class BaseDropdown<T> extends StatefulWidget {
+  ///Labeling widget
+  final String? label;
+
   ///Current state of the Dropdown
   final DropdownState state;
 
   /// Callback when the Dropdown state changes
-  final ValueChanged<DropdownState>? onChanged;
+  final ValueChanged<DropdownState>? onDropdownStateChanged;
 
   ///Current size of the Dropdown
   final DropdownSize size;
@@ -42,27 +45,24 @@ class BaseDropdown<T> extends StatefulWidget {
   //for Single or multiple selection
   final bool isMultiSelect;
 
-  //For searching enabled or disabled
+  /// For searching enabled or disabled
   final bool isSearchable;
 
   //Selected DropdownMenuItem
   final String? selectedValue;
   final ValueChanged<String> onSelectedValueChanged;
 
-  //Selected DropdownMenuItems
-  final List<DropdownMenuItem>? selectedvalues;
+  ///List Options
+  final List<T> options;
 
-  //List Options
-  final List<DropdownMenuEntry> options;
+  /// Selected values
+  final List<String> selectedValues;
 
   //Enable Keyboard navigations
   final bool enableKeyboardNavigation;
 
   //Sort the dropdown menu Item
   final bool sortMenuItems;
-
-  ///Auto select first Item on Dropdown list
-  final bool autoSelectFirst;
 
   /// Text style of the dropdown button text
   final TextStyle? textStyle;
@@ -84,18 +84,18 @@ class BaseDropdown<T> extends StatefulWidget {
 
   const BaseDropdown({
     super.key,
+    this.label,
     this.state = DropdownState.normal,
-    this.onChanged,
+    this.onDropdownStateChanged,
     this.size = DropdownSize.md,
     this.isMultiSelect = false,
-    this.isSearchable = false,
-    required this.selectedValue,
+    this.isSearchable = true,
+    this.selectedValue,
     required this.onSelectedValueChanged,
-    this.selectedvalues,
+    this.selectedValues = const [],
     this.options = const [],
     this.enableKeyboardNavigation = false,
     this.sortMenuItems = false,
-    this.autoSelectFirst = true,
     this.textStyle, //assign later
     this.padding = const EdgeInsets.all(5),
     this.borderRadius = UiRadius.xs,
@@ -112,20 +112,57 @@ class BaseDropdown<T> extends StatefulWidget {
 class _BaseDropdownState extends State<BaseDropdown> {
 //On Dropdown Value changed
   void onDropdownValueSelected(value) {
+    setState(() {
+      if (widget.isMultiSelect) {
+        if (widget.selectedValues.contains(value)) {
+          widget.selectedValues.remove(value);
+        } else {
+          widget.selectedValues.add(value);
+        }
+      } else {
+        widget.onSelectedValueChanged(value!);
+      }
+    });
+  }
+
+//To prevent duplicates in the options list
+  bool NoDuplicates() {
+    return widget.options.toSet().length == widget.options.length;
+  }
+
+//Return a list of Dropdown menu items
+  List<DropdownMenuEntry> getMenuEntries() {
+    List<DropdownMenuEntry> entries = [];
     if (widget.isMultiSelect) {
-      widget.selectedvalues?.add(value);
+      for (var option in widget.options) {
+        entries.add(DropdownMenuEntry(
+            value: option,
+            label: option,
+            trailingIcon: widget.selectedValues.contains(option)
+                ? Icon(Icons.done)
+                : SizedBox()));
+      }
     } else {
-      widget.onSelectedValueChanged(value!);
+      for (var option in widget.options) {
+        entries.add(DropdownMenuEntry(value: option, label: option));
+      }
     }
+    return entries;
   }
 
   @override
   Widget build(BuildContext context) {
+    List<DropdownMenuEntry> menuEntries = getMenuEntries();
+
+    //Duplicate check for the option list to avoid double Keys
+    assert(NoDuplicates(), "No duplicates in the options list allowed");
+
     return Center(
         child: DropdownMenu(
-      enableSearch: true,
+      label: widget.label != null ? Text(widget.label!) : SizedBox(),
+      enableSearch: widget.isSearchable,
       width: widget.dropdownMenuWidth,
-      dropdownMenuEntries: widget.options,
+      dropdownMenuEntries: menuEntries,
       onSelected: onDropdownValueSelected,
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -149,12 +186,68 @@ class _BaseDropdownState extends State<BaseDropdown> {
 }
 
 /// Predefined Dropdown configurations matching common design patterns
-// class Dropdowns{
-// static BaseDropdown select({
-//   DropdownState state,
+class Dropdowns {
+  static BaseDropdown select({
+    label,
+    onDropdownStateChanged,
+    size,
+    isMultiSelect = false,
+    isSearchable = true,
+    required selectedValue,
+    required onSelectedValueChanged,
+    required options,
+    enableKeyboardNavigation = false,
+    sortMenuItems = false,
+    textStyle, //assign later
+    padding,
+    dropdownColor,
+    containerBackgroundColor,
+    dropdownMenuWidth,
+  }) {
+    return BaseDropdown(
+      label: label,
+      options: options,
+      onSelectedValueChanged: onSelectedValueChanged,
+      selectedValue: selectedValue,
+      onDropdownStateChanged: onDropdownStateChanged,
+      containerBackgroundColor: containerBackgroundColor,
+      dropdownColor: dropdownColor,
+      enableKeyboardNavigation: enableKeyboardNavigation,
+      dropdownMenuWidth: dropdownMenuWidth,
+    );
+  }
 
-// })
-// {
-// return BaseDropdown();
-// }
-// }
+  static BaseDropdown multiSelect({
+    label,
+    onDropdownStateChanged,
+    size,
+    isMultiSelect = true,
+    isSearchable = true,
+    required selectedValues,
+    required onSelectedValueChanged,
+    required options,
+    enableKeyboardNavigation = false,
+    sortMenuItems = false,
+    textStyle, //assign later
+    padding,
+    dropdownColor,
+    containerBackgroundColor,
+    dropdownMenuWidth,
+  }) {
+    return BaseDropdown(
+      label: label,
+      onSelectedValueChanged: onSelectedValueChanged!,
+      selectedValues: selectedValues,
+      onDropdownStateChanged: onDropdownStateChanged,
+      containerBackgroundColor: containerBackgroundColor,
+      dropdownColor: dropdownColor,
+      enableKeyboardNavigation: enableKeyboardNavigation,
+      textStyle: textStyle,
+      isSearchable: isSearchable,
+      isMultiSelect: isMultiSelect,
+      padding: padding,
+      options: options,
+      dropdownMenuWidth: dropdownMenuWidth,
+    );
+  }
+}

@@ -15,13 +15,19 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 Widget buildConfigurableDropdown(BuildContext context) {
   return UnpingUIContainer(
       breadcrumbs: ['Components', 'Dropdown', 'Configurable'],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+          Column(
             children: [
-              ExampleSingleSelectDropdown(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ExampleSingleSelectDropdown(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ExampleMultiSelectDropdown(),
+              )
             ],
           ),
         ],
@@ -38,31 +44,47 @@ class ExampleSingleSelectDropdown extends StatefulWidget {
 
 class _ExampleSingleSelectDropdownState
     extends State<ExampleSingleSelectDropdown> {
-  List<DropdownMenuEntry> options = [
-    DropdownMenuEntry(value: 'Apple', label: 'Apple'),
-    DropdownMenuEntry(value: 'Banana', label: 'Banana'),
-    DropdownMenuEntry(value: 'Cherry', label: 'Cherry'),
-    DropdownMenuEntry(value: 'Date', label: 'Date'),
-    DropdownMenuEntry(value: 'Elderberry', label: 'Elderberry'),
-  ];
-
-  String? selectedValue = 'Apple';
-
-  // @override
-  // void initState() {
-  //   selectedValue = options[0];
-  //   super.initState();
-  // }
+  String? selectedValue = '';
 
   @override
   Widget build(BuildContext context) {
-    return BaseDropdown(
+    return Dropdowns.select(
+      dropdownMenuWidth: 250,
+      label: 'Single selection',
       textStyle: UiTextStyles.textSm,
       selectedValue: selectedValue,
-      options: options,
+      options: ['USA', 'Canada', 'Mexico'],
       onSelectedValueChanged: (value) {
         setState(() {
           selectedValue = value;
+        });
+      },
+    );
+  }
+}
+
+class ExampleMultiSelectDropdown extends StatefulWidget {
+  const ExampleMultiSelectDropdown({super.key});
+
+  @override
+  State<ExampleMultiSelectDropdown> createState() =>
+      _ExampleMultiSelectDropdownState();
+}
+
+class _ExampleMultiSelectDropdownState
+    extends State<ExampleMultiSelectDropdown> {
+  List<String> selectedValues = [];
+  @override
+  Widget build(BuildContext context) {
+    return Dropdowns.multiSelect(
+      label: 'Multi selection',
+      dropdownMenuWidth: 250,
+      textStyle: UiTextStyles.textSm,
+      selectedValues: selectedValues,
+      options: ['Flutter', 'Dart', 'React', 'Node.js'],
+      onSelectedValueChanged: (value) {
+        setState(() {
+          selectedValues.add(value);
         });
       },
     );
