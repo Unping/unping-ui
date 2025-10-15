@@ -176,6 +176,7 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
   bool _isOpen = false;
   bool _isHovered = false;
   int _focusedIndex = -1;
+  bool _isInteractingWithMenu = false;
 
   T? _selectedValueInternal;
   List<T>? _selectedValuesInternal;
@@ -208,8 +209,14 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
   }
 
   void _onFocusChange() {
-    if (!_focusNode.hasFocus && _isOpen) {
-      _closeMenu();
+    // Don't close menu if we're interacting with menu elements (like search field)
+    if (!_focusNode.hasFocus && _isOpen && !_isInteractingWithMenu) {
+      // Add a small delay to allow focus to move to menu elements
+      Future.delayed(const Duration(milliseconds: 100), () {
+        if (mounted && _isOpen && !_isInteractingWithMenu) {
+          _closeMenu();
+        }
+      });
     }
   }
 
@@ -467,41 +474,52 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
     return OverlayEntry(
       builder: (context) => GestureDetector(
         behavior: HitTestBehavior.translucent,
-        onTap: _closeMenu,
+        onTap: () {
+          _isInteractingWithMenu = false;
+          _closeMenu();
+        },
         child: Stack(
           children: [
             Positioned(
               left: menuLeft,
               top: finalTop,
               width: menuWidth,
-              child: Material(
-                elevation: 4,
-                color: UiColors.neutral700,
-                borderRadius: BorderRadius.circular(UiRadius.sm),
-                child: Container(
-                  constraints: BoxConstraints(
-                    maxHeight: actualMaxHeight,
-                    minWidth: menuWidth,
-                  ),
-                  child: DropdownMenu(
-                    options: widget.options,
-                    selectedValues: widget.multiSelect
-                        ? _selectedList
-                        : (widget.selectedValue != null
-                            ? [widget.selectedValue]
-                            : []),
-                    onSelected: (value) => _handleSelection(value as T),
-                    showCheckmarks: widget.config.showCheckmarks,
-                    width: menuWidth,
-                    maxHeight: actualMaxHeight,
-                    searchable: widget.config.searchable,
-                    searchPlaceholder: widget.config.searchPlaceholder,
-                    searchFilter: widget.config.searchFilter,
-                    focusedIndex: _focusedIndex,
-                    isLoading: widget.config.isLoading,
-                    loadingWidget: widget.config.loadingWidget,
-                    loadingMessage: widget.config.loadingMessage,
-                    virtualScrolling: widget.config.virtualScrolling,
+              child: GestureDetector(
+                // Prevent taps inside menu from bubbling up to backdrop
+                onTap: () {},
+                child: MouseRegion(
+                  onEnter: (_) => _isInteractingWithMenu = true,
+                  onExit: (_) => _isInteractingWithMenu = false,
+                  child: Material(
+                    elevation: 4,
+                    color: UiColors.neutral700,
+                    borderRadius: BorderRadius.circular(UiRadius.sm),
+                    child: Container(
+                      constraints: BoxConstraints(
+                        maxHeight: actualMaxHeight,
+                        minWidth: menuWidth,
+                      ),
+                      child: DropdownMenu(
+                        options: widget.options,
+                        selectedValues: widget.multiSelect
+                            ? _selectedList
+                            : (widget.selectedValue != null
+                                ? [widget.selectedValue]
+                                : []),
+                        onSelected: (value) => _handleSelection(value as T),
+                        showCheckmarks: widget.config.showCheckmarks,
+                        width: menuWidth,
+                        maxHeight: actualMaxHeight,
+                        searchable: widget.config.searchable,
+                        searchPlaceholder: widget.config.searchPlaceholder,
+                        searchFilter: widget.config.searchFilter,
+                        focusedIndex: _focusedIndex,
+                        isLoading: widget.config.isLoading,
+                        loadingWidget: widget.config.loadingWidget,
+                        loadingMessage: widget.config.loadingMessage,
+                        virtualScrolling: widget.config.virtualScrolling,
+                      ),
+                    ),
                   ),
                 ),
               ),
