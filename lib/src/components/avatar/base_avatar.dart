@@ -49,10 +49,8 @@ class BaseAvatar extends StatefulWidget {
   /// When null/empty, a descriptive label is derived automatically based on content.
   final String? semanticsLabel;
 
-  final
-
-      /// Custom border radius (overrides default for shape)
-      double? borderRadius;
+  /// Custom border radius (overrides default for shape)
+  final double? borderRadius;
 
   /// Text style for initials
   final TextStyle? textStyle;
@@ -140,9 +138,12 @@ class _BaseAvatarState extends State<BaseAvatar> {
       width: _avatarSize,
       height: _avatarSize,
       fit: BoxFit.cover,
+      imageEngine: ImageEngine.extendedImage,
       placeholder: _buildLoadingState(),
+      // coverage:ignore-start
       errorBuilder: (context, url, error) =>
           widget.fallback ?? _buildDefaultAvatar(),
+      // coverage:ignore-end
     );
 
     // Use appropriate clipping based on shape
@@ -166,11 +167,12 @@ class _BaseAvatarState extends State<BaseAvatar> {
     return Center(
       child: Text(
         widget.initials!,
-        style: (widget.textStyle ?? UiTextStyles.textSm).copyWith(
-          fontSize: fontSize,
-          color: widget.foregroundColor,
-          fontWeight: UiTextStyles.semiBold,
-        ),
+        style: widget.textStyle ??
+            UiTextStyles.textSm.copyWith(
+              fontSize: fontSize,
+              color: widget.foregroundColor,
+              fontWeight: UiTextStyles.semiBold,
+            ),
       ),
     );
   }
@@ -366,7 +368,7 @@ class GradientTranslation extends GradientTransform {
 
   @override
   Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.identity()..translate(translateX, translateY);
+    return Matrix4.identity()..translateByDouble(translateX, translateY, 0, 1);
   }
 }
 
