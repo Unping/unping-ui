@@ -134,24 +134,6 @@ class AvatarSizeHelper {
         return UiTextStyles.displayXs.fontSize!; // 24.0 (closest to 32)
     }
   }
-
-  /// Get the badge size based on avatar size
-  static double getBadgeSize(AvatarSize size) {
-    switch (size) {
-      case AvatarSize.xs:
-        return UiSpacing.spacing2; // 8.0
-      case AvatarSize.sm:
-        return UiSpacing.spacing2 + UiSpacing.spacing0_5; // ~10.0
-      case AvatarSize.md:
-        return UiSpacing.spacing3; // 12.0
-      case AvatarSize.lg:
-        return UiSpacing.spacing3 + UiSpacing.spacing0_5; // ~14.0
-      case AvatarSize.xl:
-        return UiSpacing.spacing4; // 16.0
-      case AvatarSize.xxl:
-        return UiSpacing.spacing4 + UiSpacing.spacing0_5; // ~18.0
-    }
-  }
 }
 
 /// Helper class for generating consistent colors from strings
