@@ -182,7 +182,6 @@ Widget buildConfigurableAvatar(BuildContext context) {
       case 'custom-child':
         final child = _buildBadgeChild(badgeChildKind, UiColors.onPrimary);
         badge = AvatarBadge(
-          position: badgePosition,
           size: badgeSize,
           backgroundColor: badgeBg ?? UiColors.neutral700,
           showBorder: badgeShowBorder,
@@ -194,7 +193,6 @@ Widget buildConfigurableAvatar(BuildContext context) {
       default:
         badge = AvatarBadge.status(
           status: badgeStatus,
-          position: badgePosition,
           size: badgeSize,
           showBorder: badgeShowBorder,
           borderColor: badgeBorderColor,

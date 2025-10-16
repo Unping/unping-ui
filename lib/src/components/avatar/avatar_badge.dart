@@ -9,9 +9,6 @@ class AvatarBadge extends StatelessWidget {
   /// Custom notification count (alternative to status)
   final int? notificationCount;
 
-  /// Position of the badge on the avatar
-  final BadgePosition position;
-
   /// Size of the badge
   final double size;
 
@@ -35,7 +32,6 @@ class AvatarBadge extends StatelessWidget {
     this.status,
     this.notificationCount,
     this.child,
-    this.position = BadgePosition.bottomRight,
     this.size = 12.0,
     this.backgroundColor,
     this.showBorder = true,
@@ -49,14 +45,12 @@ class AvatarBadge extends StatelessWidget {
   /// Factory constructor for status badges
   factory AvatarBadge.status({
     required UserStatus status,
-    BadgePosition position = BadgePosition.bottomRight,
     double? size,
     bool showBorder = true,
     Color borderColor = UiColors.background,
   }) {
     return AvatarBadge(
       status: status,
-      position: position,
       size: size ?? 12.0,
       showBorder: showBorder,
       borderColor: borderColor,
@@ -74,7 +68,6 @@ class AvatarBadge extends StatelessWidget {
   }) {
     return AvatarBadge(
       notificationCount: count,
-      position: position,
       size: size ?? 16.0,
       backgroundColor: backgroundColor,
       showBorder: showBorder,
