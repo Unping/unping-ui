@@ -2,6 +2,7 @@
 library;
 
 export 'src/components/dropdown/base_dropdown.dart';
+export 'src/components/dropdown/dropdown_variants.dart';
 export 'src/components/badge/base_badge.dart';
 export 'src/components/button/base_button.dart';
 export 'src/components/checkbox/base_checkbox.dart';
