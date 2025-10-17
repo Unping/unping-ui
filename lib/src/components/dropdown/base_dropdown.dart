@@ -95,15 +95,6 @@ class _BaseDropdownState extends State<BaseDropdown> {
     });
   }
 
-  ///manage selected values add remove etc
-  void manageSelectedValues(List selectedValues, String valueToManage) {
-    if (selectedValues.contains(valueToManage)) {
-      selectedValues.remove(valueToManage);
-    } else {
-      selectedValues.add(valueToManage);
-    }
-  }
-
 //To prevent duplicates in the options list
   bool NoDuplicates() {
     return widget.options.toSet().length == widget.options.length;
@@ -118,17 +109,101 @@ class _BaseDropdownState extends State<BaseDropdown> {
     return entries;
   }
 
+  ///Multidropdown Variables
+
   ///for the Input Field
-  TextEditingController textController = TextEditingController();
   LayerLink layerLink = LayerLink();
   OverlayEntry? overlayEntry;
   GlobalKey textFieldGlobalKey = GlobalKey();
+  int? searchedItem;
+
+  ///Overlay for the show options
+  ///Overlay for Multiselect Dropdown
+  OverlayEntry OptionsOverlay() {
+    RenderBox renderBox =
+        textFieldGlobalKey.currentContext!.findRenderObject() as RenderBox;
+    final size = renderBox.size;
+    return OverlayEntry(
+      builder: (context) => Positioned(
+        width: size.width,
+        child: StatefulBuilder(
+          builder: (context, setState) {
+            return CompositedTransformFollower(
+              link: layerLink,
+              offset: Offset(0, size.height + 3),
+              child: Container(
+                height: 150,
+                decoration: BoxDecoration(
+                    color: widget.containerBackgroundColor,
+                    border: Border.all(
+                      color: widget.borderRadiusColor,
+                      width: widget.borderRadiusWidth,
+                    ),
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(widget.borderRadius))),
+                child: ListView.builder(
+                  itemCount: widget.options.length,
+                  itemBuilder: (context, index) {
+                    String optionsValue = widget.options[index];
+                    bool shouldFlash = searchedItem == index;
+                    return AnimatedContainer(
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.easeInOut,
+                      color: shouldFlash
+                          ? UiColors.neutral500
+                          : Colors.transparent,
+                      child: ListTile(
+                        title: Text(optionsValue),
+                        trailing: widget.selectedValues.contains(optionsValue)
+                            ? Icon(Icons.done)
+                            : SizedBox(),
+                        onTap: () {
+                          setState(
+                            () {
+                              manageSelectedValues(
+                                  widget.selectedValues, optionsValue);
+                            },
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  ///manage selected values add remove etc
+  void manageSelectedValues(List selectedValues, String valueToManage) {
+    setState(() {
+      if (selectedValues.contains(valueToManage)) {
+        selectedValues.remove(valueToManage);
+      } else {
+        selectedValues.add(valueToManage);
+      }
+    });
+  }
+
+  void closeOverlay() {
+    overlayEntry?.remove();
+    overlayEntry = null;
+  }
+
+  @override
+  void dispose() {
+    closeOverlay();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     List<DropdownMenuEntry> menuEntries = getMenuEntries();
 
-    ///Duplicate check for the option list to avoid double Keys
+    ///Duplicate check for the option list to avoid double values
     assert(NoDuplicates(), "No duplicates in the options list allowed");
 
     ///Return Depending on the type of Dropdown
@@ -181,10 +256,8 @@ class _BaseDropdownState extends State<BaseDropdown> {
                       child: Chip(
                         label: Text(selectedOption),
                         onDeleted: () {
-                          setState(() {
-                            manageSelectedValues(
-                                widget.selectedValues, selectedOption);
-                          });
+                          manageSelectedValues(
+                              widget.selectedValues, selectedOption);
                         },
                         deleteIcon: Icon(Icons.close),
                         backgroundColor: widget.containerBackgroundColor,
@@ -200,7 +273,6 @@ class _BaseDropdownState extends State<BaseDropdown> {
                 link: layerLink,
                 child: TextField(
                   key: textFieldGlobalKey,
-                  controller: textController,
                   style: widget.textStyle,
                   decoration: InputDecoration(
                     filled: true,
@@ -214,12 +286,10 @@ class _BaseDropdownState extends State<BaseDropdown> {
                       onPressed: () {
                         setState(() {
                           if (overlayEntry == null) {
-                            overlayEntry = OptionsOverlay(
-                                widget, layerLink, textFieldGlobalKey);
+                            overlayEntry = OptionsOverlay();
                             Overlay.of(context).insert(overlayEntry!);
                           } else {
-                            overlayEntry!.remove();
-                            overlayEntry = null;
+                            closeOverlay();
                           }
                         });
                       },
@@ -232,6 +302,30 @@ class _BaseDropdownState extends State<BaseDropdown> {
                             color: widget.borderRadiusColor,
                             width: widget.borderRadiusWidth)),
                   ),
+                  onTap: () {
+                    setState(() {
+                      if (overlayEntry == null) {
+                        overlayEntry = OptionsOverlay();
+                        Overlay.of(context).insert(overlayEntry!);
+                      } else {
+                        closeOverlay();
+                      }
+                    });
+                  },
+                  onChanged: (textFieldValue) {
+                    if (textFieldValue.trim().isNotEmpty) {
+                      String firstResult = widget.options.firstWhere(
+                        (value) => value.contains(textFieldValue),
+                        orElse: () => widget.options.first,
+                      );
+                      searchedItem = widget.options.indexOf(firstResult);
+                      overlayEntry!.markNeedsBuild();
+                      Future.delayed(Duration(milliseconds: 500), () {
+                        searchedItem = null; // remove flash after time
+                        overlayEntry!.markNeedsBuild();
+                      });
+                    }
+                  },
                 ),
               ),
             )
