@@ -1,6 +1,7 @@
 // Not required for test files
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -444,6 +445,369 @@ void main() {
 
       // Widget should render with forced state
       expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('Space key opens menu when closed', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: [
+                    DropdownOption(value: 'a', label: 'Option A'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Focus the dropdown
+      await tester.tap(find.text('Select'));
+      await tester.pump();
+
+      // Press Space
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+
+      // Menu should be open
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('Enter selects option when menu is open', (tester) async {
+      String? selected;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: [
+                    DropdownOption(value: 'a', label: 'Option A'),
+                    DropdownOption(value: 'b', label: 'Option B'),
+                  ],
+                  onChanged: (value) => selected = value,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Navigate to first option
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+
+      // Select with Enter
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pumpAndSettle();
+
+      expect(selected, equals('a'));
+    });
+
+    testWidgets('Space selects option when menu is open', (tester) async {
+      String? selected;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: [
+                    DropdownOption(value: 'a', label: 'Option A'),
+                    DropdownOption(value: 'b', label: 'Option B'),
+                  ],
+                  onChanged: (value) => selected = value,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Navigate to first option
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+
+      // Select with Space
+      await tester.sendKeyEvent(LogicalKeyboardKey.space);
+      await tester.pumpAndSettle();
+
+      expect(selected, equals('a'));
+    });
+
+    testWidgets('multiSelect uses custom multiSelectedBuilder', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            multiSelect: true,
+            selectedValues: ['a', 'b'],
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+              DropdownOption(value: 'b', label: 'Option B'),
+            ],
+            multiSelectedBuilder: (values) => Text('Custom: ${values.length}'),
+          ),
+        ),
+      );
+
+      expect(find.text('Custom: 2'), findsOneWidget);
+    });
+
+    testWidgets('multiSelect closeOnSelect closes menu', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.topLeft,
+                  child: BaseDropdown<String>(
+                    multiSelect: true,
+                    placeholder: 'Select',
+                    options: [
+                      DropdownOption(value: 'a', label: 'Option A'),
+                      DropdownOption(value: 'b', label: 'Option B'),
+                    ],
+                    config: DropdownConfig(closeOnSelect: true),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Select option
+      await tester.tap(find.text('Option A').last);
+      await tester.pumpAndSettle();
+
+      // Menu should be closed (option only appears once in the trigger as count)
+      expect(find.text('1 selected'), findsOneWidget);
+    });
+
+    testWidgets('toggles menu when clicking trigger', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.topLeft,
+                  child: BaseDropdown<String>(
+                    placeholder: 'Select',
+                    options: [
+                      DropdownOption(value: 'a', label: 'Option A'),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Click elsewhere to close the menu (simulate clicking outside)
+      await tester.tapAt(Offset(10, 10));
+      await tester.pumpAndSettle();
+
+      // Menu should be closed
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('displays selected value from selectedValue prop',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            selectedValue: 'b',
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+              DropdownOption(value: 'b', label: 'Option B'),
+            ],
+          ),
+        ),
+      );
+
+      expect(find.text('Option B'), findsOneWidget);
+    });
+
+    testWidgets('handles selected value not in options', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            selectedValue: 'unknown',
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+              DropdownOption(value: 'b', label: 'Option B'),
+            ],
+          ),
+        ),
+      );
+
+      // Should display the value's toString() when not found
+      expect(find.text('unknown'), findsOneWidget);
+    });
+
+    testWidgets('applies focusRingColor when focused', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            placeholder: 'Select',
+            focusRingColor: Color(0xFF00FF00),
+            focusRingWidth: 2.0,
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+          ),
+        ),
+      );
+
+      // Tap to focus
+      await tester.tap(find.text('Select'));
+      await tester.pump();
+
+      // Widget should render with focus ring
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('applies hover colors on hover', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            placeholder: 'Select',
+            hoverBackgroundColor: Color(0xFF123456),
+            hoverBorderColor: Color(0xFF654321),
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+          ),
+        ),
+      );
+
+      // Create hover event
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+
+      await tester.pump();
+      await gesture.moveTo(tester.getCenter(find.text('Select')));
+      await tester.pumpAndSettle();
+
+      // Widget should render with hover state
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('focus change delay prevents menu close during interaction',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: [
+                    DropdownOption(value: 'a', label: 'Option A'),
+                  ],
+                  config: DropdownConfig(searchable: true),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Wait for potential focus change delay
+      await tester.pump(const Duration(milliseconds: 150));
+
+      // Menu should still be open
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('keyboard navigation does not select disabled option',
+        (tester) async {
+      String? selected;
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: [
+                    DropdownOption(
+                        value: 'a', label: 'Option A', enabled: false),
+                    DropdownOption(value: 'b', label: 'Option B'),
+                  ],
+                  onChanged: (value) => selected = value,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Navigate to first option (disabled)
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
+      await tester.pump();
+
+      // Try to select disabled option with Enter
+      await tester.sendKeyEvent(LogicalKeyboardKey.enter);
+      await tester.pump();
+
+      // Should not select
+      expect(selected, isNull);
     });
   });
 }

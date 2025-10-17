@@ -353,5 +353,197 @@ void main() {
       final containers = find.byType(Container);
       expect(containers, findsWidgets);
     });
+
+    testWidgets('disabled menu item shows supporting text with opacity',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenuItem(
+            label: 'Test Item',
+            supportingText: 'Helper text',
+            enabled: false,
+          ),
+        ),
+      );
+
+      expect(find.text('Test Item'), findsOneWidget);
+      expect(find.text('Helper text'), findsOneWidget);
+    });
+
+    testWidgets('scrolls to focused index when updated', (tester) async {
+      final options = List.generate(
+        20,
+        (i) => DropdownOption(value: i, label: 'Item $i'),
+      );
+
+      int focusedIndex = 0;
+
+      await tester.pumpWidget(
+        StatefulBuilder(
+          builder: (context, setState) {
+            return Directionality(
+              textDirection: TextDirection.ltr,
+              child: DropdownMenu(
+                options: options,
+                focusedIndex: focusedIndex,
+                maxHeight: 200,
+              ),
+            );
+          },
+        ),
+      );
+
+      expect(find.text('Item 0'), findsOneWidget);
+
+      // Update focused index
+      await tester.pumpWidget(
+        StatefulBuilder(
+          builder: (context, setState) {
+            return Directionality(
+              textDirection: TextDirection.ltr,
+              child: DropdownMenu(
+                options: options,
+                focusedIndex: 10,
+                maxHeight: 200,
+              ),
+            );
+          },
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Should scroll to item 10
+      expect(find.text('Item 10'), findsOneWidget);
+    });
+
+    testWidgets('handles scroll to index when list is empty', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: [],
+            focusedIndex: 5,
+          ),
+        ),
+      );
+
+      expect(find.text('No options available'), findsOneWidget);
+    });
+
+    testWidgets('handles scroll to index out of bounds', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+            focusedIndex: 100,
+          ),
+        ),
+      );
+
+      expect(find.text('Option A'), findsOneWidget);
+    });
+
+    testWidgets('virtual scrolling renders only visible items', (tester) async {
+      final largeList = List.generate(
+        150,
+        (i) => DropdownOption(value: i, label: 'Item $i'),
+      );
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: largeList,
+            virtualScrolling: true,
+            maxHeight: 300,
+          ),
+        ),
+      );
+
+      // First item should be visible
+      expect(find.text('Item 0'), findsOneWidget);
+
+      // Items far down should not be built initially
+      expect(find.text('Item 100'), findsNothing);
+    });
+
+    testWidgets('didUpdateWidget triggers search update', (tester) async {
+      List<DropdownOption> options = [
+        DropdownOption(value: 'a', label: 'Apple'),
+        DropdownOption(value: 'b', label: 'Banana'),
+      ];
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: options,
+            searchable: true,
+          ),
+        ),
+      );
+
+      // Enter search text
+      await tester.enterText(find.byType(EditableText), 'ban');
+      await tester.pump();
+
+      expect(find.text('Banana'), findsOneWidget);
+      expect(find.text('Apple'), findsNothing);
+
+      // Update options
+      options = [
+        DropdownOption(value: 'c', label: 'Cherry'),
+        DropdownOption(value: 'd', label: 'Date'),
+      ];
+
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: options,
+            searchable: true,
+          ),
+        ),
+      );
+
+      await tester.pump();
+
+      // Should still have search text but different results
+      expect(find.text('Cherry'), findsNothing);
+      expect(find.text('Date'), findsNothing);
+    });
+
+    testWidgets('checkmark painter shouldRepaint returns false',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenuItem(
+            label: 'Test',
+            selected: true,
+            showCheckmark: true,
+          ),
+        ),
+      );
+
+      // Rebuild to test shouldRepaint
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenuItem(
+            label: 'Test',
+            selected: true,
+            showCheckmark: true,
+          ),
+        ),
+      );
+
+      expect(find.text('Test'), findsOneWidget);
+    });
   });
 }

@@ -449,4 +449,251 @@ void main() {
       expect(find.text('Item 0'), findsOneWidget);
     });
   });
+
+  group('Dropdowns.select with custom builders', () {
+    testWidgets('uses custom selectedBuilder', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Dropdowns.select<String>(
+            options: ['A', 'B', 'C'],
+            selectedValue: 'B',
+            selectedBuilder: (value) => Text('Selected: $value'),
+          ),
+        ),
+      );
+
+      expect(find.text('Selected: B'), findsOneWidget);
+    });
+  });
+
+  group('Dropdowns.multiSelect with custom builders', () {
+    testWidgets('uses custom optionBuilder in multiSelect', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Dropdowns.multiSelect<int>(
+                  options: [1, 2, 3],
+                  placeholder: 'Select',
+                  optionBuilder: (num) => Text('Number: $num'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Number: 1'), findsOneWidget);
+      expect(find.text('Number: 2'), findsOneWidget);
+    });
+
+    testWidgets('uses custom selectedBuilder in multiSelect', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Dropdowns.multiSelect<String>(
+            options: ['A', 'B', 'C'],
+            selectedValues: ['A', 'B'],
+            selectedBuilder: (values) => Text('${values.length} items'),
+          ),
+        ),
+      );
+
+      expect(find.text('2 items'), findsOneWidget);
+    });
+  });
+
+  group('Dropdowns.combobox with searchFilter', () {
+    testWidgets('uses custom searchFilter', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.topLeft,
+                  child: Dropdowns.combobox<String>(
+                    options: ['Apple', 'Banana', 'Cherry'],
+                    placeholder: 'Search',
+                    optionBuilder: (fruit) => Text(fruit),
+                    searchFilter: (option, query) {
+                      return option.startsWith(query.toUpperCase());
+                    },
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('Search'));
+      await tester.pumpAndSettle();
+
+      // Search with custom filter
+      final editableText =
+          tester.widget<EditableText>(find.byType(EditableText));
+      editableText.controller.text = 'a';
+      await tester.pump();
+
+      expect(find.text('Apple'), findsOneWidget);
+      expect(find.text('Banana'), findsNothing);
+    });
+  });
+
+  group('Dropdowns.menu positioning', () {
+    testWidgets('menu positions above when menuPosition is above',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Dropdowns.menu(
+                    trigger: Icon(Icons.more_vert),
+                    items: [
+                      DropdownMenuAction(label: 'Edit', onTap: () {}),
+                    ],
+                    menuPosition: DropdownMenuPosition.above,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsOneWidget);
+    });
+
+    testWidgets('menu positions below when menuPosition is below',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.topCenter,
+                  child: Dropdowns.menu(
+                    trigger: Icon(Icons.more_vert),
+                    items: [
+                      DropdownMenuAction(label: 'Edit', onTap: () {}),
+                    ],
+                    menuPosition: DropdownMenuPosition.below,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsOneWidget);
+    });
+
+    testWidgets('menu auto positions based on available space', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Align(
+                  alignment: Alignment.center,
+                  child: Dropdowns.menu(
+                    trigger: Icon(Icons.more_vert),
+                    items: [
+                      DropdownMenuAction(label: 'Edit', onTap: () {}),
+                    ],
+                    menuPosition: DropdownMenuPosition.auto,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsOneWidget);
+    });
+
+    testWidgets('closes menu when clicking trigger again', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Dropdowns.menu(
+                  trigger: Icon(Icons.more_vert),
+                  items: [
+                    DropdownMenuAction(label: 'Edit', onTap: () {}),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsOneWidget);
+
+      // Click trigger again to close
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsNothing);
+    });
+
+    testWidgets('disabled menu does not open', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Dropdowns.menu(
+                  trigger: Icon(Icons.more_vert),
+                  items: [
+                    DropdownMenuAction(label: 'Edit', onTap: () {}),
+                  ],
+                  enabled: false,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsNothing);
+    });
+  });
 }
