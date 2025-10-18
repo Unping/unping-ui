@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:unping_ui/src/components/dropdown/dropdown_types.dart';
-import 'package:unping_ui/src/foundation/foundation.dart';
 import 'package:unping_ui/unping_ui.dart';
 
 class BaseDropdown<T> extends StatefulWidget {
@@ -124,55 +122,68 @@ class _BaseDropdownState extends State<BaseDropdown> {
         textFieldGlobalKey.currentContext!.findRenderObject() as RenderBox;
     final size = renderBox.size;
     return OverlayEntry(
-      builder: (context) => Positioned(
-        width: size.width,
-        child: StatefulBuilder(
-          builder: (context, setState) {
-            return CompositedTransformFollower(
-              link: layerLink,
-              offset: Offset(0, size.height + 3),
-              child: Container(
-                height: 150,
-                decoration: BoxDecoration(
-                    color: widget.containerBackgroundColor,
-                    border: Border.all(
-                      color: widget.borderRadiusColor,
-                      width: widget.borderRadiusWidth,
-                    ),
-                    borderRadius:
-                        BorderRadius.all(Radius.circular(widget.borderRadius))),
-                child: ListView.builder(
-                  itemCount: widget.options.length,
-                  itemBuilder: (context, index) {
-                    String optionsValue = widget.options[index];
-                    bool shouldFlash = searchedItem == index;
-                    return AnimatedContainer(
-                      duration: Duration(milliseconds: 400),
-                      curve: Curves.easeInOut,
-                      color: shouldFlash
-                          ? UiColors.neutral500
-                          : Colors.transparent,
-                      child: ListTile(
-                        title: Text(optionsValue),
-                        trailing: widget.selectedValues.contains(optionsValue)
-                            ? Icon(Icons.done)
-                            : SizedBox(),
-                        onTap: () {
-                          setState(
-                            () {
-                              manageSelectedValues(
-                                  widget.selectedValues, optionsValue);
+      builder: (context) => Stack(
+        children: [
+          Positioned.fill(
+            child: GestureDetector(
+              behavior: HitTestBehavior.translucent,
+              onTap: () {
+                closeOverlay();
+              },
+            ),
+          ),
+          Positioned(
+            width: size.width,
+            child: StatefulBuilder(
+              builder: (context, setState) {
+                return CompositedTransformFollower(
+                  link: layerLink,
+                  offset: Offset(0, size.height + 3),
+                  child: Container(
+                    height: 150,
+                    decoration: BoxDecoration(
+                        color: widget.containerBackgroundColor,
+                        border: Border.all(
+                          color: widget.borderRadiusColor,
+                          width: widget.borderRadiusWidth,
+                        ),
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(widget.borderRadius))),
+                    child: ListView.builder(
+                      itemCount: widget.options.length,
+                      itemBuilder: (context, index) {
+                        String optionsValue = widget.options[index];
+                        bool shouldFlash = searchedItem == index;
+                        return AnimatedContainer(
+                          duration: Duration(milliseconds: 400),
+                          curve: Curves.easeInOut,
+                          color: shouldFlash
+                              ? UiColors.neutral500
+                              : Colors.transparent,
+                          child: ListTile(
+                            title: Text(optionsValue),
+                            trailing:
+                                widget.selectedValues.contains(optionsValue)
+                                    ? Icon(Icons.done)
+                                    : SizedBox(),
+                            onTap: () {
+                              setState(
+                                () {
+                                  manageSelectedValues(
+                                      widget.selectedValues, optionsValue);
+                                },
+                              );
                             },
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
-              ),
-            );
-          },
-        ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
       ),
     );
   }

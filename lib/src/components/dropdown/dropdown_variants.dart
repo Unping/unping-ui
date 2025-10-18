@@ -1,4 +1,3 @@
-import 'package:unping_ui/src/components/dropdown/dropdown_types.dart';
 import 'package:unping_ui/unping_ui.dart';
 
 /// Predefined Dropdown configurations matching common design patterns

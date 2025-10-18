@@ -19,6 +19,7 @@ Widget buildConfigurableDropdown(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -27,6 +28,10 @@ Widget buildConfigurableDropdown(BuildContext context) {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ExampleMultiSelectDropdown(),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ExampleActionDropdownMenu(),
               )
             ],
           ),
@@ -87,6 +92,52 @@ class _ExampleMultiSelectDropdownState
           selectedValues.add(value);
         });
       },
+    );
+  }
+}
+
+class ExampleActionDropdownMenu extends StatefulWidget {
+  const ExampleActionDropdownMenu({super.key});
+
+  @override
+  State<ExampleActionDropdownMenu> createState() =>
+      _ExampleActionDropdownMenuState();
+}
+
+class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
+  @override
+  Widget build(BuildContext context) {
+    return MenuDropdown(
+      icon: Icon(Icons.more_vert),
+      divider: true,
+      actionMenuGroups: [
+        MenuDropdownItemGroup(
+          groupTitle: "File",
+          groupItems: [
+            MenuDropdownItem(
+              label: "New",
+              icon: Icon(Icons.add),
+              onTap: () {},
+            ),
+            MenuDropdownItem(
+              label: "Open",
+              icon: Icon(Icons.folder_open),
+              onTap: () {},
+            ),
+          ],
+        ),
+        MenuDropdownItemGroup(
+          groupTitle: "Danger Zone",
+          groupItems: [
+            MenuDropdownItem(
+              label: "Delete",
+              destructive: true,
+              icon: Icon(Icons.delete),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
