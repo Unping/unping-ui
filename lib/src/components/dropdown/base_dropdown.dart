@@ -115,6 +115,16 @@ class _BaseDropdownState extends State<BaseDropdown> {
   GlobalKey textFieldGlobalKey = GlobalKey();
   int? searchedItem;
   TextEditingController textEditingController = new TextEditingController();
+  bool suggestAdd = false;
+
+  ScrollController dropdownScrollController = new ScrollController();
+  void scrollToIndex(int index) {
+    dropdownScrollController.animateTo(
+      index * singleLineListTileHeight,
+      duration: Duration(milliseconds: 700),
+      curve: Curves.easeInOut,
+    );
+  }
 
   ///Overlay for the show options
   ///Overlay for Multiselect Dropdown
@@ -150,40 +160,74 @@ class _BaseDropdownState extends State<BaseDropdown> {
                         ),
                         borderRadius: BorderRadius.all(
                             Radius.circular(widget.borderRadius))),
-                    child: ListView.builder(
-                      itemCount: widget.options.length,
-                      itemBuilder: (context, index) {
-                        String optionsValue = widget.options[index];
-                        bool shouldFlash = searchedItem == index;
-                        return AnimatedContainer(
-                          duration: Duration(milliseconds: 400),
-                          curve: Curves.easeInOut,
-                          color: shouldFlash
-                              ? UiColors.neutral500
-                              : Colors.transparent,
-                          child: ListTile(
-                            title: Text(optionsValue),
-                            trailing:
-                                widget.selectedValues.contains(optionsValue)
-                                    ? Icon(Icons.done)
-                                    : SizedBox(),
-                            onTap: () {
-                              if (widget.dropdownType == DropdownType.multi) {
-                                setState(
-                                  () {
-                                    manageSelectedValues(
-                                        widget.selectedValues, optionsValue);
+                    child: Column(
+                      children: [
+                        ///Suggest adding
+                        suggestAdd
+                            ? SizedBox(
+                                width: double.infinity,
+                                child: TextButton(
+                                    onPressed: () {
+                                      ///Add item and remove suggest
+                                      setState(
+                                        () {
+                                          widget.options
+                                              .add(textEditingController.text);
+                                          suggestAdd = false;
+                                        },
+                                      );
+                                      closeOverlay();
+                                    },
+                                    child: Text(
+                                        "+ Add '${textEditingController.text}'")),
+                              )
+                            : SizedBox(),
+                        suggestAdd
+                            ? Divider(
+                                color: widget.borderRadiusColor,
+                                thickness: widget.borderRadiusWidth,
+                              )
+                            : SizedBox(),
+                        Expanded(
+                          child: ListView.builder(
+                            itemCount: widget.options.length,
+                            controller: dropdownScrollController,
+                            itemBuilder: (context, index) {
+                              String optionsValue = widget.options[index];
+                              bool shouldFlash = searchedItem == index;
+                              return AnimatedContainer(
+                                duration: Duration(milliseconds: 400),
+                                curve: Curves.easeInCubic,
+                                color: shouldFlash
+                                    ? UiColors.neutral500
+                                    : Colors.transparent,
+                                child: ListTile(
+                                  title: Text(optionsValue),
+                                  trailing: widget.selectedValues
+                                          .contains(optionsValue)
+                                      ? Icon(Icons.done)
+                                      : SizedBox(),
+                                  onTap: () {
+                                    if (widget.dropdownType ==
+                                        DropdownType.multi) {
+                                      setState(
+                                        () {
+                                          manageSelectedValues(
+                                              widget.selectedValues,
+                                              optionsValue);
+                                        },
+                                      );
+                                    } else {
+                                      textEditingController.text = optionsValue;
+                                      closeOverlay();
+                                    }
                                   },
-                                );
-                              } else {
-                                debugPrint("Set value to $optionsValue");
-                                textEditingController.text = optionsValue;
-                                closeOverlay(); // Optional: close dropdown
-                              }
+                                ),
+                              );
                             },
                           ),
-                        );
-                      },
+                        ),
+                      ],
                     ),
                   ),
                 );
@@ -336,16 +380,23 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   },
                   onChanged: (textFieldValue) {
                     if (textFieldValue.trim().isNotEmpty) {
-                      String firstResult = widget.options.firstWhere(
-                        (value) => value.contains(textFieldValue),
-                        orElse: () => widget.options.first,
-                      );
-                      searchedItem = widget.options.indexOf(firstResult);
-                      overlayEntry!.markNeedsBuild();
-                      Future.delayed(Duration(milliseconds: 500), () {
-                        searchedItem = null; // remove flash after time
+                      String? firstResult =
+                          searchList(widget.options, textFieldValue);
+
+                      if (firstResult != null) {
+                        searchedItem = widget.options.indexOf(firstResult);
+                        suggestAdd = false;
                         overlayEntry!.markNeedsBuild();
-                      });
+                        scrollToIndex(searchedItem!);
+                        Future.delayed(Duration(milliseconds: 500), () {
+                          searchedItem = null; // remove flash after time
+                          overlayEntry!.markNeedsBuild();
+                        });
+                      } else if (widget.dropdownType == DropdownType.comboBox) {
+                        /// suggest add
+                        suggestAdd = true;
+                        overlayEntry!.markNeedsBuild();
+                      }
                     }
                   },
                 ),

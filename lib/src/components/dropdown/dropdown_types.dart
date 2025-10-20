@@ -41,6 +41,9 @@ enum DropdownType {
   action
 }
 
+///This is a constant
+const double singleLineListTileHeight = 57;
+
 ///Action Menu Dropdown
 ///Styling options placed outside for easier acccesibility by the functions
 ///REMEMBER TO ASSIGN THESE BEFORE USING THEM!!!!!!
@@ -135,9 +138,9 @@ class MenuDropdownItemGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (groupItems.length * 57),
+      height: (groupItems.length * singleLineListTileHeight),
 
-      ///Using 57 for the size of the emenet
+      ///Using 57 for the size of the element
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -244,4 +247,16 @@ void showMenuDropdownOverlay(
   );
 
   Overlay.of(context).insert(menuDropdownOverlay!);
+}
+
+///Search or return null when not found
+String? searchList(List<String> searchlist, String itemSearched) {
+  ///For ignoring the case
+  itemSearched = itemSearched.toLowerCase();
+  for (String item in searchlist) {
+    if (item.toLowerCase().contains(itemSearched)) {
+      return item;
+    }
+  }
+  return null;
 }

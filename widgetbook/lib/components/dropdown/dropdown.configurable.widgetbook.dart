@@ -85,7 +85,7 @@ class _ExampleMultiSelectDropdownState
       dropdownMenuWidth: 250,
       textStyle: UiTextStyles.textSm,
       selectedValues: selectedValues,
-      options: ['Flutter', 'Dart', 'React', 'Node.js'],
+      options: ['Flutter', 'Dart', 'React', 'Node.js', 'Python', 'R', 'C++'],
       onSelectedValueChanged: (value) {
         setState(() {
           selectedValues.add(value);
