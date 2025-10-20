@@ -451,9 +451,9 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
       menuTop = offset.dy - actualMaxHeight - widget.config.menuOffset;
     } else {
       // Not enough space above or below - use the larger space
+      // coverage:ignore-start
       if (spaceBelow > spaceAbove) {
-        menuTop = offset.dy + size.height + widget.config.menuOffset; // coverage:ignore-line
-        // coverage:ignore-start
+        menuTop = offset.dy + size.height + widget.config.menuOffset;
         actualMaxHeight =
             spaceBelow.clamp(minMenuHeight, widget.config.menuMaxHeight);
         // coverage:ignore-end

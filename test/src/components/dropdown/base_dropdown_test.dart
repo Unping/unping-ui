@@ -866,7 +866,7 @@ void main() {
       // Now tap to open again
       await tester.tap(find.text('Select'));
       await tester.pumpAndSettle();
-      
+
       // Tap trigger again to close
       await tester.tap(find.text('Select'), warnIfMissed: false);
       await tester.pumpAndSettle();
@@ -898,7 +898,7 @@ void main() {
       // Tap inside menu area - the GestureDetector with onTap: () {} should prevent close
       final menuItems = find.text('Option A');
       expect(menuItems, findsWidgets);
-      
+
       // This tests the empty onTap handler inside the menu's GestureDetector
       // The menu should remain open because the inner GestureDetector prevents bubbling
       final menuCenter = tester.getCenter(menuItems.last);
@@ -1000,7 +1000,7 @@ void main() {
       await gesture.moveTo(menuCenter);
       await tester.pump();
 
-      // Move away to trigger onExit  
+      // Move away to trigger onExit
       await gesture.moveTo(Offset(1000, 1000));
       await tester.pump();
 
@@ -1054,7 +1054,8 @@ void main() {
                     ),
                   ),
                   config: DropdownConfig(
-                    menuMaxHeight: 400, // Large height to trigger space calculation
+                    menuMaxHeight:
+                        400, // Large height to trigger space calculation
                     menuPosition: DropdownMenuPosition.auto,
                   ),
                 ),
@@ -1098,7 +1099,7 @@ void main() {
       await tester.sendKeyEvent(LogicalKeyboardKey.home);
       await tester.pump();
 
-      // Test End key  
+      // Test End key
       await tester.sendKeyEvent(LogicalKeyboardKey.end);
       await tester.pump();
 
@@ -1125,7 +1126,8 @@ void main() {
       );
 
       // Create precise mouse hover to trigger onEnter and onExit
-      final TestGesture gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      final TestGesture gesture =
+          await tester.createGesture(kind: PointerDeviceKind.mouse);
       await gesture.addPointer(location: Offset.zero);
       addTearDown(gesture.removePointer);
 
@@ -1140,7 +1142,8 @@ void main() {
       expect(find.text('Select'), findsOneWidget);
     });
 
-    testWidgets('empty gesture detector in menu covers line 495', (tester) async {
+    testWidgets('empty gesture detector in menu covers line 495',
+        (tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -1165,7 +1168,7 @@ void main() {
       // Get the menu container bounds and tap within it but not on the item
       final menuRect = tester.getRect(menuFinder);
       final tapPoint = Offset(menuRect.right - 5, menuRect.center.dy);
-      
+
       // This should hit the empty onTap: () {} handler (line 495)
       await tester.tapAt(tapPoint);
       await tester.pumpAndSettle();
@@ -1186,11 +1189,11 @@ void main() {
               padding: EdgeInsets.only(top: 120), // Position dropdown in middle
               child: BaseDropdown<String>(
                 placeholder: 'Select',
-                options: List.generate(5, (i) => 
-                  DropdownOption(value: '$i', label: 'Option $i')
-                ),
+                options: List.generate(
+                    5, (i) => DropdownOption(value: '$i', label: 'Option $i')),
                 config: DropdownConfig(
-                  menuMaxHeight: 120, // Specific height to trigger space calculation
+                  menuMaxHeight:
+                      120, // Specific height to trigger space calculation
                   menuPosition: DropdownMenuPosition.auto,
                 ),
               ),

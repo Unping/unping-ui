@@ -77,7 +77,8 @@ class _DropdownMenuItemState extends State<DropdownMenuItem> {
           : const Color(0x00000000); // Transparent
     }
 
-    if (widget.selected || _isHovered || widget.focused) { // coverage:ignore-line
+    if (widget.selected || _isHovered || widget.focused) {
+      // coverage:ignore-line
       return widget.backgroundColor ?? UiColors.neutral500; // #647690
     }
 
@@ -151,7 +152,8 @@ class _DropdownMenuItemState extends State<DropdownMenuItem> {
               ),
 
               // Trailing widget or checkmark
-              if (widget.trailing != null) ...[ // coverage:ignore-line
+              if (widget.trailing != null) ...[
+                // coverage:ignore-line
                 const SizedBox(width: 8.0),
                 widget.trailing!,
               ] else if (widget.selected &&
@@ -448,7 +450,8 @@ class _DropdownMenuState extends State<DropdownMenu> {
           trailing: option.trailing,
           showCheckmark: widget.showCheckmarks,
           onTap: option.enabled
-              ? () => widget.onSelected?.call(option.value) // coverage:ignore-line
+              ? () =>
+                  widget.onSelected?.call(option.value) // coverage:ignore-line
               : null,
         ),
         if (option.showDivider) const _MenuDivider(),
@@ -809,7 +812,7 @@ class _CheckmarkIconPainter extends CustomPainter {
       // coverage:ignore-start
       ..lineTo(size.width * 0.4, size.height * 0.7)
       ..lineTo(size.width * 0.8, size.height * 0.3);
-      // coverage:ignore-end
+    // coverage:ignore-end
 
     canvas.drawPath(path, paint);
   }
@@ -834,7 +837,8 @@ class _SearchIconPainter extends CustomPainter {
 
     // Draw circle (lens)
     final radius = size.width * 0.35;
-    final center = Offset(size.width * 0.45, size.height * 0.45); // coverage:ignore-line
+    final center =
+        Offset(size.width * 0.45, size.height * 0.45); // coverage:ignore-line
     canvas.drawCircle(center, radius, paint);
 
     // Draw handle
@@ -842,7 +846,8 @@ class _SearchIconPainter extends CustomPainter {
       center.dx + radius * 0.7,
       center.dy + radius * 0.7,
     );
-    final endHandle = Offset(size.width * 0.85, size.height * 0.85); // coverage:ignore-line
+    final endHandle =
+        Offset(size.width * 0.85, size.height * 0.85); // coverage:ignore-line
 
     canvas.drawLine(startHandle, endHandle, paint);
   }
