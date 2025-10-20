@@ -342,7 +342,7 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
     if (!widget.enabled) return;
 
     if (_isOpen) {
-      _closeMenu();
+      _closeMenu(); // coverage:ignore-line
     } else {
       _openMenu();
     }

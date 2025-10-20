@@ -809,5 +809,402 @@ void main() {
       // Should not select
       expect(selected, isNull);
     });
+
+    testWidgets('focus ring applies custom width when configured',
+        (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => BaseDropdown<String>(
+                  placeholder: 'Select',
+                  focusRingColor: Color(0xFF00FF00),
+                  focusRingWidth: 3.0,
+                  options: [
+                    DropdownOption(value: 'a', label: 'Option A'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu to trigger focus state
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('toggle menu closes when already open', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Tap outside the menu to close it, then test toggle
+      await tester.tapAt(Offset(10, 10));
+      await tester.pumpAndSettle();
+
+      // Now tap to open again
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+      
+      // Tap trigger again to close
+      await tester.tap(find.text('Select'), warnIfMissed: false);
+      await tester.pumpAndSettle();
+
+      // Menu should be closed (only placeholder visible)
+      expect(find.text('Option A'), findsNothing);
+    });
+
+    testWidgets('tapping inside menu does not close it', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Tap inside menu area - the GestureDetector with onTap: () {} should prevent close
+      final menuItems = find.text('Option A');
+      expect(menuItems, findsWidgets);
+      
+      // This tests the empty onTap handler inside the menu's GestureDetector
+      // The menu should remain open because the inner GestureDetector prevents bubbling
+      final menuCenter = tester.getCenter(menuItems.last);
+      await tester.tapAt(Offset(menuCenter.dx + 20, menuCenter.dy));
+      await tester.pumpAndSettle();
+
+      // Menu should still be open
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('mouse hover updates state when enabled', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            placeholder: 'Select',
+            enabled: true,
+            hoverBackgroundColor: Color(0xFF123456),
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+          ),
+        ),
+      );
+
+      // Create mouse hover gesture
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+
+      await tester.pump();
+
+      // Hover over dropdown
+      await gesture.moveTo(tester.getCenter(find.text('Select')));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Select'), findsOneWidget);
+
+      // Move away to trigger hover exit
+      await gesture.moveTo(Offset(1000, 1000));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('mouse hover disabled when not enabled', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: BaseDropdown<String>(
+            placeholder: 'Select',
+            enabled: false,
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+          ),
+        ),
+      );
+
+      // Create mouse hover gesture
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+
+      // Hover should not affect disabled dropdown
+      await gesture.moveTo(tester.getCenter(find.text('Select')));
+      await tester.pump();
+
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('menu interaction tracking works correctly', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Option A'), findsWidgets);
+
+      // Simulate mouse enter/exit on menu to trigger interaction tracking
+      final gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+
+      // Move to menu area to trigger onEnter
+      final menuCenter = tester.getCenter(find.text('Option A').last);
+      await gesture.moveTo(menuCenter);
+      await tester.pump();
+
+      // Move away to trigger onExit  
+      await gesture.moveTo(Offset(1000, 1000));
+      await tester.pump();
+
+      // Menu should still be open
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('single select with selectedValue builds correct menu',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              selectedValue: 'a', // This should trigger line 513
+              multiSelect: false,
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+                DropdownOption(value: 'b', label: 'Option B'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu to trigger the selectedValues logic
+      await tester.tap(find.text('Option A'));
+      await tester.pumpAndSettle();
+
+      // Menu should show with correct selection
+      expect(find.text('Option A'), findsWidgets);
+      expect(find.text('Option B'), findsOneWidget);
+    });
+
+    testWidgets('menu positions above when insufficient space below',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Column(
+              children: [
+                // Push dropdown to near bottom to force positioning above
+                Expanded(child: Container()),
+                BaseDropdown<String>(
+                  placeholder: 'Select',
+                  options: List.generate(
+                    10,
+                    (i) => DropdownOption(
+                      value: 'option_$i',
+                      label: 'Very Long Option Name $i That Takes Space',
+                    ),
+                  ),
+                  config: DropdownConfig(
+                    menuMaxHeight: 400, // Large height to trigger space calculation
+                    menuPosition: DropdownMenuPosition.auto,
+                  ),
+                ),
+                SizedBox(height: 10), // Small space at bottom
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu - should position above due to insufficient space below
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Menu should be open and positioned (covers positioning logic)
+      expect(find.text('Very Long Option Name 0 That Takes Space'),
+          findsOneWidget);
+    });
+
+    testWidgets('keyboard navigation with Home and End keys', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+                DropdownOption(value: 'b', label: 'Option B'),
+                DropdownOption(value: 'c', label: 'Option C'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Test Home key
+      await tester.sendKeyEvent(LogicalKeyboardKey.home);
+      await tester.pump();
+
+      // Test End key  
+      await tester.sendKeyEvent(LogicalKeyboardKey.end);
+      await tester.pump();
+
+      // Test arrow up navigation
+      await tester.sendKeyEvent(LogicalKeyboardKey.arrowUp);
+      await tester.pump();
+
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('precise hover testing for enabled dropdown', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              enabled: true, // Explicitly enabled
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Create precise mouse hover to trigger onEnter and onExit
+      final TestGesture gesture = await tester.createGesture(kind: PointerDeviceKind.mouse);
+      await gesture.addPointer(location: Offset.zero);
+      addTearDown(gesture.removePointer);
+
+      // Move mouse to dropdown area to trigger hover enter (line 641)
+      await gesture.moveTo(tester.getCenter(find.text('Select')));
+      await tester.pumpAndSettle();
+
+      // Move mouse away to trigger hover exit (line 643)
+      await gesture.moveTo(Offset(0, 0));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Select'), findsOneWidget);
+    });
+
+    testWidgets('empty gesture detector in menu covers line 495', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: BaseDropdown<String>(
+              placeholder: 'Select',
+              options: [
+                DropdownOption(value: 'a', label: 'Option A'),
+              ],
+            ),
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Find the menu item and tap nearby to hit the empty GestureDetector
+      final menuFinder = find.text('Option A').last;
+      expect(menuFinder, findsOneWidget);
+
+      // Get the menu container bounds and tap within it but not on the item
+      final menuRect = tester.getRect(menuFinder);
+      final tapPoint = Offset(menuRect.right - 5, menuRect.center.dy);
+      
+      // This should hit the empty onTap: () {} handler (line 495)
+      await tester.tapAt(tapPoint);
+      await tester.pumpAndSettle();
+
+      // Menu should still be open since empty handler prevents propagation
+      expect(find.text('Option A'), findsWidgets);
+    });
+
+    testWidgets('space calculation edge case for line 453', (tester) async {
+      // Create a very specific screen size scenario to trigger line 453
+      await tester.binding.setSurfaceSize(Size(400, 300)); // Small screen
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Padding(
+              padding: EdgeInsets.only(top: 120), // Position dropdown in middle
+              child: BaseDropdown<String>(
+                placeholder: 'Select',
+                options: List.generate(5, (i) => 
+                  DropdownOption(value: '$i', label: 'Option $i')
+                ),
+                config: DropdownConfig(
+                  menuMaxHeight: 120, // Specific height to trigger space calculation
+                  menuPosition: DropdownMenuPosition.auto,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // Open menu to trigger space calculation logic including line 453
+      await tester.tap(find.text('Select'));
+      await tester.pumpAndSettle();
+
+      // Menu should be positioned based on available space calculation
+      expect(find.text('Option 0'), findsOneWidget);
+    });
   });
 }

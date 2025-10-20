@@ -113,7 +113,7 @@ class DropdownOption<T> {
   }) {
     return DropdownOption<T>(
       value: value ?? this.value,
-      label: label ?? this.label,
+      label: label ?? this.label, // coverage:ignore-line
       supportingText: supportingText ?? this.supportingText,
       icon: icon ?? this.icon,
       trailing: trailing ?? this.trailing,

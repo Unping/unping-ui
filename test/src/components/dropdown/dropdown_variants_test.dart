@@ -695,5 +695,72 @@ void main() {
 
       expect(find.text('Edit'), findsNothing);
     });
+
+    testWidgets('action menu closes when already open', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Overlay(
+            initialEntries: [
+              OverlayEntry(
+                builder: (context) => Dropdowns.menu(
+                  trigger: Icon(Icons.more_vert),
+                  items: [
+                    DropdownMenuAction(label: 'Edit', onTap: () {}),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+
+      // Open menu
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsOneWidget);
+
+      // Click trigger again to close menu (covers _closeMenu call on line 345)
+      await tester.tap(find.byType(Icon));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Edit'), findsNothing);
+    });
+
+    testWidgets('action menu toggle specifically covers line 345 closeMenu',
+        (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: Dropdowns.menu(
+                trigger: Text('Menu Trigger'),
+                items: [
+                  DropdownMenuAction(
+                    label: 'Action Item',
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+
+      // Open the action menu
+      await tester.tap(find.text('Menu Trigger'));
+      await tester.pumpAndSettle();
+
+      // Verify menu is open
+      expect(find.text('Action Item'), findsOneWidget);
+
+      // Now tap the trigger again - this should specifically trigger line 345 (_closeMenu)
+      await tester.tap(find.text('Menu Trigger'));
+      await tester.pumpAndSettle();
+
+      // Verify menu is closed
+      expect(find.text('Action Item'), findsNothing);
+    });
   });
 }

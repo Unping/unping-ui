@@ -545,5 +545,110 @@ void main() {
 
       expect(find.text('Test'), findsOneWidget);
     });
+
+    testWidgets('search icon painter draws correctly', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: [
+              DropdownOption(value: 'a', label: 'Option A'),
+            ],
+            searchable: true,
+          ),
+        ),
+      );
+
+      // Search icon should be rendered
+      expect(find.byType(CustomPaint), findsWidgets);
+    });
+
+    testWidgets('loading spinner painter animates correctly', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: [],
+            isLoading: true,
+            loadingMessage: 'Loading...',
+          ),
+        ),
+      );
+
+      // Loading spinner should be rendered
+      expect(find.byType(CustomPaint), findsWidgets);
+      expect(find.text('Loading...'), findsOneWidget);
+
+      // Animation should trigger repaints
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(find.byType(CustomPaint), findsWidgets);
+    });
+
+    testWidgets('checkmark painter draws checkmark path', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Container(
+            width: 100,
+            height: 100,
+            child: DropdownMenuItem(
+              label: 'Checkmark Test',
+              selected: true,
+              showCheckmark: true,
+            ),
+          ),
+        ),
+      );
+
+      // Checkmark CustomPaint should be present
+      expect(find.byType(CustomPaint), findsOneWidget);
+      expect(find.text('Checkmark Test'), findsOneWidget);
+    });
+
+    testWidgets('search icon painter specific paths coverage', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: Container(
+            width: 200,
+            height: 50,
+            child: DropdownMenu(
+              options: [
+                DropdownOption(value: 'test', label: 'Test Option'),
+              ],
+              searchable: true,
+              searchPlaceholder: 'Search here...',
+            ),
+          ),
+        ),
+      );
+
+      // This will trigger the search icon painter's paint method
+      // which includes lines 830 (drawCircle) and 838 (drawLine)
+      expect(find.byType(CustomPaint), findsWidgets);
+      expect(find.byType(EditableText), findsOneWidget);
+    });
+
+    testWidgets('loading spinner should repaint coverage', (tester) async {
+      await tester.pumpWidget(
+        Directionality(
+          textDirection: TextDirection.ltr,
+          child: DropdownMenu(
+            options: [],
+            isLoading: true,
+            loadingMessage: 'Loading data...',
+          ),
+        ),
+      );
+
+      // Force multiple animation frames to ensure shouldRepaint is called
+      for (int i = 0; i < 5; i++) {
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+
+      // This covers lines in spinner painter including shouldRepaint returning true
+      expect(find.byType(CustomPaint), findsWidgets);
+      expect(find.text('Loading data...'), findsOneWidget);
+    });
   });
 }
