@@ -15,26 +15,25 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 Widget buildConfigurableDropdown(BuildContext context) {
   return UnpingUIContainer(
       breadcrumbs: ['Components', 'Dropdown', 'Configurable'],
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ExampleSingleSelectDropdown(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ExampleMultiSelectDropdown(),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ExampleActionDropdownMenu(),
-              )
-            ],
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ExampleSingleSelectDropdown(),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ExampleMultiSelectDropdown(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ExampleComboboxDropdown(),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ExampleActionDropdownMenu(),
+          )
         ],
       ));
 }
@@ -96,6 +95,29 @@ class _ExampleMultiSelectDropdownState
   }
 }
 
+class ExampleComboboxDropdown extends StatefulWidget {
+  const ExampleComboboxDropdown({super.key});
+
+  @override
+  State<ExampleComboboxDropdown> createState() =>
+      _ExampleComboboxDropdownState();
+}
+
+class _ExampleComboboxDropdownState extends State<ExampleComboboxDropdown> {
+  @override
+  Widget build(BuildContext context) {
+    return Dropdowns.combobox(
+      label: 'Choose a Language',
+      dropdownMenuWidth: 250,
+      textStyle: UiTextStyles.textSm,
+      options: ['Flutter', 'Dart', 'React', 'Node.js'],
+      onSelectedValueChanged: (value) {
+        debugPrint("You selected $value");
+      },
+    );
+  }
+}
+
 class ExampleActionDropdownMenu extends StatefulWidget {
   const ExampleActionDropdownMenu({super.key});
 
@@ -117,12 +139,16 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
             MenuDropdownItem(
               label: "New",
               icon: Icon(Icons.add),
-              onTap: () {},
+              onTap: () {
+                debugPrint("You pressed New");
+              },
             ),
             MenuDropdownItem(
               label: "Open",
               icon: Icon(Icons.folder_open),
-              onTap: () {},
+              onTap: () {
+                debugPrint("You pressed Open");
+              },
             ),
           ],
         ),
@@ -133,7 +159,9 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
               label: "Delete",
               destructive: true,
               icon: Icon(Icons.delete),
-              onTap: () {},
+              onTap: () {
+                debugPrint("You pressed Delete");
+              },
             ),
           ],
         ),

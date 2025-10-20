@@ -114,6 +114,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
   OverlayEntry? overlayEntry;
   GlobalKey textFieldGlobalKey = GlobalKey();
   int? searchedItem;
+  TextEditingController textEditingController = new TextEditingController();
 
   ///Overlay for the show options
   ///Overlay for Multiselect Dropdown
@@ -167,12 +168,18 @@ class _BaseDropdownState extends State<BaseDropdown> {
                                     ? Icon(Icons.done)
                                     : SizedBox(),
                             onTap: () {
-                              setState(
-                                () {
-                                  manageSelectedValues(
-                                      widget.selectedValues, optionsValue);
-                                },
-                              );
+                              if (widget.dropdownType == DropdownType.multi) {
+                                setState(
+                                  () {
+                                    manageSelectedValues(
+                                        widget.selectedValues, optionsValue);
+                                  },
+                                );
+                              } else {
+                                debugPrint("Set value to $optionsValue");
+                                textEditingController.text = optionsValue;
+                                closeOverlay(); // Optional: close dropdown
+                              }
                             },
                           ),
                         );
@@ -200,8 +207,10 @@ class _BaseDropdownState extends State<BaseDropdown> {
   }
 
   void closeOverlay() {
-    overlayEntry?.remove();
-    overlayEntry = null;
+    setState(() {
+      overlayEntry?.remove();
+      overlayEntry = null;
+    });
   }
 
   @override
@@ -221,8 +230,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
     switch (widget.dropdownType) {
       ///Single selection dropdown
       case DropdownType.single:
-        return Center(
-            child: DropdownMenu(
+        return DropdownMenu(
           label: widget.label != null ? Text(widget.label!) : SizedBox(),
           enableSearch: widget.isSearchable,
           width: widget.dropdownMenuWidth,
@@ -249,35 +257,37 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   WidgetStatePropertyAll(widget.containerBackgroundColor),
               fixedSize: WidgetStatePropertyAll(
                   Size(widget.dropdownMenuWidth, double.infinity))),
-        ));
+        );
 
       /// Multiple selection dropdown
-      case DropdownType.multi:
-        return Center(
-            child: Column(
+      case DropdownType.multi || DropdownType.comboBox:
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Container(
-                width: widget.dropdownMenuWidth,
-                child: Wrap(
-                  children: widget.selectedValues.map((selectedOption) {
-                    return Padding(
-                      padding: const EdgeInsets.all(3.0),
-                      child: Chip(
-                        label: Text(selectedOption),
-                        onDeleted: () {
-                          manageSelectedValues(
-                              widget.selectedValues, selectedOption);
-                        },
-                        deleteIcon: Icon(Icons.close),
-                        backgroundColor: widget.containerBackgroundColor,
+            widget.dropdownType == DropdownType.multi
+                ? Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Container(
+                      width: widget.dropdownMenuWidth,
+                      child: Wrap(
+                        children: widget.selectedValues.map((selectedOption) {
+                          return Padding(
+                            padding: const EdgeInsets.all(3.0),
+                            child: Chip(
+                              label: Text(selectedOption),
+                              onDeleted: () {
+                                manageSelectedValues(
+                                    widget.selectedValues, selectedOption);
+                              },
+                              deleteIcon: Icon(Icons.close),
+                              backgroundColor: widget.containerBackgroundColor,
+                            ),
+                          );
+                        }).toList(),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ),
-            ),
+                    ),
+                  )
+                : SizedBox(),
             Container(
               width: widget.dropdownMenuWidth,
               child: CompositedTransformTarget(
@@ -285,6 +295,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                 child: TextField(
                   key: textFieldGlobalKey,
                   style: widget.textStyle,
+                  controller: textEditingController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: widget.containerBackgroundColor,
@@ -341,11 +352,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
               ),
             )
           ],
-        ));
-
-      /// Searchable combo box
-      case DropdownType.comboBox:
-        return Placeholder();
+        );
 
       ///Action menu dropdown
       case DropdownType.action:

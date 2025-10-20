@@ -42,30 +42,64 @@ enum DropdownType {
 }
 
 ///Action Menu Dropdown
+///Styling options placed outside for easier acccesibility by the functions
+///REMEMBER TO ASSIGN THESE BEFORE USING THEM!!!!!!
+late Color _menuColor;
+
+/// Border radius of the Dropdown
+late double _borderRadius;
+late double _borderRadiusWidth;
+late Color _borderRadiusColor;
+late TextStyle _textStyle;
+
 class MenuDropdown extends StatelessWidget {
   final bool divider;
   final Widget icon;
   final Color menuColor;
-  final TextStyle? menuTextStyle;
+
+  /// Border radius of the Dropdown
+  final double borderRadius;
+  final double borderRadiusWidth;
+  final Color borderRadiusColor;
+
+  final TextStyle? textStyle;
   final List<MenuDropdownItemGroup> actionMenuGroups;
-  MenuDropdown({
-    this.divider = false,
-    required this.icon,
-    required this.actionMenuGroups,
-    this.menuColor = UiColors.neutral700,
-    this.menuTextStyle,
-  });
+  MenuDropdown(
+      {this.divider = false,
+      required this.icon,
+      required this.actionMenuGroups,
+      this.menuColor = UiColors.neutral700,
+      this.textStyle,
+      this.borderRadius = UiRadius.xs,
+      this.borderRadiusWidth = 1,
+      this.borderRadiusColor = UiColors.neutral300});
+
   @override
   Widget build(BuildContext context) {
     final GlobalKey iconButtonKey = GlobalKey();
+
+    ///Set accesible styling functions
+    _menuColor = menuColor;
+    _borderRadius = borderRadius;
+    _borderRadiusWidth = borderRadiusWidth;
+    _borderRadiusColor = borderRadiusColor;
+    _textStyle = textStyle ?? UiTextStyles.textSm;
+
+    ///Build the actual menu
     ListView menu = ListView.builder(
       shrinkWrap: true,
-      physics: ClampingScrollPhysics(), // Enable scrolling when needed
+      physics: NeverScrollableScrollPhysics(), // Disable scrolling
       itemCount: actionMenuGroups.length,
       itemBuilder: (context, index) {
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            divider && index != 0 ? Divider() : SizedBox(),
+            divider && index != 0
+                ? Divider(
+                    color: borderRadiusColor,
+                    thickness: borderRadiusWidth,
+                  )
+                : SizedBox(),
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: actionMenuGroups[index],
@@ -74,13 +108,20 @@ class MenuDropdown extends StatelessWidget {
         );
       },
     );
-    return IconButton(
-      key: iconButtonKey,
-      icon: icon,
-      onPressed: () {
-        ///Open the action Menu show dialog
-        showMenuDropdownOverlay(context, iconButtonKey, menu, menuColor);
-      },
+
+    ///A layer link to link the popup menu with the icon
+    LayerLink layerLink = LayerLink();
+    return CompositedTransformTarget(
+      link: layerLink,
+      child: IconButton(
+        key: iconButtonKey,
+        alignment: AlignmentGeometry.topLeft,
+        icon: icon,
+        onPressed: () {
+          ///Open the action Menu show dialog
+          showMenuDropdownOverlay(context, iconButtonKey, menu, layerLink);
+        },
+      ),
     );
   }
 }
@@ -96,7 +137,7 @@ class MenuDropdownItemGroup extends StatelessWidget {
     return Container(
       height: (groupItems.length * 57),
 
-      ///25 for each element
+      ///Using 57 for the size of the emenet
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -104,10 +145,8 @@ class MenuDropdownItemGroup extends StatelessWidget {
           groupTitle != null
               ? Padding(
                   padding: const EdgeInsets.only(left: 3.0),
-                  child: Text(
-                    groupTitle!,
-                    textAlign: TextAlign.left,
-                  ),
+                  child:
+                      Text(groupTitle!, style: TextStyle(color: Colors.white)),
                 )
               : SizedBox(),
           Expanded(
@@ -147,7 +186,7 @@ class MenuDropdownItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: icon,
-      title: Text(label),
+      title: Text(label, style: _textStyle),
       onTap: onTap,
     );
   }
@@ -157,7 +196,7 @@ OverlayEntry? menuDropdownOverlay;
 
 ///Overlay for the Dropdown Menu
 void showMenuDropdownOverlay(
-    BuildContext context, GlobalKey key, ListView menu, Color menuColor) {
+    BuildContext context, GlobalKey key, ListView menu, LayerLink layerLink) {
   final renderBox = key.currentContext!.findRenderObject() as RenderBox;
   final size = renderBox.size;
   final offset = renderBox.localToGlobal(Offset.zero);
@@ -165,7 +204,6 @@ void showMenuDropdownOverlay(
   final screenSize = MediaQuery.of(context).size;
 
   bool openLeft = offset.dx + 200 > screenSize.width;
-  bool openUp = offset.dy + 200 > screenSize.height;
   menuDropdownOverlay = OverlayEntry(
     builder: (context) {
       return Stack(
@@ -182,26 +220,23 @@ void showMenuDropdownOverlay(
           ),
 
           /// Actual positioned menu
-          Positioned(
-            left: openLeft ? offset.dx - 200 : offset.dx + size.width,
-            top: openUp
-                ? offset.dy - 200 + size.height
-                : offset.dy + size.height,
-            width: 200,
-            child: Material(
-              elevation: 4,
-              child: GestureDetector(
-                onTap: () {}, // Prevent internal taps from closing
-                child: Container(
-                    color: menuColor,
-                    width: 200,
-                    //   height: 300,
-                    constraints: BoxConstraints(
-                      maxHeight: 315, // limit height to safe zone
+          CompositedTransformFollower(
+            link: layerLink,
+            offset: Offset(openLeft ? 220 : 20, size.height),
+            child: Container(
+                decoration: BoxDecoration(
+                    color: _menuColor,
+                    border: Border.all(
+                      color: _borderRadiusColor,
+                      width: _borderRadiusWidth,
                     ),
-                    child: menu),
-              ),
-            ),
+                    borderRadius:
+                        BorderRadius.all(Radius.circular(_borderRadius))),
+                width: 200,
+                constraints: BoxConstraints(
+                  maxHeight: 315, // limit height to safe zone
+                ),
+                child: menu),
           ),
         ],
       );

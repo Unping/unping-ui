@@ -69,4 +69,38 @@ class Dropdowns {
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );
   }
+
+  static BaseDropdown combobox(
+      {label,
+      onDropdownStateChanged,
+      size,
+      isMultiSelect = true,
+      isSearchable = true,
+      required onSelectedValueChanged,
+      required options,
+      enableKeyboardNavigation = false,
+      sortMenuItems = false,
+      textStyle, //assign later
+      padding,
+      dropdownColor,
+      containerBackgroundColor,
+      dropdownMenuWidth,
+      borderRadiusColor}) {
+    return BaseDropdown(
+      label: label,
+      dropdownType: DropdownType.comboBox,
+      onSelectedValueChanged: onSelectedValueChanged!,
+      onDropdownStateChanged: onDropdownStateChanged,
+      containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
+      dropdownColor: dropdownColor ?? UiColors.neutral700,
+      enableKeyboardNavigation: enableKeyboardNavigation,
+      textStyle: textStyle,
+      isSearchable: isSearchable,
+      isMultiSelect: isMultiSelect,
+      padding: padding,
+      options: options,
+      dropdownMenuWidth: dropdownMenuWidth,
+      borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
+    );
+  }
 }
