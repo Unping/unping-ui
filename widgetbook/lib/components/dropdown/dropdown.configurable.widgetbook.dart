@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // UI library
@@ -12,7 +13,46 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   designLink:
       'https://www.figma.com/design/cSxzk4PnnsUO4mxTwKjkNf/unping-ui.com-%7C-Public--Community-?node-id=4919-61142&t=qP6frzBuXXGCqLoA-0',
 )
+
+///Variables to be assigned later when
+///buildConfigurableDropdown is called
+
+late DropdownSize dropdownSize;
+late TextStyle? labelStyle;
+late DropdownState dropdownState;
 Widget buildConfigurableDropdown(BuildContext context) {
+  /// The dropdown Size
+  dropdownSize = context.knobs.list(
+    label: 'Size',
+    options: DropdownSize.values,
+    labelBuilder: (value) => value.name,
+    initialOption: DropdownSize.md,
+  );
+
+//TextStyling
+  labelStyle = context.knobs.listOrNull(
+    label: 'Label Style (override default)',
+    options: [
+      null,
+      UiTextStyles.textXs,
+      UiTextStyles.textSm,
+      UiTextStyles.textMd,
+      UiTextStyles.textLg,
+      UiTextStyles.textXl,
+      UiTextStyles.textSmMedium,
+      UiTextStyles.textSmBold,
+    ],
+    labelBuilder: (style) =>
+        style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
+  );
+
+  dropdownState = context.knobs.list(
+    label: 'Dropdown state',
+    options: DropdownState.values,
+    labelBuilder: (value) => value.name,
+    initialOption: DropdownState.normal,
+  );
+
   return UnpingUIContainer(
       breadcrumbs: ['Components', 'Dropdown', 'Configurable'],
       child: Column(
@@ -53,9 +93,10 @@ class _ExampleSingleSelectDropdownState
   @override
   Widget build(BuildContext context) {
     return Dropdowns.select(
-      dropdownMenuWidth: 250,
+      size: dropdownSize,
       label: 'Single selection',
-      textStyle: UiTextStyles.textSm,
+      textStyle: labelStyle,
+      state: dropdownState,
       selectedValue: selectedValue,
       options: ['USA', 'Canada', 'Mexico'],
       onSelectedValueChanged: (value) {
@@ -82,8 +123,9 @@ class _ExampleMultiSelectDropdownState
   Widget build(BuildContext context) {
     return Dropdowns.multiSelect(
       label: 'Multi selection',
-      dropdownMenuWidth: 250,
-      textStyle: UiTextStyles.textSm,
+      size: dropdownSize,
+      textStyle: labelStyle,
+      state: dropdownState,
       selectedValues: selectedValues,
       options: ['Flutter', 'Dart', 'React', 'Node.js', 'Python', 'R', 'C++'],
       onSelectedValueChanged: (value) {
@@ -108,8 +150,9 @@ class _ExampleComboboxDropdownState extends State<ExampleComboboxDropdown> {
   Widget build(BuildContext context) {
     return Dropdowns.combobox(
       label: 'Choose a Language',
-      dropdownMenuWidth: 250,
-      textStyle: UiTextStyles.textSm,
+      size: dropdownSize,
+      textStyle: labelStyle,
+      state: dropdownState,
       options: ['Flutter', 'Dart', 'React', 'Node.js'],
       onSelectedValueChanged: (value) {
         debugPrint("You selected $value");
@@ -131,6 +174,9 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
   Widget build(BuildContext context) {
     return MenuDropdown(
       icon: Icon(Icons.more_vert),
+      textStyle: labelStyle,
+      size: dropdownSize,
+      state: dropdownState,
       divider: true,
       actionMenuGroups: [
         MenuDropdownItemGroup(

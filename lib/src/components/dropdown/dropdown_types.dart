@@ -41,13 +41,26 @@ enum DropdownType {
   action
 }
 
-///This is a constant
-const double singleLineListTileHeight = 57;
+///This is a constant used to set the Height of the ListTile
+///Used for scrolling and container sizing
+///This is only for SINGLE LINE list tiles!!!!
+double singleLineListTileHeight = 60;
+
+///For sizing Internal list views
+double get listTileSize {
+  if (_textStyle.fontSize! > 16) {
+    return 72;
+  } else if (_textStyle.fontSize! > 16) {
+    return 48;
+  }
+  return 60;
+}
 
 ///Action Menu Dropdown
 ///Styling options placed outside for easier acccesibility by the functions
 ///REMEMBER TO ASSIGN THESE BEFORE USING THEM!!!!!!
 late Color _menuColor;
+late double _menuWidth;
 
 /// Border radius of the Dropdown
 late double _borderRadius;
@@ -59,6 +72,8 @@ class MenuDropdown extends StatelessWidget {
   final bool divider;
   final Widget icon;
   final Color menuColor;
+  final DropdownSize size;
+  final DropdownState state;
 
   /// Border radius of the Dropdown
   final double borderRadius;
@@ -75,7 +90,20 @@ class MenuDropdown extends StatelessWidget {
       this.textStyle,
       this.borderRadius = UiRadius.xs,
       this.borderRadiusWidth = 1,
-      this.borderRadiusColor = UiColors.neutral300});
+      this.borderRadiusColor = UiColors.neutral300,
+      this.size = DropdownSize.md,
+      this.state = DropdownState.normal});
+
+  double get actualSize {
+    switch (size) {
+      case DropdownSize.sm:
+        return 176;
+      case DropdownSize.md:
+        return 220;
+      case DropdownSize.lg:
+        return 264;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,7 +114,8 @@ class MenuDropdown extends StatelessWidget {
     _borderRadius = borderRadius;
     _borderRadiusWidth = borderRadiusWidth;
     _borderRadiusColor = borderRadiusColor;
-    _textStyle = textStyle ?? UiTextStyles.textSm;
+    _textStyle = textStyle ?? UiTextStyles.textMd;
+    _menuWidth = actualSize;
 
     ///Build the actual menu
     ListView menu = ListView.builder(
@@ -120,10 +149,13 @@ class MenuDropdown extends StatelessWidget {
         key: iconButtonKey,
         alignment: AlignmentGeometry.topLeft,
         icon: icon,
-        onPressed: () {
-          ///Open the action Menu show dialog
-          showMenuDropdownOverlay(context, iconButtonKey, menu, layerLink);
-        },
+        onPressed: state == DropdownState.disabled
+            ? null
+            : () {
+                ///Open the action Menu show dialog
+                showMenuDropdownOverlay(
+                    context, iconButtonKey, menu, layerLink);
+              },
       ),
     );
   }
@@ -138,19 +170,16 @@ class MenuDropdownItemGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: (groupItems.length * singleLineListTileHeight),
-
-      ///Using 57 for the size of the element
+      height: (groupItems.length * listTileSize),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ///title
           groupTitle != null
-              ? Padding(
-                  padding: const EdgeInsets.only(left: 3.0),
-                  child:
-                      Text(groupTitle!, style: TextStyle(color: Colors.white)),
-                )
+              ? Text(groupTitle!,
+                  style: _textStyle.apply(
+                      color:
+                          UiColors.onPrimary)) //for some reason doesnt pick up
               : SizedBox(),
           Expanded(
               child: ListView.builder(
@@ -206,7 +235,7 @@ void showMenuDropdownOverlay(
 
   final screenSize = MediaQuery.of(context).size;
 
-  bool openLeft = offset.dx + 200 > screenSize.width;
+  bool openLeft = offset.dx + _menuWidth > screenSize.width;
   menuDropdownOverlay = OverlayEntry(
     builder: (context) {
       return Stack(
@@ -235,10 +264,7 @@ void showMenuDropdownOverlay(
                     ),
                     borderRadius:
                         BorderRadius.all(Radius.circular(_borderRadius))),
-                width: 200,
-                constraints: BoxConstraints(
-                  maxHeight: 315, // limit height to safe zone
-                ),
+                width: _menuWidth,
                 child: menu),
           ),
         ],

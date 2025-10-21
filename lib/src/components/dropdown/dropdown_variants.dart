@@ -6,6 +6,9 @@ class Dropdowns {
       {label,
       onDropdownStateChanged,
       size,
+      state,
+      errorColor,
+      errorMessage,
       isMultiSelect = false,
       isSearchable = true,
       required selectedValue,
@@ -13,15 +16,17 @@ class Dropdowns {
       required options,
       enableKeyboardNavigation = false,
       sortMenuItems = false,
-      textStyle, //assign later
+      textStyle,
       padding,
       dropdownColor,
       containerBackgroundColor,
-      dropdownMenuWidth,
       borderRadiusColor}) {
     return BaseDropdown(
       label: label,
+      state: state ?? DropdownState.normal,
       dropdownType: DropdownType.single,
+      errorColor: errorColor ?? UiColors.error,
+      errorMessage: errorMessage ?? 'Error',
       options: options,
       onSelectedValueChanged: onSelectedValueChanged,
       selectedValue: selectedValue,
@@ -29,7 +34,7 @@ class Dropdowns {
       containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
       dropdownColor: dropdownColor ?? UiColors.neutral700,
       enableKeyboardNavigation: enableKeyboardNavigation,
-      dropdownMenuWidth: dropdownMenuWidth,
+      size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );
   }
@@ -38,6 +43,9 @@ class Dropdowns {
       {label,
       onDropdownStateChanged,
       size,
+      state,
+      errorColor,
+      errorMessage,
       isMultiSelect = true,
       isSearchable = true,
       required selectedValues,
@@ -45,15 +53,17 @@ class Dropdowns {
       required options,
       enableKeyboardNavigation = false,
       sortMenuItems = false,
-      textStyle, //assign later
+      textStyle,
       padding,
       dropdownColor,
       containerBackgroundColor,
-      dropdownMenuWidth,
       borderRadiusColor}) {
     return BaseDropdown(
       label: label,
+      state: state ?? DropdownState.normal,
       dropdownType: DropdownType.multi,
+      errorColor: errorColor ?? UiColors.error,
+      errorMessage: errorMessage ?? 'Error',
       onSelectedValueChanged: onSelectedValueChanged!,
       selectedValues: selectedValues,
       onDropdownStateChanged: onDropdownStateChanged,
@@ -65,7 +75,7 @@ class Dropdowns {
       isMultiSelect: isMultiSelect,
       padding: padding,
       options: options,
-      dropdownMenuWidth: dropdownMenuWidth,
+      size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );
   }
@@ -74,6 +84,7 @@ class Dropdowns {
       {label,
       onDropdownStateChanged,
       size,
+      state,
       isMultiSelect = true,
       isSearchable = true,
       required onSelectedValueChanged,
@@ -84,11 +95,11 @@ class Dropdowns {
       padding,
       dropdownColor,
       containerBackgroundColor,
-      dropdownMenuWidth,
       borderRadiusColor}) {
     return BaseDropdown(
       label: label,
       dropdownType: DropdownType.comboBox,
+      state: state ?? DropdownState.normal,
       onSelectedValueChanged: onSelectedValueChanged!,
       onDropdownStateChanged: onDropdownStateChanged,
       containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
@@ -99,7 +110,7 @@ class Dropdowns {
       isMultiSelect: isMultiSelect,
       padding: padding,
       options: options,
-      dropdownMenuWidth: dropdownMenuWidth,
+      size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );
   }

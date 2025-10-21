@@ -54,33 +54,53 @@ class BaseDropdown<T> extends StatefulWidget {
   final Color? containerBackgroundColor;
   final Color borderRadiusColor;
 
-  /// width of the dropDown
-  final double dropdownMenuWidth;
+  /// Border color when disabled
+  final Color? disabledBorderColor;
 
-  const BaseDropdown({
-    super.key,
-    this.label,
-    this.state = DropdownState.normal,
-    required this.dropdownType,
-    this.onDropdownStateChanged,
-    this.size = DropdownSize.md,
-    this.isMultiSelect = false,
-    this.isSearchable = true,
-    this.selectedValue,
-    required this.onSelectedValueChanged,
-    this.selectedValues = const [],
-    this.options = const [],
-    this.enableKeyboardNavigation = false,
-    this.sortMenuItems = false,
-    this.textStyle, //assign later
-    this.padding = const EdgeInsets.all(5),
-    this.borderRadius = UiRadius.xs,
-    this.borderRadiusWidth = 1,
-    this.dropdownColor = UiColors.neutral700,
-    this.containerBackgroundColor = UiColors.neutral700,
-    this.borderRadiusColor = UiColors.neutral300,
-    this.dropdownMenuWidth = 150,
-  });
+  ///For errors
+  final Color errorColor;
+
+  ///Error message
+  final String errorMessage;
+
+  const BaseDropdown(
+      {super.key,
+      this.label,
+      this.state = DropdownState.normal,
+      required this.dropdownType,
+      this.onDropdownStateChanged,
+      this.size = DropdownSize.md,
+      this.isMultiSelect = false,
+      this.isSearchable = true,
+      this.selectedValue,
+      required this.onSelectedValueChanged,
+      this.selectedValues = const [],
+      this.options = const [],
+      this.enableKeyboardNavigation = false,
+      this.sortMenuItems = false,
+      this.textStyle, //assign later
+      this.padding = const EdgeInsets.all(5),
+      this.borderRadius = UiRadius.xs,
+      this.borderRadiusWidth = 1,
+      this.dropdownColor = UiColors.neutral700,
+      this.containerBackgroundColor = UiColors.neutral700,
+      this.borderRadiusColor = UiColors.neutral300,
+      this.disabledBorderColor,
+      this.errorColor = UiColors.error,
+      this.errorMessage = 'Error'});
+
+  /// Get the actual size based on the size variant
+  double get actualSize {
+    switch (size) {
+      case DropdownSize.sm:
+        return 176;
+      case DropdownSize.md:
+        return 220;
+      case DropdownSize.lg:
+        return 264;
+    }
+  }
+
   @override
   State<BaseDropdown> createState() => _BaseDropdownState();
 }
@@ -139,7 +159,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                closeOverlay();
+                closeOverlay(true);
               },
             ),
           ),
@@ -162,7 +182,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                             Radius.circular(widget.borderRadius))),
                     child: Column(
                       children: [
-                        ///Suggest adding
+                        ///Suggest adding  or Clear or select all In the case of Multiselect
                         suggestAdd
                             ? SizedBox(
                                 width: double.infinity,
@@ -176,13 +196,46 @@ class _BaseDropdownState extends State<BaseDropdown> {
                                           suggestAdd = false;
                                         },
                                       );
-                                      closeOverlay();
+                                      closeOverlay(true);
                                     },
                                     child: Text(
                                         "+ Add '${textEditingController.text}'")),
                               )
                             : SizedBox(),
-                        suggestAdd
+
+                        ///For multi select Add select all and clear all options
+                        widget.dropdownType == DropdownType.multi
+                            ? SizedBox(
+                                width: double.infinity,
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    ///Select all button
+                                    Center(
+                                      child: TextButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              selectAllOrClear(true);
+                                            });
+                                          },
+                                          child: Text("Select All")),
+                                    ),
+                                    Center(
+                                      child: TextButton(
+                                          onPressed: () {
+                                            ///Clear all
+                                            setState(() {
+                                              selectAllOrClear(false);
+                                            });
+                                          },
+                                          child: Text("Clear All")),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : SizedBox(),
+                        suggestAdd || widget.dropdownType == DropdownType.multi
                             ? Divider(
                                 color: widget.borderRadiusColor,
                                 thickness: widget.borderRadiusWidth,
@@ -219,7 +272,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                                       );
                                     } else {
                                       textEditingController.text = optionsValue;
-                                      closeOverlay();
+                                      closeOverlay(true);
                                     }
                                   },
                                 ),
@@ -250,16 +303,53 @@ class _BaseDropdownState extends State<BaseDropdown> {
     });
   }
 
-  void closeOverlay() {
-    setState(() {
+  ///Select or clear all
+  void selectAllOrClear(bool selectAll) {
+    if (selectAll) {
+      ///select all
+      widget.selectedValues.clear();
+
+      setState(() {
+        widget.selectedValues.addAll(widget.options);
+      });
+    } else {
+      //Clear all
+      setState(() {
+        widget.selectedValues.clear();
+      });
+    }
+  }
+
+  ///Bool with set state = true is when the widget is still on the tree
+  void closeOverlay(bool withSetstate) {
+    if (withSetstate) {
+      setState(() {
+        overlayEntry?.remove();
+        overlayEntry = null;
+      });
+    } else {
       overlayEntry?.remove();
       overlayEntry = null;
-    });
+    }
+  }
+
+  ///Create or close Overlay
+  void createOrCloseOverlay() {
+    if (overlayEntry == null) {
+      setState(() {
+        overlayEntry = OptionsOverlay();
+      });
+      Overlay.of(context).insert(overlayEntry!);
+    } else {
+      setState(() {
+        closeOverlay(true);
+      });
+    }
   }
 
   @override
   void dispose() {
-    closeOverlay();
+    closeOverlay(false);
     super.dispose();
   }
 
@@ -275,9 +365,17 @@ class _BaseDropdownState extends State<BaseDropdown> {
       ///Single selection dropdown
       case DropdownType.single:
         return DropdownMenu(
-          label: widget.label != null ? Text(widget.label!) : SizedBox(),
+          label: widget.label != null
+              ? Text(
+                  widget.label!,
+                  style: widget.textStyle,
+                )
+              : SizedBox(),
           enableSearch: widget.isSearchable,
-          width: widget.dropdownMenuWidth,
+          errorText:
+              widget.state == DropdownState.error ? widget.errorMessage : null,
+          enabled: widget.state != DropdownState.disabled,
+          width: widget.actualSize,
           dropdownMenuEntries: menuEntries,
           onSelected: onDropdownValueSelected,
           alignmentOffset: const Offset(0, 3),
@@ -291,6 +389,17 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   color: widget.borderRadiusColor,
                   width: widget.borderRadiusWidth,
                 )),
+            disabledBorder: OutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide.none),
+            errorBorder: OutlineInputBorder(
+                borderRadius:
+                    BorderRadius.all(Radius.circular(widget.borderRadius)),
+                borderSide: BorderSide(
+                  color: widget.errorColor,
+                  width: widget.borderRadiusWidth,
+                )),
           ),
           menuStyle: MenuStyle(
               side: WidgetStatePropertyAll(BorderSide(
@@ -300,7 +409,13 @@ class _BaseDropdownState extends State<BaseDropdown> {
               backgroundColor:
                   WidgetStatePropertyAll(widget.containerBackgroundColor),
               fixedSize: WidgetStatePropertyAll(
-                  Size(widget.dropdownMenuWidth, double.infinity))),
+                  Size(widget.actualSize, double.infinity))),
+          trailingIcon: Icon(
+            Icons.arrow_drop_down,
+            color: widget.state == DropdownState.disabled
+                ? UiColors.neutral400
+                : UiColors.background,
+          ),
         );
 
       /// Multiple selection dropdown
@@ -312,7 +427,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                 ? Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Container(
-                      width: widget.dropdownMenuWidth,
+                      width: widget.actualSize,
                       child: Wrap(
                         children: widget.selectedValues.map((selectedOption) {
                           return Padding(
@@ -333,31 +448,30 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   )
                 : SizedBox(),
             Container(
-              width: widget.dropdownMenuWidth,
+              width: widget.actualSize,
               child: CompositedTransformTarget(
                 link: layerLink,
                 child: TextField(
                   key: textFieldGlobalKey,
                   style: widget.textStyle,
+                  enabled: widget.state != DropdownState.disabled,
                   controller: textEditingController,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: widget.containerBackgroundColor,
                     labelText: widget.label,
+                    errorText: widget.state == DropdownState.error
+                        ? widget.errorMessage
+                        : null,
                     suffixIcon: IconButton(
                       icon: Icon(overlayEntry == null
                           ? Icons.arrow_drop_down
                           : Icons.arrow_drop_up),
-                      color: UiColors.background,
+                      color: widget.state == DropdownState.disabled
+                          ? UiColors.neutral400
+                          : UiColors.background,
                       onPressed: () {
-                        setState(() {
-                          if (overlayEntry == null) {
-                            overlayEntry = OptionsOverlay();
-                            Overlay.of(context).insert(overlayEntry!);
-                          } else {
-                            closeOverlay();
-                          }
-                        });
+                        createOrCloseOverlay();
                       },
                     ),
                     border: OutlineInputBorder(borderSide: BorderSide.none),
@@ -367,16 +481,16 @@ class _BaseDropdownState extends State<BaseDropdown> {
                         borderSide: BorderSide(
                             color: widget.borderRadiusColor,
                             width: widget.borderRadiusWidth)),
+                    errorBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                            Radius.circular(widget.borderRadius)),
+                        borderSide: BorderSide(
+                          color: widget.errorColor,
+                          width: widget.borderRadiusWidth,
+                        )),
                   ),
                   onTap: () {
-                    setState(() {
-                      if (overlayEntry == null) {
-                        overlayEntry = OptionsOverlay();
-                        Overlay.of(context).insert(overlayEntry!);
-                      } else {
-                        closeOverlay();
-                      }
-                    });
+                    createOrCloseOverlay();
                   },
                   onChanged: (textFieldValue) {
                     if (textFieldValue.trim().isNotEmpty) {
