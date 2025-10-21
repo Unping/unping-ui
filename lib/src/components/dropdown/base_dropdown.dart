@@ -337,6 +337,8 @@ class _BaseDropdownState<T> extends State<BaseDropdown<T>> {
       // Update internal state
       _selectedValuesInternal = newList;
       setState(() {});
+      // Rebuild the overlay to show updated checkmarks
+      _overlayEntry?.markNeedsBuild();
       // Notify callback
       widget.onMultiChanged?.call(newList);
 
