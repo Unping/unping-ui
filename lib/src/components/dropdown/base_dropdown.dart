@@ -25,7 +25,7 @@ class BaseDropdown<T> extends StatefulWidget {
 
   //Selected DropdownMenuItem
   final String? selectedValue;
-  final ValueChanged<String> onSelectedValueChanged;
+  final ValueChanged<String>? onSelectedValueChanged;
 
   ///List Options
   final List<String> options;
@@ -63,6 +63,21 @@ class BaseDropdown<T> extends StatefulWidget {
   ///Error message
   final String errorMessage;
 
+  ///Select All Text
+  final String selectAllText;
+
+  ///Clear all Text
+  final String clearAllText;
+
+  ///The leading Icon In a dropdown
+  final Icon? leadingDropdownIcon;
+
+  ///action Menu Groups
+  final List<MenuDropdownItemGroup> actionMenuGroups;
+
+  ///Action menu divider
+  final bool actionMenuDivider;
+
   const BaseDropdown(
       {super.key,
       this.label,
@@ -73,7 +88,7 @@ class BaseDropdown<T> extends StatefulWidget {
       this.isMultiSelect = false,
       this.isSearchable = true,
       this.selectedValue,
-      required this.onSelectedValueChanged,
+      this.onSelectedValueChanged,
       this.selectedValues = const [],
       this.options = const [],
       this.enableKeyboardNavigation = false,
@@ -87,17 +102,23 @@ class BaseDropdown<T> extends StatefulWidget {
       this.borderRadiusColor = UiColors.neutral300,
       this.disabledBorderColor,
       this.errorColor = UiColors.error,
-      this.errorMessage = 'Error'});
+      this.errorMessage = 'Error',
+      this.selectAllText = "Select All",
+      this.clearAllText = "Clear All",
+      this.leadingDropdownIcon,
+      this.actionMenuGroups = const [],
+      this.actionMenuDivider = true});
 
   /// Get the actual size based on the size variant
+  /// Scaled using 0.2
   double get actualSize {
     switch (size) {
       case DropdownSize.sm:
-        return 176;
+        return 200;
       case DropdownSize.md:
-        return 220;
+        return 250;
       case DropdownSize.lg:
-        return 264;
+        return 300;
     }
   }
 
@@ -109,13 +130,21 @@ class _BaseDropdownState extends State<BaseDropdown> {
 //On Dropdown Value changed
   void onDropdownValueSelected(value) {
     setState(() {
-      widget.onSelectedValueChanged(value!);
+      widget.onSelectedValueChanged!(value!);
     });
   }
 
 //To prevent duplicates in the options list
-  bool NoDuplicates() {
-    return widget.options.toSet().length == widget.options.length;
+  void verifyInputs() {
+    if (widget.dropdownType == DropdownType.action) {
+      assert(widget.actionMenuGroups.length != 0,
+          "Action Menu Groups must have atleast one element");
+    } else {
+      ///Duplicate check for the option list to avoid double values
+      assert(widget.options.toSet().length == widget.options.length,
+          "No duplicates in the options list allowed");
+      assert(widget.options.length > 0, "Add atleast one Item in options List");
+    }
   }
 
 //Return a list of Dropdown menu items
@@ -159,7 +188,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                closeOverlay(true);
+                closeOverlay();
               },
             ),
           ),
@@ -170,117 +199,121 @@ class _BaseDropdownState extends State<BaseDropdown> {
                 return CompositedTransformFollower(
                   link: layerLink,
                   offset: Offset(0, size.height + 3),
-                  child: Container(
-                    height: 150,
-                    decoration: BoxDecoration(
-                        color: widget.containerBackgroundColor,
-                        border: Border.all(
-                          color: widget.borderRadiusColor,
-                          width: widget.borderRadiusWidth,
-                        ),
-                        borderRadius: BorderRadius.all(
-                            Radius.circular(widget.borderRadius))),
-                    child: Column(
-                      children: [
-                        ///Suggest adding  or Clear or select all In the case of Multiselect
-                        suggestAdd
-                            ? SizedBox(
-                                width: double.infinity,
-                                child: TextButton(
-                                    onPressed: () {
-                                      ///Add item and remove suggest
-                                      setState(
-                                        () {
-                                          widget.options
-                                              .add(textEditingController.text);
-                                          suggestAdd = false;
-                                        },
-                                      );
-                                      closeOverlay(true);
-                                    },
-                                    child: Text(
-                                        "+ Add '${textEditingController.text}'")),
-                              )
-                            : SizedBox(),
-
-                        ///For multi select Add select all and clear all options
-                        widget.dropdownType == DropdownType.multi
-                            ? SizedBox(
-                                width: double.infinity,
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    ///Select all button
-                                    Center(
-                                      child: TextButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              selectAllOrClear(true);
-                                            });
-                                          },
-                                          child: Text("Select All")),
-                                    ),
-                                    Center(
-                                      child: TextButton(
-                                          onPressed: () {
-                                            ///Clear all
-                                            setState(() {
-                                              selectAllOrClear(false);
-                                            });
-                                          },
-                                          child: Text("Clear All")),
-                                    )
-                                  ],
-                                ),
-                              )
-                            : SizedBox(),
-                        suggestAdd || widget.dropdownType == DropdownType.multi
-                            ? Divider(
-                                color: widget.borderRadiusColor,
-                                thickness: widget.borderRadiusWidth,
-                              )
-                            : SizedBox(),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount: widget.options.length,
-                            controller: dropdownScrollController,
-                            itemBuilder: (context, index) {
-                              String optionsValue = widget.options[index];
-                              bool shouldFlash = searchedItem == index;
-                              return AnimatedContainer(
-                                duration: Duration(milliseconds: 400),
-                                curve: Curves.easeInCubic,
-                                color: shouldFlash
-                                    ? UiColors.neutral500
-                                    : Colors.transparent,
-                                child: ListTile(
-                                  title: Text(optionsValue),
-                                  trailing: widget.selectedValues
-                                          .contains(optionsValue)
-                                      ? Icon(Icons.done)
-                                      : SizedBox(),
-                                  onTap: () {
-                                    if (widget.dropdownType ==
-                                        DropdownType.multi) {
-                                      setState(
-                                        () {
-                                          manageSelectedValues(
-                                              widget.selectedValues,
-                                              optionsValue);
-                                        },
-                                      );
-                                    } else {
-                                      textEditingController.text = optionsValue;
-                                      closeOverlay(true);
-                                    }
-                                  },
-                                ),
-                              );
-                            },
+                  child: Material(
+                    child: Container(
+                      height: 150,
+                      decoration: BoxDecoration(
+                          color: widget.containerBackgroundColor,
+                          border: Border.all(
+                            color: widget.borderRadiusColor,
+                            width: widget.borderRadiusWidth,
                           ),
-                        ),
-                      ],
+                          borderRadius: BorderRadius.all(
+                              Radius.circular(widget.borderRadius))),
+                      child: Column(
+                        children: [
+                          ///Suggest adding  or Clear or select all In the case of Multiselect
+                          suggestAdd
+                              ? SizedBox(
+                                  width: double.infinity,
+                                  child: TextButton(
+                                      onPressed: () {
+                                        ///Add item and remove suggest
+                                        setState(
+                                          () {
+                                            widget.options.add(
+                                                textEditingController.text);
+                                            suggestAdd = false;
+                                          },
+                                        );
+                                        closeOverlay();
+                                      },
+                                      child: Text(
+                                          "+ Add '${textEditingController.text}'")),
+                                )
+                              : SizedBox(),
+
+                          ///For multi select Add select all and clear all options
+                          widget.dropdownType == DropdownType.multi
+                              ? SizedBox(
+                                  width: double.infinity,
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ///Select all button
+                                      Center(
+                                        child: TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                selectAllOrClear(true);
+                                              });
+                                            },
+                                            child: Text(widget.selectAllText)),
+                                      ),
+                                      Center(
+                                        child: TextButton(
+                                            onPressed: () {
+                                              ///Clear all
+                                              setState(() {
+                                                selectAllOrClear(false);
+                                              });
+                                            },
+                                            child: Text(widget.clearAllText)),
+                                      )
+                                    ],
+                                  ),
+                                )
+                              : SizedBox(),
+                          suggestAdd ||
+                                  widget.dropdownType == DropdownType.multi
+                              ? Divider(
+                                  color: widget.borderRadiusColor,
+                                  thickness: widget.borderRadiusWidth,
+                                )
+                              : SizedBox(),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: widget.options.length,
+                              controller: dropdownScrollController,
+                              itemBuilder: (context, index) {
+                                String optionsValue = widget.options[index];
+                                bool shouldFlash = searchedItem == index;
+                                return AnimatedContainer(
+                                  duration: Duration(milliseconds: 400),
+                                  curve: Curves.easeInCubic,
+                                  color: shouldFlash
+                                      ? UiColors.neutral500
+                                      : Colors.transparent,
+                                  child: ListTile(
+                                    title: Text(optionsValue),
+                                    trailing: widget.selectedValues
+                                            .contains(optionsValue)
+                                        ? Icon(Icons.done)
+                                        : SizedBox(),
+                                    onTap: () {
+                                      if (widget.dropdownType ==
+                                          DropdownType.multi) {
+                                        setState(
+                                          () {
+                                            manageSelectedValues(
+                                                widget.selectedValues,
+                                                optionsValue);
+                                          },
+                                        );
+                                      } else {
+                                        textEditingController.text =
+                                            optionsValue;
+                                        closeOverlay();
+                                      }
+                                    },
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -320,17 +353,11 @@ class _BaseDropdownState extends State<BaseDropdown> {
     }
   }
 
-  ///Bool with set state = true is when the widget is still on the tree
-  void closeOverlay(bool withSetstate) {
-    if (withSetstate) {
-      setState(() {
-        overlayEntry?.remove();
-        overlayEntry = null;
-      });
-    } else {
+  void closeOverlay() {
+    setState(() {
       overlayEntry?.remove();
       overlayEntry = null;
-    }
+    });
   }
 
   ///Create or close Overlay
@@ -339,26 +366,20 @@ class _BaseDropdownState extends State<BaseDropdown> {
       setState(() {
         overlayEntry = OptionsOverlay();
       });
-      Overlay.of(context).insert(overlayEntry!);
+      Overlay.of(context, rootOverlay: true).insert(overlayEntry!);
     } else {
       setState(() {
-        closeOverlay(true);
+        closeOverlay();
       });
     }
-  }
-
-  @override
-  void dispose() {
-    closeOverlay(false);
-    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     List<DropdownMenuEntry> menuEntries = getMenuEntries();
 
-    ///Duplicate check for the option list to avoid double values
-    assert(NoDuplicates(), "No duplicates in the options list allowed");
+    ///Ensure Lists dont cause errors
+    verifyInputs();
 
     ///Return Depending on the type of Dropdown
     switch (widget.dropdownType) {
@@ -375,6 +396,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
           errorText:
               widget.state == DropdownState.error ? widget.errorMessage : null,
           enabled: widget.state != DropdownState.disabled,
+          leadingIcon: widget.leadingDropdownIcon,
           width: widget.actualSize,
           dropdownMenuEntries: menuEntries,
           onSelected: onDropdownValueSelected,
@@ -459,6 +481,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: widget.containerBackgroundColor,
+                    icon: widget.leadingDropdownIcon,
                     labelText: widget.label,
                     errorText: widget.state == DropdownState.error
                         ? widget.errorMessage
@@ -492,27 +515,31 @@ class _BaseDropdownState extends State<BaseDropdown> {
                   onTap: () {
                     createOrCloseOverlay();
                   },
-                  onChanged: (textFieldValue) {
-                    if (textFieldValue.trim().isNotEmpty) {
-                      String? firstResult =
-                          searchList(widget.options, textFieldValue);
+                  onChanged: widget.isSearchable
+                      ? (textFieldValue) {
+                          if (textFieldValue.trim().isNotEmpty) {
+                            String? firstResult =
+                                searchList(widget.options, textFieldValue);
 
-                      if (firstResult != null) {
-                        searchedItem = widget.options.indexOf(firstResult);
-                        suggestAdd = false;
-                        overlayEntry!.markNeedsBuild();
-                        scrollToIndex(searchedItem!);
-                        Future.delayed(Duration(milliseconds: 500), () {
-                          searchedItem = null; // remove flash after time
-                          overlayEntry!.markNeedsBuild();
-                        });
-                      } else if (widget.dropdownType == DropdownType.comboBox) {
-                        /// suggest add
-                        suggestAdd = true;
-                        overlayEntry!.markNeedsBuild();
-                      }
-                    }
-                  },
+                            if (firstResult != null) {
+                              searchedItem =
+                                  widget.options.indexOf(firstResult);
+                              suggestAdd = false;
+                              overlayEntry!.markNeedsBuild();
+                              scrollToIndex(searchedItem!);
+                              Future.delayed(Duration(milliseconds: 500), () {
+                                searchedItem = null; // remove flash after time
+                                overlayEntry!.markNeedsBuild();
+                              });
+                            } else if (widget.dropdownType ==
+                                DropdownType.comboBox) {
+                              /// suggest add
+                              suggestAdd = true;
+                              overlayEntry!.markNeedsBuild();
+                            }
+                          }
+                        }
+                      : null,
                 ),
               ),
             )
@@ -521,7 +548,13 @@ class _BaseDropdownState extends State<BaseDropdown> {
 
       ///Action menu dropdown
       case DropdownType.action:
-        return Placeholder();
+        return MenuDropdown(
+            icon: Icon(Icons.more_vert),
+            textStyle: widget.textStyle,
+            size: widget.size,
+            state: widget.state,
+            divider: widget.actionMenuDivider,
+            actionMenuGroups: widget.actionMenuGroups);
     }
   }
 }

@@ -246,4 +246,34 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get toggleLargeDesc => 'Este es un interruptor grande.';
+
+  @override
+  String get file => 'Archivo';
+
+  @override
+  String get open => 'Abrir';
+
+  @override
+  String get dangerZone => 'Zona de Peligro';
+
+  @override
+  String get newItem => 'Nuevo';
+
+  @override
+  String get singleSelect => 'Selección única';
+
+  @override
+  String get multiSelect => 'Selección múltiple';
+
+  @override
+  String get chooseALanguage => 'Elige un idioma';
+
+  @override
+  String get delete => 'Eliminar';
+
+  @override
+  String get selectAll => 'Seleccionar todo';
+
+  @override
+  String get clearAll => 'Borrar todo';
 }

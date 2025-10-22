@@ -1,6 +1,7 @@
 /// Desktop & Web first flutter component library
 library;
 
+export 'src/components/dropdown/dropdown_menu.dart';
 export 'src/components/dropdown/dropdown_types.dart';
 export 'src/components/dropdown/base_dropdown.dart';
 export 'src/components/dropdown/dropdown_variants.dart';

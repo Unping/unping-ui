@@ -57,7 +57,9 @@ class Dropdowns {
       padding,
       dropdownColor,
       containerBackgroundColor,
-      borderRadiusColor}) {
+      borderRadiusColor,
+      selectAllText,
+      clearAllText}) {
     return BaseDropdown(
       label: label,
       state: state ?? DropdownState.normal,
@@ -76,6 +78,8 @@ class Dropdowns {
       padding: padding,
       options: options,
       size: size,
+      selectAllText: selectAllText,
+      clearAllText: clearAllText,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );
   }
@@ -95,7 +99,8 @@ class Dropdowns {
       padding,
       dropdownColor,
       containerBackgroundColor,
-      borderRadiusColor}) {
+      borderRadiusColor,
+      errorMessage}) {
     return BaseDropdown(
       label: label,
       dropdownType: DropdownType.comboBox,
@@ -110,6 +115,43 @@ class Dropdowns {
       isMultiSelect: isMultiSelect,
       padding: padding,
       options: options,
+      size: size,
+      borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
+      errorMessage: errorMessage,
+    );
+  }
+
+  static BaseDropdown menu(
+      {label,
+      onDropdownStateChanged,
+      size,
+      state,
+      icon,
+      divider,
+      options,
+      actionMenuGroups,
+      enableKeyboardNavigation = false,
+      sortMenuItems = false,
+      textStyle,
+      padding,
+      dropdownColor,
+      containerBackgroundColor,
+      borderRadiusColor,
+      errorMessage}) {
+    return BaseDropdown(
+      label: label,
+      dropdownType: DropdownType.action,
+      state: state ?? DropdownState.normal,
+      onDropdownStateChanged: onDropdownStateChanged,
+      containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
+      dropdownColor: dropdownColor ?? UiColors.neutral700,
+      enableKeyboardNavigation: enableKeyboardNavigation,
+      textStyle: textStyle,
+      leadingDropdownIcon: icon,
+      actionMenuDivider: divider,
+      actionMenuGroups: actionMenuGroups ?? [],
+      padding: padding,
+      options: options ?? [],
       size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
     );

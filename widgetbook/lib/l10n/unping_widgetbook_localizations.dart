@@ -549,6 +549,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is a large sized toggle.'**
   String get toggleLargeDesc;
+
+  /// No description provided for @file.
+  ///
+  /// In en, this message translates to:
+  /// **'File'**
+  String get file;
+
+  /// No description provided for @open.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get open;
+
+  /// No description provided for @dangerZone.
+  ///
+  /// In en, this message translates to:
+  /// **'Danger Zone'**
+  String get dangerZone;
+
+  /// No description provided for @newItem.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get newItem;
+
+  /// No description provided for @singleSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Single Selection'**
+  String get singleSelect;
+
+  /// No description provided for @multiSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Multi Selection'**
+  String get multiSelect;
+
+  /// No description provided for @chooseALanguage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a Language'**
+  String get chooseALanguage;
+
+  /// No description provided for @delete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// No description provided for @selectAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Select All'**
+  String get selectAll;
+
+  /// No description provided for @clearAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear All'**
+  String get clearAll;
 }
 
 class _AppLocalizationsDelegate

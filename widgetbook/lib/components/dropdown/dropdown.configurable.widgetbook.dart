@@ -4,6 +4,7 @@ import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 
 // UI library
 import 'package:unping_ui/unping_ui.dart';
+import 'package:widgetbook_workspace/l10n/unping_widgetbook_localizations.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 
 @widgetbook.UseCase(
@@ -20,7 +21,19 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
 late DropdownSize dropdownSize;
 late TextStyle? labelStyle;
 late DropdownState dropdownState;
+late AppLocalizations localizations;
+late bool isSearchable;
+late DropdownType dropdownVariant;
+
 Widget buildConfigurableDropdown(BuildContext context) {
+  ///Drop down Type
+  dropdownVariant = context.knobs.list(
+    label: 'Dropdown Type',
+    options: DropdownType.values,
+    labelBuilder: (value) => value.name,
+    initialOption: DropdownType.single,
+  );
+
   /// The dropdown Size
   dropdownSize = context.knobs.list(
     label: 'Size',
@@ -46,6 +59,7 @@ Widget buildConfigurableDropdown(BuildContext context) {
         style != null ? UiTextStyles.getTextStyleName(style) : 'Default',
   );
 
+  ///Altering the dropdown State
   dropdownState = context.knobs.list(
     label: 'Dropdown state',
     options: DropdownState.values,
@@ -53,29 +67,40 @@ Widget buildConfigurableDropdown(BuildContext context) {
     initialOption: DropdownState.normal,
   );
 
+//for localization
+  localizations = AppLocalizations.of(context)!;
+
+  ///Whether is serachable or not
+  isSearchable = context.knobs.boolean(
+    label: 'Searchable',
+    initialValue: true,
+  );
+
+  ///Dropdown Types
+  ExampleSingleSelectDropdown singleSelectDropdown =
+      ExampleSingleSelectDropdown();
+
+  ExampleMultiSelectDropdown multiSelectDropdown = ExampleMultiSelectDropdown();
+
+  ExampleComboboxDropdown comboboxDropdown = ExampleComboboxDropdown();
+
+  ExampleActionDropdownMenu actionDropdownMenu = ExampleActionDropdownMenu();
+
+  ///Widget To Return
+  late Widget returnWidget;
+  switch (dropdownVariant) {
+    case DropdownType.single:
+      returnWidget = singleSelectDropdown;
+    case DropdownType.multi:
+      returnWidget = multiSelectDropdown;
+    case DropdownType.comboBox:
+      returnWidget = comboboxDropdown;
+    case DropdownType.action:
+      returnWidget = actionDropdownMenu;
+  }
   return UnpingUIContainer(
       breadcrumbs: ['Components', 'Dropdown', 'Configurable'],
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ExampleSingleSelectDropdown(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ExampleMultiSelectDropdown(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ExampleComboboxDropdown(),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ExampleActionDropdownMenu(),
-          )
-        ],
-      ));
+      child: returnWidget);
 }
 
 class ExampleSingleSelectDropdown extends StatefulWidget {
@@ -94,10 +119,12 @@ class _ExampleSingleSelectDropdownState
   Widget build(BuildContext context) {
     return Dropdowns.select(
       size: dropdownSize,
-      label: 'Single selection',
+      label: localizations.singleSelect,
       textStyle: labelStyle,
       state: dropdownState,
+      errorMessage: localizations.error,
       selectedValue: selectedValue,
+      isSearchable: isSearchable,
       options: ['USA', 'Canada', 'Mexico'],
       onSelectedValueChanged: (value) {
         setState(() {
@@ -122,11 +149,15 @@ class _ExampleMultiSelectDropdownState
   @override
   Widget build(BuildContext context) {
     return Dropdowns.multiSelect(
-      label: 'Multi selection',
+      label: localizations.multiSelect,
       size: dropdownSize,
       textStyle: labelStyle,
       state: dropdownState,
+      errorMessage: localizations.error,
+      selectAllText: localizations.selectAll,
+      clearAllText: localizations.chooseALanguage,
       selectedValues: selectedValues,
+      isSearchable: isSearchable,
       options: ['Flutter', 'Dart', 'React', 'Node.js', 'Python', 'R', 'C++'],
       onSelectedValueChanged: (value) {
         setState(() {
@@ -149,10 +180,12 @@ class _ExampleComboboxDropdownState extends State<ExampleComboboxDropdown> {
   @override
   Widget build(BuildContext context) {
     return Dropdowns.combobox(
-      label: 'Choose a Language',
+      label: localizations.chooseALanguage,
       size: dropdownSize,
       textStyle: labelStyle,
+      errorMessage: localizations.error,
       state: dropdownState,
+      isSearchable: isSearchable,
       options: ['Flutter', 'Dart', 'React', 'Node.js'],
       onSelectedValueChanged: (value) {
         debugPrint("You selected $value");
@@ -172,7 +205,7 @@ class ExampleActionDropdownMenu extends StatefulWidget {
 class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
   @override
   Widget build(BuildContext context) {
-    return MenuDropdown(
+    return Dropdowns.menu(
       icon: Icon(Icons.more_vert),
       textStyle: labelStyle,
       size: dropdownSize,
@@ -180,17 +213,17 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
       divider: true,
       actionMenuGroups: [
         MenuDropdownItemGroup(
-          groupTitle: "File",
+          groupTitle: localizations.file,
           groupItems: [
             MenuDropdownItem(
-              label: "New",
+              label: localizations.newItem,
               icon: Icon(Icons.add),
               onTap: () {
                 debugPrint("You pressed New");
               },
             ),
             MenuDropdownItem(
-              label: "Open",
+              label: localizations.open,
               icon: Icon(Icons.folder_open),
               onTap: () {
                 debugPrint("You pressed Open");
@@ -199,10 +232,10 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
           ],
         ),
         MenuDropdownItemGroup(
-          groupTitle: "Danger Zone",
+          groupTitle: localizations.dangerZone,
           groupItems: [
             MenuDropdownItem(
-              label: "Delete",
+              label: localizations.delete,
               destructive: true,
               icon: Icon(Icons.delete),
               onTap: () {

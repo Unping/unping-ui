@@ -75,5 +75,16 @@
     "toggleMedium": "Mittlerer Schalter",
     "toggleMediumDesc": "Das ist ein mittlerer Schalter.",
     "toggleLarge": "Großer Schalter",
-    "toggleLargeDesc": "Das ist ein großer Schalter."
+    "toggleLargeDesc": "Das ist ein großer Schalter.",
+
+    "file":"Datei",
+    "open":"Öffnen",
+    "dangerZone":"Gefahrenzone",
+    "newItem":"Neu",
+    "singleSelect":"Einzelauswahl",
+    "multiSelect":"Mehrfachauswahl",
+    "chooseALanguage":"Sprache wählen",
+    "delete":"Löschen",
+    "selectAll": "Alle auswählen",
+    "clearAll": "Alles löschen"
 }

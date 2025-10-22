@@ -75,5 +75,16 @@
     "toggleMedium": "Medium toggle",
     "toggleMediumDesc": "This is a medium sized toggle.",
     "toggleLarge": "Large toggle",
-    "toggleLargeDesc": "This is a large sized toggle."
+    "toggleLargeDesc": "This is a large sized toggle.",
+
+    "file":"File",
+    "open":"Open",
+    "dangerZone":"Danger Zone",
+    "newItem":"New",
+    "singleSelect":"Single Selection",
+    "multiSelect":"Multi Selection",
+    "chooseALanguage":"Choose a Language",
+    "delete":"Delete",
+    "selectAll": "Select All",
+    "clearAll": "Clear All"
 }

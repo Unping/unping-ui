@@ -246,4 +246,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toggleLargeDesc => 'This is a large sized toggle.';
+
+  @override
+  String get file => 'File';
+
+  @override
+  String get open => 'Open';
+
+  @override
+  String get dangerZone => 'Danger Zone';
+
+  @override
+  String get newItem => 'New';
+
+  @override
+  String get singleSelect => 'Single Selection';
+
+  @override
+  String get multiSelect => 'Multi Selection';
+
+  @override
+  String get chooseALanguage => 'Choose a Language';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get selectAll => 'Select All';
+
+  @override
+  String get clearAll => 'Clear All';
 }

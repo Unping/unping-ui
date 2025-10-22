@@ -75,5 +75,16 @@
     "toggleMedium": "Interruptor mediano",
     "toggleMediumDesc": "Este es un interruptor mediano.",
     "toggleLarge": "Interruptor grande",
-    "toggleLargeDesc": "Este es un interruptor grande."
+    "toggleLargeDesc": "Este es un interruptor grande.",
+
+    "file":"Archivo",
+    "open":"Abrir",
+    "dangerZone":"Zona de Peligro",
+    "newItem":"Nuevo",
+    "singleSelect":"Selección única",
+    "multiSelect":"Selección múltiple",
+    "chooseALanguage":"Elige un idioma",
+    "delete":"Eliminar",
+    "selectAll": "Seleccionar todo",
+    "clearAll": "Borrar todo"
 }
