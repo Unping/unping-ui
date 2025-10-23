@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:unping_ui/unping_ui.dart';
 
 /// Predefined Dropdown configurations matching common design patterns
@@ -35,7 +36,7 @@ class Dropdowns {
       containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
       dropdownColor: dropdownColor ?? UiColors.neutral700,
       enableKeyboardNavigation: enableKeyboardNavigation,
-      size: size,
+      size: size ?? DropdownSize.md,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
       withBorder: withBorder ?? true,
     );
@@ -80,7 +81,7 @@ class Dropdowns {
       isMultiSelect: isMultiSelect,
       padding: padding,
       options: options,
-      size: size,
+      size: size ?? DropdownSize.md,
       selectAllText: selectAllText ?? "Select All",
       clearAllText: clearAllText ?? "Clear All",
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
@@ -121,32 +122,32 @@ class Dropdowns {
       isMultiSelect: isMultiSelect,
       padding: padding,
       options: options,
-      size: size,
+      size: size ?? DropdownSize.md,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
-      errorMessage: errorMessage,
+      errorMessage: errorMessage ?? "Error Message",
       withBorder: withBorder ?? true,
     );
   }
 
   static BaseDropdown menu({
     label,
-    onDropdownStateChanged,
-    size,
+    dropdownType,
     state,
-    trailingIcon,
-    leadingIcon,
-    divider,
-    options,
-    actionMenuGroups,
-    enableKeyboardNavigation = false,
-    sortMenuItems = false,
-    textStyle,
-    padding,
-    dropdownColor,
+    onDropdownStateChanged,
     containerBackgroundColor,
+    dropdownColor,
+    enableKeyboardNavigation,
+    textStyle,
+    leadingDropdownIcon,
+    trailingDropdownIcon,
+    actionMenuDivider,
+    actionMenuGroups,
+    padding,
+    options,
+    size,
     borderRadiusColor,
-    errorMessage,
     withBorder,
+    errorMessage,
   }) {
     return BaseDropdown(
       label: label,
@@ -155,17 +156,18 @@ class Dropdowns {
       onDropdownStateChanged: onDropdownStateChanged,
       containerBackgroundColor: containerBackgroundColor ?? UiColors.neutral700,
       dropdownColor: dropdownColor ?? UiColors.neutral700,
-      enableKeyboardNavigation: enableKeyboardNavigation,
-      textStyle: textStyle,
-      leadingDropdownIcon: leadingIcon,
-      trailingDropdownIcon: trailingIcon,
-      actionMenuDivider: divider,
+      enableKeyboardNavigation: enableKeyboardNavigation ?? true,
+      textStyle: textStyle ?? UiTextStyles.displayMd,
+      leadingDropdownIcon: leadingDropdownIcon ?? const SizedBox(),
+      trailingDropdownIcon: trailingDropdownIcon ?? const SizedBox(),
+      actionMenuDivider: actionMenuDivider ?? true,
       actionMenuGroups: actionMenuGroups ?? [],
       padding: padding,
       options: options ?? [],
-      size: size,
+      size: size ?? DropdownSize.md,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
       withBorder: withBorder ?? true,
+      errorMessage: errorMessage ?? 'Error',
     );
   }
 }

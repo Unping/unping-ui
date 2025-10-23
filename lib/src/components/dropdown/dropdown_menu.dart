@@ -22,7 +22,7 @@ double get listTileSize {
   return 60;
 }
 
-class MenuDropdown extends StatelessWidget {
+class MenuDropdown extends StatelessWidget with WidgetsBindingObserver {
   final bool divider;
   final Widget leadingIcon;
   final Color menuColor;
@@ -71,7 +71,14 @@ class MenuDropdown extends StatelessWidget {
   }
 
   @override
+  void didChangeMetrics() {
+    closeMenuDropOverlay();
+    super.didChangeMetrics();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addObserver(this);
     final GlobalKey mainListTileKey = GlobalKey();
 
     ///Set accesible styling functions
@@ -85,7 +92,6 @@ class MenuDropdown extends StatelessWidget {
     ///Build the actual menu
     ListView menu = ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(), // Disable scrolling
       itemCount: actionMenuGroups.length,
       itemBuilder: (context, index) {
         return Column(
@@ -211,7 +217,7 @@ class MenuDropdownItem extends StatelessWidget {
   final Widget? icon;
   final String label;
   final void Function()? onTap;
-  final bool destructive;
+  final bool? destructive;
   MenuDropdownItem({
     this.icon,
     required this.label,
@@ -250,8 +256,7 @@ OverlayEntry createMenuDropdownOverlay(
             child: GestureDetector(
               behavior: HitTestBehavior.translucent,
               onTap: () {
-                menuDropdownOverlay?.remove();
-                menuDropdownOverlay = null;
+                closeMenuDropOverlay();
               },
             ),
           ),
@@ -279,4 +284,9 @@ OverlayEntry createMenuDropdownOverlay(
       );
     },
   );
+}
+
+void closeMenuDropOverlay() {
+  menuDropdownOverlay?.remove();
+  menuDropdownOverlay = null;
 }

@@ -25,7 +25,7 @@ class BaseDropdown<T> extends StatefulWidget {
 
   //Selected DropdownMenuItem
   final String? selectedValue;
-  final ValueChanged<String>? onSelectedValueChanged;
+  final ValueChanged<T>? onSelectedValueChanged;
 
   ///List Options
   final List<String> options;
@@ -70,10 +70,10 @@ class BaseDropdown<T> extends StatefulWidget {
   final String clearAllText;
 
   ///The leading Icon In a dropdown
-  final Widget? leadingDropdownIcon;
+  final Widget leadingDropdownIcon;
 
   ///The leading Icon In a dropdown
-  final Widget? trailingDropdownIcon;
+  final Widget trailingDropdownIcon;
 
   ///action Menu Groups
   final List<MenuDropdownItemGroup> actionMenuGroups;
@@ -108,8 +108,8 @@ class BaseDropdown<T> extends StatefulWidget {
       this.errorMessage = 'Error',
       this.selectAllText = "Select All",
       this.clearAllText = "Clear All",
-      this.leadingDropdownIcon,
-      this.trailingDropdownIcon,
+      this.leadingDropdownIcon = const SizedBox(),
+      this.trailingDropdownIcon = const SizedBox(),
       this.actionMenuGroups = const [],
       this.actionMenuDivider = true});
 
@@ -130,7 +130,22 @@ class BaseDropdown<T> extends StatefulWidget {
   State<BaseDropdown> createState() => _BaseDropdownState();
 }
 
-class _BaseDropdownState extends State<BaseDropdown> {
+class _BaseDropdownState extends State<BaseDropdown>
+    with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  ///To monitor window changes
+  @override
+  void didChangeMetrics() {
+    // Called when the window size or device orientation changes
+    closeOverlay();
+    super.didChangeMetrics();
+  }
+
 //On Dropdown Value changed
   void onDropdownValueSelected(value) {
     setState(() {
@@ -312,6 +327,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                                       } else {
                                         textEditingController.text =
                                             optionsValue;
+                                        onDropdownValueSelected(optionsValue);
                                         closeOverlay();
                                       }
                                     },
@@ -393,60 +409,63 @@ class _BaseDropdownState extends State<BaseDropdown> {
     switch (widget.dropdownType) {
       ///Single selection dropdown
       case DropdownType.single:
-        return DropdownMenu(
-          label: widget.label != null
-              ? Text(
-                  widget.label!,
-                  style: widget.textStyle,
-                )
-              : SizedBox(),
-          enableSearch: widget.isSearchable,
-          errorText:
-              widget.state == DropdownState.error ? widget.errorMessage : null,
-          enabled: widget.state != DropdownState.disabled,
-          leadingIcon: widget.leadingDropdownIcon,
-          width: widget.actualSize,
-          dropdownMenuEntries: menuEntries,
-          onSelected: onDropdownValueSelected,
-          alignmentOffset: const Offset(0, 3),
-          inputDecorationTheme: InputDecorationTheme(
-            filled: true,
-            fillColor: widget.dropdownColor,
-            enabledBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: widget.withBorder
-                    ? BorderSide(
-                        color: widget.borderRadiusColor,
-                        width: widget.borderRadiusWidth,
-                      )
-                    : BorderSide.none),
-            disabledBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide.none),
-            errorBorder: OutlineInputBorder(
-                borderRadius:
-                    BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(
-                  color: widget.errorColor,
+        return Container(
+          child: DropdownMenu(
+            label: widget.label != null
+                ? Text(
+                    widget.label!,
+                    style: widget.textStyle,
+                  )
+                : SizedBox(),
+            enableSearch: widget.isSearchable,
+            errorText: widget.state == DropdownState.error
+                ? widget.errorMessage
+                : null,
+            enabled: widget.state != DropdownState.disabled,
+            leadingIcon: widget.leadingDropdownIcon,
+            width: widget.actualSize,
+            dropdownMenuEntries: menuEntries,
+            onSelected: onDropdownValueSelected,
+            alignmentOffset: const Offset(0, 3),
+            inputDecorationTheme: InputDecorationTheme(
+              filled: true,
+              fillColor: widget.dropdownColor,
+              enabledBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(widget.borderRadius)),
+                  borderSide: widget.withBorder
+                      ? BorderSide(
+                          color: widget.borderRadiusColor,
+                          width: widget.borderRadiusWidth,
+                        )
+                      : BorderSide.none),
+              disabledBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(widget.borderRadius)),
+                  borderSide: BorderSide.none),
+              errorBorder: OutlineInputBorder(
+                  borderRadius:
+                      BorderRadius.all(Radius.circular(widget.borderRadius)),
+                  borderSide: BorderSide(
+                    color: widget.errorColor,
+                    width: widget.borderRadiusWidth,
+                  )),
+            ),
+            menuStyle: MenuStyle(
+                side: WidgetStatePropertyAll(BorderSide(
+                  color: widget.borderRadiusColor,
                   width: widget.borderRadiusWidth,
                 )),
-          ),
-          menuStyle: MenuStyle(
-              side: WidgetStatePropertyAll(BorderSide(
-                color: widget.borderRadiusColor,
-                width: widget.borderRadiusWidth,
-              )),
-              backgroundColor:
-                  WidgetStatePropertyAll(widget.containerBackgroundColor),
-              fixedSize: WidgetStatePropertyAll(
-                  Size(widget.actualSize, double.infinity))),
-          trailingIcon: Icon(
-            Icons.arrow_drop_down,
-            color: widget.state == DropdownState.disabled
-                ? UiColors.neutral400
-                : UiColors.background,
+                backgroundColor:
+                    WidgetStatePropertyAll(widget.containerBackgroundColor),
+                fixedSize: WidgetStatePropertyAll(
+                    Size(widget.actualSize, double.infinity))),
+            trailingIcon: Icon(
+              Icons.arrow_drop_down,
+              color: widget.state == DropdownState.disabled
+                  ? UiColors.neutral400
+                  : UiColors.background,
+            ),
           ),
         );
 
@@ -562,7 +581,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
       case DropdownType.action:
         return MenuDropdown(
             label: widget.label,
-            leadingIcon: widget.leadingDropdownIcon!,
+            leadingIcon: widget.leadingDropdownIcon,
             trailingIcon: widget.trailingDropdownIcon,
             containerBackgroundColor: widget.containerBackgroundColor,
             menuColor: widget.dropdownColor,

@@ -300,12 +300,12 @@ Widget buildBaseDropdownAction(BuildContext context) {
         ///Normal Action Menu with label
         Dropdowns.menu(
           label: localizations.option,
-          leadingIcon: Icon(Icons.more_vert),
-          trailingIcon: Icon(Icons.arrow_drop_down),
+          leadingDropdownIcon: Icon(Icons.more_vert),
+          trailingDropdownIcon: Icon(Icons.arrow_drop_down),
           textStyle: labelStyle,
           size: dropdownSize,
           state: DropdownState.normal,
-          divider: true,
+          actionMenuDivider: true,
           actionMenuGroups: [
             MenuDropdownItemGroup(
               groupTitle: localizations.file,
@@ -344,12 +344,12 @@ Widget buildBaseDropdownAction(BuildContext context) {
 
         ///Normal without label
         Dropdowns.menu(
-          leadingIcon: Icon(Icons.more_vert),
+          leadingDropdownIcon: Icon(Icons.more_vert),
           withBorder: false,
           textStyle: labelStyle,
           size: DropdownSize.sm,
           state: DropdownState.normal,
-          divider: true,
+          actionMenuDivider: true,
           actionMenuGroups: [
             MenuDropdownItemGroup(
               groupTitle: localizations.file,
@@ -388,13 +388,13 @@ Widget buildBaseDropdownAction(BuildContext context) {
 
         ///Disabled state
         Dropdowns.menu(
-          leadingIcon: Icon(Icons.more_vert),
-          trailingIcon: Icon(Icons.arrow_drop_down),
+          leadingDropdownIcon: Icon(Icons.more_vert),
+          trailingDropdownIcon: Icon(Icons.arrow_drop_down),
           label: localizations.option,
           textStyle: labelStyle,
           size: dropdownSize,
           state: DropdownState.disabled,
-          divider: true,
+          actionMenuDivider: true,
           actionMenuGroups: [
             MenuDropdownItemGroup(
               groupTitle: localizations.file,

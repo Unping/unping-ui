@@ -205,13 +205,13 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
   Widget build(BuildContext context) {
     return Dropdowns.menu(
       label: localizations.option,
-      leadingIcon: Icon(Icons.more_vert),
-      trailingIcon: Icon(Icons.arrow_drop_down),
+      leadingDropdownIcon: Icon(Icons.more_vert),
+      trailingDropdownIcon: Icon(Icons.arrow_drop_down),
       textStyle: labelStyle,
       size: dropdownSize,
       state: dropdownState,
       withBorder: withBorder,
-      divider: true,
+      actionMenuDivider: true,
       actionMenuGroups: [
         MenuDropdownItemGroup(
           groupTitle: localizations.file,
