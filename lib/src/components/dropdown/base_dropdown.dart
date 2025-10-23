@@ -142,7 +142,8 @@ class _BaseDropdownState extends State<BaseDropdown>
   @override
   void didChangeMetrics() {
     // Called when the window size or device orientation changes
-    closeOverlay();
+    overlayEntry?.remove();
+    overlayEntry = null;
     super.didChangeMetrics();
   }
 
