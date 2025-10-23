@@ -24,7 +24,7 @@ double get listTileSize {
 
 class MenuDropdown extends StatelessWidget with WidgetsBindingObserver {
   final bool divider;
-  final Widget leadingIcon;
+  final Widget? leadingIcon;
   final Color menuColor;
   final Color containerBackgroundColor;
   final DropdownSize size;
@@ -86,7 +86,7 @@ class MenuDropdown extends StatelessWidget with WidgetsBindingObserver {
     _borderRadius = borderRadius;
     _borderRadiusWidth = borderRadiusWidth;
     _borderRadiusColor = borderRadiusColor;
-    _textStyle = textStyle ?? UiTextStyles.textMd;
+    _textStyle = textStyle ?? UiTextStyles.textMdMedium;
     _menuWidth = actualSize;
 
     ///Build the actual menu
@@ -128,7 +128,7 @@ class MenuDropdown extends StatelessWidget with WidgetsBindingObserver {
                     ),
               borderRadius: BorderRadius.all(Radius.circular(UiRadius.full))),
           child: IntrinsicWidth(
-            stepWidth: 10,
+            stepWidth: 15,
             child: ListTile(
               key: mainListTileKey,
               horizontalTitleGap: 0,

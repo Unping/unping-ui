@@ -70,10 +70,10 @@ class BaseDropdown<T> extends StatefulWidget {
   final String clearAllText;
 
   ///The leading Icon In a dropdown
-  final Widget leadingDropdownIcon;
+  final Widget? leadingDropdownIcon;
 
   ///The leading Icon In a dropdown
-  final Widget trailingDropdownIcon;
+  final Widget? trailingDropdownIcon;
 
   ///action Menu Groups
   final List<MenuDropdownItemGroup> actionMenuGroups;
@@ -108,8 +108,8 @@ class BaseDropdown<T> extends StatefulWidget {
       this.errorMessage = 'Error',
       this.selectAllText = "Select All",
       this.clearAllText = "Clear All",
-      this.leadingDropdownIcon = const SizedBox(),
-      this.trailingDropdownIcon = const SizedBox(),
+      this.leadingDropdownIcon,
+      this.trailingDropdownIcon,
       this.actionMenuGroups = const [],
       this.actionMenuDivider = true});
 
