@@ -75,5 +75,86 @@
     "toggleMedium": "Medium toggle",
     "toggleMediumDesc": "This is a medium sized toggle.",
     "toggleLarge": "Large toggle",
-    "toggleLargeDesc": "This is a large sized toggle."
+    "toggleLargeDesc": "This is a large sized toggle.",
+    
+    "dropdownLabel": "Label",
+    "dropdownPlaceholder": "Select...",
+    "dropdownSearchPlaceholder": "Search...",
+    "dropdownCountry": "Country",
+    "dropdownCountryPlaceholder": "Select a country",
+    "dropdownCountrySearch": "Search country...",
+    "dropdownCountrySearchMany": "Search countries...",
+    "dropdownLocation": "Location",
+    "dropdownLocationPlaceholder": "Choose location...",
+    "dropdownSkills": "Skills",
+    "dropdownSkillsPlaceholder": "Select skills...",
+    "dropdownAssignTo": "Assign to",
+    "dropdownSearchUsers": "Search users...",
+    "dropdownSmall": "Small",
+    "dropdownMedium": "Medium",
+    "dropdownLarge": "Large",
+    "dropdownNormal": "Normal",
+    "dropdownFocused": "Focused",
+    "dropdownDisabled": "Disabled",
+    "dropdownError": "Error",
+    "dropdownErrorRequired": "This field is required",
+    "dropdownErrorAtLeastOne": "At least one required",
+    "dropdownHelperChoose": "Choose your country",
+    "dropdownHelperSelected": "selected",
+    "dropdownHelperSelect": "Select multiple countries",
+    "dropdownHelperTypeToSearch": "Type to search from {count} countries",
+    "@dropdownHelperTypeToSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperScroll": "Scroll to see all options",
+    "dropdownHelperUseSearch": "Use search to filter {count} countries",
+    "@dropdownHelperUseSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperSearchable": "Searchable dropdown with many items",
+    "dropdownSelectFromMany": "Select from {count} options",
+    "@dropdownSelectFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSearchFromMany": "Search from {count} options",
+    "@dropdownSearchFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSelectCountries": "Select countries",
+    "dropdownSearchAndSelect": "Search and select...",
+    "dropdownTypeToFilter": "Type to filter...",
+    "dropdownTypeToSearch": "Type to search...",
+    "dropdownChoose": "Choose...",
+    "dropdownActions": "Actions",
+    "dropdownEdit": "Edit",
+    "dropdownDuplicate": "Duplicate",
+    "dropdownArchive": "Archive",
+    "dropdownDelete": "Delete",
+    "dropdownDownload": "Download",
+    "dropdownShare": "Share",
+    "dropdownPrint": "Print",
+    "dropdownSave": "Save",
+    "dropdownUndo": "Undo",
+    "dropdownRedo": "Redo",
+    "dropdownPreferences": "Preferences",
+    "dropdownNew": "New",
+    "dropdownOpen": "Open",
+    "dropdownSaveAs": "Save As",
+    "dropdownFile": "File"
 }

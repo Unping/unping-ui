@@ -171,12 +171,12 @@ BaseButton(
 
 For adding new widgets, place them in lib/ folder. And don't forget to add them to th widgetbook app. Add a wrapper in widgetbook/lib for your new widget.
 After adding a widget, don't forget to trigger the code generation for widgetbook:
-```
+```sh
 cd widgetbook && dart run build_runner build -d
 ```
 
 To see Widgetbook in action:
-```
+```sh
 cd widgetbook && flutter run
 ```
 
