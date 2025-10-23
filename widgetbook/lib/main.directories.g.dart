@@ -236,12 +236,28 @@ final directories = <_i1.WidgetbookNode>[
           _i1.WidgetbookFolder(
             name: 'Showcase',
             children: [
-              _i1.WidgetbookLeafComponent(
+              _i1.WidgetbookComponent(
                 name: 'BaseDropdown',
-                useCase: _i1.WidgetbookUseCase(
-                  name: 'Dropdown',
-                  builder: _i11.buildCoolButtonUseCase,
-                ),
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Action',
+                    builder: _i11.buildBaseDropdownAction,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Combobox',
+                    builder: _i11.buildBaseDropdownCombobox,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Multi Select',
+                    builder: _i11.buildBaseDropdownMulti,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Single',
+                    builder: _i11.buildBaseDropdownSingle,
+                    designLink:
+                        'https://www.figma.com/design/cSxzk4PnnsUO4mxTwKjkNf/unping-ui.com-%7C-Public--Community-?node-id=4919-61142&t=qP6frzBuXXGCqLoA-0',
+                  ),
+                ],
               )
             ],
           ),

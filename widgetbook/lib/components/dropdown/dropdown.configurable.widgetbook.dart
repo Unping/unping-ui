@@ -14,17 +14,6 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   designLink:
       'https://www.figma.com/design/cSxzk4PnnsUO4mxTwKjkNf/unping-ui.com-%7C-Public--Community-?node-id=4919-61142&t=qP6frzBuXXGCqLoA-0',
 )
-
-///Variables to be assigned later when
-///buildConfigurableDropdown is called
-
-late DropdownSize dropdownSize;
-late TextStyle? labelStyle;
-late DropdownState dropdownState;
-late AppLocalizations localizations;
-late bool isSearchable;
-late DropdownType dropdownVariant;
-
 Widget buildConfigurableDropdown(BuildContext context) {
   ///Drop down Type
   dropdownVariant = context.knobs.list(
@@ -73,6 +62,12 @@ Widget buildConfigurableDropdown(BuildContext context) {
   ///Whether is serachable or not
   isSearchable = context.knobs.boolean(
     label: 'Searchable',
+    initialValue: true,
+  );
+
+  ///With or without borders
+  withBorder = context.knobs.boolean(
+    label: 'With border',
     initialValue: true,
   );
 
@@ -125,6 +120,7 @@ class _ExampleSingleSelectDropdownState
       errorMessage: localizations.error,
       selectedValue: selectedValue,
       isSearchable: isSearchable,
+      withBorder: withBorder,
       options: ['USA', 'Canada', 'Mexico'],
       onSelectedValueChanged: (value) {
         setState(() {
@@ -155,9 +151,10 @@ class _ExampleMultiSelectDropdownState
       state: dropdownState,
       errorMessage: localizations.error,
       selectAllText: localizations.selectAll,
-      clearAllText: localizations.chooseALanguage,
+      clearAllText: localizations.clearAll,
       selectedValues: selectedValues,
       isSearchable: isSearchable,
+      withBorder: withBorder,
       options: ['Flutter', 'Dart', 'React', 'Node.js', 'Python', 'R', 'C++'],
       onSelectedValueChanged: (value) {
         setState(() {
@@ -186,6 +183,7 @@ class _ExampleComboboxDropdownState extends State<ExampleComboboxDropdown> {
       errorMessage: localizations.error,
       state: dropdownState,
       isSearchable: isSearchable,
+      withBorder: withBorder,
       options: ['Flutter', 'Dart', 'React', 'Node.js'],
       onSelectedValueChanged: (value) {
         debugPrint("You selected $value");
@@ -206,10 +204,13 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
   @override
   Widget build(BuildContext context) {
     return Dropdowns.menu(
-      icon: Icon(Icons.more_vert),
+      label: localizations.option,
+      leadingIcon: Icon(Icons.more_vert),
+      trailingIcon: Icon(Icons.arrow_drop_down),
       textStyle: labelStyle,
       size: dropdownSize,
       state: dropdownState,
+      withBorder: withBorder,
       divider: true,
       actionMenuGroups: [
         MenuDropdownItemGroup(
@@ -248,3 +249,14 @@ class _ExampleActionDropdownMenuState extends State<ExampleActionDropdownMenu> {
     );
   }
 }
+
+///Variables to be assigned later when
+///buildConfigurableDropdown is called
+
+late DropdownSize dropdownSize;
+late TextStyle? labelStyle;
+late DropdownState dropdownState;
+late AppLocalizations localizations;
+late bool isSearchable;
+late DropdownType dropdownVariant;
+late bool withBorder;

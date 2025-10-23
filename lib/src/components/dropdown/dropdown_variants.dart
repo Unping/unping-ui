@@ -20,7 +20,8 @@ class Dropdowns {
       padding,
       dropdownColor,
       containerBackgroundColor,
-      borderRadiusColor}) {
+      borderRadiusColor,
+      withBorder}) {
     return BaseDropdown(
       label: label,
       state: state ?? DropdownState.normal,
@@ -36,6 +37,7 @@ class Dropdowns {
       enableKeyboardNavigation: enableKeyboardNavigation,
       size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
+      withBorder: withBorder ?? true,
     );
   }
 
@@ -59,7 +61,8 @@ class Dropdowns {
       containerBackgroundColor,
       borderRadiusColor,
       selectAllText,
-      clearAllText}) {
+      clearAllText,
+      withBorder}) {
     return BaseDropdown(
       label: label,
       state: state ?? DropdownState.normal,
@@ -78,29 +81,32 @@ class Dropdowns {
       padding: padding,
       options: options,
       size: size,
-      selectAllText: selectAllText,
-      clearAllText: clearAllText,
+      selectAllText: selectAllText ?? "Select All",
+      clearAllText: clearAllText ?? "Clear All",
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
+      withBorder: withBorder ?? true,
     );
   }
 
-  static BaseDropdown combobox(
-      {label,
-      onDropdownStateChanged,
-      size,
-      state,
-      isMultiSelect = true,
-      isSearchable = true,
-      required onSelectedValueChanged,
-      required options,
-      enableKeyboardNavigation = false,
-      sortMenuItems = false,
-      textStyle, //assign later
-      padding,
-      dropdownColor,
-      containerBackgroundColor,
-      borderRadiusColor,
-      errorMessage}) {
+  static BaseDropdown combobox({
+    label,
+    onDropdownStateChanged,
+    size,
+    state,
+    isMultiSelect = true,
+    isSearchable = true,
+    required onSelectedValueChanged,
+    required options,
+    enableKeyboardNavigation = false,
+    sortMenuItems = false,
+    textStyle, //assign later
+    padding,
+    dropdownColor,
+    containerBackgroundColor,
+    borderRadiusColor,
+    errorMessage,
+    withBorder,
+  }) {
     return BaseDropdown(
       label: label,
       dropdownType: DropdownType.comboBox,
@@ -118,26 +124,30 @@ class Dropdowns {
       size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
       errorMessage: errorMessage,
+      withBorder: withBorder ?? true,
     );
   }
 
-  static BaseDropdown menu(
-      {label,
-      onDropdownStateChanged,
-      size,
-      state,
-      icon,
-      divider,
-      options,
-      actionMenuGroups,
-      enableKeyboardNavigation = false,
-      sortMenuItems = false,
-      textStyle,
-      padding,
-      dropdownColor,
-      containerBackgroundColor,
-      borderRadiusColor,
-      errorMessage}) {
+  static BaseDropdown menu({
+    label,
+    onDropdownStateChanged,
+    size,
+    state,
+    trailingIcon,
+    leadingIcon,
+    divider,
+    options,
+    actionMenuGroups,
+    enableKeyboardNavigation = false,
+    sortMenuItems = false,
+    textStyle,
+    padding,
+    dropdownColor,
+    containerBackgroundColor,
+    borderRadiusColor,
+    errorMessage,
+    withBorder,
+  }) {
     return BaseDropdown(
       label: label,
       dropdownType: DropdownType.action,
@@ -147,13 +157,15 @@ class Dropdowns {
       dropdownColor: dropdownColor ?? UiColors.neutral700,
       enableKeyboardNavigation: enableKeyboardNavigation,
       textStyle: textStyle,
-      leadingDropdownIcon: icon,
+      leadingDropdownIcon: leadingIcon,
+      trailingDropdownIcon: trailingIcon,
       actionMenuDivider: divider,
       actionMenuGroups: actionMenuGroups ?? [],
       padding: padding,
       options: options ?? [],
       size: size,
       borderRadiusColor: borderRadiusColor ?? UiColors.neutral300,
+      withBorder: withBorder ?? true,
     );
   }
 }

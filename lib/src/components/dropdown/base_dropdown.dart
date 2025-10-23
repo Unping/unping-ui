@@ -36,8 +36,8 @@ class BaseDropdown<T> extends StatefulWidget {
   //Enable Keyboard navigations
   final bool enableKeyboardNavigation;
 
-  //Sort the dropdown menu Item
-  final bool sortMenuItems;
+  //border or none
+  final bool withBorder;
 
   /// Text style of the dropdown button text
   final TextStyle? textStyle;
@@ -50,8 +50,8 @@ class BaseDropdown<T> extends StatefulWidget {
   final double borderRadiusWidth;
 
   //Dropdown Colors
-  final Color? dropdownColor;
-  final Color? containerBackgroundColor;
+  final Color dropdownColor;
+  final Color containerBackgroundColor;
   final Color borderRadiusColor;
 
   /// Border color when disabled
@@ -70,7 +70,10 @@ class BaseDropdown<T> extends StatefulWidget {
   final String clearAllText;
 
   ///The leading Icon In a dropdown
-  final Icon? leadingDropdownIcon;
+  final Widget? leadingDropdownIcon;
+
+  ///The leading Icon In a dropdown
+  final Widget? trailingDropdownIcon;
 
   ///action Menu Groups
   final List<MenuDropdownItemGroup> actionMenuGroups;
@@ -92,7 +95,7 @@ class BaseDropdown<T> extends StatefulWidget {
       this.selectedValues = const [],
       this.options = const [],
       this.enableKeyboardNavigation = false,
-      this.sortMenuItems = false,
+      this.withBorder = true,
       this.textStyle, //assign later
       this.padding = const EdgeInsets.all(5),
       this.borderRadius = UiRadius.xs,
@@ -106,6 +109,7 @@ class BaseDropdown<T> extends StatefulWidget {
       this.selectAllText = "Select All",
       this.clearAllText = "Clear All",
       this.leadingDropdownIcon,
+      this.trailingDropdownIcon,
       this.actionMenuGroups = const [],
       this.actionMenuDivider = true});
 
@@ -167,6 +171,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
   bool suggestAdd = false;
 
   ScrollController dropdownScrollController = new ScrollController();
+  FocusNode overLayFocus = FocusNode();
   void scrollToIndex(int index) {
     dropdownScrollController.animateTo(
       index * singleLineListTileHeight,
@@ -204,10 +209,12 @@ class _BaseDropdownState extends State<BaseDropdown> {
                       height: 150,
                       decoration: BoxDecoration(
                           color: widget.containerBackgroundColor,
-                          border: Border.all(
-                            color: widget.borderRadiusColor,
-                            width: widget.borderRadiusWidth,
-                          ),
+                          border: widget.withBorder
+                              ? Border.all(
+                                  color: widget.borderRadiusColor,
+                                  width: widget.borderRadiusWidth,
+                                )
+                              : Border.fromBorderSide(BorderSide.none),
                           borderRadius: BorderRadius.all(
                               Radius.circular(widget.borderRadius))),
                       child: Column(
@@ -407,10 +414,12 @@ class _BaseDropdownState extends State<BaseDropdown> {
             enabledBorder: OutlineInputBorder(
                 borderRadius:
                     BorderRadius.all(Radius.circular(widget.borderRadius)),
-                borderSide: BorderSide(
-                  color: widget.borderRadiusColor,
-                  width: widget.borderRadiusWidth,
-                )),
+                borderSide: widget.withBorder
+                    ? BorderSide(
+                        color: widget.borderRadiusColor,
+                        width: widget.borderRadiusWidth,
+                      )
+                    : BorderSide.none),
             disabledBorder: OutlineInputBorder(
                 borderRadius:
                     BorderRadius.all(Radius.circular(widget.borderRadius)),
@@ -501,9 +510,11 @@ class _BaseDropdownState extends State<BaseDropdown> {
                     enabledBorder: OutlineInputBorder(
                         borderRadius:
                             BorderRadius.circular(widget.borderRadius),
-                        borderSide: BorderSide(
-                            color: widget.borderRadiusColor,
-                            width: widget.borderRadiusWidth)),
+                        borderSide: widget.withBorder
+                            ? BorderSide(
+                                color: widget.borderRadiusColor,
+                                width: widget.borderRadiusWidth)
+                            : BorderSide.none),
                     errorBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                             Radius.circular(widget.borderRadius)),
@@ -549,11 +560,16 @@ class _BaseDropdownState extends State<BaseDropdown> {
       ///Action menu dropdown
       case DropdownType.action:
         return MenuDropdown(
-            icon: Icon(Icons.more_vert),
+            label: widget.label,
+            leadingIcon: widget.leadingDropdownIcon!,
+            trailingIcon: widget.trailingDropdownIcon,
+            containerBackgroundColor: widget.containerBackgroundColor,
+            menuColor: widget.dropdownColor,
             textStyle: widget.textStyle,
             size: widget.size,
             state: widget.state,
             divider: widget.actionMenuDivider,
+            withBorder: widget.withBorder,
             actionMenuGroups: widget.actionMenuGroups);
     }
   }

@@ -24,10 +24,12 @@ double get listTileSize {
 
 class MenuDropdown extends StatelessWidget {
   final bool divider;
-  final Widget icon;
+  final Widget leadingIcon;
   final Color menuColor;
+  final Color containerBackgroundColor;
   final DropdownSize size;
   final DropdownState state;
+  final Widget? trailingIcon;
 
   /// Border radius of the Dropdown
   final double borderRadius;
@@ -36,9 +38,12 @@ class MenuDropdown extends StatelessWidget {
 
   final TextStyle? textStyle;
   final List<MenuDropdownItemGroup> actionMenuGroups;
+  final String? label;
+
+  final bool withBorder;
   MenuDropdown(
       {this.divider = false,
-      required this.icon,
+      required this.leadingIcon,
       required this.actionMenuGroups,
       this.menuColor = UiColors.neutral700,
       this.textStyle,
@@ -46,7 +51,11 @@ class MenuDropdown extends StatelessWidget {
       this.borderRadiusWidth = 1,
       this.borderRadiusColor = UiColors.neutral300,
       this.size = DropdownSize.md,
-      this.state = DropdownState.normal});
+      this.state = DropdownState.normal,
+      this.label,
+      this.trailingIcon,
+      this.withBorder = true,
+      this.containerBackgroundColor = UiColors.neutral700});
 
   /// Get the actual size based on the size variant
   /// Scaled using 0.2
@@ -63,7 +72,7 @@ class MenuDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey iconButtonKey = GlobalKey();
+    final GlobalKey mainListTileKey = GlobalKey();
 
     ///Set accesible styling functions
     _menuColor = menuColor;
@@ -100,20 +109,60 @@ class MenuDropdown extends StatelessWidget {
     ///A layer link to link the popup menu with the icon
     LayerLink layerLink = LayerLink();
     return CompositedTransformTarget(
-      link: layerLink,
-      child: IconButton(
-        key: iconButtonKey,
-        alignment: AlignmentGeometry.topLeft,
-        icon: icon,
-        onPressed: state == DropdownState.disabled
-            ? null
-            : () {
-                ///Open the action Menu show dialog
-                showMenuDropdownOverlay(
-                    context, iconButtonKey, menu, layerLink);
-              },
-      ),
-    );
+        link: layerLink,
+        child: Container(
+          //  width: _menuWidth - _menuWidth / 3,
+          decoration: BoxDecoration(
+              color: containerBackgroundColor,
+              border: state == DropdownState.disabled || !withBorder
+                  ? Border.fromBorderSide(BorderSide.none)
+                  : Border.all(
+                      color: _borderRadiusColor,
+                      width: _borderRadiusWidth,
+                    ),
+              borderRadius: BorderRadius.all(Radius.circular(UiRadius.full))),
+          child: IntrinsicWidth(
+            stepWidth: 10,
+            child: ListTile(
+              key: mainListTileKey,
+              horizontalTitleGap: 0,
+              minVerticalPadding: 0,
+              dense: true,
+              visualDensity: VisualDensity.compact,
+              leading: state == DropdownState.disabled
+                  ? ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        Colors.grey, // new color tint
+                        BlendMode.srcIn, // replace the original color
+                      ),
+                      child: leadingIcon)
+                  : leadingIcon,
+              onTap: state == DropdownState.disabled
+                  ? null
+                  : () {
+                      menuDropdownOverlay = createMenuDropdownOverlay(
+                          context, mainListTileKey, menu, layerLink);
+
+                      Overlay.of(context, rootOverlay: true)
+                          .insert(menuDropdownOverlay!);
+                    },
+              title: label != null
+                  ? Text(label!,
+                      style: state == DropdownState.disabled
+                          ? _textStyle.copyWith(color: UiColors.neutral500)
+                          : textStyle)
+                  : null,
+              trailing: state == DropdownState.disabled
+                  ? ColorFiltered(
+                      colorFilter: ColorFilter.mode(
+                        Colors.grey,
+                        BlendMode.srcIn,
+                      ),
+                      child: trailingIcon)
+                  : trailingIcon,
+            ),
+          ),
+        ));
   }
 }
 
@@ -183,7 +232,7 @@ class MenuDropdownItem extends StatelessWidget {
 OverlayEntry? menuDropdownOverlay;
 
 ///Overlay for the Dropdown Menu
-void showMenuDropdownOverlay(
+OverlayEntry createMenuDropdownOverlay(
     BuildContext context, GlobalKey key, ListView menu, LayerLink layerLink) {
   final renderBox = key.currentContext!.findRenderObject() as RenderBox;
   final size = renderBox.size;
@@ -192,7 +241,7 @@ void showMenuDropdownOverlay(
   final screenSize = MediaQuery.of(context).size;
 
   bool openLeft = offset.dx + _menuWidth > screenSize.width;
-  menuDropdownOverlay = OverlayEntry(
+  return OverlayEntry(
     builder: (context) {
       return Stack(
         children: [
@@ -210,7 +259,8 @@ void showMenuDropdownOverlay(
           /// Actual positioned menu
           CompositedTransformFollower(
             link: layerLink,
-            offset: Offset(openLeft ? 220 : 20, size.height),
+            offset:
+                Offset(openLeft ? _menuWidth : _menuWidth / 4, size.height + 5),
             child: Material(
               child: Container(
                   decoration: BoxDecoration(
@@ -229,6 +279,4 @@ void showMenuDropdownOverlay(
       );
     },
   );
-
-  Overlay.of(context, rootOverlay: true).insert(menuDropdownOverlay!);
 }
