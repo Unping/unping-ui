@@ -294,6 +294,7 @@ class _BaseDropdownState extends State<BaseDropdown> {
                                       : Colors.transparent,
                                   child: ListTile(
                                     title: Text(optionsValue),
+                                    minTileHeight: singleLineListTileHeight,
                                     trailing: widget.selectedValues
                                             .contains(optionsValue)
                                         ? Icon(Icons.done)
