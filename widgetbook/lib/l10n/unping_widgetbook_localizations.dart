@@ -549,6 +549,318 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is a large sized toggle.'**
   String get toggleLargeDesc;
+
+  /// No description provided for @dropdownLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Label'**
+  String get dropdownLabel;
+
+  /// No description provided for @dropdownPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select...'**
+  String get dropdownPlaceholder;
+
+  /// No description provided for @dropdownSearchPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Search...'**
+  String get dropdownSearchPlaceholder;
+
+  /// No description provided for @dropdownCountry.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get dropdownCountry;
+
+  /// No description provided for @dropdownCountryPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a country'**
+  String get dropdownCountryPlaceholder;
+
+  /// No description provided for @dropdownCountrySearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Search country...'**
+  String get dropdownCountrySearch;
+
+  /// No description provided for @dropdownCountrySearchMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Search countries...'**
+  String get dropdownCountrySearchMany;
+
+  /// No description provided for @dropdownLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Location'**
+  String get dropdownLocation;
+
+  /// No description provided for @dropdownLocationPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose location...'**
+  String get dropdownLocationPlaceholder;
+
+  /// No description provided for @dropdownSkills.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get dropdownSkills;
+
+  /// No description provided for @dropdownSkillsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Select skills...'**
+  String get dropdownSkillsPlaceholder;
+
+  /// No description provided for @dropdownAssignTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign to'**
+  String get dropdownAssignTo;
+
+  /// No description provided for @dropdownSearchUsers.
+  ///
+  /// In en, this message translates to:
+  /// **'Search users...'**
+  String get dropdownSearchUsers;
+
+  /// No description provided for @dropdownSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get dropdownSmall;
+
+  /// No description provided for @dropdownMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get dropdownMedium;
+
+  /// No description provided for @dropdownLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get dropdownLarge;
+
+  /// No description provided for @dropdownNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get dropdownNormal;
+
+  /// No description provided for @dropdownFocused.
+  ///
+  /// In en, this message translates to:
+  /// **'Focused'**
+  String get dropdownFocused;
+
+  /// No description provided for @dropdownDisabled.
+  ///
+  /// In en, this message translates to:
+  /// **'Disabled'**
+  String get dropdownDisabled;
+
+  /// No description provided for @dropdownError.
+  ///
+  /// In en, this message translates to:
+  /// **'Error'**
+  String get dropdownError;
+
+  /// No description provided for @dropdownErrorRequired.
+  ///
+  /// In en, this message translates to:
+  /// **'This field is required'**
+  String get dropdownErrorRequired;
+
+  /// No description provided for @dropdownErrorAtLeastOne.
+  ///
+  /// In en, this message translates to:
+  /// **'At least one required'**
+  String get dropdownErrorAtLeastOne;
+
+  /// No description provided for @dropdownHelperChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your country'**
+  String get dropdownHelperChoose;
+
+  /// No description provided for @dropdownHelperSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'selected'**
+  String get dropdownHelperSelected;
+
+  /// No description provided for @dropdownHelperSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Select multiple countries'**
+  String get dropdownHelperSelect;
+
+  /// No description provided for @dropdownHelperTypeToSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Type to search from {count} countries'**
+  String dropdownHelperTypeToSearch(String count);
+
+  /// No description provided for @dropdownHelperScroll.
+  ///
+  /// In en, this message translates to:
+  /// **'Scroll to see all options'**
+  String get dropdownHelperScroll;
+
+  /// No description provided for @dropdownHelperUseSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Use search to filter {count} countries'**
+  String dropdownHelperUseSearch(String count);
+
+  /// No description provided for @dropdownHelperSearchable.
+  ///
+  /// In en, this message translates to:
+  /// **'Searchable dropdown with many items'**
+  String get dropdownHelperSearchable;
+
+  /// No description provided for @dropdownSelectFromMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Select from {count} options'**
+  String dropdownSelectFromMany(String count);
+
+  /// No description provided for @dropdownSearchFromMany.
+  ///
+  /// In en, this message translates to:
+  /// **'Search from {count} options'**
+  String dropdownSearchFromMany(String count);
+
+  /// No description provided for @dropdownSelectCountries.
+  ///
+  /// In en, this message translates to:
+  /// **'Select countries'**
+  String get dropdownSelectCountries;
+
+  /// No description provided for @dropdownSearchAndSelect.
+  ///
+  /// In en, this message translates to:
+  /// **'Search and select...'**
+  String get dropdownSearchAndSelect;
+
+  /// No description provided for @dropdownTypeToFilter.
+  ///
+  /// In en, this message translates to:
+  /// **'Type to filter...'**
+  String get dropdownTypeToFilter;
+
+  /// No description provided for @dropdownTypeToSearch.
+  ///
+  /// In en, this message translates to:
+  /// **'Type to search...'**
+  String get dropdownTypeToSearch;
+
+  /// No description provided for @dropdownChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose...'**
+  String get dropdownChoose;
+
+  /// No description provided for @dropdownActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions'**
+  String get dropdownActions;
+
+  /// No description provided for @dropdownEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get dropdownEdit;
+
+  /// No description provided for @dropdownDuplicate.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get dropdownDuplicate;
+
+  /// No description provided for @dropdownArchive.
+  ///
+  /// In en, this message translates to:
+  /// **'Archive'**
+  String get dropdownArchive;
+
+  /// No description provided for @dropdownDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get dropdownDelete;
+
+  /// No description provided for @dropdownDownload.
+  ///
+  /// In en, this message translates to:
+  /// **'Download'**
+  String get dropdownDownload;
+
+  /// No description provided for @dropdownShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share'**
+  String get dropdownShare;
+
+  /// No description provided for @dropdownPrint.
+  ///
+  /// In en, this message translates to:
+  /// **'Print'**
+  String get dropdownPrint;
+
+  /// No description provided for @dropdownSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get dropdownSave;
+
+  /// No description provided for @dropdownUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get dropdownUndo;
+
+  /// No description provided for @dropdownRedo.
+  ///
+  /// In en, this message translates to:
+  /// **'Redo'**
+  String get dropdownRedo;
+
+  /// No description provided for @dropdownPreferences.
+  ///
+  /// In en, this message translates to:
+  /// **'Preferences'**
+  String get dropdownPreferences;
+
+  /// No description provided for @dropdownNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New'**
+  String get dropdownNew;
+
+  /// No description provided for @dropdownOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open'**
+  String get dropdownOpen;
+
+  /// No description provided for @dropdownSaveAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Save As'**
+  String get dropdownSaveAs;
+
+  /// No description provided for @dropdownFile.
+  ///
+  /// In en, this message translates to:
+  /// **'File'**
+  String get dropdownFile;
 }
 
 class _AppLocalizationsDelegate

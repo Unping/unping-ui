@@ -14,7 +14,6 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
   path: 'Components/Input/Configurable',
 )
 Widget buildConfigurableInput(BuildContext context) {
-
   // Variant selection
   final variant = context.knobs.list(
     label: 'Variant',
@@ -93,13 +92,16 @@ Widget buildConfigurableInput(BuildContext context) {
         size: size,
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
-        errorText: state == InputState.error ? context.lang.inputErrorMessage : null,
+        errorText:
+            state == InputState.error ? context.lang.inputErrorMessage : null,
       );
       break;
 
     case 'search':
       input = Inputs.search(
-        placeholder: placeholder.isEmpty ? context.lang.inputSearchPlaceholder : placeholder,
+        placeholder: placeholder.isEmpty
+            ? context.lang.inputSearchPlaceholder
+            : placeholder,
         onSubmitted: (_) {},
         size: size,
         forceState: state,
@@ -113,7 +115,8 @@ Widget buildConfigurableInput(BuildContext context) {
         size: size,
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
-        errorText: state == InputState.error ? context.lang.inputWeakPassword : null,
+        errorText:
+            state == InputState.error ? context.lang.inputWeakPassword : null,
       );
       break;
 
@@ -125,7 +128,9 @@ Widget buildConfigurableInput(BuildContext context) {
         forceState: state,
         tooltipMessage: tooltip.isNotEmpty ? tooltip : null,
         errorText: state == InputState.error
-            ? (customError.isNotEmpty ? customError : context.lang.inputErrorMessage)
+            ? (customError.isNotEmpty
+                ? customError
+                : context.lang.inputErrorMessage)
             : null,
         prefixIcon: hasPrefixIcon ? _buildIconData(prefixIconType) : null,
         suffixIcon: hasSuffixIcon ? _buildIconData(suffixIconType) : null,
