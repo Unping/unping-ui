@@ -29,7 +29,9 @@ import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widge
     as _i10;
 import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
     as _i9;
-import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/dropdown/dropdown.configurable.widgetbook.dart'
+    as _i10;
+import 'package:widgetbook_workspace/components/dropdown/dropdown.showcase.widgetbook.dart'
     as _i11;
 import 'package:widgetbook_workspace/components/inputs/input.configurable.widgetbook.dart'
     as _i12;
@@ -271,6 +273,53 @@ final directories = <_i1.WidgetbookNode>[
                     builder: _i11.radioGroup,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Dropdown',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseDropdown',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableDropdown',
+                  builder: _i10.buildConfigurableDropdown,
+                ),
+              )
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseDropdown',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Action Menu',
+                    builder: _i11.buildDropdownActionMenu,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Combobox',
+                    builder: _i11.buildDropdownCombobox,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Multi Select',
+                    builder: _i11.buildDropdownMultiSelect,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Scrolling Examples',
+                    builder: _i11.buildDropdownScrolling,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Single Select',
+                    builder: _i11.buildDropdownSingleSelect,
                   ),
                 ],
               )
