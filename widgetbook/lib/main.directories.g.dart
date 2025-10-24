@@ -11,21 +11,23 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/components/badge/badge.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/avatar/avatar.configurable.widgetbook.dart'
     as _i2;
-import 'package:widgetbook_workspace/components/badge/badge.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/avatar/avatar.showcase.widgetbook.dart'
     as _i3;
-import 'package:widgetbook_workspace/components/button/button.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/badge/badge.configurable.widgetbook.dart'
     as _i4;
-import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/badge/badge.showcase.widgetbook.dart'
     as _i5;
-import 'package:widgetbook_workspace/components/checkbox/checkbox.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/button/button.configurable.widgetbook.dart'
     as _i6;
-import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widgetbook.dart'
-    as _i8;
-import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
     as _i7;
-import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/checkbox/checkbox.configurable.widgetbook.dart'
+    as _i8;
+import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widgetbook.dart'
+    as _i10;
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
     as _i9;
 import 'package:widgetbook_workspace/components/dropdown/dropdown.configurable.widgetbook.dart'
     as _i10;
@@ -55,6 +57,68 @@ final directories = <_i1.WidgetbookNode>[
     name: 'Components',
     children: [
       _i1.WidgetbookFolder(
+        name: 'Avatar',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseAvatar',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableAvatar',
+                  builder: _i2.buildConfigurableAvatar,
+                  designLink:
+                      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                ),
+              )
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'AvatarGroup',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Avatar Groups',
+                  builder: _i3.avatarGroups,
+                  designLink:
+                      'https://www.figma.com/community/file/1545817431010952080',
+                ),
+              ),
+              _i1.WidgetbookComponent(
+                name: 'BaseAvatar',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Avatars with Badges',
+                    builder: _i3.avatarsWithBadges,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Icon Avatars',
+                    builder: _i3.iconAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Image Avatars',
+                    builder: _i3.imageAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Initials Avatars',
+                    builder: _i3.initialsAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
         name: 'Badge',
         children: [
           _i1.WidgetbookFolder(
@@ -64,7 +128,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseBadge',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableBadge',
-                  builder: _i2.buildConfigurableBadge,
+                  builder: _i4.buildConfigurableBadge,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -78,7 +142,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BadgeImage',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Badge Image Component',
-                  builder: _i3.badgeImageComponent,
+                  builder: _i5.badgeImageComponent,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -88,25 +152,25 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Image',
-                    builder: _i3.badgeWithImage,
+                    builder: _i5.badgeWithImage,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Text',
-                    builder: _i3.badge,
+                    builder: _i5.badge,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Widget',
-                    builder: _i3.badgeWithWidget,
+                    builder: _i5.badgeWithWidget,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Interactive Badge with Checkbox',
-                    builder: _i3.interactiveBadgeWithCheckbox,
+                    builder: _i5.interactiveBadgeWithCheckbox,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
@@ -116,7 +180,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseCheckbox',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Badge Checkbox Component',
-                  builder: _i3.badgeCheckboxComponent,
+                  builder: _i5.badgeCheckboxComponent,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -135,7 +199,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableButton',
-                  builder: _i4.buildConfigurableButton,
+                  builder: _i6.buildConfigurableButton,
                 ),
               )
             ],
@@ -148,17 +212,17 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Filled',
-                    builder: _i5.buildBaseButtonFilled,
+                    builder: _i7.buildBaseButtonFilled,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7279&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Ghost',
-                    builder: _i5.buildBaseButtonGhost,
+                    builder: _i7.buildBaseButtonGhost,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Outline',
-                    builder: _i5.buildBaseButtonOutlined,
+                    builder: _i7.buildBaseButtonOutlined,
                   ),
                 ],
               )
@@ -176,7 +240,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseCheckbox',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableCheckbox',
-                  builder: _i6.buildConfigurableCheckbox,
+                  builder: _i8.buildConfigurableCheckbox,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -185,7 +249,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: '_ExampleRadioGroup',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableRadioGroup',
-                  builder: _i7.buildConfigurableRadioGroup,
+                  builder: _i9.buildConfigurableRadioGroup,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -200,13 +264,13 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Checkbox',
-                    builder: _i8.checkbox,
+                    builder: _i10.checkbox,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Radio Group',
-                    builder: _i9.radioGroup,
+                    builder: _i11.radioGroup,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
