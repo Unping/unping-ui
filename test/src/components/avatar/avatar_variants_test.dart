@@ -11,9 +11,8 @@ void main() {
         fallback: Avatars.initials(name: 'John Doe', size: AvatarSize.lg),
       );
       await tester.pumpWidget(MaterialApp(home: widget));
-      // await tester.pumpAndSettle(Duration(seconds: 30));
-      await tester.pump(const Duration(seconds: 2));
-      expect(find.byType(BaseAvatar), findsOneWidget);
+      await tester.pump();
+      expect(find.text('JD'), findsOneWidget);
     });
 
     testWidgets('initials avatar renders with auto color', (tester) async {

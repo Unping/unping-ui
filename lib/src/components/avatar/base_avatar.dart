@@ -1,8 +1,8 @@
 import 'package:flutter/widgets.dart';
+import 'package:unping_ui/src/components/avatar/shimmer_skeleton.dart';
+import 'package:unping_ui/src/components/avatar/squircle.dart';
 import 'dart:math' as math;
 import 'package:unping_ui/unping_ui.dart';
-import 'package:universal_image/universal_image.dart';
-import 'package:figma_squircle/figma_squircle.dart';
 
 /// A base avatar widget that supports images, initials, and icons
 class BaseAvatar extends StatefulWidget {
@@ -84,33 +84,6 @@ class _BaseAvatarState extends State<BaseAvatar> {
 
   double get _avatarSize => AvatarSizeHelper.getSize(widget.size);
 
-  double get _borderRadius {
-    if (widget.borderRadius != null) return widget.borderRadius!;
-    if (widget.shape == AvatarShape.circle) return _avatarSize / 2;
-    return AvatarSizeHelper.getBorderRadius(widget.size);
-  }
-
-  ShapeBorder get _shapeBorder {
-    if (widget.shape == AvatarShape.circle) {
-      return CircleBorder(
-        side: widget.borderColor != null
-            ? BorderSide(color: widget.borderColor!, width: widget.borderWidth)
-            : BorderSide.none,
-      );
-    } else {
-      // Use RSuperellipse for rounded rectangles
-      return SmoothRectangleBorder(
-        borderRadius: SmoothBorderRadius(
-          cornerRadius: _borderRadius,
-          cornerSmoothing: 1.0, // Full squircle effect
-        ),
-        side: widget.borderColor != null
-            ? BorderSide(color: widget.borderColor!, width: widget.borderWidth)
-            : BorderSide.none,
-      );
-    }
-  }
-
   Widget _buildContent() {
     // Priority: child > image > initials > icon > fallback
     if (widget.child != null) {
@@ -133,31 +106,27 @@ class _BaseAvatarState extends State<BaseAvatar> {
   }
 
   Widget _buildImageAvatar() {
-    Widget imageWidget = UniversalImage(
+    Widget imageWidget = Image.network(
       widget.imageUrl!,
       width: _avatarSize,
       height: _avatarSize,
       fit: BoxFit.cover,
-      imageEngine: ImageEngine.extendedImage,
-      placeholder: _buildLoadingState(),
+      loadingBuilder: (context, child, loadingProgress) {
+        if (loadingProgress == null) return child;
+        // coverage:ignore-start
+        // Shimmer will be tested in isolation
+        return _buildLoadingState();
+        // coverage:ignore-end
+      },
       // coverage:ignore-start
       errorBuilder: (context, url, error) =>
           widget.fallback ?? _buildDefaultAvatar(),
       // coverage:ignore-end
     );
-
-    // Use appropriate clipping based on shape
     if (widget.shape == AvatarShape.circle) {
       return ClipOval(child: imageWidget);
-    } else {
-      return ClipSmoothRect(
-        radius: SmoothBorderRadius(
-          cornerRadius: _borderRadius,
-          cornerSmoothing: 1.0,
-        ),
-        child: imageWidget,
-      );
     }
+    return Squircle(size: _avatarSize, child: imageWidget);
   }
 
   Widget _buildInitialsAvatar() {
@@ -196,12 +165,14 @@ class _BaseAvatarState extends State<BaseAvatar> {
     );
   }
 
+  // coverage:ignore-start
   Widget _buildLoadingState() {
-    return _ShimmerSkeleton(
+    return ShimmerSkeleton(
       baseColor: UiColors.neutral500,
       highlightColor: UiColors.neutral400,
     );
   }
+  // coverage:ignore-end
 
   Widget _buildPositionedBadge() {
     final badge = widget.badge!;
@@ -262,16 +233,31 @@ class _BaseAvatarState extends State<BaseAvatar> {
       }
     }
 
-    Widget avatar = Container(
-      width: _avatarSize,
-      height: _avatarSize,
-      decoration: ShapeDecoration(
-        color: widget.backgroundColor,
-        shape: _shapeBorder,
-      ),
-      clipBehavior: Clip.antiAlias,
-      child: _buildContent(),
-    );
+    Widget avatar = widget.shape == AvatarShape.circle
+        ? ClipOval(
+            child: Container(
+              width: _avatarSize,
+              height: _avatarSize,
+              decoration: ShapeDecoration(
+                shape: CircleBorder(
+                  side: widget.borderColor != null
+                      ? BorderSide(
+                          color: widget.borderColor!, width: widget.borderWidth)
+                      : BorderSide.none,
+                ),
+                color: widget.backgroundColor,
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: _buildContent(),
+            ),
+          )
+        : Squircle(
+            size: _avatarSize,
+            color: widget.backgroundColor,
+            child: _buildContent(),
+            borderColor: widget.borderColor,
+            borderWidth: widget.borderWidth,
+          );
 
     // Add badge if provided
     if (widget.badge != null) {
@@ -292,83 +278,6 @@ class _BaseAvatarState extends State<BaseAvatar> {
     );
 
     return avatar;
-  }
-}
-
-/// Simple loading spinner for avatar loading states
-class _ShimmerSkeleton extends StatefulWidget {
-  final Color baseColor;
-  final Color highlightColor;
-
-  const _ShimmerSkeleton({
-    required this.baseColor,
-    required this.highlightColor,
-  });
-
-  @override
-  State<_ShimmerSkeleton> createState() => _ShimmerSkeletonState();
-}
-
-class _ShimmerSkeletonState extends State<_ShimmerSkeleton>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1400),
-      vsync: this,
-    )..repeat();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        final progress = _controller.value;
-        return ShaderMask(
-          shaderCallback: (rect) {
-            // Move gradient from left to right continuously
-            final double dx = (rect.width + rect.width) * (progress - 0.5);
-            return LinearGradient(
-              begin: Alignment(-1.0, -0.1),
-              end: Alignment(1.0, 0.1),
-              colors: [
-                widget.baseColor,
-                widget.baseColor,
-                widget.highlightColor,
-                widget.baseColor,
-                widget.baseColor,
-              ],
-              stops: const [0.0, 0.35, 0.5, 0.65, 1.0],
-              transform: GradientTranslation(dx, 0.0),
-            ).createShader(rect);
-          },
-          blendMode: BlendMode.srcATop,
-          child: Container(color: widget.baseColor),
-        );
-      },
-    );
-  }
-}
-
-class GradientTranslation extends GradientTransform {
-  final double translateX;
-  final double translateY;
-
-  const GradientTranslation(this.translateX, this.translateY);
-
-  @override
-  Matrix4? transform(Rect bounds, {TextDirection? textDirection}) {
-    return Matrix4.identity()..translateByDouble(translateX, translateY, 0, 1);
   }
 }
 
