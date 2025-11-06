@@ -75,5 +75,7 @@
     "toggleMedium": "Medium toggle",
     "toggleMediumDesc": "This is a medium sized toggle.",
     "toggleLarge": "Large toggle",
-    "toggleLargeDesc": "This is a large sized toggle."
+    "toggleLargeDesc": "This is a large sized toggle.",
+
+    "emojiBlast": "Emoji Blast"
 }

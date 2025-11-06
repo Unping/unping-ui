@@ -75,5 +75,7 @@
     "toggleMedium": "Mittlerer Schalter",
     "toggleMediumDesc": "Das ist ein mittlerer Schalter.",
     "toggleLarge": "Großer Schalter",
-    "toggleLargeDesc": "Das ist ein großer Schalter."
+    "toggleLargeDesc": "Das ist ein großer Schalter.",
+
+    "emojiBlast": "Emoji Explosion"
 }

@@ -246,4 +246,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get toggleLargeDesc => 'This is a large sized toggle.';
+
+  @override
+  String get emojiBlast => 'Emoji Blast';
 }

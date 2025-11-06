@@ -549,6 +549,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'This is a large sized toggle.'**
   String get toggleLargeDesc;
+
+  /// No description provided for @emojiBlast.
+  ///
+  /// In en, this message translates to:
+  /// **'Emoji Blast'**
+  String get emojiBlast;
 }
 
 class _AppLocalizationsDelegate

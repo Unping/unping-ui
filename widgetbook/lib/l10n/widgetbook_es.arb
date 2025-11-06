@@ -75,5 +75,7 @@
     "toggleMedium": "Interruptor mediano",
     "toggleMediumDesc": "Este es un interruptor mediano.",
     "toggleLarge": "Interruptor grande",
-    "toggleLargeDesc": "Este es un interruptor grande."
+    "toggleLargeDesc": "Este es un interruptor grande.",
+
+    "emojiBlast": "Explosión de emojis"
 }
