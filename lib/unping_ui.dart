@@ -10,6 +10,7 @@ export 'src/components/toggle/toggle_types.dart';
 export 'src/components/input/base_input.dart';
 export 'src/components/input/input_types.dart';
 export 'src/components/input/input_variants.dart';
+export 'src/components/emojiblast/base_emoji_blast.dart';
 export 'src/unping_ui.dart';
 export 'src/components/tooltip/popover_tooltip.dart';
 export 'src/components/tooltip/base_tooltip.dart';
