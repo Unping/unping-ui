@@ -29,28 +29,34 @@ import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widge
     as _i10;
 import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
     as _i9;
-import 'package:widgetbook_workspace/components/dropdown/dropdown.configurable.widgetbook.dart'
-    as _i10;
-import 'package:widgetbook_workspace/components/dropdown/dropdown.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
     as _i11;
-import 'package:widgetbook_workspace/components/inputs/input.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/dropdown/dropdown.configurable.widgetbook.dart'
     as _i12;
-import 'package:widgetbook_workspace/components/inputs/input.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/dropdown/dropdown.showcase.widgetbook.dart'
     as _i13;
-import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/emojiblast/emojiblast.configurable.widetbook.dart'
     as _i14;
-import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/emojiblast/emojiblast.showcase.widgetbook.dart'
     as _i15;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/inputs/input.configurable.widgetbook.dart'
     as _i16;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/inputs/input.showcase.widgetbook.dart'
     as _i17;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i18;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i19;
-import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
+import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+    as _i18;
+import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
+    as _i19;
+import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
     as _i20;
-import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
     as _i21;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i22;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i23;
+import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
+    as _i24;
+import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+    as _i25;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
@@ -290,7 +296,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseDropdown',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableDropdown',
-                  builder: _i10.buildConfigurableDropdown,
+                  builder: _i12.buildConfigurableDropdown,
                 ),
               )
             ],
@@ -303,28 +309,62 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Action Menu',
-                    builder: _i11.buildDropdownActionMenu,
+                    builder: _i13.buildDropdownActionMenu,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Combobox',
-                    builder: _i11.buildDropdownCombobox,
+                    builder: _i13.buildDropdownCombobox,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Multi Select',
-                    builder: _i11.buildDropdownMultiSelect,
+                    builder: _i13.buildDropdownMultiSelect,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Scrolling Examples',
-                    builder: _i11.buildDropdownScrolling,
+                    builder: _i13.buildDropdownScrolling,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Single Select',
-                    builder: _i11.buildDropdownSingleSelect,
+                    builder: _i13.buildDropdownSingleSelect,
                   ),
                 ],
               )
             ],
           ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
+        name: 'EmojiBlast',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseEmojiBlast',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableEmojiBlast',
+                  builder: _i14.buildConfigurableEmojiBlast,
+                ),
+              )
+            ],
+          )
+        ],
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Emojiblast',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseEmojiBlast',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Emoji Blast',
+                  builder: _i15.emojiBlast,
+                ),
+              )
+            ],
+          )
         ],
       ),
       _i1.WidgetbookFolder(
@@ -337,7 +377,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseInput',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableInput',
-                  builder: _i12.buildConfigurableInput,
+                  builder: _i16.buildConfigurableInput,
                 ),
               )
             ],
@@ -350,19 +390,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Password',
-                    builder: _i13.showcasePasswordInput,
+                    builder: _i17.showcasePasswordInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Search',
-                    builder: _i13.showcaseSearchInput,
+                    builder: _i17.showcaseSearchInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Text',
-                    builder: _i13.showcaseTextInput,
+                    builder: _i17.showcaseTextInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Text Area',
-                    builder: _i13.showcaseTextArea,
+                    builder: _i17.showcaseTextArea,
                   ),
                 ],
               )
@@ -380,7 +420,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ToggleSwitch',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableToggle',
-                  builder: _i14.buildConfigurableToggle,
+                  builder: _i18.buildConfigurableToggle,
                   designLink:
                       'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
                 ),
@@ -394,7 +434,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ToggleSwitch',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Toggle',
-                  builder: _i15.toggle,
+                  builder: _i19.toggle,
                   designLink:
                       'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
                 ),
@@ -413,7 +453,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'UiTooltip',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Interactive Tooltip',
-                  builder: _i16.buildConfigurableTooltip,
+                  builder: _i20.buildConfigurableTooltip,
                 ),
               )
             ],
@@ -422,7 +462,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiTooltip',
             useCase: _i1.WidgetbookUseCase(
               name: 'Tooltip – placements & variants',
-              builder: _i17.tooltipShowcase,
+              builder: _i21.tooltipShowcase,
               designLink:
                   'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4938-63907',
             ),
@@ -438,7 +478,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i18.buildUiColorsUseCase,
+          builder: _i22.buildUiColorsUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -447,7 +487,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i19.buildUiRadiusUseCase,
+          builder: _i23.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -455,7 +495,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i20.buildUiSpacingUseCase,
+          builder: _i24.buildUiSpacingUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -464,7 +504,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i21.buildUiTextStylesUseCase,
+          builder: _i25.buildUiTextStylesUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
