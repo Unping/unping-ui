@@ -4,7 +4,6 @@ import 'package:widgetbook/widgetbook.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;
 import 'package:unping_ui/unping_ui.dart';
 import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
-import 'package:widgetbook_workspace/l10n/language_extension.dart';
 
 @widgetbook.UseCase(
   name: 'Interactive Tooltip',

@@ -11,49 +11,119 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:widgetbook/widgetbook.dart' as _i1;
-import 'package:widgetbook_workspace/components/badge/badge.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/avatar/avatar.configurable.widgetbook.dart'
     as _i2;
-import 'package:widgetbook_workspace/components/badge/badge.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/avatar/avatar.showcase.widgetbook.dart'
     as _i3;
-import 'package:widgetbook_workspace/components/button/button.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/badge/badge.configurable.widgetbook.dart'
     as _i4;
-import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/badge/badge.showcase.widgetbook.dart'
     as _i5;
-import 'package:widgetbook_workspace/components/checkbox/checkbox.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/button/button.configurable.widgetbook.dart'
     as _i6;
-import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widgetbook.dart'
-    as _i8;
-import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/button/button.showcase.widgetbook.dart'
     as _i7;
-import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
-    as _i9;
-import 'package:widgetbook_workspace/components/emojiblast/emojiblast.configurable.widetbook.dart'
+import 'package:widgetbook_workspace/components/checkbox/checkbox.configurable.widgetbook.dart'
+    as _i8;
+import 'package:widgetbook_workspace/components/checkbox/checkbox.showcase.widgetbook.dart'
     as _i10;
-import 'package:widgetbook_workspace/components/emojiblast/emojiblast.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.configurable.widgetbook.dart'
+    as _i9;
+import 'package:widgetbook_workspace/components/checkbox/radiogroup.showcase.widgetbook.dart'
     as _i11;
-import 'package:widgetbook_workspace/components/inputs/input.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/dropdown/dropdown.configurable.widgetbook.dart'
     as _i12;
-import 'package:widgetbook_workspace/components/inputs/input.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/dropdown/dropdown.showcase.widgetbook.dart'
     as _i13;
-import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/emojiblast/emojiblast.configurable.widetbook.dart'
     as _i14;
-import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/emojiblast/emojiblast.showcase.widgetbook.dart'
     as _i15;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
+import 'package:widgetbook_workspace/components/inputs/input.configurable.widgetbook.dart'
     as _i16;
-import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
+import 'package:widgetbook_workspace/components/inputs/input.showcase.widgetbook.dart'
     as _i17;
-import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i18;
-import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i19;
-import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
+import 'package:widgetbook_workspace/components/toggle/toggle.configurable.widgetbook.dart'
+    as _i18;
+import 'package:widgetbook_workspace/components/toggle/toggle.showcase.widgetbook.dart'
+    as _i19;
+import 'package:widgetbook_workspace/components/tooltip/tooltip.configurable.widgetbook.dart'
     as _i20;
-import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+import 'package:widgetbook_workspace/components/tooltip/tooltip.showcase.widgetbook.dart'
     as _i21;
+import 'package:widgetbook_workspace/foundation/color.widgetbook.dart' as _i22;
+import 'package:widgetbook_workspace/foundation/radius.widgetbook.dart' as _i23;
+import 'package:widgetbook_workspace/foundation/spacing.widgetbook.dart'
+    as _i24;
+import 'package:widgetbook_workspace/foundation/text_styles.widgetbook.dart'
+    as _i25;
 
 final directories = <_i1.WidgetbookNode>[
   _i1.WidgetbookFolder(
     name: 'Components',
     children: [
+      _i1.WidgetbookFolder(
+        name: 'Avatar',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseAvatar',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableAvatar',
+                  builder: _i2.buildConfigurableAvatar,
+                  designLink:
+                      'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
+                ),
+              )
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'AvatarGroup',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'Avatar Groups',
+                  builder: _i3.avatarGroups,
+                  designLink:
+                      'https://www.figma.com/community/file/1545817431010952080',
+                ),
+              ),
+              _i1.WidgetbookComponent(
+                name: 'BaseAvatar',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Avatars with Badges',
+                    builder: _i3.avatarsWithBadges,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Icon Avatars',
+                    builder: _i3.iconAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Image Avatars',
+                    builder: _i3.imageAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Initials Avatars',
+                    builder: _i3.initialsAvatars,
+                    designLink:
+                        'https://www.figma.com/community/file/1545817431010952080',
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+      ),
       _i1.WidgetbookFolder(
         name: 'Badge',
         children: [
@@ -64,7 +134,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseBadge',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableBadge',
-                  builder: _i2.buildConfigurableBadge,
+                  builder: _i4.buildConfigurableBadge,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -78,7 +148,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BadgeImage',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Badge Image Component',
-                  builder: _i3.badgeImageComponent,
+                  builder: _i5.badgeImageComponent,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -88,25 +158,25 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Image',
-                    builder: _i3.badgeWithImage,
+                    builder: _i5.badgeWithImage,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Text',
-                    builder: _i3.badge,
+                    builder: _i5.badge,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Badge with Widget',
-                    builder: _i3.badgeWithWidget,
+                    builder: _i5.badgeWithWidget,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Interactive Badge with Checkbox',
-                    builder: _i3.interactiveBadgeWithCheckbox,
+                    builder: _i5.interactiveBadgeWithCheckbox,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
@@ -116,7 +186,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseCheckbox',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Badge Checkbox Component',
-                  builder: _i3.badgeCheckboxComponent,
+                  builder: _i5.badgeCheckboxComponent,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7280&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -135,7 +205,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseButton',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableButton',
-                  builder: _i4.buildConfigurableButton,
+                  builder: _i6.buildConfigurableButton,
                 ),
               )
             ],
@@ -148,17 +218,17 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Filled',
-                    builder: _i5.buildBaseButtonFilled,
+                    builder: _i7.buildBaseButtonFilled,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7279&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Ghost',
-                    builder: _i5.buildBaseButtonGhost,
+                    builder: _i7.buildBaseButtonGhost,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Outline',
-                    builder: _i5.buildBaseButtonOutlined,
+                    builder: _i7.buildBaseButtonOutlined,
                   ),
                 ],
               )
@@ -176,7 +246,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseCheckbox',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableCheckbox',
-                  builder: _i6.buildConfigurableCheckbox,
+                  builder: _i8.buildConfigurableCheckbox,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -185,7 +255,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: '_ExampleRadioGroup',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableRadioGroup',
-                  builder: _i7.buildConfigurableRadioGroup,
+                  builder: _i9.buildConfigurableRadioGroup,
                   designLink:
                       'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                 ),
@@ -200,15 +270,62 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Checkbox',
-                    builder: _i8.checkbox,
+                    builder: _i10.checkbox,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Radio Group',
-                    builder: _i9.radioGroup,
+                    builder: _i11.radioGroup,
                     designLink:
                         'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7284&p=f&t=fMXcYIOzZi7Elvf6-0',
+                  ),
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+      _i1.WidgetbookFolder(
+        name: 'Dropdown',
+        children: [
+          _i1.WidgetbookFolder(
+            name: 'Configurable',
+            children: [
+              _i1.WidgetbookLeafComponent(
+                name: 'BaseDropdown',
+                useCase: _i1.WidgetbookUseCase(
+                  name: 'ConfigurableDropdown',
+                  builder: _i12.buildConfigurableDropdown,
+                ),
+              )
+            ],
+          ),
+          _i1.WidgetbookFolder(
+            name: 'Showcase',
+            children: [
+              _i1.WidgetbookComponent(
+                name: 'BaseDropdown',
+                useCases: [
+                  _i1.WidgetbookUseCase(
+                    name: 'Action Menu',
+                    builder: _i13.buildDropdownActionMenu,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Combobox',
+                    builder: _i13.buildDropdownCombobox,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Multi Select',
+                    builder: _i13.buildDropdownMultiSelect,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Scrolling Examples',
+                    builder: _i13.buildDropdownScrolling,
+                  ),
+                  _i1.WidgetbookUseCase(
+                    name: 'Single Select',
+                    builder: _i13.buildDropdownSingleSelect,
                   ),
                 ],
               )
@@ -226,7 +343,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseEmojiBlast',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableEmojiBlast',
-                  builder: _i10.buildConfigurableEmojiBlast,
+                  builder: _i14.buildConfigurableEmojiBlast,
                 ),
               )
             ],
@@ -243,7 +360,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseEmojiBlast',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Emoji Blast',
-                  builder: _i11.emojiBlast,
+                  builder: _i15.emojiBlast,
                 ),
               )
             ],
@@ -260,7 +377,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'BaseInput',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableInput',
-                  builder: _i12.buildConfigurableInput,
+                  builder: _i16.buildConfigurableInput,
                 ),
               )
             ],
@@ -273,19 +390,19 @@ final directories = <_i1.WidgetbookNode>[
                 useCases: [
                   _i1.WidgetbookUseCase(
                     name: 'Password',
-                    builder: _i13.showcasePasswordInput,
+                    builder: _i17.showcasePasswordInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Search',
-                    builder: _i13.showcaseSearchInput,
+                    builder: _i17.showcaseSearchInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Text',
-                    builder: _i13.showcaseTextInput,
+                    builder: _i17.showcaseTextInput,
                   ),
                   _i1.WidgetbookUseCase(
                     name: 'Text Area',
-                    builder: _i13.showcaseTextArea,
+                    builder: _i17.showcaseTextArea,
                   ),
                 ],
               )
@@ -303,7 +420,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ToggleSwitch',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'ConfigurableToggle',
-                  builder: _i14.buildConfigurableToggle,
+                  builder: _i18.buildConfigurableToggle,
                   designLink:
                       'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
                 ),
@@ -317,7 +434,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'ToggleSwitch',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Toggle',
-                  builder: _i15.toggle,
+                  builder: _i19.toggle,
                   designLink:
                       'https://www.figma.com/design/A4jImS7idoqAbZ2Db7E9zT/unping-ui.com-%7C-Public--Community-?node-id=4913-7283&p=f&t=PR11WcPWO8bHVDII-0',
                 ),
@@ -336,7 +453,7 @@ final directories = <_i1.WidgetbookNode>[
                 name: 'UiTooltip',
                 useCase: _i1.WidgetbookUseCase(
                   name: 'Interactive Tooltip',
-                  builder: _i16.buildConfigurableTooltip,
+                  builder: _i20.buildConfigurableTooltip,
                 ),
               )
             ],
@@ -345,7 +462,7 @@ final directories = <_i1.WidgetbookNode>[
             name: 'UiTooltip',
             useCase: _i1.WidgetbookUseCase(
               name: 'Tooltip – placements & variants',
-              builder: _i17.tooltipShowcase,
+              builder: _i21.tooltipShowcase,
               designLink:
                   'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4938-63907',
             ),
@@ -361,7 +478,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiColors',
         useCase: _i1.WidgetbookUseCase(
           name: 'Color Palette',
-          builder: _i18.buildUiColorsUseCase,
+          builder: _i22.buildUiColorsUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7271&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -370,7 +487,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiRadius',
         useCase: _i1.WidgetbookUseCase(
           name: 'Border Radius System',
-          builder: _i19.buildUiRadiusUseCase,
+          builder: _i23.buildUiRadiusUseCase,
           designLink: 'https://www.figma.com/design/unping-ui-radius',
         ),
       ),
@@ -378,7 +495,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiSpacing',
         useCase: _i1.WidgetbookUseCase(
           name: 'Spacing System',
-          builder: _i20.buildUiSpacingUseCase,
+          builder: _i24.buildUiSpacingUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7276&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),
@@ -387,7 +504,7 @@ final directories = <_i1.WidgetbookNode>[
         name: 'UiTextStyles',
         useCase: _i1.WidgetbookUseCase(
           name: 'Typography System',
-          builder: _i21.buildUiTextStylesUseCase,
+          builder: _i25.buildUiTextStylesUseCase,
           designLink:
               'https://www.figma.com/design/D1jFOBHi38okdjyBFwN97c/unping-ui.com-%7C-Public--Community-?node-id=4913-7272&p=f&t=fMXcYIOzZi7Elvf6-0',
         ),

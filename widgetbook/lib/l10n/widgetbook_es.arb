@@ -76,6 +76,88 @@
     "toggleMediumDesc": "Este es un interruptor mediano.",
     "toggleLarge": "Interruptor grande",
     "toggleLargeDesc": "Este es un interruptor grande.",
+    
+    "dropdownLabel": "Etiqueta",
+    "dropdownPlaceholder": "Seleccionar...",
+    "dropdownSearchPlaceholder": "Buscar...",
+    "dropdownCountry": "País",
+    "dropdownCountryPlaceholder": "Seleccionar un país",
+    "dropdownCountrySearch": "Buscar país...",
+    "dropdownCountrySearchMany": "Buscar países...",
+    "dropdownLocation": "Ubicación",
+    "dropdownLocationPlaceholder": "Elegir ubicación...",
+    "dropdownSkills": "Habilidades",
+    "dropdownSkillsPlaceholder": "Seleccionar habilidades...",
+    "dropdownAssignTo": "Asignar a",
+    "dropdownSearchUsers": "Buscar usuarios...",
+    "dropdownSmall": "Pequeño",
+    "dropdownMedium": "Mediano",
+    "dropdownLarge": "Grande",
+    "dropdownNormal": "Normal",
+    "dropdownFocused": "Enfocado",
+    "dropdownDisabled": "Deshabilitado",
+    "dropdownError": "Error",
+    "dropdownErrorRequired": "Este campo es obligatorio",
+    "dropdownErrorAtLeastOne": "Se requiere al menos uno",
+    "dropdownHelperChoose": "Elija su país",
+    "dropdownHelperSelected": "seleccionado",
+    "dropdownHelperSelect": "Seleccionar múltiples países",
+    "dropdownHelperTypeToSearch": "Escriba para buscar entre {count} países",
+    "@dropdownHelperTypeToSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperScroll": "Desplácese para ver todas las opciones",
+    "dropdownHelperUseSearch": "Use la búsqueda para filtrar {count} países",
+    "@dropdownHelperUseSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperSearchable": "Lista desplegable con búsqueda y muchos elementos",
+    "dropdownSelectFromMany": "Seleccionar de {count} opciones",
+    "@dropdownSelectFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSearchFromMany": "Buscar entre {count} opciones",
+    "@dropdownSearchFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSelectCountries": "Seleccionar países",
+    "dropdownSearchAndSelect": "Buscar y seleccionar...",
+    "dropdownTypeToFilter": "Escriba para filtrar...",
+    "dropdownTypeToSearch": "Escriba para buscar...",
+    "dropdownChoose": "Elegir...",
+    "dropdownActions": "Acciones",
+    "dropdownEdit": "Editar",
+    "dropdownDuplicate": "Duplicar",
+    "dropdownArchive": "Archivar",
+    "dropdownDelete": "Eliminar",
+    "dropdownDownload": "Descargar",
+    "dropdownShare": "Compartir",
+    "dropdownPrint": "Imprimir",
+    "dropdownSave": "Guardar",
+    "dropdownUndo": "Deshacer",
+    "dropdownRedo": "Rehacer",
+    "dropdownPreferences": "Preferencias",
+    "dropdownNew": "Nuevo",
+    "dropdownOpen": "Abrir",
+    "dropdownSaveAs": "Guardar como",
+    "dropdownFile": "Archivo",
+    "toggleLargeDesc": "Este es un interruptor grande.",
 
     "emojiBlast": "Explosión de emojis"
 }

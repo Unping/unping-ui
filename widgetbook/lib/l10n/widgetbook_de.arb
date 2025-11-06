@@ -76,6 +76,88 @@
     "toggleMediumDesc": "Das ist ein mittlerer Schalter.",
     "toggleLarge": "Großer Schalter",
     "toggleLargeDesc": "Das ist ein großer Schalter.",
+    
+    "dropdownLabel": "Beschriftung",
+    "dropdownPlaceholder": "Auswählen...",
+    "dropdownSearchPlaceholder": "Suchen...",
+    "dropdownCountry": "Land",
+    "dropdownCountryPlaceholder": "Ein Land auswählen",
+    "dropdownCountrySearch": "Land suchen...",
+    "dropdownCountrySearchMany": "Länder suchen...",
+    "dropdownLocation": "Standort",
+    "dropdownLocationPlaceholder": "Standort wählen...",
+    "dropdownSkills": "Fähigkeiten",
+    "dropdownSkillsPlaceholder": "Fähigkeiten auswählen...",
+    "dropdownAssignTo": "Zuweisen an",
+    "dropdownSearchUsers": "Benutzer suchen...",
+    "dropdownSmall": "Klein",
+    "dropdownMedium": "Mittel",
+    "dropdownLarge": "Groß",
+    "dropdownNormal": "Normal",
+    "dropdownFocused": "Fokussiert",
+    "dropdownDisabled": "Deaktiviert",
+    "dropdownError": "Fehler",
+    "dropdownErrorRequired": "Dieses Feld ist erforderlich",
+    "dropdownErrorAtLeastOne": "Mindestens eine erforderlich",
+    "dropdownHelperChoose": "Wählen Sie Ihr Land",
+    "dropdownHelperSelected": "ausgewählt",
+    "dropdownHelperSelect": "Mehrere Länder auswählen",
+    "dropdownHelperTypeToSearch": "Geben Sie ein, um aus {count} Ländern zu suchen",
+    "@dropdownHelperTypeToSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperScroll": "Scrollen, um alle Optionen zu sehen",
+    "dropdownHelperUseSearch": "Verwenden Sie die Suche, um {count} Länder zu filtern",
+    "@dropdownHelperUseSearch": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownHelperSearchable": "Durchsuchbare Dropdown-Liste mit vielen Elementen",
+    "dropdownSelectFromMany": "Aus {count} Optionen auswählen",
+    "@dropdownSelectFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSearchFromMany": "Aus {count} Optionen suchen",
+    "@dropdownSearchFromMany": {
+        "placeholders": {
+            "count": {
+                "type": "String"
+            }
+        }
+    },
+    "dropdownSelectCountries": "Länder auswählen",
+    "dropdownSearchAndSelect": "Suchen und auswählen...",
+    "dropdownTypeToFilter": "Zum Filtern eingeben...",
+    "dropdownTypeToSearch": "Zum Suchen eingeben...",
+    "dropdownChoose": "Wählen...",
+    "dropdownActions": "Aktionen",
+    "dropdownEdit": "Bearbeiten",
+    "dropdownDuplicate": "Duplizieren",
+    "dropdownArchive": "Archivieren",
+    "dropdownDelete": "Löschen",
+    "dropdownDownload": "Herunterladen",
+    "dropdownShare": "Teilen",
+    "dropdownPrint": "Drucken",
+    "dropdownSave": "Speichern",
+    "dropdownUndo": "Rückgängig",
+    "dropdownRedo": "Wiederholen",
+    "dropdownPreferences": "Einstellungen",
+    "dropdownNew": "Neu",
+    "dropdownOpen": "Öffnen",
+    "dropdownSaveAs": "Speichern unter",
+    "dropdownFile": "Datei",
+    "toggleLargeDesc": "Das ist ein großer Schalter.",
 
     "emojiBlast": "Emoji Explosion"
 }

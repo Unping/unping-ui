@@ -248,5 +248,170 @@ class AppLocalizationsEs extends AppLocalizations {
   String get toggleLargeDesc => 'Este es un interruptor grande.';
 
   @override
+  String get dropdownLabel => 'Etiqueta';
+
+  @override
+  String get dropdownPlaceholder => 'Seleccionar...';
+
+  @override
+  String get dropdownSearchPlaceholder => 'Buscar...';
+
+  @override
+  String get dropdownCountry => 'País';
+
+  @override
+  String get dropdownCountryPlaceholder => 'Seleccionar un país';
+
+  @override
+  String get dropdownCountrySearch => 'Buscar país...';
+
+  @override
+  String get dropdownCountrySearchMany => 'Buscar países...';
+
+  @override
+  String get dropdownLocation => 'Ubicación';
+
+  @override
+  String get dropdownLocationPlaceholder => 'Elegir ubicación...';
+
+  @override
+  String get dropdownSkills => 'Habilidades';
+
+  @override
+  String get dropdownSkillsPlaceholder => 'Seleccionar habilidades...';
+
+  @override
+  String get dropdownAssignTo => 'Asignar a';
+
+  @override
+  String get dropdownSearchUsers => 'Buscar usuarios...';
+
+  @override
+  String get dropdownSmall => 'Pequeño';
+
+  @override
+  String get dropdownMedium => 'Mediano';
+
+  @override
+  String get dropdownLarge => 'Grande';
+
+  @override
+  String get dropdownNormal => 'Normal';
+
+  @override
+  String get dropdownFocused => 'Enfocado';
+
+  @override
+  String get dropdownDisabled => 'Deshabilitado';
+
+  @override
+  String get dropdownError => 'Error';
+
+  @override
+  String get dropdownErrorRequired => 'Este campo es obligatorio';
+
+  @override
+  String get dropdownErrorAtLeastOne => 'Se requiere al menos uno';
+
+  @override
+  String get dropdownHelperChoose => 'Elija su país';
+
+  @override
+  String get dropdownHelperSelected => 'seleccionado';
+
+  @override
+  String get dropdownHelperSelect => 'Seleccionar múltiples países';
+
+  @override
+  String dropdownHelperTypeToSearch(String count) {
+    return 'Escriba para buscar entre $count países';
+  }
+
+  @override
+  String get dropdownHelperScroll => 'Desplácese para ver todas las opciones';
+
+  @override
+  String dropdownHelperUseSearch(String count) {
+    return 'Use la búsqueda para filtrar $count países';
+  }
+
+  @override
+  String get dropdownHelperSearchable =>
+      'Lista desplegable con búsqueda y muchos elementos';
+
+  @override
+  String dropdownSelectFromMany(String count) {
+    return 'Seleccionar de $count opciones';
+  }
+
+  @override
+  String dropdownSearchFromMany(String count) {
+    return 'Buscar entre $count opciones';
+  }
+
+  @override
+  String get dropdownSelectCountries => 'Seleccionar países';
+
+  @override
+  String get dropdownSearchAndSelect => 'Buscar y seleccionar...';
+
+  @override
+  String get dropdownTypeToFilter => 'Escriba para filtrar...';
+
+  @override
+  String get dropdownTypeToSearch => 'Escriba para buscar...';
+
+  @override
+  String get dropdownChoose => 'Elegir...';
+
+  @override
+  String get dropdownActions => 'Acciones';
+
+  @override
+  String get dropdownEdit => 'Editar';
+
+  @override
+  String get dropdownDuplicate => 'Duplicar';
+
+  @override
+  String get dropdownArchive => 'Archivar';
+
+  @override
+  String get dropdownDelete => 'Eliminar';
+
+  @override
+  String get dropdownDownload => 'Descargar';
+
+  @override
+  String get dropdownShare => 'Compartir';
+
+  @override
+  String get dropdownPrint => 'Imprimir';
+
+  @override
+  String get dropdownSave => 'Guardar';
+
+  @override
+  String get dropdownUndo => 'Deshacer';
+
+  @override
+  String get dropdownRedo => 'Rehacer';
+
+  @override
+  String get dropdownPreferences => 'Preferencias';
+
+  @override
+  String get dropdownNew => 'Nuevo';
+
+  @override
+  String get dropdownOpen => 'Abrir';
+
+  @override
+  String get dropdownSaveAs => 'Guardar como';
+
+  @override
+  String get dropdownFile => 'Archivo';
+
+  @override
   String get emojiBlast => 'Explosión de emojis';
 }

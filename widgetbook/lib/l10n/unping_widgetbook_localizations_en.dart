@@ -248,5 +248,169 @@ class AppLocalizationsEn extends AppLocalizations {
   String get toggleLargeDesc => 'This is a large sized toggle.';
 
   @override
+  String get dropdownLabel => 'Label';
+
+  @override
+  String get dropdownPlaceholder => 'Select...';
+
+  @override
+  String get dropdownSearchPlaceholder => 'Search...';
+
+  @override
+  String get dropdownCountry => 'Country';
+
+  @override
+  String get dropdownCountryPlaceholder => 'Select a country';
+
+  @override
+  String get dropdownCountrySearch => 'Search country...';
+
+  @override
+  String get dropdownCountrySearchMany => 'Search countries...';
+
+  @override
+  String get dropdownLocation => 'Location';
+
+  @override
+  String get dropdownLocationPlaceholder => 'Choose location...';
+
+  @override
+  String get dropdownSkills => 'Skills';
+
+  @override
+  String get dropdownSkillsPlaceholder => 'Select skills...';
+
+  @override
+  String get dropdownAssignTo => 'Assign to';
+
+  @override
+  String get dropdownSearchUsers => 'Search users...';
+
+  @override
+  String get dropdownSmall => 'Small';
+
+  @override
+  String get dropdownMedium => 'Medium';
+
+  @override
+  String get dropdownLarge => 'Large';
+
+  @override
+  String get dropdownNormal => 'Normal';
+
+  @override
+  String get dropdownFocused => 'Focused';
+
+  @override
+  String get dropdownDisabled => 'Disabled';
+
+  @override
+  String get dropdownError => 'Error';
+
+  @override
+  String get dropdownErrorRequired => 'This field is required';
+
+  @override
+  String get dropdownErrorAtLeastOne => 'At least one required';
+
+  @override
+  String get dropdownHelperChoose => 'Choose your country';
+
+  @override
+  String get dropdownHelperSelected => 'selected';
+
+  @override
+  String get dropdownHelperSelect => 'Select multiple countries';
+
+  @override
+  String dropdownHelperTypeToSearch(String count) {
+    return 'Type to search from $count countries';
+  }
+
+  @override
+  String get dropdownHelperScroll => 'Scroll to see all options';
+
+  @override
+  String dropdownHelperUseSearch(String count) {
+    return 'Use search to filter $count countries';
+  }
+
+  @override
+  String get dropdownHelperSearchable => 'Searchable dropdown with many items';
+
+  @override
+  String dropdownSelectFromMany(String count) {
+    return 'Select from $count options';
+  }
+
+  @override
+  String dropdownSearchFromMany(String count) {
+    return 'Search from $count options';
+  }
+
+  @override
+  String get dropdownSelectCountries => 'Select countries';
+
+  @override
+  String get dropdownSearchAndSelect => 'Search and select...';
+
+  @override
+  String get dropdownTypeToFilter => 'Type to filter...';
+
+  @override
+  String get dropdownTypeToSearch => 'Type to search...';
+
+  @override
+  String get dropdownChoose => 'Choose...';
+
+  @override
+  String get dropdownActions => 'Actions';
+
+  @override
+  String get dropdownEdit => 'Edit';
+
+  @override
+  String get dropdownDuplicate => 'Duplicate';
+
+  @override
+  String get dropdownArchive => 'Archive';
+
+  @override
+  String get dropdownDelete => 'Delete';
+
+  @override
+  String get dropdownDownload => 'Download';
+
+  @override
+  String get dropdownShare => 'Share';
+
+  @override
+  String get dropdownPrint => 'Print';
+
+  @override
+  String get dropdownSave => 'Save';
+
+  @override
+  String get dropdownUndo => 'Undo';
+
+  @override
+  String get dropdownRedo => 'Redo';
+
+  @override
+  String get dropdownPreferences => 'Preferences';
+
+  @override
+  String get dropdownNew => 'New';
+
+  @override
+  String get dropdownOpen => 'Open';
+
+  @override
+  String get dropdownSaveAs => 'Save As';
+
+  @override
+  String get dropdownFile => 'File';
+
+  @override
   String get emojiBlast => 'Emoji Blast';
 }

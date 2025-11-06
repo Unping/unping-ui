@@ -158,6 +158,30 @@ Buttons.filled(text: 'Save', onPressed: () {});
 Buttons.outline(text: 'Cancel', onPressed: () {});
 Buttons.ghost(text: 'Learn More', onPressed: () {});
 
+// Single-select dropdown
+Dropdowns.select<String>(
+  label: 'Country',
+  options: ['USA', 'Canada', 'Mexico'],
+  placeholder: 'Select a country',
+  onChanged: (value) => print('Selected: $value'),
+);
+
+// Multi-select dropdown
+Dropdowns.multiSelect<String>(
+  label: 'Skills',
+  options: ['Flutter', 'Dart', 'React'],
+  selectedValues: ['Flutter'],
+  onChanged: (values) => print('Selected: $values'),
+);
+
+// Searchable combobox
+Dropdowns.combobox<String>(
+  label: 'Search',
+  options: ['Option 1', 'Option 2', 'Option 3'],
+  optionBuilder: (option) => Text(option),
+  onChanged: (value) => print('Selected: $value'),
+);
+
 // Or create custom BaseButton configurations
 BaseButton(
   text: 'Custom Button',
