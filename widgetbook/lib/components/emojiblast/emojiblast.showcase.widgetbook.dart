@@ -10,23 +10,19 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
     path: 'Components/Emojiblast/Showcase')
 Widget emojiBlast(BuildContext context) {
   final size = MediaQuery.of(context).size;
-  final GlobalKey<BaseEmojiBlastState> baseEmojiBlastKey =
-      GlobalKey<BaseEmojiBlastState>();
 
   return UnpingUIContainer(
-      child: Column(
+      child: Stack(
     children: [
+      Text(
+        context.lang.emojiBlast,
+        style: UiTextStyles.textMd.copyWith(color: UiColors.surface),
+      ),
       BaseEmojiBlast(
         amount: Amount.medium,
-        key: baseEmojiBlastKey,
         position: Position.random,
         size: size,
       ),
-      Buttons.outline(
-          text: context.lang.emojiBlast,
-          onPressed: () {
-            baseEmojiBlastKey.currentState!.blast();
-          }),
     ],
   ));
 }

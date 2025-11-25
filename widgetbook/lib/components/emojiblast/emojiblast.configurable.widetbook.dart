@@ -10,9 +10,6 @@ import 'package:widgetbook_workspace/utils/container.widgetbook.dart';
     type: BaseEmojiBlast,
     path: 'Components/EmojiBlast/Configurable')
 Widget buildConfigurableEmojiBlast(BuildContext context) {
-  final GlobalKey<BaseEmojiBlastState> baseEmojiBlastKey =
-      GlobalKey<BaseEmojiBlastState>();
-
   // size of screen for position estimation
   final size = MediaQuery.of(context).size;
 
@@ -42,20 +39,18 @@ Widget buildConfigurableEmojiBlast(BuildContext context) {
   }
 
   return UnpingUIContainer(
-      child: Column(
+      child: Stack(
     children: [
+      Text(
+        context.lang.emojiBlast,
+        style: UiTextStyles.textMd.copyWith(color: UiColors.surface),
+      ),
       BaseEmojiBlast(
         amount: selectedAmount,
-        key: baseEmojiBlastKey,
         emote: emote,
         position: position,
         size: size,
       ),
-      Buttons.outline(
-          text: context.lang.emojiBlast,
-          onPressed: () {
-            baseEmojiBlastKey.currentState!.blast();
-          }),
     ],
   ));
 }

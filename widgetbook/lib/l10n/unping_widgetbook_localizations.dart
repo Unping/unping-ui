@@ -865,7 +865,7 @@ abstract class AppLocalizations {
   /// No description provided for @emojiBlast.
   ///
   /// In en, this message translates to:
-  /// **'Emoji Blast'**
+  /// **'Tap anywhere for Emoji Blast'**
   String get emojiBlast;
 }
 
