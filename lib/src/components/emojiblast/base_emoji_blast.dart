@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:unping_ui/unping_ui.dart';
 
-enum Position { center, random }
+enum Position { center, random, cursor }
 
 enum Amount { low, medium, large }
 
@@ -29,16 +29,17 @@ class BaseEmojiBlast extends StatefulWidget {
   });
 
   @override
-  State<BaseEmojiBlast> createState() => BaseEmojiBlastState();
+  State<BaseEmojiBlast> createState() => _BaseEmojiBlastState();
 }
 
-class BaseEmojiBlastState extends State<BaseEmojiBlast>
+class _BaseEmojiBlastState extends State<BaseEmojiBlast>
     with SingleTickerProviderStateMixin {
   final List<Particle> _particles = [];
   late AnimationController _animationController;
+  Offset _cursorOffset = Offset.zero;
 
   /// pre made list in case of no specific selection
-  static List<String> _emojis = ['😀', '😂', '😍', '🥳', '🎉', '🔥'];
+  static final List<String> _emojis = ['😀', '😂', '😍', '🥳', '🎉', '🔥'];
 
   /// getting starting position for emote blast
   Offset get _offset {
@@ -49,6 +50,8 @@ class BaseEmojiBlastState extends State<BaseEmojiBlast>
         final random = Random();
         return Offset(widget.size.width * random.nextDouble(),
             widget.size.height * random.nextDouble());
+      case Position.cursor:
+        return _cursorOffset;
     }
   }
 
@@ -87,7 +90,7 @@ class BaseEmojiBlastState extends State<BaseEmojiBlast>
     super.dispose();
   }
 
-  void blast() {
+  void _blast() {
     final random = Random();
     final now = DateTime.now().millisecondsSinceEpoch;
     final offset = _offset;
@@ -132,18 +135,31 @@ class BaseEmojiBlastState extends State<BaseEmojiBlast>
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-        animation: _animationController,
-        builder: (context, child) {
-          return CustomPaint(
-            painter: EmojiPainter(
-              particles: _particles,
-              time:
-                  _animationController.lastElapsedDuration?.inMilliseconds ?? 0,
-            ),
-            child: Container(),
-          );
-        });
+    return Listener(
+      onPointerDown: (event) {
+        if (widget.position == Position.cursor) {
+          final box = context.findRenderObject() as RenderBox;
+          _cursorOffset = box.globalToLocal(event.position);
+        }
+        _blast();
+      },
+      child: AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return CustomPaint(
+              painter: EmojiPainter(
+                particles: _particles,
+                time:
+                    _animationController.lastElapsedDuration?.inMilliseconds ??
+                        0,
+              ),
+              child: SizedBox(
+                height: widget.size.height,
+                width: widget.size.width,
+              ),
+            );
+          }),
+    );
   }
 }
 
@@ -177,8 +193,7 @@ class EmojiPainter extends CustomPainter {
         text: TextSpan(
           text: particle.emoji,
           style: TextStyle(
-              fontSize: 30 * particle.scale,
-              color: UnpingColorExtension.dark.neutral50),
+              fontSize: 30 * particle.scale, color: UiColors.neutral950),
         ),
         textDirection: TextDirection.ltr,
       );
