@@ -324,7 +324,6 @@ class _ActionMenuDropdown extends StatefulWidget {
 
 class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
   final FocusNode _focusNode = FocusNode();
-  final LayerLink _layerLink = LayerLink();
   OverlayEntry? _overlayEntry;
   bool _isOpen = false;
 
@@ -351,8 +350,11 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
   void _openMenu() {
     if (_isOpen || !widget.enabled) return;
 
+    final overlay = Overlay.maybeOf(context, rootOverlay: true);
+    if (overlay == null) return; // Prevent crash if no overlay ancestor
+
     _overlayEntry = _createOverlayEntry();
-    Overlay.of(context).insert(_overlayEntry!);
+    overlay.insert(_overlayEntry!);
 
     setState(() => _isOpen = true);
   }
@@ -376,6 +378,8 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
     final offset = renderBox.localToGlobal(Offset.zero);
 
     final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     final spaceBelow = screenHeight - offset.dy - size.height;
     final spaceAbove = offset.dy;
 
@@ -388,6 +392,14 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
 
     final menuWidth = widget.menuWidth ?? 200.0;
 
+    const double screenPadding = 8.0;
+
+    final idealRightAlignedLeft = offset.dx + size.width - menuWidth;
+
+    final menuLeft = idealRightAlignedLeft.clamp(
+      screenPadding,
+      screenWidth - menuWidth - screenPadding,
+    );
     // Convert actions to DropdownOption
     final options = widget.items.map((action) {
       return DropdownOption<DropdownMenuAction>(
@@ -414,7 +426,7 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
         child: Stack(
           children: [
             Positioned(
-              left: offset.dx,
+              left: menuLeft,
               top: showBelow ? offset.dy + size.height + 4.0 : null,
               bottom: showBelow ? null : screenHeight - offset.dy + 4.0,
               width: menuWidth,
@@ -447,12 +459,9 @@ class _ActionMenuDropdownState extends State<_ActionMenuDropdown> {
       label: widget.semanticsLabel ?? 'Menu',
       button: true,
       enabled: widget.enabled,
-      child: CompositedTransformTarget(
-        link: _layerLink,
-        child: GestureDetector(
-          onTap: _toggleMenu,
-          child: widget.trigger,
-        ),
+      child: GestureDetector(
+        onTap: _toggleMenu,
+        child: widget.trigger,
       ),
     );
   }

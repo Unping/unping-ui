@@ -410,4 +410,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dropdownFile => 'File';
+
+  @override
+  String get emojiBlast => 'Tap anywhere for Emoji Blast';
 }
