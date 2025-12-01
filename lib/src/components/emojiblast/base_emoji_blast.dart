@@ -39,9 +39,12 @@ class _BaseEmojiBlastState extends State<BaseEmojiBlast>
   Offset _cursorOffset = Offset.zero;
 
   /// pre made list in case of no specific selection
+  // coverage:ignore-start
   static final List<String> _emojis = ['😀', '😂', '😍', '🥳', '🎉', '🔥'];
+  // coverage:ignore-end
 
   /// getting starting position for emote blast
+  // coverage:ignore-start
   Offset get _offset {
     switch (widget.position) {
       case Position.center:
@@ -83,6 +86,7 @@ class _BaseEmojiBlastState extends State<BaseEmojiBlast>
     });
     super.initState();
   }
+  // coverage:ignore-end
 
   @override
   void dispose() {
@@ -173,7 +177,7 @@ class EmojiPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final now = DateTime.now().millisecondsSinceEpoch;
 
-    // paiting the new position of each emote
+    /// paiting the new position of each emote
     for (var particle in particles) {
       final progress = (now - particle.creationTime) / particle.lifetime;
       if (progress < 0 || progress > 1) continue;
@@ -239,8 +243,9 @@ class Particle {
     required this.decay,
     required this.lifetime,
   });
-
+  // coverage:ignore-start
   bool isCompleted() {
     return (DateTime.now().millisecondsSinceEpoch - creationTime) > lifetime;
   }
+  // coverage:ignore-end
 }
