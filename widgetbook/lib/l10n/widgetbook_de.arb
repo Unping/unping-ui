@@ -156,5 +156,8 @@
     "dropdownNew": "Neu",
     "dropdownOpen": "Öffnen",
     "dropdownSaveAs": "Speichern unter",
-    "dropdownFile": "Datei"
+    "dropdownFile": "Datei",
+    "toggleLargeDesc": "Das ist ein großer Schalter.",
+
+    "emojiBlast": "Tippe überall für Emoji-Explosion"
 }

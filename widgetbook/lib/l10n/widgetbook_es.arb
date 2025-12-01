@@ -156,5 +156,8 @@
     "dropdownNew": "Nuevo",
     "dropdownOpen": "Abrir",
     "dropdownSaveAs": "Guardar como",
-    "dropdownFile": "Archivo"
+    "dropdownFile": "Archivo",
+    "toggleLargeDesc": "Este es un interruptor grande.",
+
+    "emojiBlast": "Toca en cualquier lugar para la explosión de emojis"
 }

@@ -861,6 +861,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'File'**
   String get dropdownFile;
+
+  /// No description provided for @emojiBlast.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap anywhere for Emoji Blast'**
+  String get emojiBlast;
 }
 
 class _AppLocalizationsDelegate

@@ -411,4 +411,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get dropdownFile => 'Archivo';
+
+  @override
+  String get emojiBlast =>
+      'Toca en cualquier lugar para la explosión de emojis';
 }
