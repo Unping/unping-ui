@@ -36,7 +36,7 @@ jobs:
           flutter build web --release -t lib/main.dart
 
       - name: 📤 Upload Build Artifacts
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: widgetbook-build
           path: ./widgetbook/build/web
